@@ -29,16 +29,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 OUT = os.path.join(ROOT, "game", "assets", "arena", "textures")
 F32 = np.float32
 
-# metres covered by one UV tile (u, v) for each tileable set -- consumed by the Blender builder
-TEXEL = {
-    "brick": (2.0, 2.0), "plaster": (3.0, 3.0), "stone_ashlar": (3.0, 3.0), "stone_trim": (2.0, 2.0),
-    "stone_canal": (4.0, 3.0), "roof_terracotta": (2.0, 2.0), "paving_flag": (5.0, 5.0),
-    "paving_cobble": (4.0, 4.0), "paving_concrete": (8.0, 8.0), "wood_planks": (2.0, 2.0),
-    "metal_deck": (1.5, 1.5), "iron": (1.0, 1.0), "paint_yellow": (2.0, 2.0), "container": (2.6, 2.6),
-    "hazard": (1.0, 1.0), "canvas": (2.0, 2.0), "concrete": (2.0, 2.0), "soil": (1.0, 1.0),
-    "bronze": (1.0, 1.0), "bark": (1.0, 2.0), "water": (6.0, 6.0), "skyline": (24.0, 12.0),
-    "roof_metal": (2.0, 2.0),
-}
+from common import TEXEL  # noqa: E402  (single source of truth for UV densities)
 
 WRITTEN: list = []
 

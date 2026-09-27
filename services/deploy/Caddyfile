@@ -1,0 +1,29 @@
+# WILDRUSH control service — TLS termination (automatic HTTPS via ACME).
+# WR_DOMAIN must resolve to this host and TCP 80/443 must be reachable for the ACME
+# challenge. Only the API is proxied; the database is never exposed.
+{
+	# Caddy's admin API stays on the container's loopback.
+	admin localhost:2019
+}
+
+{$WR_DOMAIN} {
+	encode zstd gzip
+
+	# API bodies are small (the service itself rejects > 64 KiB).
+	request_body {
+		max_size 128KB
+	}
+
+	reverse_proxy service:8080 {
+		# Caddy sets X-Forwarded-For/-Proto; the service trusts them only from this network.
+		health_uri /healthz
+		health_interval 30s
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		-Server
+	}
+}

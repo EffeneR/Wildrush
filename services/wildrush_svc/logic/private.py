@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 from ..context import AppContext
 from ..errors import APIError, conflict, not_found
 from ..models import Allocation, GameServer, Match, MatchParticipant
+from .allocation import cancel_match, lock_match
 from .common import ACTIVE_MATCH_STATES, available_hosts, queue_entry_of
 from .tickets import issue_ticket, latest_ticket, ticket_view
 
@@ -127,8 +128,6 @@ def creator_join_info(db: Session, ctx: AppContext, match_id: uuid.UUID, account
 
 
 def cancel_if_allocating(db: Session, ctx: AppContext, match_id: uuid.UUID, reason: str) -> None:
-    from .allocation import cancel_match, lock_match
-
     match = lock_match(db, match_id)
     if match is not None and match.state == "allocating":
         cancel_match(db, match, reason, ctx.clock.now())

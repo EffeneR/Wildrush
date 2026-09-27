@@ -25,10 +25,16 @@ def _database_url():
         return explicit
     if not os.environ.get("WR_DATABASE_URL"):
         raise RuntimeError("WR_DATABASE_URL is not set")
-    from wildrush_svc.config import Settings
+    from pydantic import ValidationError
+
+    from wildrush_svc.config import Settings, describe_settings_error
     from wildrush_svc.db import effective_database_url
 
-    return effective_database_url(Settings())  # type: ignore[call-arg]
+    try:
+        settings = Settings()  # type: ignore[call-arg]
+    except ValidationError as exc:  # never echo the URL (it may contain the password)
+        raise RuntimeError("configuration error:\n" + describe_settings_error(exc)) from None
+    return effective_database_url(settings)
 
 
 def run_migrations_offline() -> None:

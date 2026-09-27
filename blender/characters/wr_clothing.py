@@ -91,7 +91,10 @@ def m_all():
 
 # ----------------------------------------------------------------------------- garments
 class Garment:
-    def __init__(self, name, node, region, cover_margin=None, res=None, kind="cloth", colour=None):
+    def __init__(self, name, node, region, cover_margin=None, res=None, kind="cloth", colour=None,
+                 base=None, inner=None):
+        self.base = base          # SDF whose iso-surface the garment follows (for cover tests)
+        self.inner = inner        # inner offset of the garment (cover only if base(P) < inner)
         self.name = name
         self.node = node
         self.region = region
@@ -193,10 +196,10 @@ def leg_hem(F, L, t_hem):
     return f
 
 
-def sleeve_cut(L, t_end, t_start=-10.0):
-    """For arm-side points: band along the upper arm/forearm chain; torso points -> -1."""
+def sleeve_cut(L, t_end, t_start=-10.0, other=-1.0):
+    """For arm-side points: band along the upper arm/forearm chain; torso points -> `other`."""
     def f(P):
-        out = np.full(len(P), -1.0)
+        out = np.full(len(P), other)
         for side in ("Left", "Right"):
             av = arm_val(L, side)(P)
             sh, el = L[side + "_ua"]
@@ -212,15 +215,17 @@ def sleeve_cut(L, t_end, t_start=-10.0):
 
 
 def fold_fn(F, amp, zfreq=40.0, xyfreq=16.0, rings=(), seed=3):
-    """Vertical drape + ring folds.  rings: list of (centre_z, width_z, amp_mult, wavelength)."""
+    """Vertical drape folds + irregular bunching bands.
+    rings: list of (centre_z, width_z, amp_mult, wavelength)."""
     def f(P):
         Q = P * np.array([xyfreq, xyfreq, zfreq * 0.25])
         drape = perlin3(Q, 1.0, seed) * 0.7 + perlin3(Q * 2.2, 1.0, seed + 5) * 0.3
-        out = drape * 0.55
+        out = drape * 0.6
         for cz, wz, am, wl in rings:
             env = np.exp(-((P[:, 2] - cz) / wz) ** 2)
-            ph = perlin3(P * 9.0, 1.0, seed + 11) * 2.2
-            out = out + am * env * np.sin(2 * np.pi * P[:, 2] / wl + ph)
+            ph = perlin3(P * np.array([14.0, 14.0, 6.0]), 1.0, seed + 11) * 3.0
+            patch = np.clip(perlin3(P * 11.0, 1.0, seed + 23) * 1.4 + 0.3, 0.0, 1.0)
+            out = out + am * env * patch * np.sin(2 * np.pi * P[:, 2] / wl + ph)
         return amp * np.clip(out, -1.0, 1.0)
     return f
 
@@ -260,7 +265,13 @@ def build(F):
             if g.cover_margin is None:
                 continue
             r = g.region(V)
-            cov |= r < -g.cover_margin
+            c = r < -g.cover_margin
+            if g.base is not None and np.any(c):
+                idx = np.flatnonzero(c)
+                from wr_sdf import eval_points
+                d = eval_points(g.base, V[idx], cell=0.08, m=0.05)
+                c[idx] = d < (g.inner + 0.006)
+            cov |= c
         return cov
     F.covered = covered
     return F
@@ -287,7 +298,7 @@ def clothes_nyx(F, L):
     top_region = m_and(m_zband(0.985, 10.0), neckline(F, z_neck + 0.010, z_neck + 0.040), torso_side(L))
     lo, hi = body_bbox(F, 0.95, z_neck + 0.1)
     G.append(Garment("top", shell_node(base, top_region, 0.0035, 0.0075, lo, hi, edge_k=0.002), top_region,
-                     cover_margin=0.020, colour=lambda P: np.zeros((len(P), 3))))
+                     cover_margin=0.020, colour=lambda P: np.zeros((len(P), 3)), base=base, inner=0.0035))
     # --- cropped jacket with short sleeves
     sleeve_t = 0.62
     jac_region = m_and(m_zband(z_crop, 10.0), neckline(F, z_neck + 0.030, z_neck + 0.075), sleeve_cut(L, sleeve_t))
@@ -298,10 +309,10 @@ def clothes_nyx(F, L):
         # looser around the chest/back, slightly tighter at the cuffs
         return np.full(len(P), 0.019)
     G.append(Garment("jacket", shell_node(base, jac_region, jac_off, 0.010, lo, hi, folds=folds), jac_region,
-                     cover_margin=0.022, colour=nyx_jacket_colour(F, L, z_crop, sleeve_t)))
+                     cover_margin=0.022, colour=nyx_jacket_colour(F, L, z_crop, sleeve_t), base=base, inner=0.014))
     # hem band / cuffs (thicker rim)
     hem = m_and(jac_region, m_or(m_and(m_zband(z_crop - 0.01, z_crop + 0.022), torso_side(L)),
-                                 m_not(sleeve_cut(L, 10.0, sleeve_t - 0.075))))
+                                 sleeve_cut(L, 10.0, sleeve_t - 0.07, other=1.0)))
     G.append(Garment("jacket_hem", shell_node(base, hem, 0.0215, 0.0125, lo, hi), hem, cover_margin=None,
                      colour=lambda P: np.tile([0.0, 1.0, 0.0], (len(P), 1))))
     # --- hood bunched behind the neck
@@ -344,17 +355,19 @@ def clothes_nyx(F, L):
             bag = np.interp(t, [-1.0, -0.4, 0.0, 0.35, 0.62, 0.80], [0.012, 0.015, 0.020, 0.024, 0.017, 0.010])
             o = np.where(on & (P[:, 2] < p["hip_z"] - 0.05), bag, o)
         return o
-    folds = fold_fn(F, 0.0045, zfreq=34, xyfreq=13, seed=5,
-                    rings=[(J["LeftKnee"][2], 0.05, 0.8, 0.028), (J["LeftAnkle"][2] + 0.12, 0.05, 1.0, 0.022)])
+    folds = fold_fn(F, 0.0040, zfreq=34, xyfreq=13, seed=5,
+                    rings=[(J["LeftKnee"][2] + 0.01, 0.035, 0.45, 0.034), (J["LeftAnkle"][2] + 0.10, 0.04, 0.7, 0.026)])
     lo, hi = body_bbox(F, 0.0, z_top + 0.05)
     G.append(Garment("trousers", shell_node(base, tr_region, tr_off, 0.010, lo, hi, folds=folds), tr_region,
-                     cover_margin=0.022, colour=lambda P: np.zeros((len(P), 3))))
+                     cover_margin=0.022, colour=lambda P: np.zeros((len(P), 3)), base=base, inner=0.008))
     # knee patches + cargo pockets (primary)
     for side in ("Left", "Right"):
         s = 1 if side == "Left" else -1
         kn = J[side + "Knee"] + np.array([0, -0.035, 0.0])
-        patch_r = m_and(m_sphere(kn + np.array([0, -0.02, 0.0]), 0.062), m_plane(J[side + "Knee"] + np.array([0, -0.01, 0]), [0, 1, 0]))
-        G.append(Garment(side + "_kneepatch", shell_node(base, patch_r, tr_off_plus(tr_off, 0.0105), 0.009,
+        kz = J[side + "Knee"][2]
+        patch_r = m_and(m_zband(kz - 0.060, kz + 0.070), lambda P, c=kn[0]: np.abs(P[:, 0] - c) - 0.050,
+                        m_plane(J[side + "Knee"] + np.array([0, -0.005, 0]), [0, 1, 0]))
+        G.append(Garment(side + "_kneepatch", shell_node(base, patch_r, tr_off_plus(tr_off, 0.0075), 0.0065,
                                                           kn - 0.12, kn + 0.12), patch_r, cover_margin=None,
                          colour=lambda P: np.tile([1.0, 0.0, 0.0], (len(P), 1))))
         hip, knee = J[side + "Hip"], J[side + "Knee"]
@@ -367,7 +380,7 @@ def clothes_nyx(F, L):
                          colour=lambda P: np.zeros((len(P), 3))))
     # --- sash (secondary): band over the waistband + knot at the left hip + hanging tails
     zs0, zs1 = z_top - 0.050, z_top + 0.012
-    sash_region = m_zband(zs0, zs1)
+    sash_region = m_and(m_zband(zs0, zs1), torso_side(L))
     lo, hi = body_bbox(F, zs0 - 0.05, zs1 + 0.05)
     sash_band = shell_node(base, sash_region, 0.030, 0.013, lo, hi, folds=fold_fn(F, 0.003, zfreq=8, xyfreq=30, seed=9))
     kn_c = np.array([0.125, -0.040, 0.5 * (zs0 + zs1)])
@@ -376,18 +389,18 @@ def clothes_nyx(F, L):
     t2 = RoundBox(kn_c + np.array([0.050, 0.012, -0.090]), (0.026, 0.007, 0.085), rot_y(0.30) @ rot_x(0.05), rnd=0.005)
     sash = Union([sash_band, knot, t1, t2], k=0.010)
     sash = Subtract(sash, Offset_body(F, 0.012), k=0.004)
-    G.append(Garment("sash", sash, m_or(m_zband(zs0, zs1), m_sphere(kn_c, 0.25)), cover_margin=None,
+    G.append(Garment("sash", sash, m_or(sash_region, m_sphere(kn_c, 0.25)), cover_margin=None,
                      colour=lambda P: np.tile([0.0, 1.0, 0.0], (len(P), 1))))
     # --- wraps: wrists (trim + accent stripes) and ankles (trim)
     for side in ("Left", "Right"):
         el, wr = L[side + "_fa"]
-        reg = m_and(m_seg(el, wr, 0.50, 1.10), arm_side(L, side))
+        reg = m_and(m_seg(el, wr, 0.52, 0.99), arm_side(L, side))
         lo = np.minimum(el, wr) - 0.12
         hi = np.maximum(el, wr) + 0.12
         G.append(Garment(side + "_wristwrap", shell_node(F.body, reg, 0.0032, 0.0060, lo, hi,
-                                                          folds=wrap_ridges(el, wr), edge_k=0.002, base_m=0.02),
-                         reg, cover_margin=0.012,
-                         colour=stripe_colour(el, wr, [(0.62, 0.68), (0.95, 1.0)])))
+                                                          folds=wrap_ridges(el, wr, pitch=0.017, amp=0.0010), edge_k=0.002, base_m=0.02),
+                         reg, cover_margin=0.012, base=F.body, inner=0.0003,
+                         colour=stripe_colour(el, wr, [(0.62, 0.68), (0.93, 0.99)])))
         kn, an = L[side + "_sh"]
         s = 1 if side == "Left" else -1
         reg = m_and(m_seg(kn, an, 0.74, 1.04), lambda P, s=s: -s * P[:, 0], m_zband(-1.0, F.p["hip_z"] - 0.1))
@@ -398,8 +411,8 @@ def clothes_nyx(F, L):
             t, _ = seg_t(P, kn, an)
             return np.interp(t, [0.74, 0.84, 0.96], [0.016, 0.009, 0.0035])
         G.append(Garment(side + "_anklewrap", shell_node(F.body, reg, ank_off, 0.0065, lo, hi,
-                                                          folds=wrap_ridges(kn, an, pitch=0.018), edge_k=0.002, base_m=0.03),
-                         reg, cover_margin=0.012, colour=lambda P: np.zeros((len(P), 3))))
+                                                          folds=wrap_ridges(kn, an, pitch=0.019, amp=0.0010), edge_k=0.002, base_m=0.03),
+                         reg, cover_margin=0.012, colour=lambda P: np.zeros((len(P), 3)), base=F.body, inner=0.0003))
     return G
 
 

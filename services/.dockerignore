@@ -1,0 +1,11 @@
+# Keep secrets and test/dev material out of the image build context.
+.env
+.env.*
+!.env.example
+deploy/
+tests/
+scripts/
+**/__pycache__/
+**/*.pyc
+.pytest_cache/
+*.md

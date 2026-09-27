@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
 from ..models import (
     Account,
+    Allocation,
     GameServer,
     Match,
     MatchParticipant,
@@ -90,10 +91,6 @@ def available_hosts(
     db: Session, *, now: datetime, stale_s: float, region: str | None = None
 ) -> list[tuple[GameServer, int]]:
     """Online, enabled, fresh allocator hosts with free match slots: ``[(server, free)]``."""
-    from datetime import timedelta
-
-    from ..models import Allocation
-
     busy = (
         select(Allocation.server_id, func.count().label("busy"))
         .where(Allocation.state.in_(("pending", "assigned", "started")))

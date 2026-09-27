@@ -21,7 +21,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from .clock import iso_utc
-from .config import Settings
+from .config import Settings, describe_settings_error
 from .db import create_db_engine, create_sessionmaker
 from .logic import servers
 
@@ -66,7 +66,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         settings = Settings()  # type: ignore[call-arg]
     except ValidationError as exc:
-        print(f"configuration error:\n{exc}", file=sys.stderr)
+        print(f"configuration error:\n{describe_settings_error(exc)}", file=sys.stderr)
         return 2
     engine = create_db_engine(settings)
     sessions = create_sessionmaker(engine)

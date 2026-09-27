@@ -13,7 +13,7 @@ import sys
 import uvicorn
 from pydantic import ValidationError
 
-from .config import Settings
+from .config import Settings, describe_settings_error
 from .db import safe_url_for_logs
 
 
@@ -24,7 +24,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         settings = Settings()  # type: ignore[call-arg]
     except ValidationError as exc:
-        print(f"configuration error:\n{exc}", file=sys.stderr)
+        print(f"configuration error:\n{describe_settings_error(exc)}", file=sys.stderr)
         return 2
     logging.basicConfig(
         level=settings.log_level.upper(),

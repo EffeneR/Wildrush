@@ -19,7 +19,7 @@ static func step(f: FighterBody, inp: InputFrame, ctx: SimContext) -> void:
 	_advance_control(f, ctx)
 	_spawn_protection(f, ctx)
 	# ---- input edges -> short buffer (D-011: presses expire after input_buffer_ticks)
-	var pressed: int = inp.buttons & ~st.prev_buttons
+	var pressed: int = (inp.buttons & ~st.prev_buttons) | inp.taps
 	st.prev_buttons = inp.buttons
 	if pressed != 0:
 		for b in PRESS_PRIORITY:

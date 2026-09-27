@@ -35,6 +35,9 @@ def create_db_engine(settings: Settings) -> Engine:
         pool_size=settings.db_pool_size,
         max_overflow=10,
         pool_recycle=1800,
+        # Never put bound parameters (tokens, tickets, secrets, hashes) into exception
+        # messages or logs.
+        hide_parameters=True,
         # All timestamps are timezone-aware UTC; make the session time zone UTC as well.
         connect_args={"options": "-c timezone=UTC", "connect_timeout": 10},
     )

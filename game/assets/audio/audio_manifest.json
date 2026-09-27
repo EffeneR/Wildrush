@@ -1,0 +1,973 @@
+{
+  "cues": {
+    "foot_stone": {
+      "files": [
+        "sfx/foot_stone_01.wav",
+        "sfx/foot_stone_02.wav",
+        "sfx/foot_stone_03.wav",
+        "sfx/foot_stone_04.wav",
+        "sfx/foot_stone_05.wav",
+        "sfx/foot_stone_06.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -2.0,
+      "pitch_rand": 0.08,
+      "max_voices": 10,
+      "positional": true,
+      "priority": 1,
+      "loop": false
+    },
+    "foot_wood": {
+      "files": [
+        "sfx/foot_wood_01.wav",
+        "sfx/foot_wood_02.wav",
+        "sfx/foot_wood_03.wav",
+        "sfx/foot_wood_04.wav",
+        "sfx/foot_wood_05.wav",
+        "sfx/foot_wood_06.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -2.0,
+      "pitch_rand": 0.08,
+      "max_voices": 10,
+      "positional": true,
+      "priority": 1,
+      "loop": false
+    },
+    "foot_metal": {
+      "files": [
+        "sfx/foot_metal_01.wav",
+        "sfx/foot_metal_02.wav",
+        "sfx/foot_metal_03.wav",
+        "sfx/foot_metal_04.wav",
+        "sfx/foot_metal_05.wav",
+        "sfx/foot_metal_06.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -3.0,
+      "pitch_rand": 0.07,
+      "max_voices": 10,
+      "positional": true,
+      "priority": 1,
+      "loop": false
+    },
+    "foot_wet": {
+      "files": [
+        "sfx/foot_wet_01.wav",
+        "sfx/foot_wet_02.wav",
+        "sfx/foot_wet_03.wav",
+        "sfx/foot_wet_04.wav",
+        "sfx/foot_wet_05.wav",
+        "sfx/foot_wet_06.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -2.0,
+      "pitch_rand": 0.08,
+      "max_voices": 10,
+      "positional": true,
+      "priority": 1,
+      "loop": false
+    },
+    "land_stone": {
+      "files": [
+        "sfx/land_stone_01.wav",
+        "sfx/land_stone_02.wav",
+        "sfx/land_stone_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.06,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "land_wood": {
+      "files": [
+        "sfx/land_wood_01.wav",
+        "sfx/land_wood_02.wav",
+        "sfx/land_wood_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.06,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "land_metal": {
+      "files": [
+        "sfx/land_metal_01.wav",
+        "sfx/land_metal_02.wav",
+        "sfx/land_metal_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -1.0,
+      "pitch_rand": 0.06,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "land_wet": {
+      "files": [
+        "sfx/land_wet_01.wav",
+        "sfx/land_wet_02.wav",
+        "sfx/land_wet_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.06,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "jump": {
+      "files": [
+        "sfx/jump_01.wav",
+        "sfx/jump_02.wav",
+        "sfx/jump_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -2.0,
+      "pitch_rand": 0.07,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "dodge": {
+      "files": [
+        "sfx/dodge_01.wav",
+        "sfx/dodge_02.wav",
+        "sfx/dodge_03.wav",
+        "sfx/dodge_04.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -1.0,
+      "pitch_rand": 0.07,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "swing_light": {
+      "files": [
+        "sfx/swing_light_01.wav",
+        "sfx/swing_light_02.wav",
+        "sfx/swing_light_03.wav",
+        "sfx/swing_light_04.wav",
+        "sfx/swing_light_05.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -1.0,
+      "pitch_rand": 0.08,
+      "max_voices": 6,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "swing_heavy": {
+      "files": [
+        "sfx/swing_heavy_01.wav",
+        "sfx/swing_heavy_02.wav",
+        "sfx/swing_heavy_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.06,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "kick_whoosh": {
+      "files": [
+        "sfx/kick_whoosh_01.wav",
+        "sfx/kick_whoosh_02.wav",
+        "sfx/kick_whoosh_03.wav",
+        "sfx/kick_whoosh_04.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -1.0,
+      "pitch_rand": 0.07,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "hit_light": {
+      "files": [
+        "sfx/hit_light_01.wav",
+        "sfx/hit_light_02.wav",
+        "sfx/hit_light_03.wav",
+        "sfx/hit_light_04.wav",
+        "sfx/hit_light_05.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.06,
+      "max_voices": 6,
+      "positional": true,
+      "priority": 5,
+      "loop": false
+    },
+    "hit_heavy": {
+      "files": [
+        "sfx/hit_heavy_01.wav",
+        "sfx/hit_heavy_02.wav",
+        "sfx/hit_heavy_03.wav",
+        "sfx/hit_heavy_04.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 5,
+      "loop": false
+    },
+    "guard_block": {
+      "files": [
+        "sfx/guard_block_01.wav",
+        "sfx/guard_block_02.wav",
+        "sfx/guard_block_03.wav",
+        "sfx/guard_block_04.wav",
+        "sfx/guard_block_05.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 4,
+      "positional": true,
+      "priority": 5,
+      "loop": false
+    },
+    "guard_break": {
+      "files": [
+        "sfx/guard_break_01.wav",
+        "sfx/guard_break_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.03,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 5,
+      "loop": false
+    },
+    "parry": {
+      "files": [
+        "sfx/parry_01.wav",
+        "sfx/parry_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.02,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 5,
+      "loop": false
+    },
+    "knock_skid": {
+      "files": [
+        "sfx/knock_skid_01.wav",
+        "sfx/knock_skid_02.wav",
+        "sfx/knock_skid_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -2.0,
+      "pitch_rand": 0.07,
+      "max_voices": 3,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "body_fall": {
+      "files": [
+        "sfx/body_fall_01.wav",
+        "sfx/body_fall_02.wav",
+        "sfx/body_fall_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -1.0,
+      "pitch_rand": 0.06,
+      "max_voices": 3,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "grab": {
+      "files": [
+        "sfx/grab_01.wav",
+        "sfx/grab_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.06,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "nyx_pounce_leap": {
+      "files": [
+        "sfx/nyx_pounce_leap_01.wav",
+        "sfx/nyx_pounce_leap_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "nyx_pounce_land": {
+      "files": [
+        "sfx/nyx_pounce_land_01.wav",
+        "sfx/nyx_pounce_land_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "nyx_crosscut": {
+      "files": [
+        "sfx/nyx_crosscut_01.wav",
+        "sfx/nyx_crosscut_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "nyx_slip": {
+      "files": [
+        "sfx/nyx_slip_01.wav",
+        "sfx/nyx_slip_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "bruno_rush_start": {
+      "files": [
+        "sfx/bruno_rush_start_01.wav",
+        "sfx/bruno_rush_start_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "bruno_rush_impact": {
+      "files": [
+        "sfx/bruno_rush_impact_01.wav",
+        "sfx/bruno_rush_impact_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.04,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 4,
+      "loop": false
+    },
+    "bruno_bark": {
+      "files": [
+        "sfx/bruno_bark_01.wav",
+        "sfx/bruno_bark_02.wav",
+        "sfx/bruno_bark_03.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.04,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 4,
+      "loop": false
+    },
+    "bruno_stand_firm": {
+      "files": [
+        "sfx/bruno_stand_firm_01.wav",
+        "sfx/bruno_stand_firm_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.04,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "vex_feint": {
+      "files": [
+        "sfx/vex_feint_01.wav",
+        "sfx/vex_feint_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "vex_sidewinder": {
+      "files": [
+        "sfx/vex_sidewinder_01.wav",
+        "sfx/vex_sidewinder_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "vex_tail_sweep": {
+      "files": [
+        "sfx/vex_tail_sweep_01.wav",
+        "sfx/vex_tail_sweep_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "hops_bound_takeoff": {
+      "files": [
+        "sfx/hops_bound_takeoff_01.wav",
+        "sfx/hops_bound_takeoff_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "hops_bound_land": {
+      "files": [
+        "sfx/hops_bound_land_01.wav",
+        "sfx/hops_bound_land_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "hops_double_kick": {
+      "files": [
+        "sfx/hops_double_kick_01.wav",
+        "sfx/hops_double_kick_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "hops_dropkick": {
+      "files": [
+        "sfx/hops_dropkick_01.wav",
+        "sfx/hops_dropkick_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "hops_dropkick_crash": {
+      "files": [
+        "sfx/hops_dropkick_crash_01.wav",
+        "sfx/hops_dropkick_crash_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.04,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 4,
+      "loop": false
+    },
+    "scrap_parry_stance": {
+      "files": [
+        "sfx/scrap_parry_stance_01.wav",
+        "sfx/scrap_parry_stance_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.03,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 4,
+      "loop": false
+    },
+    "scrap_leg_sweep": {
+      "files": [
+        "sfx/scrap_leg_sweep_01.wav",
+        "sfx/scrap_leg_sweep_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "scrap_turnabout": {
+      "files": [
+        "sfx/scrap_turnabout_01.wav",
+        "sfx/scrap_turnabout_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.05,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "knockout": {
+      "files": [
+        "sfx/knockout_01.wav",
+        "sfx/knockout_02.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 3,
+      "positional": true,
+      "priority": 5,
+      "loop": false
+    },
+    "respawn": {
+      "files": [
+        "sfx/respawn_01.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -1.0,
+      "pitch_rand": 0.0,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 3,
+      "loop": false
+    },
+    "spawn_protect_end": {
+      "files": [
+        "sfx/spawn_protect_end_01.wav"
+      ],
+      "bus": "SFX",
+      "volume_db": -2.0,
+      "pitch_rand": 0.02,
+      "max_voices": 2,
+      "positional": true,
+      "priority": 2,
+      "loop": false
+    },
+    "zone_activate": {
+      "files": [
+        "ui/zone_activate.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "zone_reveal": {
+      "files": [
+        "ui/zone_reveal.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "zone_ally": {
+      "files": [
+        "ui/zone_ally.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "zone_enemy": {
+      "files": [
+        "ui/zone_enemy.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "zone_contested": {
+      "files": [
+        "ui/zone_contested.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "score_warning_1": {
+      "files": [
+        "ui/score_warning_1.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "score_warning_2": {
+      "files": [
+        "ui/score_warning_2.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "score_warning_3": {
+      "files": [
+        "ui/score_warning_3.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 5,
+      "loop": false
+    },
+    "countdown_tick": {
+      "files": [
+        "ui/countdown_tick.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "countdown_go": {
+      "files": [
+        "ui/countdown_go.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "rotation_tick": {
+      "files": [
+        "ui/rotation_tick.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "victory": {
+      "files": [
+        "ui/victory.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "defeat": {
+      "files": [
+        "ui/defeat.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "sudden_death": {
+      "files": [
+        "ui/sudden_death.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "ui_hover": {
+      "files": [
+        "ui/ui_hover.wav"
+      ],
+      "bus": "UI",
+      "volume_db": -3.0,
+      "pitch_rand": 0.02,
+      "max_voices": 2,
+      "positional": false,
+      "priority": 1,
+      "loop": false
+    },
+    "ui_select": {
+      "files": [
+        "ui/ui_select.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 2,
+      "positional": false,
+      "priority": 2,
+      "loop": false
+    },
+    "ui_back": {
+      "files": [
+        "ui/ui_back.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 2,
+      "positional": false,
+      "priority": 2,
+      "loop": false
+    },
+    "ui_error": {
+      "files": [
+        "ui/ui_error.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 2,
+      "loop": false
+    },
+    "ui_lockin": {
+      "files": [
+        "ui/ui_lockin.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": false
+    },
+    "ui_ready": {
+      "files": [
+        "ui/ui_ready.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": false
+    },
+    "ui_match_found": {
+      "files": [
+        "ui/ui_match_found.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 4,
+      "loop": false
+    },
+    "ui_notify": {
+      "files": [
+        "ui/ui_notify.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 2,
+      "loop": false
+    },
+    "ui_chat": {
+      "files": [
+        "ui/ui_chat.wav"
+      ],
+      "bus": "UI",
+      "volume_db": -1.0,
+      "pitch_rand": 0.0,
+      "max_voices": 2,
+      "positional": false,
+      "priority": 1,
+      "loop": false
+    },
+    "ui_ping": {
+      "files": [
+        "ui/ui_ping.wav"
+      ],
+      "bus": "UI",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 3,
+      "positional": false,
+      "priority": 3,
+      "loop": false
+    },
+    "amb_harbor": {
+      "files": [
+        "amb/amb_harbor.ogg"
+      ],
+      "bus": "Ambience",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    },
+    "amb_market": {
+      "files": [
+        "amb/amb_market.ogg"
+      ],
+      "bus": "Ambience",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    },
+    "amb_yard": {
+      "files": [
+        "amb/amb_yard.ogg"
+      ],
+      "bus": "Ambience",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    },
+    "music_menu": {
+      "files": [
+        "music/music_menu.ogg"
+      ],
+      "bus": "Music",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    },
+    "music_select": {
+      "files": [
+        "music/music_select.ogg"
+      ],
+      "bus": "Music",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    },
+    "music_match": {
+      "files": [
+        "music/music_match.ogg"
+      ],
+      "bus": "Music",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    },
+    "music_results": {
+      "files": [
+        "music/music_results.ogg"
+      ],
+      "bus": "Music",
+      "volume_db": 0.0,
+      "pitch_rand": 0.0,
+      "max_voices": 1,
+      "positional": false,
+      "priority": 3,
+      "loop": true
+    }
+  }
+}

@@ -144,8 +144,8 @@ def kick(rng, dur=0.5, f0=110.0, f1=44.0, pitch_tau=0.035, amp_tau=0.16, click=0
     body = osc_sine(f, n) * env_ad(n, 0.0015, amp_tau)
     body = np.tanh(drive * body) / np.tanh(drive)
     if click:
-        m = ns(0.006)
-        c = hp(white(m, rng), 1500.0, 2) * env_ad(m, 0.0002, 0.0015)
+        m = ns(0.008)
+        c = bp(white(m, rng), 1500.0, 5000.0, 4) * env_ad(m, 0.0004, 0.002)  # soft beater click
         body[:m] += click * nrm(c)
     return fade_edges(body, 0.0, 0.05)
 

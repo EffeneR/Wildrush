@@ -1,0 +1,1397 @@
+WILDRUSH audio check (tools/audio/check_audio.py)
+contract: docs/AUDIO_CONTRACT.md -> 74 cues, 155 files
+loudness: gated 'loud part' RMS (SFX/UI: 20 ms blocks, blocks within 15 dB of the loudest; loops: 400 ms blocks within 10 dB)
+
+files per folder:
+  amb       3 files     2.90 MB
+  music     4 files     4.81 MB
+  sfx     124 files     4.01 MB
+  ui       24 files     2.72 MB
+  total   155 files    14.44 MB
+
+loops:
+  amb/amb_harbor.ogg             60.000 s  loud-part RMS -28.15  peak  -9.91  side/mid  -2.6 dB   0.93 MB
+  amb/amb_market.ogg             60.000 s  loud-part RMS -28.19  peak  -4.07  side/mid  -5.2 dB   1.02 MB
+  amb/amb_yard.ogg               60.000 s  loud-part RMS -28.02  peak  -8.28  side/mid  -1.5 dB   0.95 MB
+  music/music_menu.ogg           85.333 s  loud-part RMS -22.02  peak  -7.97  side/mid  -2.7 dB   1.50 MB
+  music/music_select.ogg         45.714 s  loud-part RMS -22.01  peak  -8.14  side/mid  -2.4 dB   0.85 MB
+  music/music_match.ogg         106.667 s  loud-part RMS -22.00  peak  -7.86  side/mid  -4.6 dB   2.06 MB
+  music/music_results.ogg        22.857 s  loud-part RMS -22.00  peak  -6.70  side/mid  -8.8 dB   0.40 MB
+
+essential cue signatures:
+  guard_block      centroid     607 Hz  dominant band 180-355 Hz  dur(-30dB)  0.14 s  nearest: hit_light (profile corr 0.84, centroid x4.25, duration x1.26)
+  guard_break      centroid     613 Hz  dominant band 355-710 Hz  dur(-30dB)  0.69 s  nearest: zone_contested (profile corr 0.81, centroid x1.30, duration x1.03)
+  hit_heavy        centroid      74 Hz  dominant band 45-90 Hz  dur(-30dB)  0.31 s  nearest: hit_light (profile corr 0.69, centroid x1.94, duration x2.80)
+  hit_light        centroid     143 Hz  dominant band 90-180 Hz  dur(-30dB)  0.11 s  nearest: guard_block (profile corr 0.84, centroid x4.25, duration x1.26)
+  knockout         centroid     529 Hz  dominant band 355-710 Hz  dur(-30dB)  1.43 s  nearest: zone_activate (profile corr 0.95, centroid x1.32, duration x1.11)
+  parry            centroid    1963 Hz  dominant band 1400-2800 Hz  dur(-30dB)  0.92 s  nearest: score_warning_3 (profile corr 0.36, centroid x1.24, duration x1.10)
+  score_warning_1  centroid     767 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.74 s  nearest: zone_contested (profile corr 0.75, centroid x1.04, duration x1.11)
+  score_warning_2  centroid    1019 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.86 s  nearest: zone_reveal (profile corr 0.91, centroid x1.15, duration x1.16)
+  score_warning_3  centroid    1579 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.84 s  nearest: score_warning_2 (profile corr 0.88, centroid x1.55, duration x1.02)
+  zone_activate    centroid     698 Hz  dominant band 710-1400 Hz  dur(-30dB)  1.59 s  nearest: knockout (profile corr 0.95, centroid x1.32, duration x1.11)
+  zone_ally        centroid     935 Hz  dominant band 710-1400 Hz  dur(-30dB)  1.13 s  nearest: zone_reveal (profile corr 0.87, centroid x1.06, duration x1.14)
+  zone_contested   centroid     798 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.67 s  nearest: score_warning_1 (profile corr 0.75, centroid x1.04, duration x1.11)
+  zone_enemy       centroid     358 Hz  dominant band 90-180 Hz  dur(-30dB)  1.25 s  nearest: knockout (profile corr 0.91, centroid x1.48, duration x1.14)
+  zone_reveal      centroid     887 Hz  dominant band 355-710 Hz  dur(-30dB)  0.99 s  nearest: zone_ally (profile corr 0.87, centroid x1.06, duration x1.14)
+
+PASS  cue_table  foot_stone                           loudness category defined
+PASS  contract   sfx/foot_stone_01.wav                file exists
+PASS  format     sfx/foot_stone_01.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_stone_01.wav                sample peak -11.78 dBFS (true peak -11.78)
+PASS  loudness   sfx/foot_stone_01.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_stone_01.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 3.7 ms
+PASS  dc         sfx/foot_stone_01.wav                mean -0.00075
+PASS  clicks     sfx/foot_stone_01.wav                none
+PASS  contract   sfx/foot_stone_02.wav                file exists
+PASS  format     sfx/foot_stone_02.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_stone_02.wav                sample peak -12.36 dBFS (true peak -12.35)
+PASS  loudness   sfx/foot_stone_02.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_stone_02.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 5.3 ms
+PASS  dc         sfx/foot_stone_02.wav                mean -0.00043
+PASS  clicks     sfx/foot_stone_02.wav                none
+PASS  contract   sfx/foot_stone_03.wav                file exists
+PASS  format     sfx/foot_stone_03.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_stone_03.wav                sample peak -11.46 dBFS (true peak -11.42)
+PASS  loudness   sfx/foot_stone_03.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_stone_03.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 3.5 ms
+PASS  dc         sfx/foot_stone_03.wav                mean -0.00070
+PASS  clicks     sfx/foot_stone_03.wav                none
+PASS  contract   sfx/foot_stone_04.wav                file exists
+PASS  format     sfx/foot_stone_04.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_stone_04.wav                sample peak -10.18 dBFS (true peak -10.18)
+PASS  loudness   sfx/foot_stone_04.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_stone_04.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 4.4 ms
+PASS  dc         sfx/foot_stone_04.wav                mean -0.00040
+PASS  clicks     sfx/foot_stone_04.wav                none
+PASS  contract   sfx/foot_stone_05.wav                file exists
+PASS  format     sfx/foot_stone_05.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_stone_05.wav                sample peak -12.49 dBFS (true peak -12.47)
+PASS  loudness   sfx/foot_stone_05.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_stone_05.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 3.8 ms
+PASS  dc         sfx/foot_stone_05.wav                mean -0.00026
+PASS  clicks     sfx/foot_stone_05.wav                none
+PASS  contract   sfx/foot_stone_06.wav                file exists
+PASS  format     sfx/foot_stone_06.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_stone_06.wav                sample peak -12.13 dBFS (true peak -12.12)
+PASS  loudness   sfx/foot_stone_06.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_stone_06.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 3.2 ms
+PASS  dc         sfx/foot_stone_06.wav                mean -0.00033
+PASS  clicks     sfx/foot_stone_06.wav                none
+PASS  cue_table  foot_wood                            loudness category defined
+PASS  contract   sfx/foot_wood_01.wav                 file exists
+PASS  format     sfx/foot_wood_01.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wood_01.wav                 sample peak -12.87 dBFS (true peak -12.87)
+PASS  loudness   sfx/foot_wood_01.wav                 footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wood_01.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 13.2 ms
+PASS  dc         sfx/foot_wood_01.wav                 mean -0.00011
+PASS  clicks     sfx/foot_wood_01.wav                 none
+PASS  contract   sfx/foot_wood_02.wav                 file exists
+PASS  format     sfx/foot_wood_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wood_02.wav                 sample peak -10.44 dBFS (true peak -10.43)
+PASS  loudness   sfx/foot_wood_02.wav                 footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wood_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 15.1 ms
+PASS  dc         sfx/foot_wood_02.wav                 mean +0.00033
+PASS  clicks     sfx/foot_wood_02.wav                 none
+PASS  contract   sfx/foot_wood_03.wav                 file exists
+PASS  format     sfx/foot_wood_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wood_03.wav                 sample peak -10.59 dBFS (true peak -10.59)
+PASS  loudness   sfx/foot_wood_03.wav                 footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wood_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 12.6 ms
+PASS  dc         sfx/foot_wood_03.wav                 mean -0.00001
+PASS  clicks     sfx/foot_wood_03.wav                 none
+PASS  contract   sfx/foot_wood_04.wav                 file exists
+PASS  format     sfx/foot_wood_04.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wood_04.wav                 sample peak -12.55 dBFS (true peak -12.54)
+PASS  loudness   sfx/foot_wood_04.wav                 footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wood_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 13.7 ms
+PASS  dc         sfx/foot_wood_04.wav                 mean +0.00008
+PASS  clicks     sfx/foot_wood_04.wav                 none
+PASS  contract   sfx/foot_wood_05.wav                 file exists
+PASS  format     sfx/foot_wood_05.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wood_05.wav                 sample peak -9.25 dBFS (true peak -9.24)
+PASS  loudness   sfx/foot_wood_05.wav                 footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wood_05.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 13.1 ms
+PASS  dc         sfx/foot_wood_05.wav                 mean +0.00017
+PASS  clicks     sfx/foot_wood_05.wav                 none
+PASS  contract   sfx/foot_wood_06.wav                 file exists
+PASS  format     sfx/foot_wood_06.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wood_06.wav                 sample peak -12.43 dBFS (true peak -12.42)
+PASS  loudness   sfx/foot_wood_06.wav                 footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wood_06.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 12.3 ms
+PASS  dc         sfx/foot_wood_06.wav                 mean +0.00005
+PASS  clicks     sfx/foot_wood_06.wav                 none
+PASS  cue_table  foot_metal                           loudness category defined
+PASS  contract   sfx/foot_metal_01.wav                file exists
+PASS  format     sfx/foot_metal_01.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_metal_01.wav                sample peak -9.74 dBFS (true peak -9.73)
+PASS  loudness   sfx/foot_metal_01.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_metal_01.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 13.1 ms
+PASS  dc         sfx/foot_metal_01.wav                mean -0.00023
+PASS  clicks     sfx/foot_metal_01.wav                none
+PASS  contract   sfx/foot_metal_02.wav                file exists
+PASS  format     sfx/foot_metal_02.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_metal_02.wav                sample peak -10.75 dBFS (true peak -10.74)
+PASS  loudness   sfx/foot_metal_02.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_metal_02.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 12.9 ms
+PASS  dc         sfx/foot_metal_02.wav                mean -0.00040
+PASS  clicks     sfx/foot_metal_02.wav                none
+PASS  contract   sfx/foot_metal_03.wav                file exists
+PASS  format     sfx/foot_metal_03.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_metal_03.wav                sample peak -10.60 dBFS (true peak -10.58)
+PASS  loudness   sfx/foot_metal_03.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_metal_03.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 13.7 ms
+PASS  dc         sfx/foot_metal_03.wav                mean -0.00020
+PASS  clicks     sfx/foot_metal_03.wav                none
+PASS  contract   sfx/foot_metal_04.wav                file exists
+PASS  format     sfx/foot_metal_04.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_metal_04.wav                sample peak -10.51 dBFS (true peak -10.50)
+PASS  loudness   sfx/foot_metal_04.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_metal_04.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 11.7 ms
+PASS  dc         sfx/foot_metal_04.wav                mean -0.00028
+PASS  clicks     sfx/foot_metal_04.wav                none
+PASS  contract   sfx/foot_metal_05.wav                file exists
+PASS  format     sfx/foot_metal_05.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_metal_05.wav                sample peak -8.10 dBFS (true peak -8.10)
+PASS  loudness   sfx/foot_metal_05.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_metal_05.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 11.5 ms
+PASS  dc         sfx/foot_metal_05.wav                mean -0.00028
+PASS  clicks     sfx/foot_metal_05.wav                none
+PASS  contract   sfx/foot_metal_06.wav                file exists
+PASS  format     sfx/foot_metal_06.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_metal_06.wav                sample peak -9.74 dBFS (true peak -9.73)
+PASS  loudness   sfx/foot_metal_06.wav                footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_metal_06.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 13.5 ms
+PASS  dc         sfx/foot_metal_06.wav                mean -0.00030
+PASS  clicks     sfx/foot_metal_06.wav                none
+PASS  cue_table  foot_wet                             loudness category defined
+PASS  contract   sfx/foot_wet_01.wav                  file exists
+PASS  format     sfx/foot_wet_01.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wet_01.wav                  sample peak -5.97 dBFS (true peak -5.95)
+PASS  loudness   sfx/foot_wet_01.wav                  footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wet_01.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 7.3 ms
+PASS  dc         sfx/foot_wet_01.wav                  mean -0.00030
+PASS  clicks     sfx/foot_wet_01.wav                  none
+PASS  contract   sfx/foot_wet_02.wav                  file exists
+PASS  format     sfx/foot_wet_02.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wet_02.wav                  sample peak -8.89 dBFS (true peak -8.72)
+PASS  loudness   sfx/foot_wet_02.wav                  footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wet_02.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 4.4 ms
+PASS  dc         sfx/foot_wet_02.wav                  mean -0.00030
+PASS  clicks     sfx/foot_wet_02.wav                  none
+PASS  contract   sfx/foot_wet_03.wav                  file exists
+PASS  format     sfx/foot_wet_03.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wet_03.wav                  sample peak -8.59 dBFS (true peak -8.51)
+PASS  loudness   sfx/foot_wet_03.wav                  footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wet_03.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.2 ms
+PASS  dc         sfx/foot_wet_03.wav                  mean -0.00030
+PASS  clicks     sfx/foot_wet_03.wav                  none
+PASS  contract   sfx/foot_wet_04.wav                  file exists
+PASS  format     sfx/foot_wet_04.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wet_04.wav                  sample peak -9.02 dBFS (true peak -9.01)
+PASS  loudness   sfx/foot_wet_04.wav                  footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wet_04.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 6.0 ms
+PASS  dc         sfx/foot_wet_04.wav                  mean -0.00025
+PASS  clicks     sfx/foot_wet_04.wav                  none
+PASS  contract   sfx/foot_wet_05.wav                  file exists
+PASS  format     sfx/foot_wet_05.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wet_05.wav                  sample peak -7.41 dBFS (true peak -7.19)
+PASS  loudness   sfx/foot_wet_05.wav                  footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wet_05.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 7.0 ms
+PASS  dc         sfx/foot_wet_05.wav                  mean -0.00019
+PASS  clicks     sfx/foot_wet_05.wav                  none
+PASS  contract   sfx/foot_wet_06.wav                  file exists
+PASS  format     sfx/foot_wet_06.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/foot_wet_06.wav                  sample peak -9.08 dBFS (true peak -9.05)
+PASS  loudness   sfx/foot_wet_06.wav                  footstep: loud-part RMS -24.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/foot_wet_06.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 5.2 ms
+PASS  dc         sfx/foot_wet_06.wav                  mean -0.00024
+PASS  clicks     sfx/foot_wet_06.wav                  none
+PASS  cue_table  land_stone                           loudness category defined
+PASS  contract   sfx/land_stone_01.wav                file exists
+PASS  format     sfx/land_stone_01.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_stone_01.wav                sample peak -10.20 dBFS (true peak -10.19)
+PASS  loudness   sfx/land_stone_01.wav                footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_stone_01.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 12.5 ms
+PASS  dc         sfx/land_stone_01.wav                mean -0.00024
+PASS  clicks     sfx/land_stone_01.wav                none
+PASS  contract   sfx/land_stone_02.wav                file exists
+PASS  format     sfx/land_stone_02.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_stone_02.wav                sample peak -11.41 dBFS (true peak -11.40)
+PASS  loudness   sfx/land_stone_02.wav                footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_stone_02.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 12.0 ms
+PASS  dc         sfx/land_stone_02.wav                mean -0.00006
+PASS  clicks     sfx/land_stone_02.wav                none
+PASS  contract   sfx/land_stone_03.wav                file exists
+PASS  format     sfx/land_stone_03.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_stone_03.wav                sample peak -10.92 dBFS (true peak -10.88)
+PASS  loudness   sfx/land_stone_03.wav                footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_stone_03.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 12.2 ms
+PASS  dc         sfx/land_stone_03.wav                mean -0.00027
+PASS  clicks     sfx/land_stone_03.wav                none
+PASS  cue_table  land_wood                            loudness category defined
+PASS  contract   sfx/land_wood_01.wav                 file exists
+PASS  format     sfx/land_wood_01.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_wood_01.wav                 sample peak -11.90 dBFS (true peak -11.89)
+PASS  loudness   sfx/land_wood_01.wav                 footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_wood_01.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 16.1 ms
+PASS  dc         sfx/land_wood_01.wav                 mean +0.00006
+PASS  clicks     sfx/land_wood_01.wav                 none
+PASS  contract   sfx/land_wood_02.wav                 file exists
+PASS  format     sfx/land_wood_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_wood_02.wav                 sample peak -12.80 dBFS (true peak -12.79)
+PASS  loudness   sfx/land_wood_02.wav                 footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_wood_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 14.4 ms
+PASS  dc         sfx/land_wood_02.wav                 mean +0.00001
+PASS  clicks     sfx/land_wood_02.wav                 none
+PASS  contract   sfx/land_wood_03.wav                 file exists
+PASS  format     sfx/land_wood_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_wood_03.wav                 sample peak -9.39 dBFS (true peak -9.39)
+PASS  loudness   sfx/land_wood_03.wav                 footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_wood_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 15.2 ms
+PASS  dc         sfx/land_wood_03.wav                 mean +0.00007
+PASS  clicks     sfx/land_wood_03.wav                 none
+PASS  cue_table  land_metal                           loudness category defined
+PASS  contract   sfx/land_metal_01.wav                file exists
+PASS  format     sfx/land_metal_01.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_metal_01.wav                sample peak -9.96 dBFS (true peak -9.96)
+PASS  loudness   sfx/land_metal_01.wav                footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_metal_01.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 16.4 ms
+PASS  dc         sfx/land_metal_01.wav                mean -0.00017
+PASS  clicks     sfx/land_metal_01.wav                none
+PASS  contract   sfx/land_metal_02.wav                file exists
+PASS  format     sfx/land_metal_02.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_metal_02.wav                sample peak -9.04 dBFS (true peak -9.04)
+PASS  loudness   sfx/land_metal_02.wav                footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_metal_02.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 14.9 ms
+PASS  dc         sfx/land_metal_02.wav                mean -0.00014
+PASS  clicks     sfx/land_metal_02.wav                none
+PASS  contract   sfx/land_metal_03.wav                file exists
+PASS  format     sfx/land_metal_03.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_metal_03.wav                sample peak -8.22 dBFS (true peak -8.21)
+PASS  loudness   sfx/land_metal_03.wav                footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_metal_03.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 14.4 ms
+PASS  dc         sfx/land_metal_03.wav                mean -0.00023
+PASS  clicks     sfx/land_metal_03.wav                none
+PASS  cue_table  land_wet                             loudness category defined
+PASS  contract   sfx/land_wet_01.wav                  file exists
+PASS  format     sfx/land_wet_01.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_wet_01.wav                  sample peak -6.80 dBFS (true peak -6.67)
+PASS  loudness   sfx/land_wet_01.wav                  footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_wet_01.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 4.8 ms
+PASS  dc         sfx/land_wet_01.wav                  mean -0.00017
+PASS  clicks     sfx/land_wet_01.wav                  none
+PASS  contract   sfx/land_wet_02.wav                  file exists
+PASS  format     sfx/land_wet_02.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_wet_02.wav                  sample peak -6.73 dBFS (true peak -6.65)
+PASS  loudness   sfx/land_wet_02.wav                  footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_wet_02.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 5.5 ms
+PASS  dc         sfx/land_wet_02.wav                  mean -0.00019
+PASS  clicks     sfx/land_wet_02.wav                  none
+PASS  contract   sfx/land_wet_03.wav                  file exists
+PASS  format     sfx/land_wet_03.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/land_wet_03.wav                  sample peak -5.27 dBFS (true peak -5.08)
+PASS  loudness   sfx/land_wet_03.wav                  footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/land_wet_03.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 6.3 ms
+PASS  dc         sfx/land_wet_03.wav                  mean -0.00010
+PASS  clicks     sfx/land_wet_03.wav                  none
+PASS  cue_table  jump                                 loudness category defined
+PASS  contract   sfx/jump_01.wav                      file exists
+PASS  format     sfx/jump_01.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/jump_01.wav                      sample peak -6.84 dBFS (true peak -6.84)
+PASS  loudness   sfx/jump_01.wav                      swing: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/jump_01.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 10.2 ms
+PASS  dc         sfx/jump_01.wav                      mean -0.00035
+PASS  clicks     sfx/jump_01.wav                      none
+PASS  contract   sfx/jump_02.wav                      file exists
+PASS  format     sfx/jump_02.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/jump_02.wav                      sample peak -7.25 dBFS (true peak -7.24)
+PASS  loudness   sfx/jump_02.wav                      swing: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/jump_02.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 9.4 ms
+PASS  dc         sfx/jump_02.wav                      mean -0.00039
+PASS  clicks     sfx/jump_02.wav                      none
+PASS  contract   sfx/jump_03.wav                      file exists
+PASS  format     sfx/jump_03.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/jump_03.wav                      sample peak -8.66 dBFS (true peak -8.66)
+PASS  loudness   sfx/jump_03.wav                      swing: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/jump_03.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.6 ms
+PASS  dc         sfx/jump_03.wav                      mean -0.00037
+PASS  clicks     sfx/jump_03.wav                      none
+PASS  cue_table  dodge                                loudness category defined
+PASS  contract   sfx/dodge_01.wav                     file exists
+PASS  format     sfx/dodge_01.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/dodge_01.wav                     sample peak -6.99 dBFS (true peak -6.93)
+PASS  loudness   sfx/dodge_01.wav                     swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/dodge_01.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.7 ms, tail below -60 dB 7.5 ms
+PASS  dc         sfx/dodge_01.wav                     mean -0.00001
+PASS  clicks     sfx/dodge_01.wav                     none
+PASS  contract   sfx/dodge_02.wav                     file exists
+PASS  format     sfx/dodge_02.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/dodge_02.wav                     sample peak -5.11 dBFS (true peak -5.11)
+PASS  loudness   sfx/dodge_02.wav                     swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/dodge_02.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 1.1 ms, tail below -60 dB 9.3 ms
+PASS  dc         sfx/dodge_02.wav                     mean +0.00000
+PASS  clicks     sfx/dodge_02.wav                     none
+PASS  contract   sfx/dodge_03.wav                     file exists
+PASS  format     sfx/dodge_03.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/dodge_03.wav                     sample peak -7.10 dBFS (true peak -7.07)
+PASS  loudness   sfx/dodge_03.wav                     swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/dodge_03.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 1.6 ms, tail below -60 dB 8.3 ms
+PASS  dc         sfx/dodge_03.wav                     mean -0.00000
+PASS  clicks     sfx/dodge_03.wav                     none
+PASS  contract   sfx/dodge_04.wav                     file exists
+PASS  format     sfx/dodge_04.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/dodge_04.wav                     sample peak -6.68 dBFS (true peak -6.65)
+PASS  loudness   sfx/dodge_04.wav                     swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/dodge_04.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 2.6 ms, tail below -60 dB 8.1 ms
+PASS  dc         sfx/dodge_04.wav                     mean +0.00001
+PASS  clicks     sfx/dodge_04.wav                     none
+PASS  cue_table  swing_light                          loudness category defined
+PASS  contract   sfx/swing_light_01.wav               file exists
+PASS  format     sfx/swing_light_01.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_light_01.wav               sample peak -5.23 dBFS (true peak -5.16)
+PASS  loudness   sfx/swing_light_01.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_light_01.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.9 ms, tail below -60 dB 7.9 ms
+PASS  dc         sfx/swing_light_01.wav               mean +0.00000
+PASS  clicks     sfx/swing_light_01.wav               none
+PASS  contract   sfx/swing_light_02.wav               file exists
+PASS  format     sfx/swing_light_02.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_light_02.wav               sample peak -6.05 dBFS (true peak -5.95)
+PASS  loudness   sfx/swing_light_02.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_light_02.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.2 ms, tail below -60 dB 8.0 ms
+PASS  dc         sfx/swing_light_02.wav               mean -0.00000
+PASS  clicks     sfx/swing_light_02.wav               none
+PASS  contract   sfx/swing_light_03.wav               file exists
+PASS  format     sfx/swing_light_03.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_light_03.wav               sample peak -5.51 dBFS (true peak -5.45)
+PASS  loudness   sfx/swing_light_03.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_light_03.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.1 ms, tail below -60 dB 7.1 ms
+PASS  dc         sfx/swing_light_03.wav               mean +0.00000
+PASS  clicks     sfx/swing_light_03.wav               none
+PASS  contract   sfx/swing_light_04.wav               file exists
+PASS  format     sfx/swing_light_04.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_light_04.wav               sample peak -6.05 dBFS (true peak -5.84)
+PASS  loudness   sfx/swing_light_04.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_light_04.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.4 ms, tail below -60 dB 6.6 ms
+PASS  dc         sfx/swing_light_04.wav               mean +0.00000
+PASS  clicks     sfx/swing_light_04.wav               none
+PASS  contract   sfx/swing_light_05.wav               file exists
+PASS  format     sfx/swing_light_05.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_light_05.wav               sample peak -5.58 dBFS (true peak -5.42)
+PASS  loudness   sfx/swing_light_05.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_light_05.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.5 ms, tail below -60 dB 8.5 ms
+PASS  dc         sfx/swing_light_05.wav               mean -0.00000
+PASS  clicks     sfx/swing_light_05.wav               none
+PASS  cue_table  swing_heavy                          loudness category defined
+PASS  contract   sfx/swing_heavy_01.wav               file exists
+PASS  format     sfx/swing_heavy_01.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_heavy_01.wav               sample peak -3.86 dBFS (true peak -3.85)
+PASS  loudness   sfx/swing_heavy_01.wav               swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_heavy_01.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.3 ms, tail below -60 dB 12.8 ms
+PASS  dc         sfx/swing_heavy_01.wav               mean +0.00000
+PASS  clicks     sfx/swing_heavy_01.wav               none
+PASS  contract   sfx/swing_heavy_02.wav               file exists
+PASS  format     sfx/swing_heavy_02.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_heavy_02.wav               sample peak -4.20 dBFS (true peak -4.20)
+PASS  loudness   sfx/swing_heavy_02.wav               swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_heavy_02.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 2.3 ms, tail below -60 dB 9.7 ms
+PASS  dc         sfx/swing_heavy_02.wav               mean +0.00000
+PASS  clicks     sfx/swing_heavy_02.wav               none
+PASS  contract   sfx/swing_heavy_03.wav               file exists
+PASS  format     sfx/swing_heavy_03.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/swing_heavy_03.wav               sample peak -2.95 dBFS (true peak -2.92)
+PASS  loudness   sfx/swing_heavy_03.wav               swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/swing_heavy_03.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.6 ms, tail below -60 dB 11.5 ms
+PASS  dc         sfx/swing_heavy_03.wav               mean +0.00000
+PASS  clicks     sfx/swing_heavy_03.wav               none
+PASS  cue_table  kick_whoosh                          loudness category defined
+PASS  contract   sfx/kick_whoosh_01.wav               file exists
+PASS  format     sfx/kick_whoosh_01.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/kick_whoosh_01.wav               sample peak -5.59 dBFS (true peak -5.51)
+PASS  loudness   sfx/kick_whoosh_01.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/kick_whoosh_01.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 2.4 ms, tail below -60 dB 7.6 ms
+PASS  dc         sfx/kick_whoosh_01.wav               mean -0.00001
+PASS  clicks     sfx/kick_whoosh_01.wav               none
+PASS  contract   sfx/kick_whoosh_02.wav               file exists
+PASS  format     sfx/kick_whoosh_02.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/kick_whoosh_02.wav               sample peak -6.16 dBFS (true peak -6.14)
+PASS  loudness   sfx/kick_whoosh_02.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/kick_whoosh_02.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 4.1 ms, tail below -60 dB 7.7 ms
+PASS  dc         sfx/kick_whoosh_02.wav               mean -0.00001
+PASS  clicks     sfx/kick_whoosh_02.wav               none
+PASS  contract   sfx/kick_whoosh_03.wav               file exists
+PASS  format     sfx/kick_whoosh_03.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/kick_whoosh_03.wav               sample peak -6.87 dBFS (true peak -6.83)
+PASS  loudness   sfx/kick_whoosh_03.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/kick_whoosh_03.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 2.0 ms, tail below -60 dB 8.3 ms
+PASS  dc         sfx/kick_whoosh_03.wav               mean +0.00000
+PASS  clicks     sfx/kick_whoosh_03.wav               none
+PASS  contract   sfx/kick_whoosh_04.wav               file exists
+PASS  format     sfx/kick_whoosh_04.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/kick_whoosh_04.wav               sample peak -6.46 dBFS (true peak -6.44)
+PASS  loudness   sfx/kick_whoosh_04.wav               swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/kick_whoosh_04.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 1.6 ms, tail below -60 dB 7.5 ms
+PASS  dc         sfx/kick_whoosh_04.wav               mean +0.00001
+PASS  clicks     sfx/kick_whoosh_04.wav               none
+PASS  cue_table  hit_light                            loudness category defined
+PASS  contract   sfx/hit_light_01.wav                 file exists
+PASS  format     sfx/hit_light_01.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_light_01.wav                 sample peak -1.20 dBFS (true peak -1.17)
+PASS  loudness   sfx/hit_light_01.wav                 impact: loud-part RMS -15.01 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_light_01.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 7.5 ms
+PASS  dc         sfx/hit_light_01.wav                 mean -0.00206
+PASS  clicks     sfx/hit_light_01.wav                 none
+PASS  contract   sfx/hit_light_02.wav                 file exists
+PASS  format     sfx/hit_light_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_light_02.wav                 sample peak -3.73 dBFS (true peak -3.72)
+PASS  loudness   sfx/hit_light_02.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_light_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.1 ms
+PASS  dc         sfx/hit_light_02.wav                 mean -0.00153
+PASS  clicks     sfx/hit_light_02.wav                 none
+PASS  contract   sfx/hit_light_03.wav                 file exists
+PASS  format     sfx/hit_light_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_light_03.wav                 sample peak -3.45 dBFS (true peak -3.42)
+PASS  loudness   sfx/hit_light_03.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_light_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.0 ms
+PASS  dc         sfx/hit_light_03.wav                 mean -0.00149
+PASS  clicks     sfx/hit_light_03.wav                 none
+PASS  contract   sfx/hit_light_04.wav                 file exists
+PASS  format     sfx/hit_light_04.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_light_04.wav                 sample peak -2.43 dBFS (true peak -2.41)
+PASS  loudness   sfx/hit_light_04.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_light_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 5.3 ms
+PASS  dc         sfx/hit_light_04.wav                 mean -0.00202
+PASS  clicks     sfx/hit_light_04.wav                 none
+PASS  contract   sfx/hit_light_05.wav                 file exists
+PASS  format     sfx/hit_light_05.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_light_05.wav                 sample peak -4.37 dBFS (true peak -4.36)
+PASS  loudness   sfx/hit_light_05.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_light_05.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 4.8 ms
+PASS  dc         sfx/hit_light_05.wav                 mean -0.00170
+PASS  clicks     sfx/hit_light_05.wav                 none
+PASS  cue_table  hit_heavy                            loudness category defined
+PASS  contract   sfx/hit_heavy_01.wav                 file exists
+PASS  format     sfx/hit_heavy_01.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_heavy_01.wav                 sample peak -3.58 dBFS (true peak -3.58)
+PASS  loudness   sfx/hit_heavy_01.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_heavy_01.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.4 ms
+PASS  dc         sfx/hit_heavy_01.wav                 mean -0.00056
+PASS  clicks     sfx/hit_heavy_01.wav                 none
+PASS  contract   sfx/hit_heavy_02.wav                 file exists
+PASS  format     sfx/hit_heavy_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_heavy_02.wav                 sample peak -3.19 dBFS (true peak -3.09)
+PASS  loudness   sfx/hit_heavy_02.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_heavy_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.3 ms
+PASS  dc         sfx/hit_heavy_02.wav                 mean -0.00071
+PASS  clicks     sfx/hit_heavy_02.wav                 none
+PASS  contract   sfx/hit_heavy_03.wav                 file exists
+PASS  format     sfx/hit_heavy_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_heavy_03.wav                 sample peak -3.23 dBFS (true peak -3.12)
+PASS  loudness   sfx/hit_heavy_03.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_heavy_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.7 ms
+PASS  dc         sfx/hit_heavy_03.wav                 mean -0.00080
+PASS  clicks     sfx/hit_heavy_03.wav                 none
+PASS  contract   sfx/hit_heavy_04.wav                 file exists
+PASS  format     sfx/hit_heavy_04.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hit_heavy_04.wav                 sample peak -2.67 dBFS (true peak -2.64)
+PASS  loudness   sfx/hit_heavy_04.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hit_heavy_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.4 ms
+PASS  dc         sfx/hit_heavy_04.wav                 mean -0.00072
+PASS  clicks     sfx/hit_heavy_04.wav                 none
+PASS  cue_table  guard_block                          loudness category defined
+PASS  contract   sfx/guard_block_01.wav               file exists
+PASS  format     sfx/guard_block_01.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_block_01.wav               sample peak -1.93 dBFS (true peak -1.92)
+PASS  loudness   sfx/guard_block_01.wav               impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_block_01.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 9.7 ms
+PASS  dc         sfx/guard_block_01.wav               mean -0.00114
+PASS  clicks     sfx/guard_block_01.wav               none
+PASS  contract   sfx/guard_block_02.wav               file exists
+PASS  format     sfx/guard_block_02.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_block_02.wav               sample peak -1.20 dBFS (true peak -1.19)
+PASS  loudness   sfx/guard_block_02.wav               impact: loud-part RMS -15.04 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_block_02.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.8 ms
+PASS  dc         sfx/guard_block_02.wav               mean +0.00075
+PASS  clicks     sfx/guard_block_02.wav               none
+PASS  contract   sfx/guard_block_03.wav               file exists
+PASS  format     sfx/guard_block_03.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_block_03.wav               sample peak -2.04 dBFS (true peak -2.03)
+PASS  loudness   sfx/guard_block_03.wav               impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_block_03.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.9 ms
+PASS  dc         sfx/guard_block_03.wav               mean -0.00247
+PASS  clicks     sfx/guard_block_03.wav               none
+PASS  contract   sfx/guard_block_04.wav               file exists
+PASS  format     sfx/guard_block_04.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_block_04.wav               sample peak -3.15 dBFS (true peak -3.15)
+PASS  loudness   sfx/guard_block_04.wav               impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_block_04.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.6 ms
+PASS  dc         sfx/guard_block_04.wav               mean -0.00107
+PASS  clicks     sfx/guard_block_04.wav               none
+PASS  contract   sfx/guard_block_05.wav               file exists
+PASS  format     sfx/guard_block_05.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_block_05.wav               sample peak -2.66 dBFS (true peak -2.66)
+PASS  loudness   sfx/guard_block_05.wav               impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_block_05.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.7 ms
+PASS  dc         sfx/guard_block_05.wav               mean -0.00072
+PASS  clicks     sfx/guard_block_05.wav               none
+PASS  cue_table  guard_break                          loudness category defined
+PASS  contract   sfx/guard_break_01.wav               file exists
+PASS  format     sfx/guard_break_01.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_break_01.wav               sample peak -1.20 dBFS (true peak -0.54)
+PASS  loudness   sfx/guard_break_01.wav               impact: loud-part RMS -13.01 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_break_01.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 6.5 ms
+PASS  dc         sfx/guard_break_01.wav               mean -0.00015
+PASS  clicks     sfx/guard_break_01.wav               none
+PASS  contract   sfx/guard_break_02.wav               file exists
+PASS  format     sfx/guard_break_02.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/guard_break_02.wav               sample peak -1.20 dBFS (true peak -0.96)
+PASS  loudness   sfx/guard_break_02.wav               impact: loud-part RMS -13.01 dBFS vs target -14 +/-4
+PASS  shape      sfx/guard_break_02.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 5.1 ms
+PASS  dc         sfx/guard_break_02.wav               mean -0.00028
+PASS  clicks     sfx/guard_break_02.wav               none
+PASS  cue_table  parry                                loudness category defined
+PASS  contract   sfx/parry_01.wav                     file exists
+PASS  format     sfx/parry_01.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/parry_01.wav                     sample peak -1.20 dBFS (true peak -0.74)
+PASS  loudness   sfx/parry_01.wav                     impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/parry_01.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 13.7 ms
+PASS  dc         sfx/parry_01.wav                     mean -0.00009
+PASS  clicks     sfx/parry_01.wav                     none
+PASS  contract   sfx/parry_02.wav                     file exists
+PASS  format     sfx/parry_02.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/parry_02.wav                     sample peak -1.20 dBFS (true peak -1.00)
+PASS  loudness   sfx/parry_02.wav                     impact: loud-part RMS -15.07 dBFS vs target -14 +/-4
+PASS  shape      sfx/parry_02.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 10.1 ms
+PASS  dc         sfx/parry_02.wav                     mean -0.00011
+PASS  clicks     sfx/parry_02.wav                     none
+PASS  cue_table  knock_skid                           loudness category defined
+PASS  contract   sfx/knock_skid_01.wav                file exists
+PASS  format     sfx/knock_skid_01.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/knock_skid_01.wav                sample peak -7.33 dBFS (true peak -7.25)
+PASS  loudness   sfx/knock_skid_01.wav                swing: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/knock_skid_01.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 5.0 ms
+PASS  dc         sfx/knock_skid_01.wav                mean -0.00002
+PASS  clicks     sfx/knock_skid_01.wav                none
+PASS  contract   sfx/knock_skid_02.wav                file exists
+PASS  format     sfx/knock_skid_02.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/knock_skid_02.wav                sample peak -7.60 dBFS (true peak -7.57)
+PASS  loudness   sfx/knock_skid_02.wav                swing: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/knock_skid_02.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 6.9 ms
+PASS  dc         sfx/knock_skid_02.wav                mean -0.00006
+PASS  clicks     sfx/knock_skid_02.wav                none
+PASS  contract   sfx/knock_skid_03.wav                file exists
+PASS  format     sfx/knock_skid_03.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/knock_skid_03.wav                sample peak -7.12 dBFS (true peak -7.11)
+PASS  loudness   sfx/knock_skid_03.wav                swing: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/knock_skid_03.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 9.2 ms
+PASS  dc         sfx/knock_skid_03.wav                mean -0.00008
+PASS  clicks     sfx/knock_skid_03.wav                none
+PASS  cue_table  body_fall                            loudness category defined
+PASS  contract   sfx/body_fall_01.wav                 file exists
+PASS  format     sfx/body_fall_01.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/body_fall_01.wav                 sample peak -5.14 dBFS (true peak -5.14)
+PASS  loudness   sfx/body_fall_01.wav                 impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/body_fall_01.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 10.7 ms
+PASS  dc         sfx/body_fall_01.wav                 mean -0.00015
+PASS  clicks     sfx/body_fall_01.wav                 none
+PASS  contract   sfx/body_fall_02.wav                 file exists
+PASS  format     sfx/body_fall_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/body_fall_02.wav                 sample peak -5.97 dBFS (true peak -5.97)
+PASS  loudness   sfx/body_fall_02.wav                 impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/body_fall_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 9.3 ms
+PASS  dc         sfx/body_fall_02.wav                 mean -0.00020
+PASS  clicks     sfx/body_fall_02.wav                 none
+PASS  contract   sfx/body_fall_03.wav                 file exists
+PASS  format     sfx/body_fall_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/body_fall_03.wav                 sample peak -7.33 dBFS (true peak -7.32)
+PASS  loudness   sfx/body_fall_03.wav                 impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/body_fall_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 9.7 ms
+PASS  dc         sfx/body_fall_03.wav                 mean -0.00031
+PASS  clicks     sfx/body_fall_03.wav                 none
+PASS  cue_table  grab                                 loudness category defined
+PASS  contract   sfx/grab_01.wav                      file exists
+PASS  format     sfx/grab_01.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/grab_01.wav                      sample peak -2.46 dBFS (true peak -2.34)
+PASS  loudness   sfx/grab_01.wav                      swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/grab_01.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.8 ms, tail below -60 dB 2.7 ms
+PASS  dc         sfx/grab_01.wav                      mean -0.00000
+PASS  clicks     sfx/grab_01.wav                      none
+PASS  contract   sfx/grab_02.wav                      file exists
+PASS  format     sfx/grab_02.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/grab_02.wav                      sample peak -5.33 dBFS (true peak -5.29)
+PASS  loudness   sfx/grab_02.wav                      swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/grab_02.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.7 ms, tail below -60 dB 1.9 ms
+PASS  dc         sfx/grab_02.wav                      mean -0.00000
+PASS  clicks     sfx/grab_02.wav                      none
+PASS  cue_table  nyx_pounce_leap                      loudness category defined
+PASS  contract   sfx/nyx_pounce_leap_01.wav           file exists
+PASS  format     sfx/nyx_pounce_leap_01.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_pounce_leap_01.wav           sample peak -5.79 dBFS (true peak -5.79)
+PASS  loudness   sfx/nyx_pounce_leap_01.wav           swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_pounce_leap_01.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 11.5 ms
+PASS  dc         sfx/nyx_pounce_leap_01.wav           mean -0.00015
+PASS  clicks     sfx/nyx_pounce_leap_01.wav           none
+PASS  contract   sfx/nyx_pounce_leap_02.wav           file exists
+PASS  format     sfx/nyx_pounce_leap_02.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_pounce_leap_02.wav           sample peak -3.67 dBFS (true peak -3.66)
+PASS  loudness   sfx/nyx_pounce_leap_02.wav           swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_pounce_leap_02.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 14.1 ms
+PASS  dc         sfx/nyx_pounce_leap_02.wav           mean -0.00036
+PASS  clicks     sfx/nyx_pounce_leap_02.wav           none
+PASS  cue_table  nyx_pounce_land                      loudness category defined
+PASS  contract   sfx/nyx_pounce_land_01.wav           file exists
+PASS  format     sfx/nyx_pounce_land_01.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_pounce_land_01.wav           sample peak -9.72 dBFS (true peak -9.72)
+PASS  loudness   sfx/nyx_pounce_land_01.wav           swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_pounce_land_01.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 4.9 ms
+PASS  dc         sfx/nyx_pounce_land_01.wav           mean -0.00060
+PASS  clicks     sfx/nyx_pounce_land_01.wav           none
+PASS  contract   sfx/nyx_pounce_land_02.wav           file exists
+PASS  format     sfx/nyx_pounce_land_02.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_pounce_land_02.wav           sample peak -6.97 dBFS (true peak -6.96)
+PASS  loudness   sfx/nyx_pounce_land_02.wav           swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_pounce_land_02.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 4.3 ms
+PASS  dc         sfx/nyx_pounce_land_02.wav           mean -0.00028
+PASS  clicks     sfx/nyx_pounce_land_02.wav           none
+PASS  cue_table  nyx_crosscut                         loudness category defined
+PASS  contract   sfx/nyx_crosscut_01.wav              file exists
+PASS  format     sfx/nyx_crosscut_01.wav              WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_crosscut_01.wav              sample peak -5.66 dBFS (true peak -5.38)
+PASS  loudness   sfx/nyx_crosscut_01.wav              swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_crosscut_01.wav              x[0]=0.00000 x[-1]=0.00000 lead-in 0.9 ms, tail below -60 dB 8.0 ms
+PASS  dc         sfx/nyx_crosscut_01.wav              mean -0.00000
+PASS  clicks     sfx/nyx_crosscut_01.wav              none
+PASS  contract   sfx/nyx_crosscut_02.wav              file exists
+PASS  format     sfx/nyx_crosscut_02.wav              WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_crosscut_02.wav              sample peak -5.13 dBFS (true peak -4.74)
+PASS  loudness   sfx/nyx_crosscut_02.wav              swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_crosscut_02.wav              x[0]=0.00000 x[-1]=0.00000 lead-in 0.6 ms, tail below -60 dB 7.7 ms
+PASS  dc         sfx/nyx_crosscut_02.wav              mean +0.00000
+PASS  clicks     sfx/nyx_crosscut_02.wav              none
+PASS  cue_table  nyx_slip                             loudness category defined
+PASS  contract   sfx/nyx_slip_01.wav                  file exists
+PASS  format     sfx/nyx_slip_01.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_slip_01.wav                  sample peak -4.00 dBFS (true peak -3.95)
+PASS  loudness   sfx/nyx_slip_01.wav                  swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_slip_01.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 8.4 ms
+PASS  dc         sfx/nyx_slip_01.wav                  mean -0.00000
+PASS  clicks     sfx/nyx_slip_01.wav                  none
+PASS  contract   sfx/nyx_slip_02.wav                  file exists
+PASS  format     sfx/nyx_slip_02.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/nyx_slip_02.wav                  sample peak -4.33 dBFS (true peak -4.32)
+PASS  loudness   sfx/nyx_slip_02.wav                  swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/nyx_slip_02.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 8.3 ms
+PASS  dc         sfx/nyx_slip_02.wav                  mean +0.00000
+PASS  clicks     sfx/nyx_slip_02.wav                  none
+PASS  cue_table  bruno_rush_start                     loudness category defined
+PASS  contract   sfx/bruno_rush_start_01.wav          file exists
+PASS  format     sfx/bruno_rush_start_01.wav          WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_rush_start_01.wav          sample peak -4.46 dBFS (true peak -4.46)
+PASS  loudness   sfx/bruno_rush_start_01.wav          swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/bruno_rush_start_01.wav          x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 8.4 ms
+PASS  dc         sfx/bruno_rush_start_01.wav          mean -0.00027
+PASS  clicks     sfx/bruno_rush_start_01.wav          none
+PASS  contract   sfx/bruno_rush_start_02.wav          file exists
+PASS  format     sfx/bruno_rush_start_02.wav          WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_rush_start_02.wav          sample peak -5.69 dBFS (true peak -5.68)
+PASS  loudness   sfx/bruno_rush_start_02.wav          swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/bruno_rush_start_02.wav          x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 9.9 ms
+PASS  dc         sfx/bruno_rush_start_02.wav          mean -0.00019
+PASS  clicks     sfx/bruno_rush_start_02.wav          none
+PASS  cue_table  bruno_rush_impact                    loudness category defined
+PASS  contract   sfx/bruno_rush_impact_01.wav         file exists
+PASS  format     sfx/bruno_rush_impact_01.wav         WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_rush_impact_01.wav         sample peak -4.99 dBFS (true peak -4.98)
+PASS  loudness   sfx/bruno_rush_impact_01.wav         impact: loud-part RMS -14.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/bruno_rush_impact_01.wav         x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 10.5 ms
+PASS  dc         sfx/bruno_rush_impact_01.wav         mean -0.00041
+PASS  clicks     sfx/bruno_rush_impact_01.wav         none
+PASS  contract   sfx/bruno_rush_impact_02.wav         file exists
+PASS  format     sfx/bruno_rush_impact_02.wav         WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_rush_impact_02.wav         sample peak -4.52 dBFS (true peak -4.52)
+PASS  loudness   sfx/bruno_rush_impact_02.wav         impact: loud-part RMS -14.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/bruno_rush_impact_02.wav         x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 11.1 ms
+PASS  dc         sfx/bruno_rush_impact_02.wav         mean -0.00038
+PASS  clicks     sfx/bruno_rush_impact_02.wav         none
+PASS  cue_table  bruno_bark                           loudness category defined
+PASS  contract   sfx/bruno_bark_01.wav                file exists
+PASS  format     sfx/bruno_bark_01.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_bark_01.wav                sample peak -3.69 dBFS (true peak -3.68)
+PASS  loudness   sfx/bruno_bark_01.wav                impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/bruno_bark_01.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 7.6 ms
+PASS  dc         sfx/bruno_bark_01.wav                mean -0.00036
+PASS  clicks     sfx/bruno_bark_01.wav                none
+PASS  contract   sfx/bruno_bark_02.wav                file exists
+PASS  format     sfx/bruno_bark_02.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_bark_02.wav                sample peak -4.51 dBFS (true peak -4.50)
+PASS  loudness   sfx/bruno_bark_02.wav                impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/bruno_bark_02.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 8.8 ms
+PASS  dc         sfx/bruno_bark_02.wav                mean -0.00035
+PASS  clicks     sfx/bruno_bark_02.wav                none
+PASS  contract   sfx/bruno_bark_03.wav                file exists
+PASS  format     sfx/bruno_bark_03.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_bark_03.wav                sample peak -3.18 dBFS (true peak -3.17)
+PASS  loudness   sfx/bruno_bark_03.wav                impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/bruno_bark_03.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 6.3 ms
+PASS  dc         sfx/bruno_bark_03.wav                mean -0.00058
+PASS  clicks     sfx/bruno_bark_03.wav                none
+PASS  cue_table  bruno_stand_firm                     loudness category defined
+PASS  contract   sfx/bruno_stand_firm_01.wav          file exists
+PASS  format     sfx/bruno_stand_firm_01.wav          WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_stand_firm_01.wav          sample peak -8.35 dBFS (true peak -8.35)
+PASS  loudness   sfx/bruno_stand_firm_01.wav          swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/bruno_stand_firm_01.wav          x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 17.3 ms
+PASS  dc         sfx/bruno_stand_firm_01.wav          mean -0.00024
+PASS  clicks     sfx/bruno_stand_firm_01.wav          none
+PASS  contract   sfx/bruno_stand_firm_02.wav          file exists
+PASS  format     sfx/bruno_stand_firm_02.wav          WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/bruno_stand_firm_02.wav          sample peak -8.62 dBFS (true peak -8.61)
+PASS  loudness   sfx/bruno_stand_firm_02.wav          swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/bruno_stand_firm_02.wav          x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 6.1 ms
+PASS  dc         sfx/bruno_stand_firm_02.wav          mean -0.00011
+PASS  clicks     sfx/bruno_stand_firm_02.wav          none
+PASS  cue_table  vex_feint                            loudness category defined
+PASS  contract   sfx/vex_feint_01.wav                 file exists
+PASS  format     sfx/vex_feint_01.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/vex_feint_01.wav                 sample peak -5.29 dBFS (true peak -5.28)
+PASS  loudness   sfx/vex_feint_01.wav                 swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/vex_feint_01.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 6.1 ms, tail below -60 dB 7.1 ms
+PASS  dc         sfx/vex_feint_01.wav                 mean +0.00000
+PASS  clicks     sfx/vex_feint_01.wav                 none
+PASS  contract   sfx/vex_feint_02.wav                 file exists
+PASS  format     sfx/vex_feint_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/vex_feint_02.wav                 sample peak -6.30 dBFS (true peak -6.15)
+PASS  loudness   sfx/vex_feint_02.wav                 swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/vex_feint_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 4.5 ms, tail below -60 dB 6.0 ms
+PASS  dc         sfx/vex_feint_02.wav                 mean -0.00000
+PASS  clicks     sfx/vex_feint_02.wav                 none
+PASS  cue_table  vex_sidewinder                       loudness category defined
+PASS  contract   sfx/vex_sidewinder_01.wav            file exists
+PASS  format     sfx/vex_sidewinder_01.wav            WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/vex_sidewinder_01.wav            sample peak -8.41 dBFS (true peak -8.39)
+PASS  loudness   sfx/vex_sidewinder_01.wav            swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/vex_sidewinder_01.wav            x[0]=0.00000 x[-1]=0.00000 lead-in 1.7 ms, tail below -60 dB 8.2 ms
+PASS  dc         sfx/vex_sidewinder_01.wav            mean -0.00000
+PASS  clicks     sfx/vex_sidewinder_01.wav            none
+PASS  contract   sfx/vex_sidewinder_02.wav            file exists
+PASS  format     sfx/vex_sidewinder_02.wav            WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/vex_sidewinder_02.wav            sample peak -7.86 dBFS (true peak -7.84)
+PASS  loudness   sfx/vex_sidewinder_02.wav            swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/vex_sidewinder_02.wav            x[0]=0.00000 x[-1]=0.00000 lead-in 1.7 ms, tail below -60 dB 7.7 ms
+PASS  dc         sfx/vex_sidewinder_02.wav            mean +0.00000
+PASS  clicks     sfx/vex_sidewinder_02.wav            none
+PASS  cue_table  vex_tail_sweep                       loudness category defined
+PASS  contract   sfx/vex_tail_sweep_01.wav            file exists
+PASS  format     sfx/vex_tail_sweep_01.wav            WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/vex_tail_sweep_01.wav            sample peak -4.71 dBFS (true peak -4.68)
+PASS  loudness   sfx/vex_tail_sweep_01.wav            swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/vex_tail_sweep_01.wav            x[0]=0.00000 x[-1]=0.00000 lead-in 8.9 ms, tail below -60 dB 12.4 ms
+PASS  dc         sfx/vex_tail_sweep_01.wav            mean -0.00000
+PASS  clicks     sfx/vex_tail_sweep_01.wav            none
+PASS  contract   sfx/vex_tail_sweep_02.wav            file exists
+PASS  format     sfx/vex_tail_sweep_02.wav            WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/vex_tail_sweep_02.wav            sample peak -4.77 dBFS (true peak -4.42)
+PASS  loudness   sfx/vex_tail_sweep_02.wav            swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/vex_tail_sweep_02.wav            x[0]=0.00000 x[-1]=0.00000 lead-in 8.9 ms, tail below -60 dB 9.8 ms
+PASS  dc         sfx/vex_tail_sweep_02.wav            mean -0.00000
+PASS  clicks     sfx/vex_tail_sweep_02.wav            none
+PASS  cue_table  hops_bound_takeoff                   loudness category defined
+PASS  contract   sfx/hops_bound_takeoff_01.wav        file exists
+PASS  format     sfx/hops_bound_takeoff_01.wav        WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_bound_takeoff_01.wav        sample peak -5.43 dBFS (true peak -5.42)
+PASS  loudness   sfx/hops_bound_takeoff_01.wav        swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/hops_bound_takeoff_01.wav        x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 8.9 ms
+PASS  dc         sfx/hops_bound_takeoff_01.wav        mean -0.00031
+PASS  clicks     sfx/hops_bound_takeoff_01.wav        none
+PASS  contract   sfx/hops_bound_takeoff_02.wav        file exists
+PASS  format     sfx/hops_bound_takeoff_02.wav        WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_bound_takeoff_02.wav        sample peak -4.79 dBFS (true peak -4.79)
+PASS  loudness   sfx/hops_bound_takeoff_02.wav        swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/hops_bound_takeoff_02.wav        x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 8.3 ms
+PASS  dc         sfx/hops_bound_takeoff_02.wav        mean -0.00044
+PASS  clicks     sfx/hops_bound_takeoff_02.wav        none
+PASS  cue_table  hops_bound_land                      loudness category defined
+PASS  contract   sfx/hops_bound_land_01.wav           file exists
+PASS  format     sfx/hops_bound_land_01.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_bound_land_01.wav           sample peak -11.24 dBFS (true peak -11.23)
+PASS  loudness   sfx/hops_bound_land_01.wav           footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/hops_bound_land_01.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 9.3 ms
+PASS  dc         sfx/hops_bound_land_01.wav           mean -0.00011
+PASS  clicks     sfx/hops_bound_land_01.wav           none
+PASS  contract   sfx/hops_bound_land_02.wav           file exists
+PASS  format     sfx/hops_bound_land_02.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_bound_land_02.wav           sample peak -10.22 dBFS (true peak -10.21)
+PASS  loudness   sfx/hops_bound_land_02.wav           footstep: loud-part RMS -22.00 dBFS vs target -24 +/-4
+PASS  shape      sfx/hops_bound_land_02.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 9.5 ms
+PASS  dc         sfx/hops_bound_land_02.wav           mean -0.00010
+PASS  clicks     sfx/hops_bound_land_02.wav           none
+PASS  cue_table  hops_double_kick                     loudness category defined
+PASS  contract   sfx/hops_double_kick_01.wav          file exists
+PASS  format     sfx/hops_double_kick_01.wav          WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_double_kick_01.wav          sample peak -4.61 dBFS (true peak -4.52)
+PASS  loudness   sfx/hops_double_kick_01.wav          swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/hops_double_kick_01.wav          x[0]=0.00000 x[-1]=0.00000 lead-in 2.6 ms, tail below -60 dB 6.6 ms
+PASS  dc         sfx/hops_double_kick_01.wav          mean -0.00001
+PASS  clicks     sfx/hops_double_kick_01.wav          none
+PASS  contract   sfx/hops_double_kick_02.wav          file exists
+PASS  format     sfx/hops_double_kick_02.wav          WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_double_kick_02.wav          sample peak -5.59 dBFS (true peak -5.41)
+PASS  loudness   sfx/hops_double_kick_02.wav          swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/hops_double_kick_02.wav          x[0]=0.00000 x[-1]=0.00000 lead-in 2.1 ms, tail below -60 dB 6.5 ms
+PASS  dc         sfx/hops_double_kick_02.wav          mean -0.00000
+PASS  clicks     sfx/hops_double_kick_02.wav          none
+PASS  cue_table  hops_dropkick                        loudness category defined
+PASS  contract   sfx/hops_dropkick_01.wav             file exists
+PASS  format     sfx/hops_dropkick_01.wav             WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_dropkick_01.wav             sample peak -3.75 dBFS (true peak -3.74)
+PASS  loudness   sfx/hops_dropkick_01.wav             swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/hops_dropkick_01.wav             x[0]=0.00000 x[-1]=0.00000 lead-in 3.7 ms, tail below -60 dB 9.9 ms
+PASS  dc         sfx/hops_dropkick_01.wav             mean +0.00000
+PASS  clicks     sfx/hops_dropkick_01.wav             none
+PASS  contract   sfx/hops_dropkick_02.wav             file exists
+PASS  format     sfx/hops_dropkick_02.wav             WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_dropkick_02.wav             sample peak -4.39 dBFS (true peak -4.24)
+PASS  loudness   sfx/hops_dropkick_02.wav             swing: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/hops_dropkick_02.wav             x[0]=0.00000 x[-1]=0.00000 lead-in 2.9 ms, tail below -60 dB 9.6 ms
+PASS  dc         sfx/hops_dropkick_02.wav             mean -0.00000
+PASS  clicks     sfx/hops_dropkick_02.wav             none
+PASS  cue_table  hops_dropkick_crash                  loudness category defined
+PASS  contract   sfx/hops_dropkick_crash_01.wav       file exists
+PASS  format     sfx/hops_dropkick_crash_01.wav       WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_dropkick_crash_01.wav       sample peak -4.73 dBFS (true peak -4.72)
+PASS  loudness   sfx/hops_dropkick_crash_01.wav       impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hops_dropkick_crash_01.wav       x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 11.4 ms
+PASS  dc         sfx/hops_dropkick_crash_01.wav       mean -0.00050
+PASS  clicks     sfx/hops_dropkick_crash_01.wav       none
+PASS  contract   sfx/hops_dropkick_crash_02.wav       file exists
+PASS  format     sfx/hops_dropkick_crash_02.wav       WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/hops_dropkick_crash_02.wav       sample peak -4.61 dBFS (true peak -4.60)
+PASS  loudness   sfx/hops_dropkick_crash_02.wav       impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/hops_dropkick_crash_02.wav       x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 10.3 ms
+PASS  dc         sfx/hops_dropkick_crash_02.wav       mean -0.00041
+PASS  clicks     sfx/hops_dropkick_crash_02.wav       none
+PASS  cue_table  scrap_parry_stance                   loudness category defined
+PASS  contract   sfx/scrap_parry_stance_01.wav        file exists
+PASS  format     sfx/scrap_parry_stance_01.wav        WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/scrap_parry_stance_01.wav        sample peak -1.92 dBFS (true peak -1.77)
+PASS  loudness   sfx/scrap_parry_stance_01.wav        swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/scrap_parry_stance_01.wav        x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 4.9 ms
+PASS  dc         sfx/scrap_parry_stance_01.wav        mean -0.00185
+PASS  clicks     sfx/scrap_parry_stance_01.wav        none
+PASS  contract   sfx/scrap_parry_stance_02.wav        file exists
+PASS  format     sfx/scrap_parry_stance_02.wav        WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/scrap_parry_stance_02.wav        sample peak -3.52 dBFS (true peak -3.51)
+PASS  loudness   sfx/scrap_parry_stance_02.wav        swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/scrap_parry_stance_02.wav        x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 5.8 ms
+PASS  dc         sfx/scrap_parry_stance_02.wav        mean -0.00024
+PASS  clicks     sfx/scrap_parry_stance_02.wav        none
+PASS  cue_table  scrap_leg_sweep                      loudness category defined
+PASS  contract   sfx/scrap_leg_sweep_01.wav           file exists
+PASS  format     sfx/scrap_leg_sweep_01.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/scrap_leg_sweep_01.wav           sample peak -7.70 dBFS (true peak -7.68)
+PASS  loudness   sfx/scrap_leg_sweep_01.wav           swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/scrap_leg_sweep_01.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 4.9 ms, tail below -60 dB 7.9 ms
+PASS  dc         sfx/scrap_leg_sweep_01.wav           mean +0.00000
+PASS  clicks     sfx/scrap_leg_sweep_01.wav           none
+PASS  contract   sfx/scrap_leg_sweep_02.wav           file exists
+PASS  format     sfx/scrap_leg_sweep_02.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/scrap_leg_sweep_02.wav           sample peak -7.68 dBFS (true peak -7.67)
+PASS  loudness   sfx/scrap_leg_sweep_02.wav           swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/scrap_leg_sweep_02.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 6.0 ms, tail below -60 dB 8.0 ms
+PASS  dc         sfx/scrap_leg_sweep_02.wav           mean +0.00000
+PASS  clicks     sfx/scrap_leg_sweep_02.wav           none
+PASS  cue_table  scrap_turnabout                      loudness category defined
+PASS  contract   sfx/scrap_turnabout_01.wav           file exists
+PASS  format     sfx/scrap_turnabout_01.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/scrap_turnabout_01.wav           sample peak -4.13 dBFS (true peak -4.12)
+PASS  loudness   sfx/scrap_turnabout_01.wav           swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/scrap_turnabout_01.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.9 ms, tail below -60 dB 7.2 ms
+PASS  dc         sfx/scrap_turnabout_01.wav           mean +0.00000
+PASS  clicks     sfx/scrap_turnabout_01.wav           none
+PASS  contract   sfx/scrap_turnabout_02.wav           file exists
+PASS  format     sfx/scrap_turnabout_02.wav           WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/scrap_turnabout_02.wav           sample peak -3.49 dBFS (true peak -3.44)
+PASS  loudness   sfx/scrap_turnabout_02.wav           swing: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/scrap_turnabout_02.wav           x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 7.1 ms
+PASS  dc         sfx/scrap_turnabout_02.wav           mean -0.00000
+PASS  clicks     sfx/scrap_turnabout_02.wav           none
+PASS  cue_table  knockout                             loudness category defined
+PASS  contract   sfx/knockout_01.wav                  file exists
+PASS  format     sfx/knockout_01.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/knockout_01.wav                  sample peak -4.53 dBFS (true peak -4.52)
+PASS  loudness   sfx/knockout_01.wav                  impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/knockout_01.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 15.8 ms
+PASS  dc         sfx/knockout_01.wav                  mean -0.00001
+PASS  clicks     sfx/knockout_01.wav                  none
+PASS  contract   sfx/knockout_02.wav                  file exists
+PASS  format     sfx/knockout_02.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/knockout_02.wav                  sample peak -5.05 dBFS (true peak -5.04)
+PASS  loudness   sfx/knockout_02.wav                  impact: loud-part RMS -16.00 dBFS vs target -14 +/-4
+PASS  shape      sfx/knockout_02.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 10.4 ms
+PASS  dc         sfx/knockout_02.wav                  mean -0.00002
+PASS  clicks     sfx/knockout_02.wav                  none
+PASS  cue_table  respawn                              loudness category defined
+PASS  contract   sfx/respawn_01.wav                   file exists
+PASS  format     sfx/respawn_01.wav                   WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/respawn_01.wav                   sample peak -7.42 dBFS (true peak -7.41)
+PASS  loudness   sfx/respawn_01.wav                   ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/respawn_01.wav                   x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 18.1 ms
+PASS  dc         sfx/respawn_01.wav                   mean -0.00000
+PASS  clicks     sfx/respawn_01.wav                   none
+PASS  cue_table  spawn_protect_end                    loudness category defined
+PASS  contract   sfx/spawn_protect_end_01.wav         file exists
+PASS  format     sfx/spawn_protect_end_01.wav         WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       sfx/spawn_protect_end_01.wav         sample peak -11.54 dBFS (true peak -11.49)
+PASS  loudness   sfx/spawn_protect_end_01.wav         ui: loud-part RMS -23.00 dBFS vs target -20 +/-4
+PASS  shape      sfx/spawn_protect_end_01.wav         x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 2.4 ms
+PASS  dc         sfx/spawn_protect_end_01.wav         mean -0.00000
+PASS  clicks     sfx/spawn_protect_end_01.wav         none
+PASS  cue_table  zone_activate                        loudness category defined
+PASS  contract   ui/zone_activate.wav                 file exists
+PASS  format     ui/zone_activate.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/zone_activate.wav                 sample peak -6.51 dBFS (true peak -6.50)
+PASS  loudness   ui/zone_activate.wav                 ui: loud-part RMS -18.00 dBFS vs target -20 +/-4
+PASS  shape      ui/zone_activate.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 15.1 ms
+PASS  dc         ui/zone_activate.wav                 mean -0.00001
+PASS  clicks     ui/zone_activate.wav                 none
+PASS  cue_table  zone_reveal                          loudness category defined
+PASS  contract   ui/zone_reveal.wav                   file exists
+PASS  format     ui/zone_reveal.wav                   WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/zone_reveal.wav                   sample peak -8.63 dBFS (true peak -8.57)
+PASS  loudness   ui/zone_reveal.wav                   ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      ui/zone_reveal.wav                   x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 18.2 ms
+PASS  dc         ui/zone_reveal.wav                   mean +0.00001
+PASS  clicks     ui/zone_reveal.wav                   none
+PASS  cue_table  zone_ally                            loudness category defined
+PASS  contract   ui/zone_ally.wav                     file exists
+PASS  format     ui/zone_ally.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/zone_ally.wav                     sample peak -7.09 dBFS (true peak -7.07)
+PASS  loudness   ui/zone_ally.wav                     ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/zone_ally.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 15.2 ms
+PASS  dc         ui/zone_ally.wav                     mean +0.00000
+PASS  clicks     ui/zone_ally.wav                     none
+PASS  cue_table  zone_enemy                           loudness category defined
+PASS  contract   ui/zone_enemy.wav                    file exists
+PASS  format     ui/zone_enemy.wav                    WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/zone_enemy.wav                    sample peak -5.15 dBFS (true peak -5.14)
+PASS  loudness   ui/zone_enemy.wav                    ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/zone_enemy.wav                    x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 20.4 ms
+PASS  dc         ui/zone_enemy.wav                    mean -0.00002
+PASS  clicks     ui/zone_enemy.wav                    none
+PASS  cue_table  zone_contested                       loudness category defined
+PASS  contract   ui/zone_contested.wav                file exists
+PASS  format     ui/zone_contested.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/zone_contested.wav                sample peak -11.79 dBFS (true peak -11.78)
+PASS  loudness   ui/zone_contested.wav                ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/zone_contested.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 13.2 ms
+PASS  dc         ui/zone_contested.wav                mean -0.00001
+PASS  clicks     ui/zone_contested.wav                none
+PASS  cue_table  score_warning_1                      loudness category defined
+PASS  contract   ui/score_warning_1.wav               file exists
+PASS  format     ui/score_warning_1.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/score_warning_1.wav               sample peak -7.52 dBFS (true peak -7.49)
+PASS  loudness   ui/score_warning_1.wav               ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/score_warning_1.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 19.1 ms
+PASS  dc         ui/score_warning_1.wav               mean +0.00002
+PASS  clicks     ui/score_warning_1.wav               none
+PASS  cue_table  score_warning_2                      loudness category defined
+PASS  contract   ui/score_warning_2.wav               file exists
+PASS  format     ui/score_warning_2.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/score_warning_2.wav               sample peak -5.83 dBFS (true peak -5.79)
+PASS  loudness   ui/score_warning_2.wav               ui: loud-part RMS -18.50 dBFS vs target -20 +/-4
+PASS  shape      ui/score_warning_2.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 13.7 ms
+PASS  dc         ui/score_warning_2.wav               mean -0.00001
+PASS  clicks     ui/score_warning_2.wav               none
+PASS  cue_table  score_warning_3                      loudness category defined
+PASS  contract   ui/score_warning_3.wav               file exists
+PASS  format     ui/score_warning_3.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/score_warning_3.wav               sample peak -6.06 dBFS (true peak -6.01)
+PASS  loudness   ui/score_warning_3.wav               ui: loud-part RMS -18.00 dBFS vs target -20 +/-4
+PASS  shape      ui/score_warning_3.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 14.9 ms
+PASS  dc         ui/score_warning_3.wav               mean -0.00003
+PASS  clicks     ui/score_warning_3.wav               none
+PASS  cue_table  countdown_tick                       loudness category defined
+PASS  contract   ui/countdown_tick.wav                file exists
+PASS  format     ui/countdown_tick.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/countdown_tick.wav                sample peak -9.78 dBFS (true peak -9.78)
+PASS  loudness   ui/countdown_tick.wav                ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      ui/countdown_tick.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 6.7 ms
+PASS  dc         ui/countdown_tick.wav                mean +0.00005
+PASS  clicks     ui/countdown_tick.wav                none
+PASS  cue_table  countdown_go                         loudness category defined
+PASS  contract   ui/countdown_go.wav                  file exists
+PASS  format     ui/countdown_go.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/countdown_go.wav                  sample peak -5.97 dBFS (true peak -5.94)
+PASS  loudness   ui/countdown_go.wav                  ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/countdown_go.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 19.1 ms
+PASS  dc         ui/countdown_go.wav                  mean -0.00001
+PASS  clicks     ui/countdown_go.wav                  none
+PASS  cue_table  rotation_tick                        loudness category defined
+PASS  contract   ui/rotation_tick.wav                 file exists
+PASS  format     ui/rotation_tick.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/rotation_tick.wav                 sample peak -10.10 dBFS (true peak -10.04)
+PASS  loudness   ui/rotation_tick.wav                 ui: loud-part RMS -22.00 dBFS vs target -20 +/-4
+PASS  shape      ui/rotation_tick.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 4.8 ms
+PASS  dc         ui/rotation_tick.wav                 mean +0.00027
+PASS  clicks     ui/rotation_tick.wav                 none
+PASS  cue_table  victory                              loudness category defined
+PASS  contract   ui/victory.wav                       file exists
+PASS  format     ui/victory.wav                       WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/victory.wav                       sample peak -6.41 dBFS (true peak -6.40)
+PASS  loudness   ui/victory.wav                       ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  duration   ui/victory.wav                       3.730 s within [2, 4] s
+PASS  shape      ui/victory.wav                       x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 13.5 ms
+PASS  dc         ui/victory.wav                       mean -0.00001
+PASS  clicks     ui/victory.wav                       none
+PASS  cue_table  defeat                               loudness category defined
+PASS  contract   ui/defeat.wav                        file exists
+PASS  format     ui/defeat.wav                        WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/defeat.wav                        sample peak -7.66 dBFS (true peak -7.66)
+PASS  loudness   ui/defeat.wav                        ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  duration   ui/defeat.wav                        3.769 s within [2, 4] s
+PASS  shape      ui/defeat.wav                        x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 8.9 ms
+PASS  dc         ui/defeat.wav                        mean -0.00001
+PASS  clicks     ui/defeat.wav                        none
+PASS  cue_table  sudden_death                         loudness category defined
+PASS  contract   ui/sudden_death.wav                  file exists
+PASS  format     ui/sudden_death.wav                  WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/sudden_death.wav                  sample peak -5.13 dBFS (true peak -5.12)
+PASS  loudness   ui/sudden_death.wav                  ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  duration   ui/sudden_death.wav                  3.680 s within [2, 4] s
+PASS  shape      ui/sudden_death.wav                  x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 12.2 ms
+PASS  dc         ui/sudden_death.wav                  mean -0.00001
+PASS  clicks     ui/sudden_death.wav                  none
+PASS  cue_table  ui_hover                             loudness category defined
+PASS  contract   ui/ui_hover.wav                      file exists
+PASS  format     ui/ui_hover.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_hover.wav                      sample peak -9.62 dBFS (true peak -9.33)
+PASS  loudness   ui/ui_hover.wav                      ui: loud-part RMS -23.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_hover.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 1.3 ms
+PASS  dc         ui/ui_hover.wav                      mean +0.00001
+PASS  clicks     ui/ui_hover.wav                      none
+PASS  cue_table  ui_select                            loudness category defined
+PASS  contract   ui/ui_select.wav                     file exists
+PASS  format     ui/ui_select.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_select.wav                     sample peak -10.84 dBFS (true peak -10.82)
+PASS  loudness   ui/ui_select.wav                     ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_select.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 3.4 ms
+PASS  dc         ui/ui_select.wav                     mean +0.00002
+PASS  clicks     ui/ui_select.wav                     none
+PASS  cue_table  ui_back                              loudness category defined
+PASS  contract   ui/ui_back.wav                       file exists
+PASS  format     ui/ui_back.wav                       WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_back.wav                       sample peak -11.04 dBFS (true peak -11.03)
+PASS  loudness   ui/ui_back.wav                       ui: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_back.wav                       x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 4.1 ms
+PASS  dc         ui/ui_back.wav                       mean +0.00002
+PASS  clicks     ui/ui_back.wav                       none
+PASS  cue_table  ui_error                             loudness category defined
+PASS  contract   ui/ui_error.wav                      file exists
+PASS  format     ui/ui_error.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_error.wav                      sample peak -13.30 dBFS (true peak -13.30)
+PASS  loudness   ui/ui_error.wav                      ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_error.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 2.5 ms
+PASS  dc         ui/ui_error.wav                      mean -0.00005
+PASS  clicks     ui/ui_error.wav                      none
+PASS  cue_table  ui_lockin                            loudness category defined
+PASS  contract   ui/ui_lockin.wav                     file exists
+PASS  format     ui/ui_lockin.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_lockin.wav                     sample peak -5.79 dBFS (true peak -5.75)
+PASS  loudness   ui/ui_lockin.wav                     ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_lockin.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 15.9 ms
+PASS  dc         ui/ui_lockin.wav                     mean -0.00007
+PASS  clicks     ui/ui_lockin.wav                     none
+PASS  cue_table  ui_ready                             loudness category defined
+PASS  contract   ui/ui_ready.wav                      file exists
+PASS  format     ui/ui_ready.wav                      WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_ready.wav                      sample peak -8.10 dBFS (true peak -8.08)
+PASS  loudness   ui/ui_ready.wav                      ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_ready.wav                      x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 10.2 ms
+PASS  dc         ui/ui_ready.wav                      mean +0.00001
+PASS  clicks     ui/ui_ready.wav                      none
+PASS  cue_table  ui_match_found                       loudness category defined
+PASS  contract   ui/ui_match_found.wav                file exists
+PASS  format     ui/ui_match_found.wav                WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_match_found.wav                sample peak -5.81 dBFS (true peak -5.81)
+PASS  loudness   ui/ui_match_found.wav                ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_match_found.wav                x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 18.1 ms
+PASS  dc         ui/ui_match_found.wav                mean -0.00000
+PASS  clicks     ui/ui_match_found.wav                none
+PASS  cue_table  ui_notify                            loudness category defined
+PASS  contract   ui/ui_notify.wav                     file exists
+PASS  format     ui/ui_notify.wav                     WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_notify.wav                     sample peak -10.73 dBFS (true peak -10.70)
+PASS  loudness   ui/ui_notify.wav                     ui: loud-part RMS -21.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_notify.wav                     x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 12.2 ms
+PASS  dc         ui/ui_notify.wav                     mean -0.00000
+PASS  clicks     ui/ui_notify.wav                     none
+PASS  cue_table  ui_chat                              loudness category defined
+PASS  contract   ui/ui_chat.wav                       file exists
+PASS  format     ui/ui_chat.wav                       WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_chat.wav                       sample peak -10.57 dBFS (true peak -10.56)
+PASS  loudness   ui/ui_chat.wav                       ui: loud-part RMS -23.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_chat.wav                       x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 2.7 ms
+PASS  dc         ui/ui_chat.wav                       mean +0.00000
+PASS  clicks     ui/ui_chat.wav                       none
+PASS  cue_table  ui_ping                              loudness category defined
+PASS  contract   ui/ui_ping.wav                       file exists
+PASS  format     ui/ui_ping.wav                       WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
+PASS  peak       ui/ui_ping.wav                       sample peak -12.18 dBFS (true peak -12.15)
+PASS  loudness   ui/ui_ping.wav                       ui: loud-part RMS -20.00 dBFS vs target -20 +/-4
+PASS  shape      ui/ui_ping.wav                       x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 7.4 ms
+PASS  dc         ui/ui_ping.wav                       mean -0.00000
+PASS  clicks     ui/ui_ping.wav                       none
+PASS  cue_table  amb_harbor                           loudness category defined
+PASS  contract   amb/amb_harbor.ogg                   file exists
+PASS  format     amb/amb_harbor.ogg                   OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       amb/amb_harbor.ogg                   sample peak -9.91 dBFS (true peak -9.89)
+PASS  loudness   amb/amb_harbor.ogg                   ambience: loud-part RMS -28.15 dBFS vs target -28 +/-4
+PASS  duration   amb/amb_harbor.ogg                   60.000 s within [59.4, 60.6] s
+PASS  seam       amb/amb_harbor.ogg                   step at loop point 0.0015 vs max local step 0.0197; HF at seam +1.0 dB vs local median, isolated click: False; level delta 0.2 dB (<= 6)
+PASS  clicks     amb/amb_harbor.ogg                   none
+PASS  cue_table  amb_market                           loudness category defined
+PASS  contract   amb/amb_market.ogg                   file exists
+PASS  format     amb/amb_market.ogg                   OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       amb/amb_market.ogg                   sample peak -4.07 dBFS (true peak -4.06)
+PASS  loudness   amb/amb_market.ogg                   ambience: loud-part RMS -28.19 dBFS vs target -28 +/-4
+PASS  duration   amb/amb_market.ogg                   60.000 s within [59.4, 60.6] s
+PASS  seam       amb/amb_market.ogg                   step at loop point 0.0057 vs max local step 0.0553; HF at seam +0.0 dB vs local median, isolated click: False; level delta 0.9 dB (<= 6)
+PASS  clicks     amb/amb_market.ogg                   none
+PASS  cue_table  amb_yard                             loudness category defined
+PASS  contract   amb/amb_yard.ogg                     file exists
+PASS  format     amb/amb_yard.ogg                     OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       amb/amb_yard.ogg                     sample peak -8.28 dBFS (true peak -8.27)
+PASS  loudness   amb/amb_yard.ogg                     ambience: loud-part RMS -28.02 dBFS vs target -28 +/-4
+PASS  duration   amb/amb_yard.ogg                     60.000 s within [59.4, 60.6] s
+PASS  seam       amb/amb_yard.ogg                     step at loop point 0.0028 vs max local step 0.0292; HF at seam +0.6 dB vs local median, isolated click: False; level delta 0.1 dB (<= 6)
+PASS  clicks     amb/amb_yard.ogg                     none
+PASS  cue_table  music_menu                           loudness category defined
+PASS  contract   music/music_menu.ogg                 file exists
+PASS  format     music/music_menu.ogg                 OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       music/music_menu.ogg                 sample peak -7.97 dBFS (true peak -7.96)
+PASS  loudness   music/music_menu.ogg                 music: loud-part RMS -22.02 dBFS vs target -22 +/-4
+PASS  duration   music/music_menu.ogg                 85.333 s within [60, 90] s
+PASS  seam       music/music_menu.ogg                 step at loop point 0.0112 vs max local step 0.0227; HF at seam +4.2 dB vs local median, isolated click: False; level delta 0.5 dB (<= 10)
+WARN  clicks     music/music_menu.ogg                 isolated HF spikes at ms [0]
+PASS  cue_table  music_select                         loudness category defined
+PASS  contract   music/music_select.ogg               file exists
+PASS  format     music/music_select.ogg               OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       music/music_select.ogg               sample peak -8.14 dBFS (true peak -8.13)
+PASS  loudness   music/music_select.ogg               music: loud-part RMS -22.01 dBFS vs target -22 +/-4
+PASS  duration   music/music_select.ogg               45.714 s within [30, 60] s
+PASS  seam       music/music_select.ogg               step at loop point 0.0058 vs max local step 0.0410; HF at seam -0.3 dB vs local median, isolated click: False; level delta 2.6 dB (<= 10)
+PASS  clicks     music/music_select.ogg               none
+PASS  cue_table  music_match                          loudness category defined
+PASS  contract   music/music_match.ogg                file exists
+PASS  format     music/music_match.ogg                OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       music/music_match.ogg                sample peak -7.86 dBFS (true peak -7.86)
+PASS  loudness   music/music_match.ogg                music: loud-part RMS -22.00 dBFS vs target -22 +/-4
+PASS  duration   music/music_match.ogg                106.667 s within [90, 120] s
+PASS  seam       music/music_match.ogg                step at loop point 0.0618 vs max local step 0.1526; HF at seam +14.3 dB vs local median, isolated click: False; level delta 1.1 dB (<= 10)
+PASS  clicks     music/music_match.ogg                none
+PASS  cue_table  music_results                        loudness category defined
+PASS  contract   music/music_results.ogg              file exists
+PASS  format     music/music_results.ogg              OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
+PASS  peak       music/music_results.ogg              sample peak -6.70 dBFS (true peak -6.69)
+PASS  loudness   music/music_results.ogg              music: loud-part RMS -22.00 dBFS vs target -22 +/-4
+PASS  duration   music/music_results.ogg              22.857 s within [20, 30] s
+PASS  seam       music/music_results.ogg              step at loop point 0.0090 vs max local step 0.0712; HF at seam +1.9 dB vs local median, isolated click: False; level delta 2.2 dB (<= 10)
+PASS  clicks     music/music_results.ogg              none
+PASS  variation  foot_stone                           6 variations, max normalised xcorr 0.844 (foot_stone_03 vs foot_stone_05)
+PASS  variation  foot_wood                            6 variations, max normalised xcorr 0.545 (foot_wood_03 vs foot_wood_05)
+PASS  variation  foot_metal                           6 variations, max normalised xcorr 0.661 (foot_metal_03 vs foot_metal_05)
+PASS  variation  foot_wet                             6 variations, max normalised xcorr 0.503 (foot_wet_03 vs foot_wet_05)
+PASS  variation  land_stone                           3 variations, max normalised xcorr 0.597 (land_stone_01 vs land_stone_03)
+PASS  variation  land_wood                            3 variations, max normalised xcorr 0.388 (land_wood_01 vs land_wood_02)
+PASS  variation  land_metal                           3 variations, max normalised xcorr 0.519 (land_metal_01 vs land_metal_03)
+PASS  variation  land_wet                             3 variations, max normalised xcorr 0.375 (land_wet_01 vs land_wet_03)
+PASS  variation  jump                                 3 variations, max normalised xcorr 0.282 (jump_01 vs jump_02)
+PASS  variation  dodge                                4 variations, max normalised xcorr 0.166 (dodge_03 vs dodge_04)
+PASS  variation  swing_light                          5 variations, max normalised xcorr 0.185 (swing_light_02 vs swing_light_05)
+PASS  variation  swing_heavy                          3 variations, max normalised xcorr 0.136 (swing_heavy_01 vs swing_heavy_02)
+PASS  variation  kick_whoosh                          4 variations, max normalised xcorr 0.169 (kick_whoosh_02 vs kick_whoosh_04)
+PASS  variation  hit_light                            5 variations, max normalised xcorr 0.861 (hit_light_03 vs hit_light_05)
+PASS  variation  hit_heavy                            4 variations, max normalised xcorr 0.874 (hit_heavy_01 vs hit_heavy_04)
+PASS  variation  guard_block                          5 variations, max normalised xcorr 0.525 (guard_block_03 vs guard_block_05)
+PASS  variation  guard_break                          2 variations, max normalised xcorr 0.293 (guard_break_01 vs guard_break_02)
+PASS  variation  parry                                2 variations, max normalised xcorr 0.014 (parry_01 vs parry_02)
+PASS  variation  knock_skid                           3 variations, max normalised xcorr 0.112 (knock_skid_02 vs knock_skid_03)
+PASS  variation  body_fall                            3 variations, max normalised xcorr 0.677 (body_fall_01 vs body_fall_02)
+PASS  variation  grab                                 2 variations, max normalised xcorr 0.248 (grab_01 vs grab_02)
+PASS  variation  nyx_pounce_leap                      2 variations, max normalised xcorr 0.161 (nyx_pounce_leap_01 vs nyx_pounce_leap_02)
+PASS  variation  nyx_pounce_land                      2 variations, max normalised xcorr 0.637 (nyx_pounce_land_01 vs nyx_pounce_land_02)
+PASS  variation  nyx_crosscut                         2 variations, max normalised xcorr 0.077 (nyx_crosscut_01 vs nyx_crosscut_02)
+PASS  variation  nyx_slip                             2 variations, max normalised xcorr 0.187 (nyx_slip_01 vs nyx_slip_02)
+PASS  variation  bruno_rush_start                     2 variations, max normalised xcorr 0.494 (bruno_rush_start_01 vs bruno_rush_start_02)
+PASS  variation  bruno_rush_impact                    2 variations, max normalised xcorr 0.575 (bruno_rush_impact_01 vs bruno_rush_impact_02)
+PASS  variation  bruno_bark                           3 variations, max normalised xcorr 0.337 (bruno_bark_01 vs bruno_bark_02)
+PASS  variation  bruno_stand_firm                     2 variations, max normalised xcorr 0.626 (bruno_stand_firm_01 vs bruno_stand_firm_02)
+PASS  variation  vex_feint                            2 variations, max normalised xcorr 0.128 (vex_feint_01 vs vex_feint_02)
+PASS  variation  vex_sidewinder                       2 variations, max normalised xcorr 0.111 (vex_sidewinder_01 vs vex_sidewinder_02)
+PASS  variation  vex_tail_sweep                       2 variations, max normalised xcorr 0.118 (vex_tail_sweep_01 vs vex_tail_sweep_02)
+PASS  variation  hops_bound_takeoff                   2 variations, max normalised xcorr 0.388 (hops_bound_takeoff_01 vs hops_bound_takeoff_02)
+PASS  variation  hops_bound_land                      2 variations, max normalised xcorr 0.685 (hops_bound_land_01 vs hops_bound_land_02)
+PASS  variation  hops_double_kick                     2 variations, max normalised xcorr 0.098 (hops_double_kick_01 vs hops_double_kick_02)
+PASS  variation  hops_dropkick                        2 variations, max normalised xcorr 0.089 (hops_dropkick_01 vs hops_dropkick_02)
+PASS  variation  hops_dropkick_crash                  2 variations, max normalised xcorr 0.627 (hops_dropkick_crash_01 vs hops_dropkick_crash_02)
+PASS  variation  scrap_parry_stance                   2 variations, max normalised xcorr 0.221 (scrap_parry_stance_01 vs scrap_parry_stance_02)
+PASS  variation  scrap_leg_sweep                      2 variations, max normalised xcorr 0.181 (scrap_leg_sweep_01 vs scrap_leg_sweep_02)
+PASS  variation  scrap_turnabout                      2 variations, max normalised xcorr 0.113 (scrap_turnabout_01 vs scrap_turnabout_02)
+PASS  variation  knockout                             2 variations, max normalised xcorr 0.163 (knockout_01 vs knockout_02)
+PASS  essential  distinct signatures                  14 essential cues mutually distinct
+PASS  manifest   audio_manifest.json                  exists
+PASS  manifest   schema                               top-level {"cues": {...}}
+PASS  manifest   foot_stone                           cue present
+PASS  manifest   foot_stone                           bus=SFX vol=-2.0 pitch_rand=0.08 voices=10 pos=True prio=1 loop=False
+PASS  manifest   foot_wood                            cue present
+PASS  manifest   foot_wood                            bus=SFX vol=-2.0 pitch_rand=0.08 voices=10 pos=True prio=1 loop=False
+PASS  manifest   foot_metal                           cue present
+PASS  manifest   foot_metal                           bus=SFX vol=-3.0 pitch_rand=0.07 voices=10 pos=True prio=1 loop=False
+PASS  manifest   foot_wet                             cue present
+PASS  manifest   foot_wet                             bus=SFX vol=-2.0 pitch_rand=0.08 voices=10 pos=True prio=1 loop=False
+PASS  manifest   land_stone                           cue present
+PASS  manifest   land_stone                           bus=SFX vol=+0.0 pitch_rand=0.06 voices=4 pos=True prio=2 loop=False
+PASS  manifest   land_wood                            cue present
+PASS  manifest   land_wood                            bus=SFX vol=+0.0 pitch_rand=0.06 voices=4 pos=True prio=2 loop=False
+PASS  manifest   land_metal                           cue present
+PASS  manifest   land_metal                           bus=SFX vol=-1.0 pitch_rand=0.06 voices=4 pos=True prio=2 loop=False
+PASS  manifest   land_wet                             cue present
+PASS  manifest   land_wet                             bus=SFX vol=+0.0 pitch_rand=0.06 voices=4 pos=True prio=2 loop=False
+PASS  manifest   jump                                 cue present
+PASS  manifest   jump                                 bus=SFX vol=-2.0 pitch_rand=0.07 voices=4 pos=True prio=2 loop=False
+PASS  manifest   dodge                                cue present
+PASS  manifest   dodge                                bus=SFX vol=-1.0 pitch_rand=0.07 voices=4 pos=True prio=2 loop=False
+PASS  manifest   swing_light                          cue present
+PASS  manifest   swing_light                          bus=SFX vol=-1.0 pitch_rand=0.08 voices=6 pos=True prio=2 loop=False
+PASS  manifest   swing_heavy                          cue present
+PASS  manifest   swing_heavy                          bus=SFX vol=+0.0 pitch_rand=0.06 voices=4 pos=True prio=3 loop=False
+PASS  manifest   kick_whoosh                          cue present
+PASS  manifest   kick_whoosh                          bus=SFX vol=-1.0 pitch_rand=0.07 voices=4 pos=True prio=2 loop=False
+PASS  manifest   hit_light                            cue present
+PASS  manifest   hit_light                            bus=SFX vol=+0.0 pitch_rand=0.06 voices=6 pos=True prio=5 loop=False
+PASS  manifest   hit_heavy                            cue present
+PASS  manifest   hit_heavy                            bus=SFX vol=+0.0 pitch_rand=0.05 voices=4 pos=True prio=5 loop=False
+PASS  manifest   guard_block                          cue present
+PASS  manifest   guard_block                          bus=SFX vol=+0.0 pitch_rand=0.05 voices=4 pos=True prio=5 loop=False
+PASS  manifest   guard_break                          cue present
+PASS  manifest   guard_break                          bus=SFX vol=+0.0 pitch_rand=0.03 voices=2 pos=True prio=5 loop=False
+PASS  manifest   parry                                cue present
+PASS  manifest   parry                                bus=SFX vol=+0.0 pitch_rand=0.02 voices=2 pos=True prio=5 loop=False
+PASS  manifest   knock_skid                           cue present
+PASS  manifest   knock_skid                           bus=SFX vol=-2.0 pitch_rand=0.07 voices=3 pos=True prio=2 loop=False
+PASS  manifest   body_fall                            cue present
+PASS  manifest   body_fall                            bus=SFX vol=-1.0 pitch_rand=0.06 voices=3 pos=True prio=3 loop=False
+PASS  manifest   grab                                 cue present
+PASS  manifest   grab                                 bus=SFX vol=+0.0 pitch_rand=0.06 voices=2 pos=True prio=3 loop=False
+PASS  manifest   nyx_pounce_leap                      cue present
+PASS  manifest   nyx_pounce_leap                      bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   nyx_pounce_land                      cue present
+PASS  manifest   nyx_pounce_land                      bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   nyx_crosscut                         cue present
+PASS  manifest   nyx_crosscut                         bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   nyx_slip                             cue present
+PASS  manifest   nyx_slip                             bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   bruno_rush_start                     cue present
+PASS  manifest   bruno_rush_start                     bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   bruno_rush_impact                    cue present
+PASS  manifest   bruno_rush_impact                    bus=SFX vol=+0.0 pitch_rand=0.04 voices=2 pos=True prio=4 loop=False
+PASS  manifest   bruno_bark                           cue present
+PASS  manifest   bruno_bark                           bus=SFX vol=+0.0 pitch_rand=0.04 voices=2 pos=True prio=4 loop=False
+PASS  manifest   bruno_stand_firm                     cue present
+PASS  manifest   bruno_stand_firm                     bus=SFX vol=+0.0 pitch_rand=0.04 voices=2 pos=True prio=3 loop=False
+PASS  manifest   vex_feint                            cue present
+PASS  manifest   vex_feint                            bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   vex_sidewinder                       cue present
+PASS  manifest   vex_sidewinder                       bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   vex_tail_sweep                       cue present
+PASS  manifest   vex_tail_sweep                       bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   hops_bound_takeoff                   cue present
+PASS  manifest   hops_bound_takeoff                   bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   hops_bound_land                      cue present
+PASS  manifest   hops_bound_land                      bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=2 loop=False
+PASS  manifest   hops_double_kick                     cue present
+PASS  manifest   hops_double_kick                     bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   hops_dropkick                        cue present
+PASS  manifest   hops_dropkick                        bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   hops_dropkick_crash                  cue present
+PASS  manifest   hops_dropkick_crash                  bus=SFX vol=+0.0 pitch_rand=0.04 voices=2 pos=True prio=4 loop=False
+PASS  manifest   scrap_parry_stance                   cue present
+PASS  manifest   scrap_parry_stance                   bus=SFX vol=+0.0 pitch_rand=0.03 voices=2 pos=True prio=4 loop=False
+PASS  manifest   scrap_leg_sweep                      cue present
+PASS  manifest   scrap_leg_sweep                      bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   scrap_turnabout                      cue present
+PASS  manifest   scrap_turnabout                      bus=SFX vol=+0.0 pitch_rand=0.05 voices=2 pos=True prio=3 loop=False
+PASS  manifest   knockout                             cue present
+PASS  manifest   knockout                             bus=SFX vol=+0.0 pitch_rand=0.0 voices=3 pos=True prio=5 loop=False
+PASS  manifest   respawn                              cue present
+PASS  manifest   respawn                              bus=SFX vol=-1.0 pitch_rand=0.0 voices=2 pos=True prio=3 loop=False
+PASS  manifest   spawn_protect_end                    cue present
+PASS  manifest   spawn_protect_end                    bus=SFX vol=-2.0 pitch_rand=0.02 voices=2 pos=True prio=2 loop=False
+PASS  manifest   zone_activate                        cue present
+PASS  manifest   zone_activate                        bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   zone_reveal                          cue present
+PASS  manifest   zone_reveal                          bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   zone_ally                            cue present
+PASS  manifest   zone_ally                            bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   zone_enemy                           cue present
+PASS  manifest   zone_enemy                           bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   zone_contested                       cue present
+PASS  manifest   zone_contested                       bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   score_warning_1                      cue present
+PASS  manifest   score_warning_1                      bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   score_warning_2                      cue present
+PASS  manifest   score_warning_2                      bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   score_warning_3                      cue present
+PASS  manifest   score_warning_3                      bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=5 loop=False
+PASS  manifest   countdown_tick                       cue present
+PASS  manifest   countdown_tick                       bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   countdown_go                         cue present
+PASS  manifest   countdown_go                         bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   rotation_tick                        cue present
+PASS  manifest   rotation_tick                        bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   victory                              cue present
+PASS  manifest   victory                              bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   defeat                               cue present
+PASS  manifest   defeat                               bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   sudden_death                         cue present
+PASS  manifest   sudden_death                         bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   ui_hover                             cue present
+PASS  manifest   ui_hover                             bus=UI vol=-3.0 pitch_rand=0.02 voices=2 pos=False prio=1 loop=False
+PASS  manifest   ui_select                            cue present
+PASS  manifest   ui_select                            bus=UI vol=+0.0 pitch_rand=0.0 voices=2 pos=False prio=2 loop=False
+PASS  manifest   ui_back                              cue present
+PASS  manifest   ui_back                              bus=UI vol=+0.0 pitch_rand=0.0 voices=2 pos=False prio=2 loop=False
+PASS  manifest   ui_error                             cue present
+PASS  manifest   ui_error                             bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=2 loop=False
+PASS  manifest   ui_lockin                            cue present
+PASS  manifest   ui_lockin                            bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=False
+PASS  manifest   ui_ready                             cue present
+PASS  manifest   ui_ready                             bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=False
+PASS  manifest   ui_match_found                       cue present
+PASS  manifest   ui_match_found                       bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=4 loop=False
+PASS  manifest   ui_notify                            cue present
+PASS  manifest   ui_notify                            bus=UI vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=2 loop=False
+PASS  manifest   ui_chat                              cue present
+PASS  manifest   ui_chat                              bus=UI vol=-1.0 pitch_rand=0.0 voices=2 pos=False prio=1 loop=False
+PASS  manifest   ui_ping                              cue present
+PASS  manifest   ui_ping                              bus=UI vol=+0.0 pitch_rand=0.0 voices=3 pos=False prio=3 loop=False
+PASS  manifest   amb_harbor                           cue present
+PASS  manifest   amb_harbor                           bus=Ambience vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   amb_market                           cue present
+PASS  manifest   amb_market                           bus=Ambience vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   amb_yard                             cue present
+PASS  manifest   amb_yard                             bus=Ambience vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   music_menu                           cue present
+PASS  manifest   music_menu                           bus=Music vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   music_select                         cue present
+PASS  manifest   music_select                         bus=Music vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   music_match                          cue present
+PASS  manifest   music_match                          bus=Music vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   music_results                        cue present
+PASS  manifest   music_results                        bus=Music vol=+0.0 pitch_rand=0.0 voices=1 pos=False prio=3 loop=True
+PASS  manifest   no unknown cues                      none
+PASS  manifest   every listed file exists             155 files
+PASS  manifest   every file on disk is listed         155 audio files on disk, all listed
+PASS  size       total                                14.44 MB (< 60 MB)
+
+SUMMARY: 1357 PASS, 0 FAIL, 1 WARN
+RESULT: PASS

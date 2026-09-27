@@ -6,7 +6,7 @@ import ipaddress
 from typing import Literal
 from urllib.parse import urlsplit
 
-from pydantic import Field, field_validator, model_validator
+from pydantic import Field, ValidationError, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 LOOPBACK_HOSTS = frozenset({"127.0.0.1", "localhost", "::1"})
@@ -134,3 +134,14 @@ class Settings(BaseSettings):
     @property
     def bind_port(self) -> int:
         return parse_bind(self.bind)[1]
+
+
+def describe_settings_error(exc: ValidationError) -> str:
+    """Human-readable configuration errors WITHOUT echoing input values (they may contain
+    the database password)."""
+    lines = []
+    for err in exc.errors(include_input=False, include_url=False):
+        loc = ".".join(str(p) for p in err.get("loc", ())) or "settings"
+        env_name = f"WR_{loc.upper()}" if loc != "settings" else "WR_*"
+        lines.append(f"  {env_name}: {err.get('msg', 'invalid')}")
+    return "\n".join(lines)

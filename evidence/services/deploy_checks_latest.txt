@@ -1,0 +1,8 @@
+# WILDRUSH deployment config checks — 2026-09-27T14:47:16Z
+# Docker Compose version v5.1.1
+docker compose config deploy/docker-compose.yml              PASS
+caddy ports bound to 127.0.0.1 by default                    PASS
+docker compose config deploy/allocator.compose.yml           PASS
+# caddy v2.11.4 h1:XKxkMTgNSizEvKG6QHue6cAsFOteU2qA61w2tKkCWi0=
+caddy validate deploy/Caddyfile                              PASS
+docker build / docker compose up                             BLOCKED (no Docker daemon)

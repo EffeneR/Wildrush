@@ -1,0 +1,108 @@
+# WILDRUSH control service — container deployment (PostgreSQL 16 + service + Caddy TLS).
+#
+#   cd services/deploy
+#   umask 077; openssl rand -hex 32 > secrets/pg_password.txt
+#   cp ../.env.example ../.env    # set WR_DOMAIN, WR_PUBLIC_BASE_URL (and WR_HTTP_BIND to expose)
+#   docker compose --env-file ../.env up -d --build
+#
+# Nothing is published publicly by default: Caddy binds ${WR_HTTP_BIND:-127.0.0.1}. Set
+# WR_HTTP_BIND=0.0.0.0 only on a host whose DNS name (WR_DOMAIN) points at it and whose
+# firewall you have opened for TCP 80/443 (UDP 443 optional, HTTP/3). The database is on an
+# internal network and never published. See docs/DEPLOYMENT.md.
+#
+# Status: written and statically validated with `docker compose config`; NOT run in the
+# authoring environment (no Docker daemon there) — deployment package prepared; public
+# deployment not performed.
+#
+# Allocator hosts (game servers, UDP 24610-24699) are deployed separately:
+# see allocator.compose.yml in this directory.
+
+name: wildrush
+
+x-service-env: &service-env
+  WR_DATABASE_URL: postgresql+psycopg://wildrush@db:5432/wildrush
+  WR_DATABASE_PASSWORD_FILE: /run/secrets/pg_password
+
+services:
+  db:
+    image: postgres:16.15-trixie@sha256:1a6ab3f5345eb6dbe04a1349529caabdb0ab09293a09590fad07b2246bfa4b54
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: wildrush
+      POSTGRES_USER: wildrush
+      POSTGRES_PASSWORD_FILE: /run/secrets/pg_password
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    secrets: [pg_password]
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks: [backend]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wildrush -d wildrush"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    # no "ports:" — reachable only from the internal backend network
+
+  migrate:
+    build:
+      context: ..
+    image: wildrush-control:1.0.0
+    command: ["alembic", "upgrade", "head"]
+    environment: *service-env
+    secrets: [pg_password]
+    networks: [backend]
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: "no"
+
+  service:
+    image: wildrush-control:1.0.0
+    restart: unless-stopped
+    env_file:
+      - path: ../.env
+        required: false
+    environment:
+      <<: *service-env
+      WR_BIND: 0.0.0.0:8080
+      # uvicorn trusts X-Forwarded-For only from Caddy's network (per-IP rate limits).
+      WR_FORWARDED_ALLOW_IPS: 172.30.80.0/24
+    secrets: [pg_password]
+    networks: [backend, frontend]
+    expose: ["8080"]
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  caddy:
+    image: caddy:2.11.4-alpine@sha256:6aeddd44c3078b0f9a35206472a11420648a79c184603ef95957d0a20044cb2b
+    restart: unless-stopped
+    ports:
+      - "${WR_HTTP_BIND:-127.0.0.1}:80:80"
+      - "${WR_HTTP_BIND:-127.0.0.1}:443:443"
+      - "${WR_HTTP_BIND:-127.0.0.1}:443:443/udp"
+    environment:
+      WR_DOMAIN: ${WR_DOMAIN:?set WR_DOMAIN in services/.env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [frontend]
+    depends_on: [service]
+
+secrets:
+  pg_password:
+    file: ./secrets/pg_password.txt
+
+volumes:
+  pgdata: {}
+  caddy_data: {}
+  caddy_config: {}
+
+networks:
+  backend:
+    internal: true
+  frontend:
+    ipam:
+      config:
+        - subnet: 172.30.80.0/24

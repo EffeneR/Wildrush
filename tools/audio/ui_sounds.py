@@ -259,7 +259,7 @@ def ui_error(v, rng):
     for k in range(2):
         n = ns(0.09)
         tone = osc_square(220.0, n, 0.0) + osc_square(233.1, n, 0.3)
-        tone = lp(tone, 1500.0, 2) * env_pts(n, [(0, 0), (0.004, 1), (0.065, 0.9), (0.09, 0)])
+        tone = lp(tone, 1600.0, 4) * env_pts(n, [(0, 0), (0.006, 1), (0.065, 0.9), (0.09, 0)])
         put(out, nrm(tone), 0.13 * k, 0)
     return out
 

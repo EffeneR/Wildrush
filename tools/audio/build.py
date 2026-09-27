@@ -142,6 +142,7 @@ def main(argv=None) -> int:
     ap.add_argument("--only", default="", help="comma-separated cue ids")
     ap.add_argument("--group", default="", help="comma-separated groups: sfx,ui,amb,music")
     ap.add_argument("--no-manifest", action="store_true")
+    ap.add_argument("--manifest-only", action="store_true")
     args = ap.parse_args(argv)
 
     spec = contract.parse_contract()
@@ -149,6 +150,9 @@ def main(argv=None) -> int:
     if missing_meta:
         print(f"ERROR: cues without cue_table metadata: {missing_meta}")
         return 2
+    if args.manifest_only:
+        write_manifest(spec)
+        return 0
     groups = [g for g in (args.group.split(",") if args.group else OWNED_DIRS) if g]
     only = {c for c in args.only.split(",") if c}
     regs = load_generators(sorted({spec[c]["files"][0].split("/")[0] for c in spec}) if not args.group else groups)

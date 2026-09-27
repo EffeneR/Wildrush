@@ -1,0 +1,5 @@
+# Local configuration and deployment secrets never go into git.
+.env
+deploy/secrets/*
+!deploy/secrets/README.md
+deploy/server-export/

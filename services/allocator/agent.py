@@ -505,6 +505,10 @@ class Agent:
                     log.error("pid %d did not exit after SIGKILL", child.proc.pid)
         self.reap()
         self.flush_ended()
+        try:
+            self.heartbeat("draining")  # final state: no matches running here any more
+        except Exception:
+            pass
 
     # -- service calls -------------------------------------------------------------------
 

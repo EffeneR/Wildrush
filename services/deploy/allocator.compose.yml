@@ -1,0 +1,46 @@
+# OPTIONAL: WILDRUSH allocator agent in a container, for a *game-server host*.
+# The agent starts the exported Linux dedicated server (mounted read-only) as child
+# processes; each match listens on one UDP port of 24610-24699. Host networking is used so
+# the UDP range is reachable without per-port mappings — you must open the range in the
+# host firewall yourself (docs/DEPLOYMENT.md). Running the agent natively (systemd) is
+# equally supported and often simpler.
+#
+#   cd services/deploy
+#   # secrets/allocator.secret = the secret printed ONCE by `admin add-server` (chmod 600)
+#   docker compose -f allocator.compose.yml --env-file ../.env up -d --build
+#
+# Status: written and statically validated with `docker compose config`; NOT run in the
+# authoring environment (no Docker daemon).
+
+name: wildrush-allocator
+
+services:
+  allocator:
+    build:
+      context: ..
+    image: wildrush-control:1.0.0
+    command: ["python", "-m", "allocator"]
+    restart: unless-stopped
+    network_mode: host
+    stop_grace_period: 30s        # the agent SIGTERMs its game servers, SIGKILL after 10 s
+    environment:
+      WR_SERVICE_URL: https://${WR_DOMAIN:?set WR_DOMAIN in services/.env}
+      WR_SERVER_ID: ${WR_ALLOCATOR_SERVER_ID:?set WR_ALLOCATOR_SERVER_ID}
+      WR_SERVER_SECRET_FILE: /run/secrets/allocator_secret
+      WR_SERVER_BINARY: /opt/wildrush/server/${WR_SERVER_BINARY_NAME:-wildrush_server.x86_64}
+      WR_SERVER_EXTRA_ARGS_JSON: ${WR_SERVER_EXTRA_ARGS_JSON:-[]}
+      WR_PUBLIC_HOST: ${WR_ALLOCATOR_PUBLIC_HOST:?set WR_ALLOCATOR_PUBLIC_HOST (public DNS name or IP)}
+      WR_REGION: ${WR_ALLOCATOR_REGION:?set WR_ALLOCATOR_REGION (must equal the provisioned region)}
+      WR_PORT_MIN: "24610"
+      WR_PORT_MAX: "24699"
+      WR_MAX_MATCHES: ${WR_ALLOCATOR_MAX_MATCHES:-4}
+      WR_MATCH_TIMEOUT_S: "1500"
+      WR_BUILD_ID: ${WR_BUILD_ID:-unknown}
+      WR_ALLOCATOR_LOG_DIR: /tmp/wildrush-allocator/logs
+    secrets: [allocator_secret]
+    volumes:
+      - ${WR_SERVER_EXPORT_DIR:-./server-export}:/opt/wildrush/server:ro
+
+secrets:
+  allocator_secret:
+    file: ./secrets/allocator.secret

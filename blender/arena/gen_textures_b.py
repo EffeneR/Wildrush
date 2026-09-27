@@ -52,15 +52,15 @@ def gen_metal_deck():
     v = -lx * np.sin(a) * sgn + ly * np.cos(a)
     e = (u / 0.40) ** 2 + (v / 0.11) ** 2
     bump = np.clip(1 - e, 0, 1) ** 0.5
-    dirt_n = T.fbm(S, S, 6, 5, 201)
+    dirt_n = T.fbm(S, S, 14, 5, 201)
     scuff = T.fbm(S, S, 48, 3, 202, aspect=0.3)
     hgt = bump * 0.6 + (T.fbm(S, S, 64, 3, 203) - 0.5) * 0.05
     nrm = T.height_to_normal(hgt, 4.0)
     ao = T.ao_from_height(hgt, sigmas=(1.5, 4, 10), strength=1.6)
     steel = T.rgb((132, 134, 136)) * (0.85 + 0.25 * scuff[..., None])
     steel = steel * (1 + 0.15 * bump[..., None])
-    rust = T.smoothstep(0.7, 0.86, T.fbm(S, S, 8, 5, 204)) * (1 - bump * 0.7)
-    grime = T.smoothstep(0.35, 0.8, dirt_n) * (1 - bump)
+    rust = T.smoothstep(0.8, 0.93, T.fbm(S, S, 18, 5, 204)) * (1 - bump * 0.7)
+    grime = T.smoothstep(0.45, 0.9, dirt_n) * (1 - bump) * 0.45
     alb = T.mix(steel, np.ones_like(steel) * T.rgb((112, 72, 46)), rust * 0.8)
     alb = T.mix(alb, np.ones_like(alb) * T.rgb((60, 58, 54)), grime * 0.6)
     alb *= ao[..., None] ** 0.5
@@ -155,7 +155,7 @@ def gen_canvas():
     S = 1024
     yy, xx = np.mgrid[0:S, 0:S].astype(F32)
     weave = (np.sin(xx * np.pi / 2.0) * np.sin(yy * np.pi / 2.0)) * 0.5 + 0.5
-    folds = T.fbm(S, S, 3, 3, 251, aspect=0.5)
+    folds = T.fbm(S, S, 4, 3, 251, aspect=0.5) * 0.5
     wr = T.fbm(S, S, 12, 4, 252)
     hgt = weave * 0.08 + folds * 0.6 + (wr - 0.5) * 0.1
     nrm = T.height_to_normal(hgt, 2.0)
@@ -166,8 +166,8 @@ def gen_canvas():
     _save("canvas_normal", T.normal_u8(nrm))
     _save("canvas_orm", T.downsample(T.orm_u8(ao, rough, 0.0).astype(F32), 2).round().astype(np.uint8))
     for name, col in (("canvas_red", (156, 42, 36)), ("canvas_green", (52, 84, 56)), ("canvas_cream", (206, 192, 162))):
-        base = T.rgb(col) * (0.88 + 0.12 * weave[..., None]) * (0.85 + 0.25 * fade[..., None])
-        base = T.mix(base, np.ones_like(base) * T.rgb((70, 62, 50)), dirt * 0.3)
+        base = T.rgb(col) * (0.9 + 0.1 * weave[..., None]) * (0.95 + 0.08 * fade[..., None])
+        base = T.mix(base, np.ones_like(base) * T.rgb((70, 62, 50)), dirt * 0.12)
         _save(name + "_albedo", T.to_u8(base * ao[..., None] ** 0.6))
 
 
@@ -458,9 +458,9 @@ def gen_soil():
 # =============================================================================== BRONZE (patina)
 def gen_bronze():
     S = 512
-    n1 = T.fbm(S, S, 6, 5, 341)
+    n1 = T.fbm(S, S, 14, 5, 341)
     streak = T.streaks(S, S, 342, cover=0.6, base=12)
-    pat = np.clip(T.smoothstep(0.45, 0.75, n1) * 0.7 + streak * 0.6, 0, 1)
+    pat = np.clip(T.smoothstep(0.55, 0.85, n1) * 0.45 + streak * 0.55, 0, 1)
     base = T.mix(T.rgb((116, 80, 46)) * np.ones((S, S, 1), F32), T.rgb((86, 138, 118)) * np.ones((S, S, 1), F32), pat)
     base *= (0.85 + 0.2 * T.fbm(S, S, 24, 3, 343)[..., None])
     rough = np.clip(0.35 + pat * 0.5, 0, 1)
@@ -579,8 +579,8 @@ def gen_roof_metal():
     hgt = hgt - laps * 0.3
     nrm = T.height_to_normal(hgt, 3.0)
     ao = T.ao_from_height(hgt, sigmas=(3, 8), strength=1.2)
-    rust = T.smoothstep(0.6, 0.85, T.fbm(S, S, 6, 5, 372)) * 0.8
-    streak = T.streaks(S, S, 373, cover=0.6)
+    rust = T.smoothstep(0.72, 0.92, T.fbm(S, S, 14, 5, 372)) * 0.55
+    streak = T.streaks(S, S, 373, cover=0.5) * 0.6
     base = T.rgb((128, 132, 134)) * (0.85 + 0.2 * np.tile(prof, (S, 1))[..., None])
     base = T.mix(base, np.ones_like(base) * T.rgb((122, 76, 46)), np.clip(rust + streak * 0.4, 0, 1))
     rough = np.clip(0.5 + rust * 0.4, 0, 1)

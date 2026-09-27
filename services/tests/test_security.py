@@ -138,3 +138,30 @@ def test_unknown_routes_use_error_envelope(client):
     assert r.status_code == 404 and r.json() == {"error": {"code": "not_found", "message": "Not Found"}}
     r = client.put("/v1/me")
     assert r.status_code == 405 and r.json()["error"]["code"] == "method_not_allowed"
+
+
+def test_secrets_tokens_and_tickets_never_logged(client, app, caplog):
+    import logging
+
+    from helpers import make_accounts, participants_by_team, ready_match, result_body
+
+    caplog.set_level(logging.DEBUG)
+    caplog.set_level(logging.INFO, logger="sqlalchemy.engine")  # log every SQL statement too
+    srv = online_server(client, app, server_id="log-host")
+    password = "Pa55word-that-must-not-leak"
+    r = client.post("/v1/auth/register", json={"username": "LogUser", "password": password})
+    assert r.status_code == 201
+    token = client.post("/v1/auth/login", json={"username": "LogUser", "password": password}).json()["token"]
+    players = make_accounts(app, "lgp", 10)
+    match_id, _ = ready_match(client, app, srv, players)
+    tickets = [client.get("/v1/queue/status", headers=p.headers).json()["match"]["ticket"] for p in players]
+    signed(client, app, srv, "POST", f"/v1/matches/{match_id}/started", {})
+    teams = participants_by_team(client, players)
+    assert signed(client, app, srv, "POST", f"/v1/matches/{match_id}/result", result_body(match_id, teams)).status_code == 200
+    logged = caplog.text
+    loggers = {rec.name for rec in caplog.records}
+    assert any(name.startswith("sqlalchemy.engine") for name in loggers)  # SQL logging was active
+    assert "parameters hidden" in logged  # engine created with hide_parameters=True
+    assert any(name.startswith("wildrush_svc") for name in loggers)
+    for sensitive in [srv.secret, password, token, *tickets, *(p.token for p in players)]:
+        assert sensitive not in logged

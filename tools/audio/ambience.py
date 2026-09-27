@@ -47,10 +47,12 @@ class Layer:
         return wrap_to(self.buf, N)
 
 
-def times(rng, mean_gap, jitter=0.5):
+def times(rng, mean_gap, jitter=0.5, guard=0.6):
+    """Event onsets over the loop, kept >= ``guard`` s away from the loop point so the seam region
+    stays steady (tails of earlier events still wrap across it)."""
     out = []
-    t = rng.uniform(0, mean_gap)
-    while t < LOOP_S:
+    t = guard + rng.uniform(0, mean_gap)
+    while t < LOOP_S - guard:
         out.append(t)
         t += mean_gap * rng.uniform(1 - jitter, 1 + jitter)
     return out
@@ -265,7 +267,7 @@ def amb_market(v, rng):
 
     air = wind(rng, depth=0.4, lo=150.0, hi=2500.0)
     s = lambda x: x / (np.std(x) + 1e-12)
-    return (0.55 * s(fountain) + 0.35 * hiss + 0.25 * pool + 0.35 * s(awn) + 0.45 * s(crowd)
+    return (0.55 * s(fountain) + 0.25 * hiss + 0.25 * pool + 0.35 * s(awn) + 0.45 * s(crowd)
             + 0.12 * s(crates) + 0.15 * air)
 
 

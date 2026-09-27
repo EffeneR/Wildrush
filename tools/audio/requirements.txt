@@ -1,0 +1,6 @@
+# Audio build dependencies (all already pinned in tools/requirements.txt; no extra packages).
+# soundfile 0.14.0 bundles libsndfile 1.2.2 (Ogg Vorbis + WAV writer).
+numpy==2.4.6
+scipy==1.17.1
+soundfile==0.14.0
+pillow==12.3.0

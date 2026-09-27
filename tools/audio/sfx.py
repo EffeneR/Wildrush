@@ -116,7 +116,7 @@ def flutter(rng, dur, rate=26.0, fc=1400.0, bw=1.4, depth=0.8):
 def grit(rng, dur, rate=500.0, lo=2000.0, hi=7000.0, env=None):
     """Granular grit / scrape texture: dense random clicks, band-passed."""
     n = ns(dur)
-    y = bp(impulses(n, rng, rate, 0.7), lo, hi, 2)
+    y = bp(impulses(n, rng, rate, 0.7), lo, hi, 4)  # 4th order: no HF tick leakage above the band
     if env is not None:
         y = y * env
     return fade_edges(nrm(y), 0.001, 0.1 * dur)
