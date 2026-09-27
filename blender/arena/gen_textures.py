@@ -376,15 +376,15 @@ def gen_paving_concrete():
     base = T.rgb((156, 154, 148)) * np.ones((S, S, 1), F32) * tone[..., None]
     base *= (0.86 + 0.18 * grain[..., None])
     base = T.mix(base, np.ones_like(base) * T.rgb((120, 118, 114)), agg * 0.5)
-    oil = T.smoothstep(0.74, 0.86, T.fbm(S, S, 6, 5, 128))
-    base = T.mix(base, np.ones_like(base) * T.rgb((64, 62, 60)), oil * 0.7)
-    rust = T.smoothstep(0.8, 0.9, T.fbm(S, S, 8, 4, 129))
-    base = T.mix(base, np.ones_like(base) * T.rgb((136, 92, 62)), rust * 0.4)
-    tyre = T.smoothstep(0.62, 0.8, T.fbm(S, S, 40, 3, 130, aspect=0.03)) * T.smoothstep(0.4, 0.7, T.fbm(S, S, 3, 3, 131))
-    base *= (1 - 0.18 * tyre)[..., None]
+    oil = T.smoothstep(0.80, 0.92, T.fbm(S, S, 10, 5, 128)) * T.smoothstep(0.5, 0.7, T.fbm(S, S, 3, 3, 132))
+    base = T.mix(base, np.ones_like(base) * T.rgb((88, 86, 82)), oil * 0.55)
+    rust = T.smoothstep(0.84, 0.94, T.fbm(S, S, 12, 4, 129))
+    base = T.mix(base, np.ones_like(base) * T.rgb((140, 110, 86)), rust * 0.25)
+    tyre = T.smoothstep(0.66, 0.8, T.fbm(S, S, 40, 3, 130, aspect=0.03)) * T.smoothstep(0.5, 0.75, T.fbm(S, S, 3, 3, 131))
+    base *= (1 - 0.1 * tyre)[..., None]
     base *= (1 - 0.5 * crack)[..., None]
     alb = T.mix(T.rgb((70, 68, 64)) * np.ones_like(base), base, joint) * ao[..., None] ** 0.5
-    rough = np.clip(0.86 + (grain - 0.5) * 0.1 - oil * 0.45, 0, 1)
+    rough = np.clip(0.86 + (grain - 0.5) * 0.1 - oil * 0.35, 0, 1)
     save_set("paving_concrete", alb, nrm, T.orm_u8(ao, rough, 0.0))
 
 
@@ -396,8 +396,8 @@ def gen_wood_planks():
     layout = [(T.random_partition(S, 380, 1024, r), int(r.integers(0, S))) for _ in rows]
     c = T.rows_of_cells(S, S, rows, layout, 141)
     n = c["count"]
-    fib = T.fbm(S, S, 96, 4, 142, aspect=0.02)
-    ring = 0.5 + 0.5 * np.sin((c["v"] * 6.0 + T.fbm(S, S, 8, 3, 143, aspect=0.1) * 9.0 + T.per_cell(T.rng(144).random(n).astype(F32) * 10, c["id"])) * np.pi)
+    fib = T.fbm(S, S, 2, 5, 142, aspect=60.0)
+    ring = 0.5 + 0.5 * np.sin((c["v"] * 6.0 + T.fbm(S, S, 2, 3, 143, aspect=8.0) * 9.0 + T.per_cell(T.rng(144).random(n).astype(F32) * 10, c["id"])) * np.pi)
     gap = T.smoothstep(1.2, 3.2, c["edge"])
     # knots
     kn = np.zeros((S, S), F32)

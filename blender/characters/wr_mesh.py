@@ -31,6 +31,7 @@ def main():
     ap.add_argument("--res", type=float, default=0.0025)
     ap.add_argument("--cloth-res", type=float, default=0.0032)
     ap.add_argument("--no-cloth", action="store_true")
+    ap.add_argument("--part", default=None, help="preview: mesh only this part (e.g. head)")
     args = ap.parse_args()
     out = os.path.join(args.work, args.fid)
     os.makedirs(out, exist_ok=True)
@@ -48,6 +49,9 @@ def main():
 
     t = time.time()
     body = F.body
+    if args.part:
+        body = F.parts[args.part]
+        have_cloth = False
     V, Fc = mesh_sdf(body, body.lo, body.hi, args.res, block=24, verbose=True)
     V, Fc = keep_largest_components(V, Fc, min_faces=400)
     log(f"body mesh: {len(V)} verts {len(Fc)} faces ({time.time() - t:.1f}s)")

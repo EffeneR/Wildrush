@@ -61,7 +61,7 @@ def test_ranked_result_applies_once_and_is_idempotent(client, app):
     again = copy.deepcopy(body)
     again["players"] = list(reversed(again["players"]))
     again["players"] = [dict(reversed(list(p.items()))) for p in again["players"]]
-    r2 = submit(client, app, srv, match_id, body)
+    r2 = submit(client, app, srv, match_id, again)
     assert r2.status_code == 200
     assert r2.json() == {**first, "applied": False, "idempotent": True}
     r3 = submit(client, app, srv, match_id, {**body, "duration_s": 402.5})
@@ -207,7 +207,7 @@ def test_mastery_level_ups_unlock_badges_and_palettes(client, app):
     profile = client.get("/v1/profile", headers=star.headers).json()
     assert profile["fighters"]["nyx"]["level"] == 4
     assert profile["fighters"]["nyx"]["palettes"] == ["default", "dusk"]
-    assert set(profile["badges"]) == {"nyx_adept", "pack_debut"}  # initiate (L2) was before this match
+    assert set(profile["badges"]) == {"nyx_initiate", "nyx_adept", "pack_debut"}
     r = client.patch("/v1/profile", json={"selected_badge": "nyx_adept", "selected_palettes": {"nyx": "dusk"}}, headers=star.headers)
     assert r.status_code == 200
 

@@ -562,6 +562,8 @@ class Agent:
             return
         for raw in allocations:
             self._handle_allocation(raw)
+        if allocations:
+            self.report_started()  # tell the service right away so tickets are issued
 
     def _handle_allocation(self, raw: object) -> None:
         allocation_id = raw.get("allocation_id") if isinstance(raw, dict) else None

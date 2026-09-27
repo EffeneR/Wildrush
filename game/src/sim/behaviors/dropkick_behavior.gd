@@ -41,7 +41,7 @@ func _flight_velocity(f: FighterBody) -> void:
 	var st: FighterState = f.st
 	var a: ActionDef = st.act
 	var n: int = a.pticks("flight_s", 0.40)
-	var tau: float = float(st.act_phase_tick) / float(n)
+	var tau: float = (float(st.act_phase_tick) + 0.5) / float(n)
 	var h: float = float(a.param("height", 0.6))
 	var vy: float = 4.0 * h * (1.0 - 2.0 * tau) / (float(n) * WR.TICK_DT)
 	var hz: Vector3 = (st.act_data["dir"] as Vector3) * (float(a.param("distance", 5.5)) / (float(n) * WR.TICK_DT))

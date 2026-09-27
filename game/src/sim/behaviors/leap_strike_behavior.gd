@@ -37,7 +37,7 @@ func _leap_velocity(f: FighterBody) -> void:
 	var st: FighterState = f.st
 	var a: ActionDef = st.act
 	var n: int = a.pticks("leap_s", 0.40)
-	var tau: float = float(st.act_phase_tick) / float(n)
+	var tau: float = (float(st.act_phase_tick) + 0.5) / float(n)
 	var h: float = float(a.param("leap_height", 0.7))
 	var vy: float = 4.0 * h * (1.0 - 2.0 * tau) / (float(n) * WR.TICK_DT)
 	var horiz: Vector3 = Vector3.ZERO
@@ -53,6 +53,7 @@ func _land(f: FighterBody, outcome: String, ctx: SimContext) -> void:
 	var key: String = "land_hit_s" if outcome == "hit" else ("land_wall_s" if outcome == "wall" else "land_miss_s")
 	st.act_data["land_len"] = a.pticks(key, 0.5)
 	st.set_phase("land")
+	f.velocity = Vector3(0, minf(f.velocity.y, 0.0), 0)
 	ctx.emit({"type": "skill_fx", "e": f.entity_id, "fx": "nyx_pounce_land", "predictable": true})
 
 

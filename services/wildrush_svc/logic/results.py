@@ -169,7 +169,10 @@ def submit(
         unlocks = [
             f"{p.fighter}_{tier}" for tier, lvl in BADGE_TIERS.items() if old_level < lvl <= new_level
         ]
-        for badge in unlocks + ["pack_debut"]:
+        # Insert every badge the level entitles to (ON CONFLICT DO NOTHING keeps the
+        # original unlock time); ``unlocks`` reports the ones reached in this match.
+        owed = [f"{p.fighter}_{tier}" for tier, lvl in BADGE_TIERS.items() if lvl <= new_level]
+        for badge in owed + ["pack_debut"]:
             badge_rows.append(
                 {"account_id": p.account_id, "badge": badge, "unlocked_at": now, "match_id": match_id}
             )

@@ -12,12 +12,17 @@ func start(f: FighterBody, inp: InputFrame, _ctx: SimContext) -> void:
 	f.st.set_phase("evade")
 
 
-func step(f: FighterBody, _inp: InputFrame, ctx: SimContext) -> void:
+func step(f: FighterBody, inp: InputFrame, ctx: SimContext) -> void:
 	var st: FighterState = f.st
 	var a: ActionDef = st.act
 	var evade_n: int = a.pticks("evade_s", 0.30)
 	if st.act_phase == "evade" and st.act_tick >= evade_n:
 		st.set_phase("recover")
+		if bool(st.act_data.get("counter_queued", false)):
+			var counter: ActionDef = f.def.action(String(a.param("counter_action", "")))
+			if counter != null:
+				FighterLogic.start_action(f, counter, ctx, inp)
+				return
 	var end_t: int = maxi(evade_n + a.pticks("recovery_s", 0.12), a.pticks("counter_to_s", 0.45))
 	if st.act_tick >= end_t - 1:
 		FighterLogic.end_action(f, ctx, "done")
@@ -28,11 +33,16 @@ func consume_press(f: FighterBody, btn: int, inp: InputFrame, ctx: SimContext) -
 		return false
 	var st: FighterState = f.st
 	var a: ActionDef = st.act
-	if st.act_tick < a.pticks("counter_from_s", 0.12) or st.act_tick > a.pticks("counter_to_s", 0.45):
-		return false
+	# timing matters: the press itself must fall inside the window (no pre-buffering)
+	var press_tick: int = st.act_tick - (ctx.tick - st.buf_tick)
+	if press_tick < a.pticks("counter_from_s", 0.12) or press_tick > a.pticks("counter_to_s", 0.45):
+		return true   # mistimed press is consumed and wasted
 	var counter: ActionDef = f.def.action(String(a.param("counter_action", "")))
 	if counter == null:
 		return false
+	if st.act_tick < a.pticks("evade_s", 0.30):
+		st.act_data["counter_queued"] = true   # swipe follows the completed evade
+		return true
 	FighterLogic.start_action(f, counter, ctx, inp)
 	return true
 

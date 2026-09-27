@@ -405,8 +405,10 @@ static func _move(f: FighterBody, inp: InputFrame, ctx: SimContext) -> void:
 			vel.y = -0.5
 		else:
 			vel.y = maxf(vel.y - Tuning.gravity * dt, -Tuning.max_fall_speed)
-	# knockback (sim-owned displacement)
-	if st.knock_left > 0:
+	# knockback (sim-owned displacement): transient, never carried into next tick's velocity
+	var base_h := Vector2(vel.x, vel.z)
+	var knocked: bool = st.knock_left > 0
+	if knocked:
 		vel.x += st.knock_vel.x
 		vel.z += st.knock_vel.z
 		var L: int = st.knock_left
@@ -415,6 +417,9 @@ static func _move(f: FighterBody, inp: InputFrame, ctx: SimContext) -> void:
 	var pre_pos: Vector3 = f.global_position
 	f.velocity = vel
 	f.move_and_slide()
+	if knocked:
+		f.velocity.x = base_h.x
+		f.velocity.z = base_h.y
 	_try_step_up(f, pre_pos, vel, was_grounded)
 	if st.act != null:
 		Behaviors.of(st.act).post_move(f, ctx)

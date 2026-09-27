@@ -132,6 +132,7 @@ def start_cluster(prefix: str = "wr-pgtest-") -> PgCluster:
             if time.monotonic() > deadline:
                 raise
             time.sleep(0.2)
-    cluster.psql(f"CREATE ROLE {cluster.user} LOGIN PASSWORD '{cluster.password}'")
+    # CREATEDB: tests create scratch databases (migration round trip, unmigrated app).
+    cluster.psql(f"CREATE ROLE {cluster.user} LOGIN CREATEDB PASSWORD '{cluster.password}'")
     cluster.psql(f"CREATE DATABASE {cluster.database} OWNER {cluster.user}")
     return cluster

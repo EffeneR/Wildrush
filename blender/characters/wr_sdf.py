@@ -448,9 +448,11 @@ def mesh_sdf(node, lo, hi, h, block=24, band=1.6, verbose=False):
     # coarse classification at block centres
     ib = np.stack(np.meshgrid(np.arange(nb[0]), np.arange(nb[1]), np.arange(nb[2]), indexing="ij"), -1).reshape(-1, 3)
     centres = lo + (ib + 0.5) * block * h
-    dc = eval_points(node, centres, cell=block * h * 2)
     half_diag = np.sqrt(3.0) * 0.5 * block * h
-    active = np.abs(dc) < half_diag * band + 2 * h
+    thr = half_diag * band + 2 * h
+    # culling margin must cover the activity threshold, otherwise nearby primitives are skipped
+    dc = eval_points(node, centres, cell=block * h * 2, m=thr)
+    active = np.abs(dc) < thr
     ib = ib[active]
     if verbose:
         print(f"  mesh_sdf: grid {n.tolist()} blocks {nb.tolist()} active {len(ib)}/{len(active)}")

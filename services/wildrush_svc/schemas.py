@@ -230,5 +230,9 @@ class ResultReq(Body):
     replay_id: Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9_-]{1,64}$")] | None = None
 
     def canonical(self) -> dict[str, Any]:
-        """Normalized form used for idempotency comparison and storage."""
-        return self.model_dump(mode="json")
+        """Normalized form used for idempotency comparison and storage: key order,
+        number formatting and the order of the players/bots lists do not matter."""
+        data = self.model_dump(mode="json")
+        data["players"] = sorted(data["players"], key=lambda p: p["account_id"])
+        data["bots"] = sorted(data["bots"], key=lambda b: (b["team"], b["fighter"]))
+        return data

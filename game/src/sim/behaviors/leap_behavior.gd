@@ -27,6 +27,7 @@ func step(f: FighterBody, inp: InputFrame, ctx: SimContext) -> void:
 			var n: int = a.pticks("air_s", 0.55)
 			if st.act_phase_tick > n / 2 and f.is_on_floor():
 				st.set_phase("land")
+				f.velocity = Vector3(0, f.velocity.y, 0)   # readable, planted landing
 				ctx.emit({"type": "skill_fx", "e": f.entity_id, "fx": "hops_bound_land", "predictable": true})
 			else:
 				_air_velocity(f, inp)
@@ -57,7 +58,7 @@ func _air_velocity(f: FighterBody, inp: InputFrame) -> void:
 		var want2: Vector3 = (MathX.yaw_right(inp.yaw) * inp.move.x + MathX.yaw_forward(inp.yaw) * inp.move.y)
 		fwd_in = clampf(want2.dot(dir), -1.0, 1.0)
 	var speed: float = float(a.param("distance", 7.5)) / (float(n) * WR.TICK_DT) * (1.0 + adj * fwd_in)
-	var tau: float = float(st.act_phase_tick) / float(n)
+	var tau: float = (float(st.act_phase_tick) + 0.5) / float(n)
 	var h: float = float(a.param("height", 1.6))
 	var vy: float
 	if tau <= 1.0:

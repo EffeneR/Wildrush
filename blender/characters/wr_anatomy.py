@@ -114,11 +114,11 @@ FIGHTER_PARAMS = {
         pelvis_r=(0.145, 0.108, 0.105), waist_r=(0.112, 0.088, 0.110), rib_r=(0.132, 0.106, 0.145),
         pec_r=(0.058, 0.032, 0.046), bust=0.5, glute_r=(0.072, 0.064, 0.078), trap_r=(0.112, 0.058, 0.062),
         sh_x=0.158, sh_z=1.392, neck_base_z=1.445, head_joint_z=1.530, neck_r=(0.060, 0.050),
-        delt_r=(0.050, 0.046, 0.062), ua_r=(0.046, 0.036), bicep=(0.030, 0.050, 0.030), tricep=(0.032, 0.060, 0.030),
-        fa_r=(0.041, 0.030), fa_mass=(0.034, 0.066, 0.031),
+        delt_r=(0.054, 0.049, 0.066), ua_r=(0.050, 0.039), bicep=(0.032, 0.052, 0.032), tricep=(0.034, 0.062, 0.032),
+        fa_r=(0.044, 0.032), fa_mass=(0.036, 0.068, 0.033),
         thigh_r=(0.092, 0.055), quad=(0.060, 0.115, 0.052), hams=(0.055, 0.105, 0.052), shin_r=(0.052, 0.034),
         calf=(0.045, 0.085, 0.043), knee_r=0.043,
-        hand_w=0.078, hand_t=0.031, finger_r=0.0122, thumb_r=0.0128, palm_len=0.082,
+        hand_w=0.086, hand_t=0.034, finger_r=0.0135, thumb_r=0.0142, palm_len=0.086, fing_len=(0.036, 0.030),
         tail_n=6, tail_len=0.92, tail_r=(0.042, 0.039, 0.036, 0.034), tail_shape="cat",
         head_c=(0.0, -0.010, 0.0), cran_r=(0.071, 0.078, 0.071), eye_r=0.0215,
         ear_len=0.078, ear_w=0.062,
@@ -645,19 +645,23 @@ def build_tail(F):
         for i0, i1 in zip(idx[:-1], idx[1:]):
             parts.append(RoundCone(pts[i0], pts[i1], r[i0], r[i1]))
         node = Union(parts, k=0.02)
-    amp = {"cat": 0.004, "fox": 0.013, "raccoon": 0.010, "dog": 0.002, "rabbit": 0.008}[shape]
+    amp = {"cat": 0.0028, "fox": 0.013, "raccoon": 0.010, "dog": 0.002, "rabbit": 0.008}[shape]
     cp = CurveParam(pts)
     F.tail_param = cp
     around = {"cat": 3.0, "fox": 4.0, "raccoon": 3.5, "dog": 2.0, "rabbit": 3.0}[shape]
     along = {"cat": 14.0, "fox": 9.0, "raccoon": 10.0, "dog": 12.0, "rabbit": 30.0}[shape]
 
-    def clumps(P, cp=cp, amp=amp, around=around, along=along):
+    sawk = {"cat": 0.0, "fox": 0.25, "raccoon": 0.15, "dog": 0.0, "rabbit": 0.0}[shape]
+
+    def clumps(P, cp=cp, amp=amp, around=around, along=along, sawk=sawk):
         s, dist, ang, tg = cp.project(P)
         # locks: periodic around the tail, elongated along it; sawtooth gives tip-ward tufts
         Q = np.stack([np.cos(ang) * around, np.sin(ang) * around, s * along], axis=1)
         nz = perlin3(Q, 1.0, 7) * 0.65 + perlin3(Q * 2.3, 1.0, 11) * 0.35
-        saw = ((s * along * 0.9 + perlin3(Q * 0.7, 1.0, 5) * 0.8) % 1.0)
-        f = 0.65 * np.clip(nz * 1.6, -1, 1) + 0.35 * (saw * 2.0 - 1.0)
+        f = np.clip(nz * 1.6, -1, 1)
+        if sawk > 0:
+            saw = ((s * along * 0.5 + perlin3(Q * 0.9, 1.0, 5) * 1.5) % 1.0)
+            f = (1 - sawk) * f + sawk * (saw * 2.0 - 1.0)
         tipw = np.clip(s / cp.L, 0, 1)
         return amp * np.clip(f, -1, 1) * (0.6 + 0.4 * tipw)
 
@@ -682,7 +686,7 @@ def ellipse_prism(frame, cx, cy, rx, ry, depth_lo, depth_hi):
     return Func(fn, frame.o - R, frame.o + R)
 
 
-def eye_rig(F, Hf, s, ex, ey, ez, r, yaw_out, pitch, w_open, h_up, h_lo, tilt, lid_t=0.0045, lid_gap=0.0006):
+def eye_rig(F, Hf, s, ex, ey, ez, r, yaw_out, pitch, w_open, h_up, h_lo, tilt, lid_t=0.0034, lid_gap=0.0005):
     """Eyeball socket + lids.  Returns (lids node, socket node, eye dict).
     (ex, ey, ez) head-local eye centre (x = left, y = forward, z = up)."""
     c = Hf.p(s * ex, ey, ez)
@@ -827,25 +831,24 @@ def build_head(F):
     if sp == "cat":
         parts.append(Ellipsoid(hp(0, -0.010, 0.004), cr))
         parts.append(Ellipsoid(hp(0, 0.034, 0.016), R3(0.056, 0.046, 0.042)))           # forehead
-        parts.append(Ellipsoid(hp(0, 0.028, -0.028), R3(0.056, 0.050, 0.044)))          # face mass
+        parts.append(Ellipsoid(hp(0, 0.028, -0.026), R3(0.050, 0.046, 0.040)))          # face mass
         for s in (1, -1):
-            parts.append(Ellipsoid(hp(s * 0.048, 0.028, -0.028), R3(0.040, 0.040, 0.035)))            # cheekbones
+            parts.append(Ellipsoid(hp(s * 0.046, 0.028, -0.024), R3(0.034, 0.036, 0.031)))            # cheekbones
             parts.append(Ellipsoid(hp(s * 0.030, 0.058, 0.029), R3(0.026, 0.017, 0.012), rot_z(s * -0.3)))  # brow
-            parts.append(Ellipsoid(hp(s * 0.064, 0.002, -0.044), R3(0.030, 0.044, 0.040), rot_z(s * 0.45)))  # ruff
-            b = hp(s * 0.070, -0.004, -0.046)
-            fur += tufts(b, [v3(s * 0.8, 0.55, -0.55), v3(s * 0.9, 0.25, -0.75), v3(s * 0.7, 0.75, -0.2)],
-                         0.036 * S, 0.012 * S)
+            parts.append(Ellipsoid(hp(s * 0.058, 0.000, -0.040), R3(0.026, 0.040, 0.034), rot_z(s * 0.45)))  # ruff
+            b = hp(s * 0.062, -0.006, -0.044)
+            fur += tufts(b, [v3(s * 0.8, 0.55, -0.55), v3(s * 0.9, 0.25, -0.75)], 0.026 * S, 0.009 * S)
         parts.append(RoundCone(hp(0, 0.056, 0.012), hp(0, 0.094, -0.012), 0.022 * S, 0.0155 * S))  # bridge
         for s in (1, -1):
-            details.append(Sphere(hp(s * 0.0172, 0.089, -0.031), 0.0200 * S))                    # whisker pads
-            details.append(RoundCone(hp(s * 0.036, 0.014, -0.050), hp(s * 0.011, 0.070, -0.060), 0.019 * S, 0.012 * S))
-        details.append(Ellipsoid(hp(0, 0.074, -0.060), R3(0.017, 0.020, 0.012)))                   # chin (recessed)
+            details.append(Sphere(hp(s * 0.0168, 0.087, -0.031), 0.0186 * S))                    # whisker pads
+            details.append(RoundCone(hp(s * 0.032, 0.016, -0.046), hp(s * 0.010, 0.064, -0.056), 0.015 * S, 0.010 * S))
+        details.append(Ellipsoid(hp(0, 0.070, -0.057), R3(0.015, 0.018, 0.011)))                   # chin (recessed)
         nose_c = hp(0, 0.1075, -0.0115)
         details.append(Ellipsoid(nose_c, R3(0.0118, 0.0068, 0.0080), rot_x(0.35)))
         lip = dict(lip_y=0.099, lip_z=-0.0505, corner_y=0.062, half_w=0.030, gap=0.0036,
                    cavity=(0.020, 0.024, 0.008), pitch=10.0)
-        eye_c = (0.0335, 0.0585, 0.0135)
-        eye_kw = dict(yaw_out=11, pitch=-2, w_open=er * 0.98, h_up=er * 0.62, h_lo=er * 0.54, tilt=12)
+        eye_c = (0.0335, 0.0555, 0.0135)
+        eye_kw = dict(yaw_out=11, pitch=-2, w_open=er * 0.97, h_up=er * 0.54, h_lo=er * 0.50, tilt=16)
         ear_kw = dict(base_hl=(0.044, -0.020, 0.054), length=p["ear_len"], width=p["ear_w"], thick=0.020,
                       tilt_out=19, tilt_back=6, twist=24, shape="pointed", n_bones=2)
         jaw_pivot = hp(0, -0.010, -0.038)
