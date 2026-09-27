@@ -3,10 +3,8 @@
 from __future__ import annotations
 
 import threading
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from typing import Protocol
-
-UTC = timezone.utc
 
 
 class Clock(Protocol):

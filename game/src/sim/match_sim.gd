@@ -63,7 +63,11 @@ func _setup_navigation() -> void:
 	nav_region = NavigationServer3D.region_create()
 	NavigationServer3D.region_set_map(nav_region, nav_map)
 	NavigationServer3D.region_set_navigation_mesh(nav_region, navmesh)
-	NavigationServer3D.map_force_update(nav_map)
+
+
+func nav_ready() -> bool:
+	## Navigation maps synchronise asynchronously (4.7); queries are valid once iterated.
+	return navmesh != null and ArenaBuilder.nav_synced(nav_map, nav_region, navmesh)
 
 
 func _exit_tree() -> void:

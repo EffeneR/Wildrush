@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Any
 
 from sqlalchemy import select, update
@@ -14,8 +14,6 @@ from ..errors import APIError, conflict, not_found
 from ..models import Account, GameServer, JoinTicket, Match, MatchParticipant
 from ..security import encode_ticket, ticket_payload
 from .profile import palettes_by_fighter
-
-UTC = timezone.utc
 
 
 def issue_ticket(

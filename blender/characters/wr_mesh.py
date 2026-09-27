@@ -69,7 +69,7 @@ def main():
         nv = 0
         for gi, g in enumerate(F.garments):
             t = time.time()
-            gv, gf = mesh_sdf(g["node"], g["node"].lo, g["node"].hi, g.get("res", args.cloth_res), block=24)
+            gv, gf = mesh_sdf(g["node"], g["node"].lo, g["node"].hi, g.get("res") or args.cloth_res, block=24)
             if len(gf) == 0:
                 log(f"  garment {g['name']}: EMPTY")
                 continue

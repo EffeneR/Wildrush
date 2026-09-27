@@ -401,8 +401,8 @@ layout = {
     "water": water,
     "perch_ledges": perches,
     "decor": decor,
-    "nav": {"cell_size": 0.25, "cell_height": 0.1, "agent_radius": 0.45, "agent_height": 1.8,
-            "agent_max_climb": 0.36, "agent_max_slope": 46.0},
+    "nav": {"cell_size": 0.25, "cell_height": 0.1, "agent_radius": 0.5, "agent_height": 1.8,
+            "agent_max_climb": 0.3, "agent_max_slope": 46.0},
 }
 
 os.makedirs(os.path.dirname(OUT), exist_ok=True)

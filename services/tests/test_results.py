@@ -18,7 +18,13 @@ from helpers import (
     running_match,
     signed,
 )
-from wildrush_svc.models import AccountBadge, FighterMastery, MatchPlayerResult, MatchResult, Rating
+from wildrush_svc.models import (
+    AccountBadge,
+    FighterMastery,
+    MatchPlayerResult,
+    MatchResult,
+    Rating,
+)
 
 
 def submit(client, app, srv, match_id, body, **kw):

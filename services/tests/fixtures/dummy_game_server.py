@@ -117,7 +117,7 @@ def play(args: dict[str, str], secret: str, sock: socket.socket) -> int:
     while len(redeemed) < expected and time.time() < deadline:
         try:
             datagram, addr = sock.recvfrom(4096)
-        except socket.timeout:
+        except TimeoutError:
             continue
         text = datagram.decode("ascii", "replace").strip()
         if not text.startswith("TICKET "):

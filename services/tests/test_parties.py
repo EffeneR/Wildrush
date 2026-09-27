@@ -112,7 +112,7 @@ def test_party_full_on_accept(client, app):
         client.post("/v1/parties/current/invites", json={"username": m.username}, headers=lead.headers).json()
         for m in members
     ]
-    for m, inv in zip(members[:4], invites[:4]):
+    for m, inv in zip(members[:4], invites[:4], strict=True):
         assert client.post(f"/v1/invites/{inv['invite_id']}/accept", headers=m.headers).status_code == 200
     r = client.post(f"/v1/invites/{invites[4]['invite_id']}/accept", headers=members[4].headers)
     assert r.status_code == 409 and r.json()["error"]["code"] == "party_full"

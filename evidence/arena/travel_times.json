@@ -1,0 +1,151 @@
+{
+  "camera": {
+    "needs_retraction": 0,
+    "note": "samples where the ideal camera position is inside geometry; the camera rig retracts (spring arm) in these cases",
+    "retraction_pct": 0.0,
+    "route_samples": 190
+  },
+  "elevated_surfaces_over_zones": [],
+  "fairness_target_pct": 10.0,
+  "godot": "4.7.2-stable (official)",
+  "navmesh": {
+    "bake_ms": 97,
+    "polygons": 715,
+    "pruned_island_polygons": 111,
+    "saved": true,
+    "sync_frames": 13,
+    "vertices": 802
+  },
+  "ok": true,
+  "reachability": {
+    "examples": [],
+    "samples_on_navmesh": 252,
+    "unreachable_samples": 0
+  },
+  "travel": {
+    "A": {
+      "team0": {
+        "full_path_m": 70.94,
+        "length_to_zone_m": 61.94,
+        "points": 46,
+        "reached": true
+      },
+      "team1": {
+        "full_path_m": 70.95,
+        "length_to_zone_m": 61.95,
+        "points": 38,
+        "reached": true
+      },
+      "times": {
+        "bruno": {
+          "diff_pct": 0.02,
+          "team0_s": 9.38,
+          "team1_s": 9.39
+        },
+        "hops": {
+          "diff_pct": 0.02,
+          "team0_s": 8.15,
+          "team1_s": 8.15
+        },
+        "nyx": {
+          "diff_pct": 0.02,
+          "team0_s": 8.6,
+          "team1_s": 8.6
+        },
+        "scrap": {
+          "diff_pct": 0.02,
+          "team0_s": 9.11,
+          "team1_s": 9.11
+        },
+        "vex": {
+          "diff_pct": 0.02,
+          "team0_s": 8.85,
+          "team1_s": 8.85
+        }
+      }
+    },
+    "B": {
+      "team0": {
+        "full_path_m": 47.34,
+        "length_to_zone_m": 41.09,
+        "points": 22,
+        "reached": true
+      },
+      "team1": {
+        "full_path_m": 55.35,
+        "length_to_zone_m": 41.63,
+        "points": 27,
+        "reached": true
+      },
+      "times": {
+        "bruno": {
+          "diff_pct": 1.31,
+          "team0_s": 6.23,
+          "team1_s": 6.31
+        },
+        "hops": {
+          "diff_pct": 1.31,
+          "team0_s": 5.41,
+          "team1_s": 5.48
+        },
+        "nyx": {
+          "diff_pct": 1.31,
+          "team0_s": 5.71,
+          "team1_s": 5.78
+        },
+        "scrap": {
+          "diff_pct": 1.31,
+          "team0_s": 6.04,
+          "team1_s": 6.12
+        },
+        "vex": {
+          "diff_pct": 1.31,
+          "team0_s": 5.87,
+          "team1_s": 5.95
+        }
+      }
+    },
+    "C": {
+      "team0": {
+        "full_path_m": 70.47,
+        "length_to_zone_m": 61.47,
+        "points": 39,
+        "reached": true
+      },
+      "team1": {
+        "full_path_m": 70.34,
+        "length_to_zone_m": 61.34,
+        "points": 35,
+        "reached": true
+      },
+      "times": {
+        "bruno": {
+          "diff_pct": 0.21,
+          "team0_s": 9.31,
+          "team1_s": 9.29
+        },
+        "hops": {
+          "diff_pct": 0.21,
+          "team0_s": 8.09,
+          "team1_s": 8.07
+        },
+        "nyx": {
+          "diff_pct": 0.21,
+          "team0_s": 8.54,
+          "team1_s": 8.52
+        },
+        "scrap": {
+          "diff_pct": 0.21,
+          "team0_s": 9.04,
+          "team1_s": 9.02
+        },
+        "vex": {
+          "diff_pct": 0.21,
+          "team0_s": 8.78,
+          "team1_s": 8.76
+        }
+      }
+    }
+  },
+  "worst_team_diff_pct": 1.31
+}

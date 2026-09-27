@@ -151,21 +151,64 @@ def landmarks(F):
     return L
 
 
-def arm_side(L, side):
+def arm_val(L, side):
+    """Signed distance past the armhole plane (positive on the arm side), bounded to the
+    neighbourhood of the arm (elsewhere -1 = torso side)."""
     p0, n = L[side + "_armhole"]
-    return m_plane(p0, -n)            # negative on the arm side
+    a = L[side + "_ua"][0]
+    b = L[side + "_fa"][1] + n * 0.14
+
+    def f(P):
+        t, Lg = seg_t(P, a, b)
+        t = np.clip(t, 0, 1)
+        C = a + t[:, None] * (b - a)
+        near = np.sqrt(dot_rows(P - C, P - C)) < 0.17
+        return np.where(near, (P - p0) @ n, -1.0)
+    return f
+
+
+def arm_side(L, side):
+    """negative on the arm side."""
+    v = arm_val(L, side)
+    return lambda P: -v(P)
 
 
 def torso_side(L):
     """negative on the torso side of both armholes."""
-    return m_and(m_plane(*L["Left_armhole"]), m_plane(*L["Right_armhole"]))
+    return m_and(arm_val(L, "Left"), arm_val(L, "Right"))
 
 
-def leg_region(L, side, t_hem):
-    """Everything below the hip on this leg down to t_hem along the shin."""
-    s = 1 if side == "Left" else -1
-    a, b = L[side + "_sh"]
-    return m_and(m_seg(a, b, -10.0, t_hem), lambda P, s=s: -s * P[:, 0] - 0.0)
+def leg_hem(F, L, t_hem):
+    """Piecewise term: for leg points (below the hips) (t_shin - t_hem) * L_shin, else -1."""
+    hz = F.p["hip_z"]
+
+    def f(P):
+        out = np.full(len(P), -1.0)
+        for side, s in (("Left", 1), ("Right", -1)):
+            a, b = L[side + "_sh"]
+            t, Ls = seg_t(P, a, b)
+            on = (s * P[:, 0] > 0.0) & (P[:, 2] < hz)
+            out = np.where(on, (t - t_hem) * Ls, out)
+        return out
+    return f
+
+
+def sleeve_cut(L, t_end, t_start=-10.0):
+    """For arm-side points: band along the upper arm/forearm chain; torso points -> -1."""
+    def f(P):
+        out = np.full(len(P), -1.0)
+        for side in ("Left", "Right"):
+            av = arm_val(L, side)(P)
+            sh, el = L[side + "_ua"]
+            wr = L[side + "_fa"][1]
+            # chain parameter: 0..1 upper arm, 1..2 forearm
+            t1, L1 = seg_t(P, sh, el)
+            t2, L2 = seg_t(P, el, wr)
+            tc = np.where(t1 < 1.0, t1, 1.0 + np.clip(t2, 0, None))
+            val = np.maximum(t_start - tc, tc - t_end) * np.where(tc < 1.0, L1, L2)
+            out = np.where(av > 0, val, out)
+        return out
+    return f
 
 
 def fold_fn(F, amp, zfreq=40.0, xyfreq=16.0, rings=(), seed=3):
@@ -247,9 +290,7 @@ def clothes_nyx(F, L):
                      cover_margin=0.020, colour=lambda P: np.zeros((len(P), 3))))
     # --- cropped jacket with short sleeves
     sleeve_t = 0.62
-    jac_torso = m_and(m_zband(z_crop, 10.0), neckline(F, z_neck + 0.030, z_neck + 0.075), torso_side(L))
-    sleeves = [m_and(arm_side(L, s), m_seg(*L[s + "_ua"], -1.0, sleeve_t)) for s in ("Left", "Right")]
-    jac_region = m_or(jac_torso, *sleeves)
+    jac_region = m_and(m_zband(z_crop, 10.0), neckline(F, z_neck + 0.030, z_neck + 0.075), sleeve_cut(L, sleeve_t))
     folds = fold_fn(F, 0.0035, zfreq=30, xyfreq=14, seed=21)
     lo, hi = body_bbox(F, z_crop - 0.05, z_neck + 0.12)
 
@@ -259,8 +300,8 @@ def clothes_nyx(F, L):
     G.append(Garment("jacket", shell_node(base, jac_region, jac_off, 0.010, lo, hi, folds=folds), jac_region,
                      cover_margin=0.022, colour=nyx_jacket_colour(F, L, z_crop, sleeve_t)))
     # hem band / cuffs (thicker rim)
-    hem = m_and(jac_region, m_or(m_zband(z_crop - 0.01, z_crop + 0.022),
-                                 *[m_and(arm_side(L, s), m_seg(*L[s + "_ua"], sleeve_t - 0.075, 2.0)) for s in ("Left", "Right")]))
+    hem = m_and(jac_region, m_or(m_and(m_zband(z_crop - 0.01, z_crop + 0.022), torso_side(L)),
+                                 m_not(sleeve_cut(L, 10.0, sleeve_t - 0.075))))
     G.append(Garment("jacket_hem", shell_node(base, hem, 0.0215, 0.0125, lo, hi), hem, cover_margin=None,
                      colour=lambda P: np.tile([0.0, 1.0, 0.0], (len(P), 1))))
     # --- hood bunched behind the neck
@@ -288,9 +329,7 @@ def clothes_nyx(F, L):
     # --- trousers (trim): hips -> ankles, loose cargo, tail hole
     z_top = 1.030 * (p["pelvis_z"] / 0.935)
     t_hem = 0.80
-    tr_region = m_and(m_or(m_zband(-10.0, z_top) if False else m_zband(p["hip_z"] - 0.02, z_top),
-                           leg_region(L, "Left", t_hem), leg_region(L, "Right", t_hem)),
-                      m_plane([0, 0, z_top], [0, -0.25, 1.0]))
+    tr_region = m_and(m_plane([0, 0, z_top], [0, -0.25, 1.0]), leg_hem(F, L, t_hem), torso_side(L))
     tail_hole = m_capsule(F.tail_pts[0] + np.array([0, -0.05, 0]), F.tail_pts[4], F.tail_radii[0] + 0.012)
     tr_region = m_and(tr_region, m_not(tail_hole))
 
@@ -314,8 +353,8 @@ def clothes_nyx(F, L):
     for side in ("Left", "Right"):
         s = 1 if side == "Left" else -1
         kn = J[side + "Knee"] + np.array([0, -0.035, 0.0])
-        patch_r = m_and(m_sphere(kn + np.array([0, -0.02, 0.0]), 0.062), m_plane(J[side + "Knee"], [0, -1, 0]) if False else m_plane(J[side + "Knee"] + np.array([0, -0.01, 0]), [0, 1, 0]))
-        G.append(Garment(side + "_kneepatch", shell_node(base, patch_r, tr_off_plus(tr_off, 0.009), 0.007,
+        patch_r = m_and(m_sphere(kn + np.array([0, -0.02, 0.0]), 0.062), m_plane(J[side + "Knee"] + np.array([0, -0.01, 0]), [0, 1, 0]))
+        G.append(Garment(side + "_kneepatch", shell_node(base, patch_r, tr_off_plus(tr_off, 0.0105), 0.009,
                                                           kn - 0.12, kn + 0.12), patch_r, cover_margin=None,
                          colour=lambda P: np.tile([1.0, 0.0, 0.0], (len(P), 1))))
         hip, knee = J[side + "Hip"], J[side + "Knee"]
@@ -351,7 +390,7 @@ def clothes_nyx(F, L):
                          colour=stripe_colour(el, wr, [(0.62, 0.68), (0.95, 1.0)])))
         kn, an = L[side + "_sh"]
         s = 1 if side == "Left" else -1
-        reg = m_and(m_seg(kn, an, 0.74, 1.04), lambda P, s=s: -s * P[:, 0])
+        reg = m_and(m_seg(kn, an, 0.74, 1.04), lambda P, s=s: -s * P[:, 0], m_zband(-1.0, F.p["hip_z"] - 0.1))
         lo = np.minimum(kn, an) - 0.12
         hi = np.maximum(kn, an) + 0.12
 

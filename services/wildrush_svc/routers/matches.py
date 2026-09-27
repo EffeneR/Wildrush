@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import time
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Annotated, Any
 
 from fastapi import APIRouter, Depends, Query, Request
@@ -32,7 +32,7 @@ def match_history(
 ) -> list[dict[str, Any]]:
     ctx = get_ctx(request)
     if before is not None and before.tzinfo is None:
-        before = before.replace(tzinfo=timezone.utc)
+        before = before.replace(tzinfo=UTC)
     with ctx.tx() as db:
         return history.history(db, player.account_id, limit=limit, before=before)
 

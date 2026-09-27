@@ -15,7 +15,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from pydantic import ValidationError
@@ -70,7 +70,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     engine = create_db_engine(settings)
     sessions = create_sessionmaker(engine)
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     try:
         if args.command in ("add-server", "rotate-secret"):
             with sessions.begin() as db:

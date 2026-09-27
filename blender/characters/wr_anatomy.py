@@ -1036,7 +1036,9 @@ def build_body(F):
     tp = build_torso(F, proxy=True)
     ap = [build_arm(F, s, proxy=True) for s in ("Left", "Right")]
     lp = [build_leg(F, s, proxy=True) for s in ("Left", "Right")]
-    F.proxy = Union([tp] + ap + lp, k=0.055)
+    # union with the real torso/limbs so the proxy always encloses the body
+    real = [torso, F.parts["arm_Left"], F.parts["arm_Right"], F.parts["leg_Left"], F.parts["leg_Right"]]
+    F.proxy = Union([Union([tp] + ap + lp, k=0.055)] + real, k=0.030)
     F.landmarks["head_frame"] = dict(o=F.head_frame.o.tolist(), R=F.head_frame.R.tolist())
     return F
 

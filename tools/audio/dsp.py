@@ -649,5 +649,8 @@ def write_ogg(path, x, quality_level: float = 0.5, title: str | None = None) -> 
         if title:
             f.title = title
         f.comment = "Original procedural synthesis (WILDRUSH tools/audio). No samples."
-        f.write(data.astype(np.float32))
+        data32 = np.ascontiguousarray(data, dtype=np.float32)
+        # libsndfile's Vorbis writer overflows the stack on very large single writes: write in blocks.
+        for i in range(0, data32.shape[0], 16384):
+            f.write(data32[i:i + 16384])
     normalize_ogg_serial(path)

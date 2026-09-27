@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from argon2 import PasswordHasher
 from sqlalchemy import select, update
@@ -24,7 +24,7 @@ def test_register_login_me_logout(client, app):
     assert r.status_code == 200, r.text
     login = r.json()
     assert re.fullmatch(r"[A-Za-z0-9_-]{43}", login["token"])
-    expires = datetime.strptime(login["expires_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    expires = datetime.strptime(login["expires_at"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=UTC)
     expected = ctx_of(app).clock.now() + timedelta(hours=12)
     assert abs((expires - expected).total_seconds()) < 5
     assert login["account"]["account_id"] == body["account_id"]

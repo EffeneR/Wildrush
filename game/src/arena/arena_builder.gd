@@ -130,7 +130,81 @@ static func bake_navmesh(collision_root: Node3D, layout: ArenaLayout) -> Navigat
 	var src := NavigationMeshSourceGeometryData3D.new()
 	NavigationServer3D.parse_source_geometry_data(nm, src, collision_root)
 	NavigationServer3D.bake_from_source_geometry_data(nm, src)
-	return nm
+	var seeds: Array = []
+	for t in range(WR.NUM_TEAMS):
+		for sp in layout.spawn_points(t):
+			seeds.append(sp["pos"])
+	return prune_islands(nm, seeds)
+
+
+static func prune_islands(nm: NavigationMesh, seeds: Array) -> NavigationMesh:
+	## Keeps only polygons edge-connected to a spawn point: removes unreachable islands such
+	## as stall roofs or the fountain rim, so ordinary navigation never targets them.
+	var verts: PackedVector3Array = nm.get_vertices()
+	var n: int = nm.get_polygon_count()
+	var polys: Array = []
+	var edge_owner: Dictionary = {}
+	for i in range(n):
+		var poly: PackedInt32Array = nm.get_polygon(i)
+		polys.append(poly)
+		for k in range(poly.size()):
+			var a: Vector3 = verts[poly[k]].snapped(Vector3(0.01, 0.01, 0.01))
+			var b: Vector3 = verts[poly[(k + 1) % poly.size()]].snapped(Vector3(0.01, 0.01, 0.01))
+			var key: String = str(a) + str(b) if str(a) < str(b) else str(b) + str(a)
+			if not edge_owner.has(key):
+				edge_owner[key] = []
+			(edge_owner[key] as Array).append(i)
+	var adj: Array = []
+	adj.resize(n)
+	for i in range(n):
+		adj[i] = []
+	for key in edge_owner.keys():
+		var owners: Array = edge_owner[key]
+		for x in owners:
+			for y in owners:
+				if x != y:
+					(adj[x] as Array).append(y)
+	var keep: Dictionary = {}
+	var queue: Array = []
+	for s in seeds:
+		var best: int = -1
+		var best_d: float = INF
+		for i in range(n):
+			var c := Vector3.ZERO
+			for vi in polys[i]:
+				c += verts[vi]
+			c /= float((polys[i] as PackedInt32Array).size())
+			var d: float = c.distance_to(s as Vector3)
+			if d < best_d:
+				best_d = d
+				best = i
+		if best >= 0 and not keep.has(best):
+			keep[best] = true
+			queue.append(best)
+	while not queue.is_empty():
+		var cur: int = queue.pop_back()
+		for nb in adj[cur]:
+			if not keep.has(nb):
+				keep[nb] = true
+				queue.append(nb)
+	var out: NavigationMesh = nm.duplicate()
+	out.clear_polygons()
+	for i in range(n):
+		if keep.has(i):
+			out.add_polygon(polys[i])
+	out.set_meta("pruned_islands", n - keep.size())
+	return out
+
+
+static func nav_synced(map: RID, region: RID, nm: NavigationMesh) -> bool:
+	## Godot 4.7 synchronises regions and maps asynchronously. The map is usable once it
+	## reports our region as the owner of a point on the navmesh.
+	if not map.is_valid() or NavigationServer3D.map_get_iteration_id(map) == 0:
+		return false
+	var v: PackedVector3Array = nm.get_vertices()
+	if v.is_empty():
+		return false
+	return NavigationServer3D.map_get_closest_point_owner(map, v[0]) == region
 
 
 static func load_or_bake_navmesh(collision_root: Node3D, layout: ArenaLayout, path: String = NAVMESH_PATH) -> NavigationMesh:

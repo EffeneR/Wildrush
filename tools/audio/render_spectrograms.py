@@ -119,12 +119,12 @@ def draw_panel(img, draw, x0, y0, w, h, sig, sr, t_max, title, subtitle, env_h=3
         draw.text((x0 + L - 8 - draw.textlength(lab, font=font(11)), yy - 7), lab, fill=MUTED, font=font(11))
     draw.text((x0 + 6, sy + ph / 2 - 6), "Hz", fill=MUTED, font=font(11))
     # time ticks
-    step = 0.05 if t_max <= 0.4 else 0.1 if t_max <= 1.0 else 0.25
+    step = next(s for s in (0.05, 0.1, 0.25, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0) if t_max / s <= 11)
     tv = 0.0
     while tv <= t_max + 1e-9:
         xx = x0 + L + pw * tv / t_max
         draw.line([(xx, sy + ph), (xx, sy + ph + 4)], fill=MUTED)
-        lab = f"{int(round(tv * 1000))} ms"
+        lab = f"{int(round(tv * 1000))} ms" if t_max <= 3.0 else f"{tv:g} s"
         draw.text((xx - draw.textlength(lab, font=font(11)) / 2, sy + ph + 6), lab, fill=MUTED, font=font(11))
         tv += step
     draw.rectangle([x0 + L, sy, x0 + L + pw, sy + ph], outline=(0xC3, 0xC2, 0xB7))

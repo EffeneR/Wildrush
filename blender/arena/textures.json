@@ -1,0 +1,882 @@
+{
+ "generator": "blender/arena/gen_textures.py",
+ "texel_m_per_tile": {
+  "brick": [
+   2.0,
+   2.0
+  ],
+  "plaster": [
+   3.0,
+   3.0
+  ],
+  "stone_ashlar": [
+   3.0,
+   3.0
+  ],
+  "stone_trim": [
+   2.0,
+   2.0
+  ],
+  "stone_canal": [
+   4.0,
+   3.0
+  ],
+  "roof_terracotta": [
+   2.0,
+   2.0
+  ],
+  "paving_flag": [
+   5.0,
+   5.0
+  ],
+  "paving_cobble": [
+   4.0,
+   4.0
+  ],
+  "paving_concrete": [
+   8.0,
+   8.0
+  ],
+  "wood_planks": [
+   2.0,
+   2.0
+  ],
+  "metal_deck": [
+   1.5,
+   1.5
+  ],
+  "iron": [
+   1.0,
+   1.0
+  ],
+  "paint_yellow": [
+   2.0,
+   2.0
+  ],
+  "container": [
+   2.6,
+   2.6
+  ],
+  "hazard": [
+   1.0,
+   1.0
+  ],
+  "canvas": [
+   2.0,
+   2.0
+  ],
+  "concrete": [
+   2.0,
+   2.0
+  ],
+  "soil": [
+   1.0,
+   1.0
+  ],
+  "bronze": [
+   1.0,
+   1.0
+  ],
+  "bark": [
+   1.0,
+   2.0
+  ],
+  "water": [
+   6.0,
+   6.0
+  ],
+  "skyline": [
+   24.0,
+   12.0
+  ],
+  "roof_metal": [
+   2.0,
+   2.0
+  ]
+ },
+ "files": [
+  {
+   "file": "banner_albedo.png",
+   "size": [
+    1024,
+    2048
+   ],
+   "mode": "RGBA",
+   "sha256": "0fc7cb4912b8b54d628827e583e9a11bb5cb4e97cfb9b0f481952f058ecfa76a"
+  },
+  {
+   "file": "banner_normal.png",
+   "size": [
+    512,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "7e639d96b5f9017053df0f8f65888e4d893dd63296a18b15ecf4af80d43e2180"
+  },
+  {
+   "file": "bark_albedo.png",
+   "size": [
+    512,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "778f74abcaccc08b684c55e0f65104799307db95da2340519d3de3febd964c39"
+  },
+  {
+   "file": "bark_normal.png",
+   "size": [
+    512,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "3319dd77e309c7339dad9338a23e96a16335154445da55b5d5c3816bbc3dd3c6"
+  },
+  {
+   "file": "bark_orm.png",
+   "size": [
+    256,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "3d6c8ba73c5beeb0c93c65f26dd895cf0b1d03901b909683e53e80b5bb56e505"
+  },
+  {
+   "file": "brick_brown_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "a95f2190fd74835604423e2d26921423d1e886139e8ea137e7e5fb857569232b"
+  },
+  {
+   "file": "brick_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "d897905e3098aeba0ea8d7968ddb2c72235b5f8a3ea8686a0a06dc6f6bc38f03"
+  },
+  {
+   "file": "brick_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "ac2bc892fb80514fec18449ba9fa2ad5383ebaa4e6c6c1608570ab4de7ebc702"
+  },
+  {
+   "file": "brick_red_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "dd41dad6b56fd177aeef1050024028926073059bf304703238002ae11525a9c1"
+  },
+  {
+   "file": "bronze_albedo.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "d959dd530dcdcb09a14d0c17277d6307106846ce55a56c5aeed3913465320515"
+  },
+  {
+   "file": "bronze_normal.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "d8f135e820b565a0eb895e1c64ef083a03b62609f694f901e04affcc3dd7714c"
+  },
+  {
+   "file": "bronze_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "f7d64d8a6e84b33e8e507a7fa47cb9f1e93121badb6c3cdeddd0ca91feeb401c"
+  },
+  {
+   "file": "canvas_cream_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "d6661ecb6dab16fe569646c9967e6391a2722fe4193803ae92f4be3fa4a304c9"
+  },
+  {
+   "file": "canvas_green_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "1dc842bf47765916ab51bb96da9f00721fa038fe7493b42f74808f1ffc1a2a89"
+  },
+  {
+   "file": "canvas_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "ba085b9720ef87044ec384da634bfdc5e4030ece3ec8dd252886ccbc2f3d4b04"
+  },
+  {
+   "file": "canvas_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "129226bd51fd0caf97bf03c619dc8714bdbf187e66baa462cfc16f4766b0928e"
+  },
+  {
+   "file": "canvas_red_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "be099857570493df788c0adb357bae56cc44e2a66a17fdfa6cfaaa06bc7a46c6"
+  },
+  {
+   "file": "concrete_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "cc52016d67d2850160698021f2bbdd44bd3db353044b1b7d9ef6d2f53369b722"
+  },
+  {
+   "file": "concrete_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "eadcdc5b9a330c1571c35ed47c2178e991cfc9ceafc27ac17a2727ada375ac63"
+  },
+  {
+   "file": "concrete_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "c49cc7079cbe952ca0ab6ffc01b62d8a7cc9ff613de9687ef2ccec3c27c844ca"
+  },
+  {
+   "file": "container_blue_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "67db5d6496e556c7d980bee6af601f55375554f6962a7015804a1bfcd6349ddc"
+  },
+  {
+   "file": "container_green_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "2eabc80d4a75a84b6cfd12f390351946eb5ddec393f368e41948687845a63473"
+  },
+  {
+   "file": "container_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "b0fcf6aaa516dae536d9e5a8bb30b8e74267d597064341b0e6f0647d1ebbbae1"
+  },
+  {
+   "file": "container_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "d22a7eb3a23d9686eaea52692a737b1a62e78c17989fb9a97a3097f9808fc043"
+  },
+  {
+   "file": "container_red_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "c4fc0019b217e88674b35ff5ff33ef3bec8bf358b89b63eee9d88de9ea6d26d5"
+  },
+  {
+   "file": "detail_albedo.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "a666b157172cba27b4fd42b16cefbd9a38eba8e3dfd5ec65f6822fb98e761dda"
+  },
+  {
+   "file": "detail_normal.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "ff196b9291543045045e91b982e6a0f161be7106e44301f9f163b6fa61dd8a48"
+  },
+  {
+   "file": "detail_orm.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "9fe957e7e7c4da9a71fc9d6cd2941c2a12345f2cb2b7de78375b907fcaaddade"
+  },
+  {
+   "file": "foliage_albedo.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGBA",
+   "sha256": "89df1309c1b23a272d5fcfd3d1a29c5e6a98583bc4e08982e1b4a6bc5302a30e"
+  },
+  {
+   "file": "foliage_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "d0142e027865e20f831456507c36e5940292bb672d998fc7320d048a89cd91d3"
+  },
+  {
+   "file": "hazard_albedo.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "9027003028120f5335f762a2bf05a3d309270c66a9c361c613efcf3ebd3d9d93"
+  },
+  {
+   "file": "hazard_normal.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "abb12c15ecb2a88ee66706fec31dacc526678edb72b0a873c28100828ffa9a33"
+  },
+  {
+   "file": "hazard_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "f2edefcb56277b5199e82ea1168eaad0bb0ec61b8ddf5524491e79d33504b495"
+  },
+  {
+   "file": "iron_albedo.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "b1d8bbd73ef8b194b64c20618be67ad523c6b4ed4ef866f6b6b7dad31a85ce80"
+  },
+  {
+   "file": "iron_normal.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "a15ae2519f8cfcab4c169bf1b3c05c43b72230d6766184548cabc8aacee4c217"
+  },
+  {
+   "file": "iron_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "d5e6499459ace66f30473a37124023a15768ba764117a94a2be6015746314f3b"
+  },
+  {
+   "file": "ironwork_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGBA",
+   "sha256": "09c1ebeafe65cf1d1fee646acae487383458027e9271ff070a7f96f0d7af5bfb"
+  },
+  {
+   "file": "metal_deck_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "df9be2a6540a46400978ba5964ba10a06a670537e3d32f9db4db4a93b8925280"
+  },
+  {
+   "file": "metal_deck_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "acc566de23e55ef5ec8c74d9d56d9cbf1bbf29e26bde9325d45c5bcb142202dd"
+  },
+  {
+   "file": "metal_deck_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "e602c02c215ad14b101146ef270112168f6c6ef81d6f0d6ed8fa9031091ee482"
+  },
+  {
+   "file": "paint_yellow_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "53b83f16023c347091a70f00a7905fd3c4008695096b74e20e4f74bb3135aaec"
+  },
+  {
+   "file": "paint_yellow_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "1194acdd792c9c41577ecf45612cd3b228e12eccf40cb94e7653496a87de6600"
+  },
+  {
+   "file": "paint_yellow_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "3e34dbbc3ca4f54a9c74dc7c4afbf86473b4822ca85fad43d1dfdf12e58ac9fe"
+  },
+  {
+   "file": "paving_cobble_albedo.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "e5181fa75b52ff4ce94b0c319cec6fa0544fd97cefa508ee470464dbe5279c97"
+  },
+  {
+   "file": "paving_cobble_normal.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "1d9a14a718bc8d6840f622d76eca1caa1a136f68120804508ee392a531283c9d"
+  },
+  {
+   "file": "paving_cobble_orm.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "a70d6b48df78e47a78b1a74bb8cc50c2cb487d914718d312e7e8a4cb82c5facb"
+  },
+  {
+   "file": "paving_concrete_albedo.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "d715257339437749b0e6d1c8ec9212be59e5dc83404f86b8a04c3131d3f21a4f"
+  },
+  {
+   "file": "paving_concrete_normal.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "8edfd9e11bbe8d45f3ff59bd29319a3d58d8944b0dda6f4642060b3f90e95e61"
+  },
+  {
+   "file": "paving_concrete_orm.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "37af455c412fbc75080e0cdbf074ba188aaf9753ef5769baaf8145e40be92c65"
+  },
+  {
+   "file": "paving_flag_albedo.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "3a3f877c2c0185793786adac8f72690b07af3ce5a7e999963fc3418876005ef8"
+  },
+  {
+   "file": "paving_flag_normal.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "4dc23a13e992705fc027038ae80f948f287d6c665d52afa21c61c07865e3861e"
+  },
+  {
+   "file": "paving_flag_orm.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "ab34b739996fe7ec55c6593c5a34b99321010a3606d567cdf184b1ef0880f496"
+  },
+  {
+   "file": "plaster_cream_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "f0c1b86c0ebf1163323f238123513a35b5c3db294651c8e875a0e93071a2a2ab"
+  },
+  {
+   "file": "plaster_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "d9fdeccc89d8047ece8ecf8801d0d0c327df37c56d35f0e2b781869f40c34d42"
+  },
+  {
+   "file": "plaster_ochre_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "8f4db0bc25df3634d459c95cadee1aad6d339d4839d7c96b1e85ed57be9aef2e"
+  },
+  {
+   "file": "plaster_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "b34ef87b2cf2a4cc6a3906670991a4e9c78b825a4e24c7b8575d5d81d445de21"
+  },
+  {
+   "file": "plaster_rose_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "7df540b363e4c90757ba7f95a65a631c47f88ed71329edfb5df169d09385a463"
+  },
+  {
+   "file": "plaster_white_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "adb93b5652173dc6a1137805fffdd6da9f916fc263b976a0e1530c8d12269f65"
+  },
+  {
+   "file": "puddle_albedo.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGBA",
+   "sha256": "0181735c570756b7464a8d3f67164ebce052e421ef02278fc69135280bbc1ed3"
+  },
+  {
+   "file": "puddle_normal.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "169bc49c34cdb12aacf2c6170d2d2f51dfb946d85fb8fb3db8d88903b76a1a3d"
+  },
+  {
+   "file": "puddle_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "da98a753ad6c9f58dae16ec62af44315ffcd75ee49712315d42e3f912466e72c"
+  },
+  {
+   "file": "roof_metal_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "f432a10f51032b77c2e57dd1a35fdcee422e25684230746bba22c25840075522"
+  },
+  {
+   "file": "roof_metal_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "f3566c83dc211889d9e26dd640deb84f01a605160cb112af1a41ae6080116fff"
+  },
+  {
+   "file": "roof_metal_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "213962a20f95cf45e9f8eb5dc93ba59b0166f6f2b65badd86f39408a643e8e9e"
+  },
+  {
+   "file": "roof_terracotta_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "19f3cd7d93fb04275ab4f722978b62b145d242ca87e4722a7f43fde7ba4ad887"
+  },
+  {
+   "file": "roof_terracotta_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "481c3b848e0706212325718221c9b3d7eeed8b3e4363659d02f82b2606d06770"
+  },
+  {
+   "file": "roof_terracotta_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "80fd92b9848a5895c322ecb186cf3e9a64bcec32094bf90cb7a6ebac125b1c08"
+  },
+  {
+   "file": "skyline_albedo.png",
+   "size": [
+    2048,
+    2048
+   ],
+   "mode": "RGB",
+   "sha256": "e26188ea64bac7058a5c9d5bea0199a503845f597c35759288fea2b2d496705b"
+  },
+  {
+   "file": "skyline_orm.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "28e843e906423bd6a9ec5a2788acb335d225aa622d8f1fc3f0aa921fb34043ad"
+  },
+  {
+   "file": "soil_albedo.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "9a509fe06f5975632c1ad8439115adadbf17bb3efbae7befe9a06235faa51cfb"
+  },
+  {
+   "file": "soil_normal.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "ea9b88d08782b46707b49f27b7ff1e0bf55ada360bd7903ad3064e1b526aa519"
+  },
+  {
+   "file": "soil_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "fa7a11787704ad21d27e90278e318e0755af6aa0d6af82a22818ad863bdd86a7"
+  },
+  {
+   "file": "stone_ashlar_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "a14a380c3b772584bb4c6ba6ef9ece44f15dee32b400c27fcdf53b5372051eb9"
+  },
+  {
+   "file": "stone_ashlar_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "28809fb1b7cf6a4f55fb3a086e703172c12887af254910f35751717ef6a5a829"
+  },
+  {
+   "file": "stone_ashlar_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "0acaa922a08fe9eb7fc9a518b827ff911c7e99c057eb6c58e3b3675c1e46a8ff"
+  },
+  {
+   "file": "stone_canal_albedo.png",
+   "size": [
+    1024,
+    768
+   ],
+   "mode": "RGB",
+   "sha256": "0e473f605263390fbba422aecbd4de74df800e69d01efe6940e7747497fd5907"
+  },
+  {
+   "file": "stone_canal_normal.png",
+   "size": [
+    1024,
+    768
+   ],
+   "mode": "RGB",
+   "sha256": "4ad8d96e786d1b1589f5be2b6d5921869a559bab640cec850db42fee1d8c5aa2"
+  },
+  {
+   "file": "stone_canal_orm.png",
+   "size": [
+    512,
+    384
+   ],
+   "mode": "RGB",
+   "sha256": "46e3d5ce30ab6c8fc3571a84ddd19412fdecf8623b62d16a546564ee1b02a873"
+  },
+  {
+   "file": "stone_trim_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "190f2e26689f39df44cdf2a37470383c5731f71cce12fbd3fb55bc65a9fa29a9"
+  },
+  {
+   "file": "stone_trim_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "158774eee4b12107df9c95710fb8f17199d10ad2916bd813df9c50bbbb4ab4e3"
+  },
+  {
+   "file": "stone_trim_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "25713351f68c7e5d036d51e448376895a912bf9a41a0a436ec37dd0c19d77f4c"
+  },
+  {
+   "file": "water_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "3b74e2deb3cce7445e5be1a8bb723299f1d172a83ef8bf7db04a5abacc11cba4"
+  },
+  {
+   "file": "water_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "a1a154cb0f7b9b201926d589b27ce0222f431410790d298d8f1c46813ae367ca"
+  },
+  {
+   "file": "water_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "9249f9121a55395c97fdb3508234fcb8142b2027b7b8cbdecfc52ca527083820"
+  },
+  {
+   "file": "wood_planks_albedo.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "1568915f039c87c5daf0ee4849a690e052e4a137eb3595287d6e7a623d635d01"
+  },
+  {
+   "file": "wood_planks_normal.png",
+   "size": [
+    1024,
+    1024
+   ],
+   "mode": "RGB",
+   "sha256": "b1c8c0feb9814dffb51d65f702a70cc3a20e9851b757209a259917269272b738"
+  },
+  {
+   "file": "wood_planks_orm.png",
+   "size": [
+    512,
+    512
+   ],
+   "mode": "RGB",
+   "sha256": "c2b66472476cd3b4beb7d1da90c49ca5ade55539be5cdfb037e8520c2eb4e5ca"
+  }
+ ]
+}

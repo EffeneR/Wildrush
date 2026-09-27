@@ -10,7 +10,14 @@ import sys
 from sqlalchemy import select
 
 from conftest import SERVICES_DIR
-from helpers import ctx_of, heartbeat, make_accounts, make_server, online_server, ready_match
+from helpers import (
+    ctx_of,
+    heartbeat,
+    make_accounts,
+    make_server,
+    online_server,
+    ready_match,
+)
 from wildrush_svc.models import Allocation, GameServer, Match
 
 
