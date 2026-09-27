@@ -1,0 +1,102 @@
+{
+  "id": "hops",
+  "display_name": "HOPS",
+  "species": "rabbit",
+  "title": "The Momentum",
+  "role": "Mobile striker",
+  "tagline": "Higher. Faster. Closer together.",
+  "quote": "Momentum is a choice.",
+  "health": 230,
+  "move_speed": 7.6,
+  "height": 1.67,
+  "hurt_radius": 0.33,
+  "jump_velocity": 5.4,
+  "style": {"stance": "bouncy_athletic", "guard": "forearms_mid", "tail": "small_puff", "run": "bounding", "idle_rate": 1.25},
+  "passive": {
+    "id": "lightfoot", "name": "Lightfoot",
+    "desc": "Keeps full running momentum after ordinary jumps and drops (no landing slowdown). Attack and skill recoveries are unchanged.",
+    "params": {"landing_slow": false}
+  },
+  "light": {"s": "hops_light_s", "l": "hops_light_l", "r": "hops_light_r", "air": "hops_light_air"},
+  "heavy": "hops_heavy",
+  "skills": {"q": "hops_bound", "e": "hops_double_kick", "r": "hops_dropkick"},
+  "actions": {
+    "hops_light_s": {
+      "name": "Snap Kick", "kind": "light", "limb": "foot_r", "clip": "light_s", "total_s": 0.483,
+      "turn": [[0.0, 360], [0.167, 90]],
+      "move": [[0.0, 0, 0, 0], [0.13, 0, 0, 0.1], [0.24, 0, 0, 0.2]],
+      "hits": [{"t0": 0.167, "t1": 0.233, "r": 0.28, "path": [[0.167, 0.12, 0.75, 0.45], [0.233, 0.08, 1.05, 1.10]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.333, 0.483, ["light"]], [0.383, 0.483, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "hops_light_l": {
+      "name": "Left Round Kick", "kind": "light", "limb": "foot_l", "clip": "light_l", "total_s": 0.483,
+      "turn": [[0.0, 360], [0.167, 90]],
+      "move": [[0.0, 0, 0, 0], [0.13, 0, 0, 0.08], [0.24, 0, 0, 0.15]],
+      "hits": [{"t0": 0.167, "t1": 0.233, "r": 0.28, "path": [[0.167, -0.70, 0.90, 0.30], [0.20, -0.30, 1.00, 0.95], [0.233, 0.30, 1.00, 0.80]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.333, 0.483, ["light"]], [0.383, 0.483, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "hops_light_r": {
+      "name": "Right Round Kick", "kind": "light", "limb": "foot_r", "clip": "light_r", "total_s": 0.483,
+      "turn": [[0.0, 360], [0.167, 90]],
+      "move": [[0.0, 0, 0, 0], [0.13, 0, 0, 0.08], [0.24, 0, 0, 0.15]],
+      "hits": [{"t0": 0.167, "t1": 0.233, "r": 0.28, "path": [[0.167, 0.70, 0.90, 0.30], [0.20, 0.30, 1.00, 0.95], [0.233, -0.30, 1.00, 0.80]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.333, 0.483, ["light"]], [0.383, 0.483, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "hops_light_air": {
+      "name": "Flying Knee", "kind": "light", "air": true, "limb": "foot_r", "clip": "light_air", "total_s": 0.40,
+      "turn": [[0.0, 180], [0.15, 0]],
+      "hits": [{"t0": 0.15, "t1": 0.25, "r": 0.30, "path": [[0.15, 0.10, 0.90, 0.40], [0.25, 0.05, 0.60, 0.95]],
+                "dmg": 18, "gdmg": 12, "kb": 0.4, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": []
+    },
+    "hops_heavy": {
+      "name": "Spinning Back Kick", "kind": "heavy", "limb": "foot_r", "clip": "heavy", "total_s": 1.017, "stamina": 15,
+      "turn": [[0.0, 300], [0.30, 60], [0.45, 0]],
+      "move": [[0.0, 0, 0, 0], [0.30, 0, 0, 0.0], [0.50, 0, 0, 0.5]],
+      "hits": [{"t0": 0.45, "t1": 0.567, "r": 0.36, "path": [[0.45, 0.40, 1.10, 0.50], [0.51, 0.20, 1.15, 0.95], [0.567, 0.0, 1.15, 1.15]],
+                "dmg": 38, "gdmg": 28, "kb": 2.0, "stun_s": 0.45, "effect": "stagger", "parryable": true}],
+      "cancels": [[0.90, 1.017, ["dodge", "guard", "light", "heavy", "skill", "jump"]]]
+    },
+    "hops_bound": {
+      "name": "Bound", "kind": "skill", "slot": "q", "behavior": "leap",
+      "desc": "Powerful leap in the held direction (default forward) with limited air steering and a readable landing. No damage and no invulnerability. Must start on the ground.",
+      "stamina": 12, "cooldown_s": 8.0, "grounded_only": true, "startup_s": 0.15,
+      "params": {"crouch_s": 0.15, "air_s": 0.55, "distance": 7.5, "height": 1.6, "steer_deg": 25, "speed_adjust": 0.25, "land_s": 0.25},
+      "turn": [[0.0, 400], [0.15, 0]],
+      "clips": {"crouch": ["skill_q_crouch", 0.15], "air": ["skill_q_air", 0.55], "land": ["skill_q_land", 0.25]}
+    },
+    "hops_double_kick": {
+      "name": "Double Kick", "kind": "skill", "slot": "e", "behavior": "generic", "limb": "foot_r", "clip": "skill_e",
+      "desc": "Two timed close-range kicks with separate contacts. The second reaches further — spacing matters.",
+      "stamina": 12, "cooldown_s": 7.0, "total_s": 0.833, "startup_s": 0.14,
+      "turn": [[0.0, 360], [0.14, 90], [0.25, 180], [0.40, 0]],
+      "move": [[0.0, 0, 0, 0], [0.14, 0, 0, 0.15], [0.30, 0, 0, 0.25], [0.42, 0, 0, 0.45]],
+      "hits": [
+        {"t0": 0.14, "t1": 0.21, "limb": "foot_r", "r": 0.28, "path": [[0.14, 0.10, 0.90, 0.50], [0.21, 0.05, 1.05, 1.35]],
+         "dmg": 15, "gdmg": 9, "kb": 0.3, "stun_s": 0.3, "effect": "flinch", "parryable": true},
+        {"t0": 0.40, "t1": 0.48, "limb": "foot_l", "r": 0.30, "path": [[0.40, -0.05, 1.10, 0.60], [0.48, 0.0, 1.25, 1.55]],
+         "dmg": 19, "gdmg": 12, "kb": 1.2, "stun_s": 0.35, "effect": "flinch", "parryable": true}
+      ],
+      "cancels": [[0.733, 0.833, ["dodge", "guard", "light", "heavy", "jump"]]]
+    },
+    "hops_dropkick": {
+      "name": "Dropkick", "kind": "skill", "slot": "r", "behavior": "dropkick", "limb": "foot_r",
+      "desc": "Committed flying two-footed kick with strong knockback on contact. Must start on the ground; a miss drops Hops on her back.",
+      "stamina": 18, "cooldown_s": 11.0, "grounded_only": true, "startup_s": 0.22,
+      "params": {"hop_s": 0.22, "flight_s": 0.40, "distance": 5.5, "height": 0.6, "hit_land_s": 0.35, "miss_crash_s": 0.85, "rebound": 0.6},
+      "turn": [[0.0, 300], [0.22, 0]],
+      "hits": [{"t0": 0.22, "t1": 0.62, "r": 0.5, "follow": true, "path": [[0.22, 0.0, 0.90, 0.65], [0.62, 0.0, 0.80, 0.75]],
+                "dmg": 30, "gdmg": 22, "kb": 3.0, "stun_s": 0.55, "effect": "stagger", "parryable": true}],
+      "clips": {"hop": ["skill_r_hop", 0.22], "flight": ["skill_r_flight", 0.40], "land": ["skill_r_land", 0.35], "crash": ["skill_r_crash", 0.85]}
+    }
+  },
+  "palettes": {
+    "default": {"name": "Teal Sprint", "primary": "#1f6f6a", "secondary": "#2a2c2f", "accent": "#7fe0c0", "trim": "#2b2b2e"},
+    "dusk":    {"name": "Dusk",        "primary": "#3b2f66", "secondary": "#25232f", "accent": "#b9a4f2", "trim": "#242231"},
+    "ember":   {"name": "Ember",       "primary": "#a2461d", "secondary": "#2d2622", "accent": "#ffc070", "trim": "#2d2622"},
+    "frost":   {"name": "Frost",       "primary": "#6fa4c4", "secondary": "#2e3740", "accent": "#e6f6ff", "trim": "#2c343c"}
+  }
+}

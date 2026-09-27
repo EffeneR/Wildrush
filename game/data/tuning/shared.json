@@ -1,0 +1,83 @@
+{
+  "_doc": "Canonical shared combat/movement tuning (D-010). Seconds and metres; converted to 60 Hz ticks at load. Balance changes must be logged in docs/BALANCE.md.",
+  "tick_rate": 60,
+  "stamina": {
+    "max": 100,
+    "regen_per_s": 24,
+    "regen_delay_s": 0.9,
+    "no_regen_while_guarding": true
+  },
+  "health_regen": {
+    "per_s": 18,
+    "delay_s": 6.0
+  },
+  "movement": {
+    "gravity": 16.0,
+    "jump_velocity": 5.2,
+    "max_fall_speed": 30.0,
+    "ground_accel": 42.0,
+    "ground_decel": 55.0,
+    "air_accel": 9.0,
+    "air_control": 0.35,
+    "strafe_mult": 0.88,
+    "backpedal_mult": 0.74,
+    "turn_rate_deg": 720,
+    "floor_max_angle_deg": 46,
+    "floor_snap_length": 0.4,
+    "step_height": 0.36,
+    "landing_slow_s": 0.12,
+    "landing_slow_mult": 0.55,
+    "coyote_s": 0.08,
+    "soft_separation_speed": 3.0,
+    "fall_recovery_y": -12.0
+  },
+  "guard": {
+    "arc_deg": 120,
+    "move_mult": 0.45,
+    "block_stun_light_s": 0.1,
+    "block_stun_heavy_s": 0.2,
+    "block_push_mult": 0.35,
+    "break_stun_s": 0.9,
+    "exit_s": 0.08
+  },
+  "dodge": {
+    "total_s": 0.367,
+    "evade_from_s": 0.033,
+    "evade_to_s": 0.217,
+    "distance": 4.2,
+    "move_end_s": 0.267,
+    "cancel_from_s": 0.30,
+    "stamina": 25,
+    "cooldown_s": 0.15
+  },
+  "chain": {
+    "max_lights": 3,
+    "cancel_after_active_s": 0.1,
+    "finisher_extra_recovery_s": 0.12,
+    "finisher_kb_mult": 3.0,
+    "chain_reset_s": 0.6
+  },
+  "control": {
+    "resistance_s": 3.0,
+    "resisted_flinch_s": 0.2,
+    "resisted_displacement_mult": 0.5,
+    "hard_control_min_stun_s": 0.5,
+    "knockdown_getup_s": 0.45,
+    "getup_evade_s": 0.3
+  },
+  "hurtbox": {
+    "_doc": "One body capsule per fighter (feet to crown). Ears, tails, clothing and fur are never hurtboxes.",
+    "default_radius": 0.34
+  },
+  "input_buffer_s": 0.1,
+  "air_light_per_jump": 1,
+  "knockout": {
+    "respawn_s": 10.0,
+    "spawn_protect_max_s": 8.0
+  },
+  "hitstop": {
+    "_doc": "Cosmetic only (render pose hold). Never changes simulation or input timing.",
+    "light_ms": 35,
+    "heavy_ms": 55
+  }
+}

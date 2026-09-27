@@ -1,0 +1,94 @@
+{
+  "id": "bruno",
+  "display_name": "BRUNO",
+  "species": "dog",
+  "title": "The Frontline",
+  "role": "Frontline bruiser",
+  "tagline": "Strength. Loyalty. Pressure for the pack.",
+  "quote": "Protect what matters.",
+  "health": 280,
+  "move_speed": 6.6,
+  "height": 1.77,
+  "hurt_radius": 0.38,
+  "jump_velocity": 5.0,
+  "style": {"stance": "wide_boxer", "guard": "forearms_high", "tail": "short_curled", "run": "heavy_driving", "idle_rate": 0.85},
+  "passive": {
+    "id": "grounded", "name": "Grounded",
+    "desc": "Light hits and light pushes move Bruno half as far. Major control (knockdowns, grabs, heavy staggers) still applies.",
+    "params": {"light_push_mult": 0.5, "light_push_max": 1.5}
+  },
+  "light": {"s": "bruno_light_s", "l": "bruno_light_l", "r": "bruno_light_r", "air": "bruno_light_air"},
+  "heavy": "bruno_heavy",
+  "skills": {"q": "bruno_rush", "e": "bruno_bark", "r": "bruno_stand_firm"},
+  "actions": {
+    "bruno_light_s": {
+      "name": "Jab", "kind": "light", "limb": "hand_r", "clip": "light_s", "total_s": 0.50,
+      "turn": [[0.0, 360], [0.167, 90]],
+      "move": [[0.0, 0, 0, 0], [0.13, 0, 0, 0.15], [0.24, 0, 0, 0.28]],
+      "hits": [{"t0": 0.167, "t1": 0.233, "r": 0.28, "path": [[0.167, 0.20, 1.38, 0.35], [0.233, 0.12, 1.36, 0.95]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.333, 0.50, ["light"]], [0.40, 0.50, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "bruno_light_l": {
+      "name": "Left Hook", "kind": "light", "limb": "hand_l", "clip": "light_l", "total_s": 0.50,
+      "turn": [[0.0, 360], [0.167, 90]],
+      "move": [[0.0, 0, 0, 0], [0.13, 0, 0, 0.12], [0.24, 0, 0, 0.22]],
+      "hits": [{"t0": 0.167, "t1": 0.233, "r": 0.28, "path": [[0.167, -0.65, 1.35, 0.30], [0.20, -0.30, 1.35, 0.80], [0.233, 0.25, 1.32, 0.70]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.333, 0.50, ["light"]], [0.40, 0.50, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "bruno_light_r": {
+      "name": "Right Hook", "kind": "light", "limb": "hand_r", "clip": "light_r", "total_s": 0.50,
+      "turn": [[0.0, 360], [0.167, 90]],
+      "move": [[0.0, 0, 0, 0], [0.13, 0, 0, 0.12], [0.24, 0, 0, 0.22]],
+      "hits": [{"t0": 0.167, "t1": 0.233, "r": 0.28, "path": [[0.167, 0.65, 1.35, 0.30], [0.20, 0.30, 1.35, 0.80], [0.233, -0.25, 1.32, 0.70]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.333, 0.50, ["light"]], [0.40, 0.50, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "bruno_light_air": {
+      "name": "Hammer Fist", "kind": "light", "air": true, "limb": "hand_r", "clip": "light_air", "total_s": 0.42,
+      "turn": [[0.0, 180], [0.15, 0]],
+      "hits": [{"t0": 0.167, "t1": 0.267, "r": 0.30, "path": [[0.167, 0.10, 1.60, 0.50], [0.267, 0.0, 0.75, 0.80]],
+                "dmg": 18, "gdmg": 12, "kb": 0.4, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": []
+    },
+    "bruno_heavy": {
+      "name": "Overhead Slam", "kind": "heavy", "limb": "both_hands", "clip": "heavy", "total_s": 1.033, "stamina": 15,
+      "turn": [[0.0, 300], [0.30, 60], [0.45, 0]],
+      "move": [[0.0, 0, 0, 0], [0.30, 0, 0, 0.1], [0.50, 0, 0, 0.7]],
+      "hits": [{"t0": 0.45, "t1": 0.567, "r": 0.38, "path": [[0.45, 0.0, 1.95, 0.35], [0.51, 0.0, 1.50, 0.85], [0.567, 0.0, 0.95, 1.05]],
+                "dmg": 38, "gdmg": 28, "kb": 2.0, "stun_s": 0.45, "effect": "stagger", "parryable": true}],
+      "cancels": [[0.92, 1.033, ["dodge", "guard", "light", "heavy", "skill", "jump"]]]
+    },
+    "bruno_rush": {
+      "name": "Shoulder Rush", "kind": "skill", "slot": "q", "behavior": "charge", "limb": "shoulder_r",
+      "desc": "Committed shoulder charge with limited steering. Knocks back on contact. Missing, or meeting a wall, leaves Bruno open.",
+      "stamina": 15, "cooldown_s": 10.0, "grounded_only": true, "startup_s": 0.25,
+      "params": {"windup_s": 0.25, "charge_s": 0.70, "speed": 11.0, "steer_deg_s": 90, "hit_recover_s": 0.30, "miss_recover_s": 0.55, "wall_recover_s": 0.45, "blocked_recover_s": 0.45, "blocked_push": 0.6},
+      "turn": [[0.0, 360], [0.25, 0]],
+      "hits": [{"t0": 0.25, "t1": 0.95, "r": 0.55, "follow": true, "path": [[0.25, 0.22, 1.25, 0.50], [0.95, 0.22, 1.25, 0.50]],
+                "dmg": 26, "gdmg": 25, "kb": 2.4, "stun_s": 0.5, "effect": "stagger", "parryable": true, "push_along_motion": true}],
+      "clips": {"windup": ["skill_q_windup", 0.25], "charge": ["skill_q_charge", 0.50], "hit": ["skill_q_hit", 0.30], "miss": ["skill_q_miss", 0.55], "wall": ["skill_q_wall", 0.45]}
+    },
+    "bruno_bark": {
+      "name": "Warning Bark", "kind": "skill", "slot": "e", "behavior": "bark", "limb": "head", "clip": "skill_e",
+      "desc": "Telegraphed short cone (5 m, 60°). Interrupts enemies caught mid-startup or recovery and pushes everyone in it back. No damage; blocked by walls and frontal guard.",
+      "stamina": 10, "cooldown_s": 12.0, "total_s": 0.85, "startup_s": 0.35,
+      "params": {"cone_deg": 60, "range": 5.0, "trigger_s": 0.35, "interrupt_stun_s": 0.35, "push_exposed": 1.5, "push_other": 1.0, "guard_stamina": 15, "guard_push": 0.3},
+      "turn": [[0.0, 300], [0.30, 0]]
+    },
+    "bruno_stand_firm": {
+      "name": "Stand Firm", "kind": "skill", "slot": "r", "behavior": "stance",
+      "desc": "Planted defensive stance: 180° frontal guard, blocked hits cost half stamina, frontal knockback greatly reduced, movement slowed. No attacks while planted; the back stays open. Press R again to leave.",
+      "stamina": 10, "cooldown_s": 14.0, "startup_s": 0.15,
+      "params": {"enter_s": 0.15, "max_hold_s": 3.0, "min_hold_s": 0.3, "exit_s": 0.25, "guard_arc_deg": 180, "block_stamina_mult": 0.5, "front_knockback_mult": 0.25, "move_mult": 0.3},
+      "clips": {"enter": ["skill_r_enter", 0.15], "hold": ["skill_r_hold", 1.0], "exit": ["skill_r_exit", 0.25], "block": ["skill_r_block", 0.2]}
+    }
+  },
+  "palettes": {
+    "default": {"name": "Cobalt Guard", "primary": "#1c2230", "secondary": "#2f5fb3", "accent": "#4a7fe0", "trim": "#2a2c30"},
+    "dusk":    {"name": "Dusk",         "primary": "#241f33", "secondary": "#5e4a99", "accent": "#a08be0", "trim": "#29263a"},
+    "ember":   {"name": "Ember",        "primary": "#2e2320", "secondary": "#b8541e", "accent": "#f09a48", "trim": "#302826"},
+    "frost":   {"name": "Frost",        "primary": "#39434d", "secondary": "#86b9d9", "accent": "#e0f2fb", "trim": "#2f3840"}
+  }
+}

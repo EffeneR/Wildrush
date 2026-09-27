@@ -1,0 +1,101 @@
+{
+  "id": "vex",
+  "display_name": "VEX",
+  "species": "fox",
+  "title": "The Unpredictable",
+  "role": "Deceptive counterfighter",
+  "tagline": "Deception. Precision. Adaptation.",
+  "quote": "The right move looks wrong.",
+  "health": 220,
+  "move_speed": 7.0,
+  "height": 1.73,
+  "hurt_radius": 0.33,
+  "jump_velocity": 5.2,
+  "strafe_mult": 0.96,
+  "backpedal_mult": 0.82,
+  "style": {"stance": "loose_sideways", "guard": "open_hands", "tail": "big_brush", "run": "smooth_glide", "idle_rate": 1.0},
+  "passive": {
+    "id": "light_steps", "name": "Light Steps",
+    "desc": "Strafes and backsteps faster than other fighters (96% / 82% of top speed instead of 88% / 74%). Attack timings are unchanged.",
+    "params": {"strafe_mult": 0.96, "backpedal_mult": 0.82}
+  },
+  "light": {"s": "vex_light_s", "l": "vex_light_l", "r": "vex_light_r", "air": "vex_light_air"},
+  "heavy": "vex_heavy",
+  "skills": {"q": "vex_false_start", "e": "vex_sidewinder", "r": "vex_tail_sweep"},
+  "actions": {
+    "vex_light_s": {
+      "name": "Palm Jab", "kind": "light", "limb": "hand_r", "clip": "light_s", "total_s": 0.467,
+      "turn": [[0.0, 360], [0.15, 90]],
+      "move": [[0.0, 0, 0, 0], [0.12, 0, 0, 0.15], [0.22, 0, 0, 0.3]],
+      "hits": [{"t0": 0.15, "t1": 0.217, "r": 0.27, "path": [[0.15, 0.18, 1.34, 0.40], [0.217, 0.06, 1.30, 0.90]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.317, 0.467, ["light"]], [0.367, 0.467, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "vex_light_l": {
+      "name": "Backhand", "kind": "light", "limb": "hand_l", "clip": "light_l", "total_s": 0.467,
+      "turn": [[0.0, 360], [0.15, 90]],
+      "move": [[0.0, 0, 0, 0], [0.12, 0, 0, 0.12], [0.22, 0, 0, 0.25]],
+      "hits": [{"t0": 0.15, "t1": 0.217, "r": 0.27, "path": [[0.15, -0.62, 1.25, 0.30], [0.183, -0.25, 1.24, 0.80], [0.217, 0.30, 1.20, 0.60]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.317, 0.467, ["light"]], [0.367, 0.467, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "vex_light_r": {
+      "name": "Knife-hand", "kind": "light", "limb": "hand_r", "clip": "light_r", "total_s": 0.467,
+      "turn": [[0.0, 360], [0.15, 90]],
+      "move": [[0.0, 0, 0, 0], [0.12, 0, 0, 0.12], [0.22, 0, 0, 0.25]],
+      "hits": [{"t0": 0.15, "t1": 0.217, "r": 0.27, "path": [[0.15, 0.62, 1.25, 0.30], [0.183, 0.25, 1.24, 0.80], [0.217, -0.30, 1.20, 0.60]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.317, 0.467, ["light"]], [0.367, 0.467, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "vex_light_air": {
+      "name": "Falling Palm", "kind": "light", "air": true, "limb": "hand_r", "clip": "light_air", "total_s": 0.40,
+      "turn": [[0.0, 180], [0.15, 0]],
+      "hits": [{"t0": 0.15, "t1": 0.25, "r": 0.30, "path": [[0.15, 0.10, 1.50, 0.45], [0.25, 0.0, 0.70, 0.75]],
+                "dmg": 18, "gdmg": 12, "kb": 0.4, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": []
+    },
+    "vex_heavy": {
+      "name": "Lunging Strike", "kind": "heavy", "limb": "hand_r", "clip": "heavy", "total_s": 1.017, "stamina": 15,
+      "turn": [[0.0, 300], [0.30, 60], [0.45, 0]],
+      "move": [[0.0, 0, 0, 0], [0.30, 0, 0, 0], [0.52, 0, 0, 1.0]],
+      "hits": [{"t0": 0.45, "t1": 0.567, "r": 0.36, "path": [[0.45, 0.35, 1.30, 0.20], [0.51, 0.18, 1.28, 0.70], [0.567, 0.05, 1.25, 1.05]],
+                "dmg": 38, "gdmg": 28, "kb": 2.0, "stun_s": 0.45, "effect": "stagger", "parryable": true}],
+      "cancels": [[0.90, 1.017, ["dodge", "guard", "light", "heavy", "skill", "jump"]]]
+    },
+    "vex_false_start": {
+      "name": "False Start", "kind": "skill", "slot": "q", "behavior": "feint",
+      "desc": "A convincing heavy wind-up that cancels into a sidestep in the held direction (default back). Deals no damage; the afterimage is cosmetic.",
+      "stamina": 10, "cooldown_s": 6.0, "grounded_only": true, "startup_s": 0.25,
+      "params": {"feint_s": 0.25, "display_as": "vex_heavy", "step_s": 0.25, "step_distance": 2.4, "evade_from_s": 0.27, "evade_to_s": 0.40, "recovery_s": 0.10, "default_dir": "back"},
+      "turn": [[0.0, 300], [0.25, 0]],
+      "clips": {"feint": ["heavy", 0.25], "step_l": ["skill_q_step_l", 0.35], "step_r": ["skill_q_step_r", 0.35], "step_b": ["skill_q_step_b", 0.35]}
+    },
+    "vex_sidewinder": {
+      "name": "Sidewinder", "kind": "skill", "slot": "e", "behavior": "curve_dash",
+      "desc": "Player-steered curved approach (starts 45° to the held side) that ends in a strike. Stops at walls and opponents — never passes through them.",
+      "stamina": 15, "cooldown_s": 9.0, "grounded_only": true, "startup_s": 0.10,
+      "params": {"windup_s": 0.10, "dash_s": 0.50, "speed": 10.0, "initial_angle_deg": 45, "steer_deg_s": 220, "strike_s": 0.18, "hit_recover_s": 0.35, "miss_recover_s": 0.55, "contact_range": 1.1},
+      "hits": [{"t0": 0.0, "t1": 0.10, "rel": "strike", "limb": "hand_r", "r": 0.36, "path": [[0.0, 0.30, 1.30, 0.35], [0.10, 0.05, 1.20, 0.85]],
+                "dmg": 28, "gdmg": 16, "kb": 1.0, "stun_s": 0.4, "effect": "flinch", "parryable": true}],
+      "clips": {"windup": ["skill_e_windup", 0.10], "dash_l": ["skill_e_dash_l", 0.50], "dash_r": ["skill_e_dash_r", 0.50], "strike": ["skill_e_strike", 0.18], "recover": ["skill_e_recover", 0.35]}
+    },
+    "vex_tail_sweep": {
+      "name": "Tail Sweep", "kind": "skill", "slot": "r", "behavior": "generic", "limb": "tail_tip", "clip": "skill_r",
+      "desc": "Readable low rotational sweep (about 2 m reach). Modest damage and a short push. Jump it, or guard while facing Vex.",
+      "stamina": 15, "cooldown_s": 10.0, "total_s": 0.95, "startup_s": 0.30, "grounded_only": true,
+      "turn": [[0.0, 300], [0.25, 0]],
+      "hits": [{"t0": 0.30, "t1": 0.50, "r": 0.55, "low": true, "kb_radial": true,
+                "path": [[0.30, 0.0, 0.35, -1.3], [0.3167, -0.65, 0.35, -1.126], [0.3333, -1.126, 0.35, -0.65], [0.35, -1.3, 0.35, 0.0],
+                         [0.3667, -1.126, 0.35, 0.65], [0.3833, -0.65, 0.35, 1.126], [0.40, 0.0, 0.35, 1.3], [0.4167, 0.65, 0.35, 1.126],
+                         [0.4333, 1.126, 0.35, 0.65], [0.45, 1.3, 0.35, 0.0], [0.4667, 1.126, 0.35, -0.65], [0.4833, 0.65, 0.35, -1.126], [0.50, 0.0, 0.35, -1.3]],
+                "dmg": 20, "gdmg": 12, "kb": 1.6, "stun_s": 0.35, "effect": "flinch", "parryable": false}],
+      "cancels": [[0.85, 0.95, ["dodge", "guard", "light", "heavy", "jump"]]]
+    }
+  },
+  "palettes": {
+    "default": {"name": "Plum & Copper", "primary": "#3a2238", "secondary": "#b8733a", "accent": "#e09a5c", "trim": "#2a2a2e"},
+    "dusk":    {"name": "Dusk",          "primary": "#221f3a", "secondary": "#6a55a8", "accent": "#b3a1ea", "trim": "#232231"},
+    "ember":   {"name": "Ember",         "primary": "#40201a", "secondary": "#d0642a", "accent": "#f5b060", "trim": "#2c2020"},
+    "frost":   {"name": "Frost",         "primary": "#35414c", "secondary": "#8cc0dc", "accent": "#e3f3fb", "trim": "#29323a"}
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "id": "nyx",
+  "display_name": "NYX",
+  "species": "cat",
+  "title": "The Duelist",
+  "role": "Agile duelist",
+  "tagline": "Agile. Observant. Precise.",
+  "quote": "Discipline creates freedom.",
+  "health": 220,
+  "move_speed": 7.2,
+  "height": 1.70,
+  "hurt_radius": 0.32,
+  "jump_velocity": 5.2,
+  "style": {"stance": "low_agile", "guard": "claws_high", "tail": "long_striped", "run": "light_springy", "idle_rate": 1.1},
+  "passive": {
+    "id": "perch", "name": "Perch",
+    "desc": "Scramble onto designated short ledges. Shortcuts only — every objective keeps an ordinary route.",
+    "params": {"min_height": 0.9, "max_height": 2.4, "reach": 1.0, "climb_s": 0.45, "landing_clearance": 0.05}
+  },
+  "light": {"s": "nyx_light_s", "l": "nyx_light_l", "r": "nyx_light_r", "air": "nyx_light_air"},
+  "heavy": "nyx_heavy",
+  "skills": {"q": "nyx_pounce", "e": "nyx_crosscut", "r": "nyx_slip"},
+  "actions": {
+    "nyx_light_s": {
+      "name": "Claw Jab", "kind": "light", "limb": "hand_r", "clip": "light_s", "total_s": 0.467,
+      "turn": [[0.0, 360], [0.15, 90]],
+      "move": [[0.0, 0, 0, 0], [0.12, 0, 0, 0.15], [0.22, 0, 0, 0.3]],
+      "hits": [{"t0": 0.15, "t1": 0.217, "r": 0.27, "path": [[0.15, 0.18, 1.30, 0.40], [0.217, 0.08, 1.25, 0.88]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.317, 0.467, ["light"]], [0.367, 0.467, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "nyx_light_l": {
+      "name": "Left Swipe", "kind": "light", "limb": "hand_l", "clip": "light_l", "total_s": 0.467,
+      "turn": [[0.0, 360], [0.15, 90]],
+      "move": [[0.0, 0, 0, 0], [0.12, 0, 0, 0.12], [0.22, 0, 0, 0.25]],
+      "hits": [{"t0": 0.15, "t1": 0.217, "r": 0.27, "path": [[0.15, -0.60, 1.30, 0.35], [0.183, -0.25, 1.28, 0.78], [0.217, 0.30, 1.22, 0.62]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.317, 0.467, ["light"]], [0.367, 0.467, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "nyx_light_r": {
+      "name": "Right Swipe", "kind": "light", "limb": "hand_r", "clip": "light_r", "total_s": 0.467,
+      "turn": [[0.0, 360], [0.15, 90]],
+      "move": [[0.0, 0, 0, 0], [0.12, 0, 0, 0.12], [0.22, 0, 0, 0.25]],
+      "hits": [{"t0": 0.15, "t1": 0.217, "r": 0.27, "path": [[0.15, 0.60, 1.30, 0.35], [0.183, 0.25, 1.28, 0.78], [0.217, -0.30, 1.22, 0.62]],
+                "dmg": 18, "gdmg": 12, "kb": 0.35, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.317, 0.467, ["light"]], [0.367, 0.467, ["dodge", "guard", "jump", "skill", "heavy"]]]
+    },
+    "nyx_light_air": {
+      "name": "Diving Swipe", "kind": "light", "air": true, "limb": "hand_r", "clip": "light_air", "total_s": 0.40,
+      "turn": [[0.0, 180], [0.15, 0]],
+      "hits": [{"t0": 0.15, "t1": 0.25, "r": 0.30, "path": [[0.15, 0.15, 1.45, 0.45], [0.25, 0.05, 0.70, 0.72]],
+                "dmg": 18, "gdmg": 12, "kb": 0.4, "stun_s": 0.2, "effect": "flinch", "parryable": true}],
+      "cancels": []
+    },
+    "nyx_heavy": {
+      "name": "Rake", "kind": "heavy", "limb": "both_hands", "clip": "heavy", "total_s": 1.017, "stamina": 15,
+      "turn": [[0.0, 300], [0.30, 60], [0.45, 0]],
+      "move": [[0.0, 0, 0, 0], [0.30, 0, 0, 0], [0.50, 0, 0, 0.8], [0.60, 0, 0, 0.9]],
+      "hits": [{"t0": 0.45, "t1": 0.567, "r": 0.36, "path": [[0.45, 0.25, 1.62, 0.45], [0.51, 0.10, 1.30, 0.85], [0.567, -0.05, 0.95, 1.0]],
+                "dmg": 38, "gdmg": 28, "kb": 2.0, "stun_s": 0.45, "effect": "stagger", "parryable": true}],
+      "cancels": [[0.90, 1.017, ["dodge", "guard", "light", "heavy", "skill", "jump"]]]
+    },
+    "nyx_pounce": {
+      "name": "Pounce", "kind": "skill", "slot": "q", "behavior": "leap_strike", "limb": "both_hands",
+      "desc": "Aim, then commit to a forward leap that ends in a claw strike. No homing; walls stop it; a miss leaves Nyx exposed on landing.",
+      "stamina": 10, "cooldown_s": 9.0, "grounded_only": true, "startup_s": 0.30,
+      "params": {"aim_s": 0.30, "leap_s": 0.40, "leap_distance": 6.0, "leap_height": 0.7, "land_hit_s": 0.35, "land_miss_s": 0.65, "land_wall_s": 0.55},
+      "turn": [[0.0, 300], [0.30, 0]],
+      "hits": [{"t0": 0.45, "t1": 0.72, "r": 0.5, "follow": true, "path": [[0.45, 0.0, 1.0, 0.55], [0.72, 0.0, 0.8, 0.6]],
+                "dmg": 34, "gdmg": 20, "kb": 1.4, "stun_s": 0.45, "effect": "stagger", "parryable": true}],
+      "clips": {"prep": ["skill_q_prep", 0.30], "air": ["skill_q_air", 0.40], "land": ["skill_q_land", 0.35], "land_miss": ["skill_q_land_miss", 0.65]}
+    },
+    "nyx_crosscut": {
+      "name": "Crosscut", "kind": "skill", "slot": "e", "behavior": "generic", "limb": "hand_r", "clip": "skill_e",
+      "desc": "Two compact diagonal claw strikes with separate active windows. Guarding or dodging the first does not guarantee the second.",
+      "stamina": 12, "cooldown_s": 7.0, "total_s": 0.82, "startup_s": 0.16,
+      "turn": [[0.0, 360], [0.16, 120], [0.30, 200], [0.40, 60], [0.467, 0]],
+      "move": [[0.0, 0, 0, 0], [0.10, 0, 0, 0], [0.23, 0, 0, 0.5], [0.33, 0, 0, 0.5], [0.45, 0, 0, 0.9]],
+      "hits": [
+        {"t0": 0.16, "t1": 0.233, "limb": "hand_r", "r": 0.30, "path": [[0.16, 0.55, 1.55, 0.45], [0.20, 0.20, 1.25, 0.72], [0.233, -0.35, 0.90, 0.70]],
+         "dmg": 16, "gdmg": 10, "kb": 0.3, "stun_s": 0.3, "effect": "flinch", "parryable": true},
+        {"t0": 0.40, "t1": 0.467, "limb": "hand_l", "r": 0.30, "path": [[0.40, -0.55, 1.55, 0.45], [0.433, -0.20, 1.25, 0.75], [0.467, 0.35, 0.90, 0.70]],
+         "dmg": 20, "gdmg": 14, "kb": 0.7, "stun_s": 0.35, "effect": "flinch", "parryable": true}
+      ],
+      "cancels": [[0.72, 0.82, ["dodge", "guard", "light", "heavy", "jump"]]]
+    },
+    "nyx_slip": {
+      "name": "Slip", "kind": "skill", "slot": "r", "behavior": "slip",
+      "desc": "Short lateral evasion in the held direction (default right). Press Light in the brief window after it to counter-swipe. Nyx stays visible.",
+      "stamina": 15, "cooldown_s": 8.0, "startup_s": 0.0,
+      "params": {"evade_s": 0.30, "distance": 2.6, "evade_from_s": 0.017, "evade_to_s": 0.20, "counter_from_s": 0.12, "counter_to_s": 0.45, "recovery_s": 0.12, "counter_action": "nyx_slip_counter"},
+      "turn": [[0.0, 0]],
+      "clips": {"left": ["skill_r_left", 0.42], "right": ["skill_r_right", 0.42]}
+    },
+    "nyx_slip_counter": {
+      "name": "Counter-swipe", "kind": "counter", "behavior": "generic", "limb": "hand_r", "clip": "skill_r_counter", "total_s": 0.45,
+      "turn": [[0.0, 540], [0.06, 0]],
+      "move": [[0.0, 0, 0, 0], [0.10, 0, 0, 0.5]],
+      "hits": [{"t0": 0.067, "t1": 0.133, "r": 0.32, "path": [[0.067, 0.60, 1.30, 0.30], [0.10, 0.20, 1.25, 0.80], [0.133, -0.40, 1.15, 0.60]],
+                "dmg": 22, "gdmg": 14, "kb": 0.9, "stun_s": 0.3, "effect": "flinch", "parryable": true}],
+      "cancels": [[0.35, 0.45, ["dodge", "guard", "light", "heavy", "jump", "skill"]]]
+    }
+  },
+  "palettes": {
+    "default": {"name": "Briarport Red", "primary": "#2b2d31", "secondary": "#9b1d22", "accent": "#c8343a", "trim": "#1c1d20"},
+    "dusk":    {"name": "Dusk",          "primary": "#2a2740", "secondary": "#5b3f8f", "accent": "#9a7ad6", "trim": "#1a1828"},
+    "ember":   {"name": "Ember",         "primary": "#3a2a22", "secondary": "#c05a1c", "accent": "#f0a040", "trim": "#241a15"},
+    "frost":   {"name": "Frost",         "primary": "#3c4650", "secondary": "#7fb6d6", "accent": "#d8eef8", "trim": "#262d33"}
+  }
+}

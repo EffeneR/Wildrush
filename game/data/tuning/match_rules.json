@@ -1,0 +1,33 @@
+{
+  "_doc": "Turf Shift (spec §4, D-006). Authoritative, data-driven; tested by tests/unit/test_match_rules.gd.",
+  "team_size": 5,
+  "regulation_s": 480,
+  "score_limit": 250,
+  "rotation_period_s": 60,
+  "reveal_before_s": 15,
+  "zone_order": ["B", "A", "C"],
+  "zones": {
+    "A": {"name": "Canal Court"},
+    "B": {"name": "Market Square"},
+    "C": {"name": "Loading Yard"}
+  },
+  "points_per_control_second": 1,
+  "occupancy": {
+    "radius_enter": 9.0,
+    "radius_exit": 9.35,
+    "band_below": 0.6,
+    "band_above": 2.6
+  },
+  "sudden_death": {
+    "freeze_rotation": true,
+    "first_point_wins": true
+  },
+  "pre_match_countdown_s": 5,
+  "character_select_s": 40,
+  "results_s": 25,
+  "reconnect_reservation_s": 90,
+  "afk_warning_s": 45,
+  "afk_kick_s": 60,
+  "forfeit_empty_team_s": 30,
+  "score_warning_at": [200, 230, 245]
+}
