@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "generated": "2026-09-27",
+  "note": "Versions actually installed and used to build WILDRUSH. All binaries are project-local under .toolchain/ (git-ignored) and are re-created by tools/setup_env.sh.",
+  "host_detected": {
+    "os": "Ubuntu 24.04.4 LTS (Linux 6.18 x86_64), container",
+    "cpu_threads": 4,
+    "memory_gb": 15,
+    "gpu": "none (no /dev/dri). Rendering uses Mesa llvmpipe (OpenGL 4.5) and lavapipe (Vulkan 1.4) under Xvfb",
+    "python": "3.11.15 (/usr/local/bin/python3)",
+    "git": "2.43.0",
+    "postgresql": "16.13 (/usr/lib/postgresql/16/bin)",
+    "docker": "CLI present, daemon NOT available in this container"
+  },
+  "godot": {
+    "version": "4.7.2-stable",
+    "build": "4.7.2.stable.official.ed1daf0bf",
+    "flavor": "standard (no .NET)",
+    "source": "https://downloads.godotengine.org/?version=4.7.2&flavor=stable&slug=linux.x86_64.zip&platform=linux.64 (official redirector -> godot-releases.nbg1.your-objectstorage.com)",
+    "editor_archive": "Godot_v4.7.2-stable_linux.x86_64.zip",
+    "editor_sha512": "9aa00f7a605200940bce3027a567b782 (full hash verified against godotengine/godot-builds releases/godot-4.7.2-stable.json)",
+    "export_templates_archive": "Godot_v4.7.2-stable_export_templates.tpz",
+    "export_templates_sha512": "ca4d71c4d7b81dfc15d1a98baa07534a (full hash verified against godotengine/godot-builds releases/godot-4.7.2-stable.json)",
+    "export_templates_retained": ["linux_release.x86_64", "linux_debug.x86_64", "windows_release_x86_64.exe", "windows_debug_x86_64.exe", "windows_*_console.exe"],
+    "install_path": ".toolchain/godot/Godot_v4.7.2-stable_linux.x86_64",
+    "self_contained_mode": ".toolchain/godot/_sc_ (editor data + export templates under .toolchain/godot/editor_data/)",
+    "docs": "https://docs.godotengine.org/en/4.7/ and class reference XML from git tag 4.7.2-stable",
+    "license": "MIT (Godot Engine contributors)"
+  },
+  "blender": {
+    "version": "4.5.9 LTS",
+    "build_date": "2026-04-21",
+    "source": "https://download.blender.org/release/Blender4.5/blender-4.5.9-linux-x64.tar.xz",
+    "sha256": "dcdc3eca6c9825bb35a8033b689c053f3cb5a9b0cd2a61b2eac2a49436b4ad3d",
+    "sha256_verified_against": "https://download.blender.org/release/Blender4.5/blender-4.5.9.sha256",
+    "install_path": ".toolchain/blender-4.5.9-linux-x64/blender",
+    "gltf_exporter": "bundled io_scene_gltf2 (Blender 4.5.9)",
+    "license": "GPL-2.0-or-later (tool only; generated assets are project-owned)"
+  },
+  "system_packages": {
+    "mesa-vulkan-drivers": "25.2.8-0ubuntu0.24.04.2 (lavapipe, for rendered inspection without GPU)",
+    "vulkan-tools": "1.3.275.0+dfsg1-1",
+    "xvfb": "2:21.1.12-1ubuntu1.5 (preinstalled)",
+    "postgresql-16": "16.13-0ubuntu0.24.04.1 (preinstalled)"
+  },
+  "python_venv": {
+    "path": ".venv",
+    "python": "3.11.15",
+    "requirements": "services/requirements.txt and tools/requirements.txt (exact pins)"
+  }
+}

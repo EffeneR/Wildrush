@@ -1,0 +1,28 @@
+# Project-local toolchain binaries (re-created by tools/setup_env.sh)
+.toolchain/
+.venv/
+
+# Private user-supplied reference images are NOT committed (see docs/REFERENCE_MANIFEST.md).
+references/*
+!references/README.md
+
+# Godot caches / build outputs
+game/.godot/
+game/**/*.translation
+builds/
+*.tmp
+
+# Blender autosave/backup
+*.blend1
+*.blend2
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+services/.env
+*.egg-info/
+
+# Runtime data
+.run/
+evidence/raw/**/*.core
