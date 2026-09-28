@@ -375,7 +375,7 @@ class MatchPlayerResult(Base):
     )
     mode: Mapped[str] = mapped_column(String(8))
     team: Mapped[int] = mapped_column(SmallInteger)
-    fighter: Mapped[str] = mapped_column(String(8))
+    fighter: Mapped[str | None] = mapped_column(String(8))  # NULL: ranked no-show (abandoned)
     won: Mapped[bool] = mapped_column(Boolean)
     kos: Mapped[int] = mapped_column(Integer)
     knocked_out: Mapped[int] = mapped_column(Integer)

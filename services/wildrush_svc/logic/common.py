@@ -35,16 +35,14 @@ def queue_entry_of(db: Session, account_id: uuid.UUID) -> QueueEntry | None:
     )
 
 
-def remove_queue_entries_for_party(db: Session, party_id: uuid.UUID) -> int:
+def remove_queue_entries_for_party(db: Session, party_id: uuid.UUID) -> None:
     """Joining/leaving a party removes it from any queue (contract)."""
-    result = db.execute(delete(QueueEntry).where(QueueEntry.party_id == party_id))
-    return int(result.rowcount or 0)
+    db.execute(delete(QueueEntry).where(QueueEntry.party_id == party_id))
 
 
-def remove_queue_entry_for_account(db: Session, account_id: uuid.UUID) -> int:
+def remove_queue_entry_for_account(db: Session, account_id: uuid.UUID) -> None:
     entry_ids = select(QueueMember.entry_id).where(QueueMember.account_id == account_id)
-    result = db.execute(delete(QueueEntry).where(QueueEntry.id.in_(entry_ids)))
-    return int(result.rowcount or 0)
+    db.execute(delete(QueueEntry).where(QueueEntry.id.in_(entry_ids)))
 
 
 def active_queue_match(db: Session, account_id: uuid.UUID) -> tuple[Match, MatchParticipant] | None:

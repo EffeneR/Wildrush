@@ -15,7 +15,7 @@ var _t: int = 0
 var _prev_buttons: int = 0
 
 
-func setup(p_scenario: String, seed_value: int, world: Node3D, layout: ArenaLayout) -> void:
+func setup(p_scenario: String, seed_value: int, _world: Node3D, _layout: ArenaLayout) -> void:
 	scenario = p_scenario
 	rng.seed = seed_value
 	var nm: NavigationMesh = load(ArenaBuilder.NAVMESH_PATH) if ResourceLoader.exists(ArenaBuilder.NAVMESH_PATH) else null
@@ -27,8 +27,6 @@ func setup(p_scenario: String, seed_value: int, world: Node3D, layout: ArenaLayo
 		nav_region = NavigationServer3D.region_create()
 		NavigationServer3D.region_set_map(nav_region, nav_map)
 		NavigationServer3D.region_set_navigation_mesh(nav_region, nm)
-	world = world
-	layout = layout
 
 
 func cleanup() -> void:
@@ -53,8 +51,22 @@ func sample(s: ClientSession) -> InputFrame:
 			f.move = Vector2(rng.randf_range(-1, 1), rng.randf_range(-1, 1))
 			buttons = rng.randi() & WR.BTN_ALL_SIM
 		"guard":
-			f.yaw = _face_nearest_enemy(s, me)
-			buttons = WR.BTN_GUARD
+			# Walk to the active zone; once an enemy is close, face it and hold a frontal guard
+			# while creeping toward it (so strikes actually land on the guard).
+			var gz: String = String(s.match_state.get("zone", "B"))
+			var gtarget: Vector3 = s.layout.zone_center(gz) if s.layout != null else Vector3.ZERO
+			var ge: Dictionary = _nearest_enemy(s, me)
+			if not ge.is_empty() and me.global_position.distance_to(ge["pos"]) < 6.0:
+				f.yaw = MathX.yaw_from_dir(((ge["pos"] as Vector3) - me.global_position).normalized())
+				buttons = WR.BTN_GUARD
+				f.move = Vector2(0, 0.25) if me.global_position.distance_to(ge["pos"]) > 1.6 else Vector2.ZERO
+			else:
+				var gdir: Vector3 = _steer(me.global_position, gtarget)
+				if gdir.length() > 0.1:
+					f.yaw = MathX.yaw_from_dir(gdir)
+					f.move = Vector2(0, 1)
+				else:
+					f.yaw = me.st.yaw
 		_:
 			var zone: String = String(s.match_state.get("zone", "B"))
 			var target: Vector3 = s.layout.zone_center(zone) if s.layout != null else Vector3.ZERO

@@ -72,3 +72,5 @@ def test_queue_validation(client, app):
     r = client.post("/v1/queue", json=queue_body(mode="ranked", allow_bots=True), headers=a.headers)
     assert r.json()["error"]["code"] == "bots_in_ranked"
     assert client.get("/v1/queue/status", headers=a.headers).json()["state"] == "idle"
+    # measured latencies may be fractional (rounded); strings/booleans are not numbers
+    assert client.post("/v1/queue", json=queue_body(latency_ms={"eu": 42.7, "us": 131}), headers=a.headers).status_code == 202

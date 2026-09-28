@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import ipaddress
+import math
 import re
 import uuid
 from typing import Annotated, Any, Literal
@@ -10,6 +11,7 @@ from typing import Annotated, Any, Literal
 from pydantic import (
     AfterValidator,
     BaseModel,
+    BeforeValidator,
     ConfigDict,
     Field,
     StrictBool,
@@ -24,13 +26,39 @@ from .mastery import ALL_BADGES
 
 # --- shared field types ------------------------------------------------------------------
 
+
+def _whole_number(value: Any) -> Any:
+    """Accept ints and integral floats (Godot's JSON parser yields floats for every
+    number, e.g. ``4.0``); reject booleans, strings and fractional values."""
+    if isinstance(value, bool):
+        raise ValueError("must be an integer")
+    if isinstance(value, float):
+        if not math.isfinite(value) or not value.is_integer():
+            raise ValueError("must be a whole number")
+        return int(value)
+    return value
+
+
+def _rounded_number(value: Any) -> Any:
+    """Measured values (latency in ms) may be fractional: round to the nearest integer."""
+    if isinstance(value, bool):
+        raise ValueError("must be a number")
+    if isinstance(value, float):
+        if not math.isfinite(value):
+            raise ValueError("must be a finite number")
+        return int(round(value))
+    return value
+
+
+WholeInt = Annotated[StrictInt, BeforeValidator(_whole_number)]
+
 Username = Annotated[str, StringConstraints(pattern=r"^[A-Za-z0-9_]{3,16}$")]
 Password = Annotated[str, StringConstraints(min_length=8, max_length=128)]
 Region = Annotated[str, StringConstraints(pattern=r"^[a-z0-9-]{2,20}$")]
 FighterName = Literal["nyx", "bruno", "vex", "hops", "scrap"]
 PaletteName = Literal["default", "dusk", "ember", "frost"]
 BadgeName = Literal[ALL_BADGES]  # type: ignore[valid-type]
-TeamIndex = Annotated[StrictInt, Field(ge=0, le=1)]
+TeamIndex = Annotated[WholeInt, Field(ge=0, le=1)]
 Port = Annotated[StrictInt, Field(ge=1, le=65535)]
 
 _HOSTNAME_RE = re.compile(
@@ -123,7 +151,8 @@ class QueueJoinReq(Body):
     roster_prefs: Annotated[list[FighterName], Field(max_length=5)] = Field(default_factory=list)
     region: Region
     latency_ms: Annotated[
-        dict[Region, Annotated[StrictInt, Field(ge=0, le=10000)]], Field(max_length=32)
+        dict[Region, Annotated[StrictInt, BeforeValidator(_rounded_number), Field(ge=0, le=10000)]],
+        Field(max_length=32),
     ] = Field(default_factory=dict)
     allow_bots: StrictBool = False
 
@@ -205,8 +234,8 @@ class ResultPlayer(Body):
     account_id: uuid.UUID
     team: TeamIndex
     fighter: FighterName
-    kos: Annotated[StrictInt, Field(ge=0, le=10000)]
-    knocked_out: Annotated[StrictInt, Field(ge=0, le=10000)]
+    kos: Annotated[WholeInt, Field(ge=0, le=10000)]
+    knocked_out: Annotated[WholeInt, Field(ge=0, le=10000)]
     damage_dealt: Annotated[StrictFloat, Field(ge=0, le=1e7, allow_inf_nan=False)]
     control_seconds: Annotated[StrictFloat, Field(ge=0, le=86400, allow_inf_nan=False)]
     abandoned: StrictBool
@@ -221,7 +250,7 @@ class ResultBot(Body):
 class ResultReq(Body):
     match_id: uuid.UUID
     winner_team: TeamIndex
-    score: Annotated[list[Annotated[StrictInt, Field(ge=0, le=100000)]], Field(min_length=2, max_length=2)]
+    score: Annotated[list[Annotated[WholeInt, Field(ge=0, le=100000)]], Field(min_length=2, max_length=2)]
     duration_s: Annotated[StrictFloat, Field(ge=0, le=86400, allow_inf_nan=False)]
     sudden_death: StrictBool
     ended_reason: Literal["score_limit", "time", "sudden_death", "forfeit"]

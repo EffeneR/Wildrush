@@ -102,8 +102,8 @@ def flow_field(F, C):
 
 
 def strand_height(F, spec, flow):
-    k_across = spec.get("strand_across", 1.0 / 0.0011)
-    k_along = spec.get("strand_along", 1.0 / 0.010)
+    k_across = spec.get("strand_across", 1.0 / 0.0019)
+    k_along = spec.get("strand_along", 1.0 / 0.014)
 
     def h(P):
         along = np.einsum("ij,ij->i", P, flow)
@@ -122,8 +122,8 @@ def eye_features(F, C):
     halo = np.zeros(C.n)
     for e in F.eyes:
         d = np.linalg.norm(C.P - np.array(e["center"]), axis=1) - e["radius"]
-        liner = np.maximum(liner, ss(0.0065 * C.S, 0.0040 * C.S, d))
-        halo = np.maximum(halo, ss(0.014 * C.S, 0.008 * C.S, d) * (1 - ss(0.0065 * C.S, 0.0040 * C.S, d)))
+        liner = np.maximum(liner, ss(0.0034 * C.S, 0.0022 * C.S, d))
+        halo = np.maximum(halo, ss(0.0105 * C.S, 0.0060 * C.S, d) * (1 - ss(0.0040 * C.S, 0.0028 * C.S, d)))
     return liner, halo
 
 
@@ -135,11 +135,12 @@ def mouth_features(F, C):
     q = (C.P - o) @ R
     back = m["back"]
     inside_front = q[:, 1] > back - 0.002
-    lip = ss(0.0045, 0.0022, np.abs(q[:, 2])) * inside_front * C.m["head"]
-    # cavity: behind the lips, inside the head (normals facing inward toward the slit plane)
-    cav = ss(0.004, 0.0015, np.abs(q[:, 2]) - 0.0035) * (q[:, 1] < -0.006) * (q[:, 1] > back - 0.03)
-    cav = np.maximum(cav, ((q[:, 1] < -0.004) & (np.abs(q[:, 2]) < 0.012) & (np.abs(q[:, 0]) < m["half_w"] * 0.9)).astype(float))
-    cav *= C.m["head"]
+    lip = ss(0.0031, 0.0021, np.abs(q[:, 2])) * inside_front * C.m["head"]
+    nz = C.N @ R[:, 2]
+    facing = np.where(q[:, 2] >= 0, -nz, nz)          # normal points toward the slit plane
+    cav = ss(0.1, 0.5, facing) * ss(-0.001, -0.004, q[:, 1]) * ss(0.016, 0.010, np.abs(q[:, 2]))
+    cav *= ss(m["half_w"] * 1.1, m["half_w"] * 0.8, np.abs(q[:, 0])) * C.m["head"]
+    cav = np.maximum(cav, lip * ss(-0.0005, -0.003, q[:, 1]))
     tng = np.linalg.norm(C.P - np.array(m["tongue"]), axis=1)
     tongue = ss(0.012 * C.S, 0.006 * C.S, tng) * cav
     return lip, cav, tongue
@@ -235,9 +236,9 @@ def colour_cat(F, spec, C):
     # --- pale areas: muzzle / chin / throat / chest / paws
     pads_c = [np.array([s * 0.0168, 0.087, -0.031]) for s in (1, -1)]
     dmuz = np.min([np.linalg.norm(hl - c, axis=1) for c in pads_c], axis=0) - 0.0186
-    muz = ss(0.010, 0.002, dmuz)
+    muz = ss(0.006, 0.000, dmuz)
     chin = ss(-0.040, -0.050, hl[:, 2]) * ss(0.015, 0.045, hl[:, 1])
-    throat = ss(-0.050, -0.075, hl[:, 2]) * ss(0.050, 0.020, np.abs(hl[:, 0])) * ss(-0.03, 0.02, hl[:, 1])
+    throat = ss(-0.058, -0.080, hl[:, 2]) * ss(0.040, 0.016, np.abs(hl[:, 0])) * ss(-0.02, 0.03, hl[:, 1])
     brow_pale = ss(0.02, 0.0, np.abs(hl[:, 2] - 0.005)) * ss(0.06, 0.07, hl[:, 1]) * 0
     paleness = np.maximum.reduce([muz, chin, throat]) * head
     neckfront = C.m["torso"] * ss(-0.02, -0.08, P[:, 1] - F.J["Neck"][1]) * ss(F.J["Neck"][2] - 0.10, F.J["Neck"][2], P[:, 2])
@@ -256,7 +257,7 @@ def colour_cat(F, spec, C):
     top = ss(0.020, 0.040, hl[:, 2] + 0.25 * np.clip(0.07 - hl[:, 1], 0, None)) * head
     xw = hl[:, 0] + 0.004 * perlin3(P * 40, 1.0, 17)
     lines = np.zeros(C.n)
-    for x0, w in ((0.0, 0.0030), (0.0105, 0.0026), (-0.0105, 0.0026), (0.021, 0.0022), (-0.021, 0.0022)):
+    for x0, w in ((0.0, 0.0036), (0.0110, 0.0032), (-0.0110, 0.0032), (0.0225, 0.0028), (-0.0225, 0.0028)):
         lines = np.maximum(lines, ss(w, w * 0.4, np.abs(xw - x0)))
     forehead_fade = ss(0.080, 0.060, hl[:, 1])
     head_str = lines * top * forehead_fade
@@ -273,7 +274,7 @@ def colour_cat(F, spec, C):
     arm_str = np.zeros(C.n)
     for side in ("Left", "Right"):
         s = limb_t(F, side, P)
-        b = bands(s, 0.036, 0.36, P, warp=0.30, seed=31)
+        b = bands(s, 0.040, 0.30, P, warp=0.45, seed=31) * ss(-0.35, 0.15, perlin3(P * 18, 1.0, 32))
         inner = ss(0.2, 0.7, np.einsum("ij,j->i", C.N, np.array([-1.0 if side == "Left" else 1.0, 0, 0])))
         arm_str = np.maximum(arm_str, C.m["arm_" + side] * b * (1 - 0.7 * inner))
         # a couple of faint bands on the back of the hand
@@ -282,7 +283,7 @@ def colour_cat(F, spec, C):
         arm_str = np.maximum(arm_str, C.m["hand_" + side] * bands(sh + 0.01, 0.028, 0.30, P, seed=33) * ss(0.045, 0.010, sh) * 0.8)
         # legs / ankles
         sl = leg_s(F, side, P)
-        arm_str = np.maximum(arm_str, C.leg(side) * bands(sl, 0.045, 0.38, P, warp=0.3, seed=35) * (1 - C.m["foot_" + side] * 0.7))
+        arm_str = np.maximum(arm_str, C.leg(side) * bands(sl, 0.048, 0.30, P, warp=0.45, seed=35) * ss(-0.35, 0.15, perlin3(P * 18, 1.0, 36)) * (1 - C.m["foot_" + side] * 0.7))
     # torso: mackerel stripes around the body (mostly hidden by clothes)
     ang = np.arctan2(P[:, 0], P[:, 1] - 0.02)
     tor = C.m["torso"] * ss(0.18, 0.08, np.abs(np.sin(ang * 3.5 + 2.5 * perlin3(P * 12, 1.0, 41))))
@@ -332,10 +333,10 @@ def stitch_pattern(P, r, kind):
 
 def fabric_height(F):
     def f(P):
-        k = 2 * np.pi / 0.0016
+        k = 2 * np.pi / 0.0048
         weave = np.sin(P[:, 0] * k + P[:, 2] * k * 0.3) * np.sin(P[:, 2] * k - P[:, 1] * k * 0.3)
-        grain = perlin3(P * 700.0, 1.0, 77)
-        return 0.55 * weave + 0.45 * grain
+        grain = perlin3(P * 260.0, 1.0, 77)
+        return 0.35 * weave + 0.65 * grain
     return f
 
 
@@ -346,7 +347,7 @@ def seam_height(F, P):
 # ----------------------------------------------------------------------------- specs
 SPECS = {
     "nyx": dict(
-        base="#8e8b86", base_dark="#6c6964", stripe="#35312d", pale="#e8e3d9", liner="#26211e",
+        base="#77726b", base_dark="#5c5752", stripe="#2c2825", pale="#e6e0d5", liner="#221d1b",
         nose="#c48882", lip="#3a2b28", mouth="#4a1b1d", tongue="#c46a6e", inner_ear="#d2aca4",
         ear_back="#4a4541", pad="#5b4a49", tail_period=0.082,
         eye=dict(iris_outer="#c9832a", iris_inner="#f0c04a", pupil="slit", slit_w=0.15, iris_r=0.86),

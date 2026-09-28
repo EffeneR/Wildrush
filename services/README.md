@@ -41,7 +41,7 @@ game client ──HTTPS──▶ Caddy (TLS) ──▶ control service (FastAPI,
 | `wildrush_svc/routers/*` | thin HTTP layer: validation → one transaction → logic |
 | `wildrush_svc/admin.py` | admin CLI |
 | `allocator/agent.py` | allocator agent (standard library only) |
-| `alembic/` | migrations (`0001_initial_schema`) |
+| `alembic/` | migrations (`0001_initial_schema`, `0002_nullable_history_fighter`) |
 
 Design rules: every request runs in one explicit transaction; all SQL goes through
 SQLAlchemy with bound parameters; timestamps are timezone-aware UTC (`TIMESTAMPTZ`, session
@@ -95,9 +95,10 @@ matchmaker (unit + DB: ranked exactly 10, never bots; casual bot rules; parties 
 together; rating balance; region/latency; capacity), allocator flow & ticket security
 (forged, wrong server, wrong match, expired, reused, concurrent redemption), results
 (signature, wrong server, running-only, idempotent retransmit, conflict, bots in ranked,
-invalid bodies without side effects, XP ×0.5 private, badges), Glicko-2 reference values,
+invalid bodies without side effects, ranked no-shows rated as abandoned, XP ×0.5 private, badges), Glicko-2 reference values,
 history pagination/privacy, server browser staleness, heartbeat reconciliation, rate limits,
-HMAC timestamp window, injection-style inputs, body limit, migrations (`alembic check`,
+HMAC timestamp window, injection-style inputs, body limit, secrets/tokens/tickets never
+logged (even with SQL logging on), migrations (`alembic check`,
 round trip, app never creates tables), admin CLI, allocator agent (config validation,
 exact argv, SIGTERM→SIGKILL timeouts, shutdown cleanup).
 

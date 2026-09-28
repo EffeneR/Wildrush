@@ -107,25 +107,12 @@ def rasterize(UVt, size, chunk=4000):
 
 
 def dilate(img, valid, iters=24):
-    """Push colours outward from valid texels into the gutters (mip/filter padding)."""
-    img = img.copy()
-    valid = valid.copy()
-    H, W = valid.shape
-    for _ in range(iters):
-        acc = np.zeros_like(img)
-        cnt = np.zeros((H, W))
-        for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)):
-            sv = np.roll(np.roll(valid, dy, 0), dx, 1)
-            si = np.roll(np.roll(img, dy, 0), dx, 1)
-            acc += si * sv[..., None]
-            cnt += sv
-        new = (~valid) & (cnt > 0)
-        if not new.any():
-            break
-        img[new] = acc[new] / cnt[new][:, None]
-        valid = valid | new
-    img[~valid] = img[valid].mean(axis=0)
-    return img
+    """UV-gutter padding: every empty texel takes the value of the nearest covered texel."""
+    from scipy.ndimage import distance_transform_edt
+    if valid.all():
+        return img
+    _, (iy, ix) = distance_transform_edt(~valid, return_distances=True, return_indices=True)
+    return img[iy, ix]
 
 
 class Bake:

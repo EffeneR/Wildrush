@@ -1,11 +1,11 @@
 {
  "summary": {
-  "PASS": 1357,
+  "PASS": 1358,
   "FAIL": 0,
-  "WARN": 1
+  "WARN": 0
  },
  "result": "PASS",
- "total_mb": 14.443,
+ "total_mb": 14.395,
  "checks": [
   {
    "status": "PASS",
@@ -2459,7 +2459,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "sfx/hit_light_02.wav",
-   "detail": "sample peak -3.73 dBFS (true peak -3.72)"
+   "detail": "sample peak -3.48 dBFS (true peak -3.47)"
   },
   {
    "status": "PASS",
@@ -2471,13 +2471,13 @@
    "status": "PASS",
    "check": "shape",
    "subject": "sfx/hit_light_02.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.1 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.8 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
    "subject": "sfx/hit_light_02.wav",
-   "detail": "mean -0.00153"
+   "detail": "mean -0.00156"
   },
   {
    "status": "PASS",
@@ -2501,7 +2501,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "sfx/hit_light_03.wav",
-   "detail": "sample peak -3.45 dBFS (true peak -3.42)"
+   "detail": "sample peak -3.70 dBFS (true peak -3.70)"
   },
   {
    "status": "PASS",
@@ -2513,97 +2513,97 @@
    "status": "PASS",
    "check": "shape",
    "subject": "sfx/hit_light_03.wav",
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 5.9 ms"
+  },
+  {
+   "status": "PASS",
+   "check": "dc",
+   "subject": "sfx/hit_light_03.wav",
+   "detail": "mean -0.00145"
+  },
+  {
+   "status": "PASS",
+   "check": "clicks",
+   "subject": "sfx/hit_light_03.wav",
+   "detail": "none"
+  },
+  {
+   "status": "PASS",
+   "check": "contract",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "file exists"
+  },
+  {
+   "status": "PASS",
+   "check": "format",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)"
+  },
+  {
+   "status": "PASS",
+   "check": "peak",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "sample peak -2.40 dBFS (true peak -2.38)"
+  },
+  {
+   "status": "PASS",
+   "check": "loudness",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "impact: loud-part RMS -15.00 dBFS vs target -14 +/-4"
+  },
+  {
+   "status": "PASS",
+   "check": "shape",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 7.7 ms"
+  },
+  {
+   "status": "PASS",
+   "check": "dc",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "mean -0.00201"
+  },
+  {
+   "status": "PASS",
+   "check": "clicks",
+   "subject": "sfx/hit_light_04.wav",
+   "detail": "none"
+  },
+  {
+   "status": "PASS",
+   "check": "contract",
+   "subject": "sfx/hit_light_05.wav",
+   "detail": "file exists"
+  },
+  {
+   "status": "PASS",
+   "check": "format",
+   "subject": "sfx/hit_light_05.wav",
+   "detail": "WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)"
+  },
+  {
+   "status": "PASS",
+   "check": "peak",
+   "subject": "sfx/hit_light_05.wav",
+   "detail": "sample peak -3.92 dBFS (true peak -3.89)"
+  },
+  {
+   "status": "PASS",
+   "check": "loudness",
+   "subject": "sfx/hit_light_05.wav",
+   "detail": "impact: loud-part RMS -15.00 dBFS vs target -14 +/-4"
+  },
+  {
+   "status": "PASS",
+   "check": "shape",
+   "subject": "sfx/hit_light_05.wav",
    "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.0 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
-   "subject": "sfx/hit_light_03.wav",
-   "detail": "mean -0.00149"
-  },
-  {
-   "status": "PASS",
-   "check": "clicks",
-   "subject": "sfx/hit_light_03.wav",
-   "detail": "none"
-  },
-  {
-   "status": "PASS",
-   "check": "contract",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "file exists"
-  },
-  {
-   "status": "PASS",
-   "check": "format",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)"
-  },
-  {
-   "status": "PASS",
-   "check": "peak",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "sample peak -2.43 dBFS (true peak -2.41)"
-  },
-  {
-   "status": "PASS",
-   "check": "loudness",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "impact: loud-part RMS -15.00 dBFS vs target -14 +/-4"
-  },
-  {
-   "status": "PASS",
-   "check": "shape",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 5.3 ms"
-  },
-  {
-   "status": "PASS",
-   "check": "dc",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "mean -0.00202"
-  },
-  {
-   "status": "PASS",
-   "check": "clicks",
-   "subject": "sfx/hit_light_04.wav",
-   "detail": "none"
-  },
-  {
-   "status": "PASS",
-   "check": "contract",
    "subject": "sfx/hit_light_05.wav",
-   "detail": "file exists"
-  },
-  {
-   "status": "PASS",
-   "check": "format",
-   "subject": "sfx/hit_light_05.wav",
-   "detail": "WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)"
-  },
-  {
-   "status": "PASS",
-   "check": "peak",
-   "subject": "sfx/hit_light_05.wav",
-   "detail": "sample peak -4.37 dBFS (true peak -4.36)"
-  },
-  {
-   "status": "PASS",
-   "check": "loudness",
-   "subject": "sfx/hit_light_05.wav",
-   "detail": "impact: loud-part RMS -15.00 dBFS vs target -14 +/-4"
-  },
-  {
-   "status": "PASS",
-   "check": "shape",
-   "subject": "sfx/hit_light_05.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 4.8 ms"
-  },
-  {
-   "status": "PASS",
-   "check": "dc",
-   "subject": "sfx/hit_light_05.wav",
-   "detail": "mean -0.00170"
+   "detail": "mean -0.00164"
   },
   {
    "status": "PASS",
@@ -2675,7 +2675,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "sfx/hit_heavy_02.wav",
-   "detail": "sample peak -3.19 dBFS (true peak -3.09)"
+   "detail": "sample peak -3.10 dBFS (true peak -3.08)"
   },
   {
    "status": "PASS",
@@ -2687,7 +2687,7 @@
    "status": "PASS",
    "check": "shape",
    "subject": "sfx/hit_heavy_02.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.3 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 6.8 ms"
   },
   {
    "status": "PASS",
@@ -2717,7 +2717,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "sfx/hit_heavy_03.wav",
-   "detail": "sample peak -3.23 dBFS (true peak -3.12)"
+   "detail": "sample peak -3.46 dBFS (true peak -3.37)"
   },
   {
    "status": "PASS",
@@ -2729,13 +2729,13 @@
    "status": "PASS",
    "check": "shape",
    "subject": "sfx/hit_heavy_03.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.7 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.0 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
    "subject": "sfx/hit_heavy_03.wav",
-   "detail": "mean -0.00080"
+   "detail": "mean -0.00082"
   },
   {
    "status": "PASS",
@@ -2759,7 +2759,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "sfx/hit_heavy_04.wav",
-   "detail": "sample peak -2.67 dBFS (true peak -2.64)"
+   "detail": "sample peak -2.96 dBFS (true peak -2.95)"
   },
   {
    "status": "PASS",
@@ -2771,13 +2771,13 @@
    "status": "PASS",
    "check": "shape",
    "subject": "sfx/hit_heavy_04.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.4 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 9.1 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
    "subject": "sfx/hit_heavy_04.wav",
-   "detail": "mean -0.00072"
+   "detail": "mean -0.00069"
   },
   {
    "status": "PASS",
@@ -5495,7 +5495,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "ui/zone_activate.wav",
-   "detail": "sample peak -6.51 dBFS (true peak -6.50)"
+   "detail": "sample peak -6.66 dBFS (true peak -6.65)"
   },
   {
    "status": "PASS",
@@ -5507,7 +5507,7 @@
    "status": "PASS",
    "check": "shape",
    "subject": "ui/zone_activate.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 15.1 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 18.4 ms"
   },
   {
    "status": "PASS",
@@ -5735,7 +5735,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "ui/score_warning_1.wav",
-   "detail": "sample peak -7.52 dBFS (true peak -7.49)"
+   "detail": "sample peak -6.39 dBFS (true peak -6.38)"
   },
   {
    "status": "PASS",
@@ -5747,13 +5747,13 @@
    "status": "PASS",
    "check": "shape",
    "subject": "ui/score_warning_1.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 19.1 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 15.3 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
    "subject": "ui/score_warning_1.wav",
-   "detail": "mean +0.00002"
+   "detail": "mean +0.00001"
   },
   {
    "status": "PASS",
@@ -5783,7 +5783,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "ui/score_warning_2.wav",
-   "detail": "sample peak -5.83 dBFS (true peak -5.79)"
+   "detail": "sample peak -5.43 dBFS (true peak -5.39)"
   },
   {
    "status": "PASS",
@@ -5795,13 +5795,13 @@
    "status": "PASS",
    "check": "shape",
    "subject": "ui/score_warning_2.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 13.7 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 19.3 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
    "subject": "ui/score_warning_2.wav",
-   "detail": "mean -0.00001"
+   "detail": "mean -0.00003"
   },
   {
    "status": "PASS",
@@ -5831,7 +5831,7 @@
    "status": "PASS",
    "check": "peak",
    "subject": "ui/score_warning_3.wav",
-   "detail": "sample peak -6.06 dBFS (true peak -6.01)"
+   "detail": "sample peak -5.93 dBFS (true peak -5.92)"
   },
   {
    "status": "PASS",
@@ -5843,13 +5843,13 @@
    "status": "PASS",
    "check": "shape",
    "subject": "ui/score_warning_3.wav",
-   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 14.9 ms"
+   "detail": "x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 13.2 ms"
   },
   {
    "status": "PASS",
    "check": "dc",
    "subject": "ui/score_warning_3.wav",
-   "detail": "mean -0.00003"
+   "detail": "mean -0.00004"
   },
   {
    "status": "PASS",
@@ -6830,10 +6830,10 @@
    "detail": "step at loop point 0.0112 vs max local step 0.0227; HF at seam +4.2 dB vs local median, isolated click: False; level delta 0.5 dB (<= 10)"
   },
   {
-   "status": "WARN",
+   "status": "PASS",
    "check": "clicks",
    "subject": "music/music_menu.ogg",
-   "detail": "isolated HF spikes at ms [0]"
+   "detail": "none"
   },
   {
    "status": "PASS",
@@ -7061,13 +7061,13 @@
    "status": "PASS",
    "check": "variation",
    "subject": "hit_light",
-   "detail": "5 variations, max normalised xcorr 0.861 (hit_light_03 vs hit_light_05)"
+   "detail": "5 variations, max normalised xcorr 0.791 (hit_light_02 vs hit_light_04)"
   },
   {
    "status": "PASS",
    "check": "variation",
    "subject": "hit_heavy",
-   "detail": "4 variations, max normalised xcorr 0.874 (hit_heavy_01 vs hit_heavy_04)"
+   "detail": "4 variations, max normalised xcorr 0.799 (hit_heavy_02 vs hit_heavy_04)"
   },
   {
    "status": "PASS",
@@ -8153,7 +8153,7 @@
    "status": "PASS",
    "check": "size",
    "subject": "total",
-   "detail": "14.44 MB (< 60 MB)"
+   "detail": "14.40 MB (< 60 MB)"
   }
  ]
 }

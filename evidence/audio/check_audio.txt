@@ -6,8 +6,8 @@ files per folder:
   amb       3 files     2.90 MB
   music     4 files     4.81 MB
   sfx     124 files     4.01 MB
-  ui       24 files     2.72 MB
-  total   155 files    14.44 MB
+  ui       24 files     2.67 MB
+  total   155 files    14.40 MB
 
 loops:
   amb/amb_harbor.ogg             60.000 s  loud-part RMS -28.15  peak  -9.91  side/mid  -2.6 dB   0.93 MB
@@ -23,14 +23,14 @@ essential cue signatures:
   guard_break      centroid     613 Hz  dominant band 355-710 Hz  dur(-30dB)  0.69 s  nearest: zone_contested (profile corr 0.81, centroid x1.30, duration x1.03)
   hit_heavy        centroid      74 Hz  dominant band 45-90 Hz  dur(-30dB)  0.31 s  nearest: hit_light (profile corr 0.69, centroid x1.94, duration x2.80)
   hit_light        centroid     143 Hz  dominant band 90-180 Hz  dur(-30dB)  0.11 s  nearest: guard_block (profile corr 0.84, centroid x4.25, duration x1.26)
-  knockout         centroid     529 Hz  dominant band 355-710 Hz  dur(-30dB)  1.43 s  nearest: zone_activate (profile corr 0.95, centroid x1.32, duration x1.11)
-  parry            centroid    1963 Hz  dominant band 1400-2800 Hz  dur(-30dB)  0.92 s  nearest: score_warning_3 (profile corr 0.36, centroid x1.24, duration x1.10)
-  score_warning_1  centroid     767 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.74 s  nearest: zone_contested (profile corr 0.75, centroid x1.04, duration x1.11)
-  score_warning_2  centroid    1019 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.86 s  nearest: zone_reveal (profile corr 0.91, centroid x1.15, duration x1.16)
-  score_warning_3  centroid    1579 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.84 s  nearest: score_warning_2 (profile corr 0.88, centroid x1.55, duration x1.02)
-  zone_activate    centroid     698 Hz  dominant band 710-1400 Hz  dur(-30dB)  1.59 s  nearest: knockout (profile corr 0.95, centroid x1.32, duration x1.11)
+  knockout         centroid     529 Hz  dominant band 355-710 Hz  dur(-30dB)  1.43 s  nearest: zone_activate (profile corr 0.95, centroid x1.30, duration x1.07)
+  parry            centroid    1963 Hz  dominant band 1400-2800 Hz  dur(-30dB)  0.92 s  nearest: score_warning_2 (profile corr 0.61, centroid x1.41, duration x1.44)
+  score_warning_1  centroid    1046 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.63 s  nearest: score_warning_2 (profile corr 0.79, centroid x1.33, duration x1.01)
+  score_warning_2  centroid    1389 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.64 s  nearest: score_warning_1 (profile corr 0.79, centroid x1.33, duration x1.01)
+  score_warning_3  centroid    1444 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.82 s  nearest: score_warning_2 (profile corr 0.78, centroid x1.04, duration x1.30)
+  zone_activate    centroid     687 Hz  dominant band 710-1400 Hz  dur(-30dB)  1.34 s  nearest: knockout (profile corr 0.95, centroid x1.30, duration x1.07)
   zone_ally        centroid     935 Hz  dominant band 710-1400 Hz  dur(-30dB)  1.13 s  nearest: zone_reveal (profile corr 0.87, centroid x1.06, duration x1.14)
-  zone_contested   centroid     798 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.67 s  nearest: score_warning_1 (profile corr 0.75, centroid x1.04, duration x1.11)
+  zone_contested   centroid     798 Hz  dominant band 710-1400 Hz  dur(-30dB)  0.67 s  nearest: guard_break (profile corr 0.81, centroid x1.30, duration x1.03)
   zone_enemy       centroid     358 Hz  dominant band 90-180 Hz  dur(-30dB)  1.25 s  nearest: knockout (profile corr 0.91, centroid x1.48, duration x1.14)
   zone_reveal      centroid     887 Hz  dominant band 355-710 Hz  dur(-30dB)  0.99 s  nearest: zone_ally (profile corr 0.87, centroid x1.06, duration x1.14)
 
@@ -442,31 +442,31 @@ PASS  dc         sfx/hit_light_01.wav                 mean -0.00206
 PASS  clicks     sfx/hit_light_01.wav                 none
 PASS  contract   sfx/hit_light_02.wav                 file exists
 PASS  format     sfx/hit_light_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_light_02.wav                 sample peak -3.73 dBFS (true peak -3.72)
+PASS  peak       sfx/hit_light_02.wav                 sample peak -3.48 dBFS (true peak -3.47)
 PASS  loudness   sfx/hit_light_02.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_light_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.1 ms
-PASS  dc         sfx/hit_light_02.wav                 mean -0.00153
+PASS  shape      sfx/hit_light_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.8 ms
+PASS  dc         sfx/hit_light_02.wav                 mean -0.00156
 PASS  clicks     sfx/hit_light_02.wav                 none
 PASS  contract   sfx/hit_light_03.wav                 file exists
 PASS  format     sfx/hit_light_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_light_03.wav                 sample peak -3.45 dBFS (true peak -3.42)
+PASS  peak       sfx/hit_light_03.wav                 sample peak -3.70 dBFS (true peak -3.70)
 PASS  loudness   sfx/hit_light_03.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_light_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.0 ms
-PASS  dc         sfx/hit_light_03.wav                 mean -0.00149
+PASS  shape      sfx/hit_light_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 5.9 ms
+PASS  dc         sfx/hit_light_03.wav                 mean -0.00145
 PASS  clicks     sfx/hit_light_03.wav                 none
 PASS  contract   sfx/hit_light_04.wav                 file exists
 PASS  format     sfx/hit_light_04.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_light_04.wav                 sample peak -2.43 dBFS (true peak -2.41)
+PASS  peak       sfx/hit_light_04.wav                 sample peak -2.40 dBFS (true peak -2.38)
 PASS  loudness   sfx/hit_light_04.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_light_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 5.3 ms
-PASS  dc         sfx/hit_light_04.wav                 mean -0.00202
+PASS  shape      sfx/hit_light_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.1 ms, tail below -60 dB 7.7 ms
+PASS  dc         sfx/hit_light_04.wav                 mean -0.00201
 PASS  clicks     sfx/hit_light_04.wav                 none
 PASS  contract   sfx/hit_light_05.wav                 file exists
 PASS  format     sfx/hit_light_05.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_light_05.wav                 sample peak -4.37 dBFS (true peak -4.36)
+PASS  peak       sfx/hit_light_05.wav                 sample peak -3.92 dBFS (true peak -3.89)
 PASS  loudness   sfx/hit_light_05.wav                 impact: loud-part RMS -15.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_light_05.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 4.8 ms
-PASS  dc         sfx/hit_light_05.wav                 mean -0.00170
+PASS  shape      sfx/hit_light_05.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.0 ms
+PASS  dc         sfx/hit_light_05.wav                 mean -0.00164
 PASS  clicks     sfx/hit_light_05.wav                 none
 PASS  cue_table  hit_heavy                            loudness category defined
 PASS  contract   sfx/hit_heavy_01.wav                 file exists
@@ -478,24 +478,24 @@ PASS  dc         sfx/hit_heavy_01.wav                 mean -0.00056
 PASS  clicks     sfx/hit_heavy_01.wav                 none
 PASS  contract   sfx/hit_heavy_02.wav                 file exists
 PASS  format     sfx/hit_heavy_02.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_heavy_02.wav                 sample peak -3.19 dBFS (true peak -3.09)
+PASS  peak       sfx/hit_heavy_02.wav                 sample peak -3.10 dBFS (true peak -3.08)
 PASS  loudness   sfx/hit_heavy_02.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_heavy_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.3 ms
+PASS  shape      sfx/hit_heavy_02.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 6.8 ms
 PASS  dc         sfx/hit_heavy_02.wav                 mean -0.00071
 PASS  clicks     sfx/hit_heavy_02.wav                 none
 PASS  contract   sfx/hit_heavy_03.wav                 file exists
 PASS  format     sfx/hit_heavy_03.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_heavy_03.wav                 sample peak -3.23 dBFS (true peak -3.12)
+PASS  peak       sfx/hit_heavy_03.wav                 sample peak -3.46 dBFS (true peak -3.37)
 PASS  loudness   sfx/hit_heavy_03.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_heavy_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.7 ms
-PASS  dc         sfx/hit_heavy_03.wav                 mean -0.00080
+PASS  shape      sfx/hit_heavy_03.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 8.0 ms
+PASS  dc         sfx/hit_heavy_03.wav                 mean -0.00082
 PASS  clicks     sfx/hit_heavy_03.wav                 none
 PASS  contract   sfx/hit_heavy_04.wav                 file exists
 PASS  format     sfx/hit_heavy_04.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       sfx/hit_heavy_04.wav                 sample peak -2.67 dBFS (true peak -2.64)
+PASS  peak       sfx/hit_heavy_04.wav                 sample peak -2.96 dBFS (true peak -2.95)
 PASS  loudness   sfx/hit_heavy_04.wav                 impact: loud-part RMS -13.00 dBFS vs target -14 +/-4
-PASS  shape      sfx/hit_heavy_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 7.4 ms
-PASS  dc         sfx/hit_heavy_04.wav                 mean -0.00072
+PASS  shape      sfx/hit_heavy_04.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.2 ms, tail below -60 dB 9.1 ms
+PASS  dc         sfx/hit_heavy_04.wav                 mean -0.00069
 PASS  clicks     sfx/hit_heavy_04.wav                 none
 PASS  cue_table  guard_block                          loudness category defined
 PASS  contract   sfx/guard_block_01.wav               file exists
@@ -948,9 +948,9 @@ PASS  clicks     sfx/spawn_protect_end_01.wav         none
 PASS  cue_table  zone_activate                        loudness category defined
 PASS  contract   ui/zone_activate.wav                 file exists
 PASS  format     ui/zone_activate.wav                 WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       ui/zone_activate.wav                 sample peak -6.51 dBFS (true peak -6.50)
+PASS  peak       ui/zone_activate.wav                 sample peak -6.66 dBFS (true peak -6.65)
 PASS  loudness   ui/zone_activate.wav                 ui: loud-part RMS -18.00 dBFS vs target -20 +/-4
-PASS  shape      ui/zone_activate.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 15.1 ms
+PASS  shape      ui/zone_activate.wav                 x[0]=0.00000 x[-1]=0.00000 lead-in 0.5 ms, tail below -60 dB 18.4 ms
 PASS  dc         ui/zone_activate.wav                 mean -0.00001
 PASS  clicks     ui/zone_activate.wav                 none
 PASS  cue_table  zone_reveal                          loudness category defined
@@ -988,26 +988,26 @@ PASS  clicks     ui/zone_contested.wav                none
 PASS  cue_table  score_warning_1                      loudness category defined
 PASS  contract   ui/score_warning_1.wav               file exists
 PASS  format     ui/score_warning_1.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       ui/score_warning_1.wav               sample peak -7.52 dBFS (true peak -7.49)
+PASS  peak       ui/score_warning_1.wav               sample peak -6.39 dBFS (true peak -6.38)
 PASS  loudness   ui/score_warning_1.wav               ui: loud-part RMS -19.00 dBFS vs target -20 +/-4
-PASS  shape      ui/score_warning_1.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 19.1 ms
-PASS  dc         ui/score_warning_1.wav               mean +0.00002
+PASS  shape      ui/score_warning_1.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 15.3 ms
+PASS  dc         ui/score_warning_1.wav               mean +0.00001
 PASS  clicks     ui/score_warning_1.wav               none
 PASS  cue_table  score_warning_2                      loudness category defined
 PASS  contract   ui/score_warning_2.wav               file exists
 PASS  format     ui/score_warning_2.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       ui/score_warning_2.wav               sample peak -5.83 dBFS (true peak -5.79)
+PASS  peak       ui/score_warning_2.wav               sample peak -5.43 dBFS (true peak -5.39)
 PASS  loudness   ui/score_warning_2.wav               ui: loud-part RMS -18.50 dBFS vs target -20 +/-4
-PASS  shape      ui/score_warning_2.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 13.7 ms
-PASS  dc         ui/score_warning_2.wav               mean -0.00001
+PASS  shape      ui/score_warning_2.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 19.3 ms
+PASS  dc         ui/score_warning_2.wav               mean -0.00003
 PASS  clicks     ui/score_warning_2.wav               none
 PASS  cue_table  score_warning_3                      loudness category defined
 PASS  contract   ui/score_warning_3.wav               file exists
 PASS  format     ui/score_warning_3.wav               WAV/PCM_16 44100 Hz 1 ch (want WAV/PCM_16 44100 Hz 1 ch)
-PASS  peak       ui/score_warning_3.wav               sample peak -6.06 dBFS (true peak -6.01)
+PASS  peak       ui/score_warning_3.wav               sample peak -5.93 dBFS (true peak -5.92)
 PASS  loudness   ui/score_warning_3.wav               ui: loud-part RMS -18.00 dBFS vs target -20 +/-4
-PASS  shape      ui/score_warning_3.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.4 ms, tail below -60 dB 14.9 ms
-PASS  dc         ui/score_warning_3.wav               mean -0.00003
+PASS  shape      ui/score_warning_3.wav               x[0]=0.00000 x[-1]=0.00000 lead-in 0.3 ms, tail below -60 dB 13.2 ms
+PASS  dc         ui/score_warning_3.wav               mean -0.00004
 PASS  clicks     ui/score_warning_3.wav               none
 PASS  cue_table  countdown_tick                       loudness category defined
 PASS  contract   ui/countdown_tick.wav                file exists
@@ -1171,7 +1171,7 @@ PASS  peak       music/music_menu.ogg                 sample peak -7.97 dBFS (tr
 PASS  loudness   music/music_menu.ogg                 music: loud-part RMS -22.02 dBFS vs target -22 +/-4
 PASS  duration   music/music_menu.ogg                 85.333 s within [60, 90] s
 PASS  seam       music/music_menu.ogg                 step at loop point 0.0112 vs max local step 0.0227; HF at seam +4.2 dB vs local median, isolated click: False; level delta 0.5 dB (<= 10)
-WARN  clicks     music/music_menu.ogg                 isolated HF spikes at ms [0]
+PASS  clicks     music/music_menu.ogg                 none
 PASS  cue_table  music_select                         loudness category defined
 PASS  contract   music/music_select.ogg               file exists
 PASS  format     music/music_select.ogg               OGG/VORBIS 44100 Hz 2 ch (want OGG/VORBIS 44100 Hz 2 ch)
@@ -1209,8 +1209,8 @@ PASS  variation  dodge                                4 variations, max normalis
 PASS  variation  swing_light                          5 variations, max normalised xcorr 0.185 (swing_light_02 vs swing_light_05)
 PASS  variation  swing_heavy                          3 variations, max normalised xcorr 0.136 (swing_heavy_01 vs swing_heavy_02)
 PASS  variation  kick_whoosh                          4 variations, max normalised xcorr 0.169 (kick_whoosh_02 vs kick_whoosh_04)
-PASS  variation  hit_light                            5 variations, max normalised xcorr 0.861 (hit_light_03 vs hit_light_05)
-PASS  variation  hit_heavy                            4 variations, max normalised xcorr 0.874 (hit_heavy_01 vs hit_heavy_04)
+PASS  variation  hit_light                            5 variations, max normalised xcorr 0.791 (hit_light_02 vs hit_light_04)
+PASS  variation  hit_heavy                            4 variations, max normalised xcorr 0.799 (hit_heavy_02 vs hit_heavy_04)
 PASS  variation  guard_block                          5 variations, max normalised xcorr 0.525 (guard_block_03 vs guard_block_05)
 PASS  variation  guard_break                          2 variations, max normalised xcorr 0.293 (guard_break_01 vs guard_break_02)
 PASS  variation  parry                                2 variations, max normalised xcorr 0.014 (parry_01 vs parry_02)
@@ -1391,7 +1391,7 @@ PASS  manifest   music_results                        bus=Music vol=+0.0 pitch_r
 PASS  manifest   no unknown cues                      none
 PASS  manifest   every listed file exists             155 files
 PASS  manifest   every file on disk is listed         155 audio files on disk, all listed
-PASS  size       total                                14.44 MB (< 60 MB)
+PASS  size       total                                14.40 MB (< 60 MB)
 
-SUMMARY: 1357 PASS, 0 FAIL, 1 WARN
+SUMMARY: 1358 PASS, 0 FAIL, 0 WARN
 RESULT: PASS

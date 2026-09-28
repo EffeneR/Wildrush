@@ -119,6 +119,42 @@ func to_dict() -> Dictionary:
 	}
 
 
+const PACK_KEYS: Array[String] = ["alive", "hp", "st", "lsp", "lof", "ldm", "yaw", "gr", "air", "coy", "lsu", "alu", "jmp",
+	"kv", "kl", "act", "at", "ae", "ap", "apt", "ad", "ahd", "app", "afn", "aoy", "g", "gt", "geu", "c", "ct", "cl", "cb", "cr",
+	"chc", "chl", "cd", "pb", "bb", "bt", "bm", "ko", "ra", "sp", "pu", "lhb", "lht", "seq"]
+
+
+func to_packed() -> PackedByteArray:
+	## Compact reconciliation payload: fixed key order (no key strings) + deflate.
+	var d: Dictionary = to_dict()
+	var arr: Array = []
+	for k in PACK_KEYS:
+		arr.append(d[k])
+	var raw: PackedByteArray = var_to_bytes(arr)
+	var comp: PackedByteArray = raw.compress(FileAccess.COMPRESSION_DEFLATE)
+	var out := PackedByteArray()
+	out.resize(4)
+	out.encode_u32(0, raw.size())
+	out.append_array(comp)
+	return out
+
+
+static func unpack_dict(data: PackedByteArray) -> Dictionary:
+	if data.size() < 5:
+		return {}
+	var raw_size: int = data.decode_u32(0)
+	if raw_size <= 0 or raw_size > 65536:
+		return {}
+	var raw: PackedByteArray = data.slice(4).decompress(raw_size, FileAccess.COMPRESSION_DEFLATE)
+	var v: Variant = bytes_to_var(raw)
+	if typeof(v) != TYPE_ARRAY or (v as Array).size() != PACK_KEYS.size():
+		return {}
+	var d: Dictionary = {}
+	for i in range(PACK_KEYS.size()):
+		d[PACK_KEYS[i]] = v[i]
+	return d
+
+
 func from_dict(d: Dictionary, def: FighterDef) -> void:
 	alive = bool(d["alive"])
 	health = float(d["hp"])

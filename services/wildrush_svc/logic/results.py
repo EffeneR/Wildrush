@@ -31,7 +31,7 @@ from ..models import (
     MatchResult,
     Rating,
 )
-from ..schemas import ResultReq
+from ..schemas import ResultPlayer, ResultReq
 from .allocation import lock_match
 
 log = logging.getLogger("wildrush_svc.results")
@@ -49,8 +49,8 @@ def _validate(body: ResultReq, mode: str, participants: list[MatchParticipant]) 
     ids = [p.account_id for p in body.players]
     if len(set(ids)) != len(ids):
         raise unprocessable("invalid_result", "Duplicate account_id in players")
-    humans = defaultdict(int)
-    bots = defaultdict(int)
+    humans: defaultdict[int, int] = defaultdict(int)
+    bots: defaultdict[int, int] = defaultdict(int)
     fighters: dict[int, list[str]] = defaultdict(list)
     for p in body.players:
         humans[p.team] += 1
@@ -70,11 +70,8 @@ def _validate(body: ResultReq, mode: str, participants: list[MatchParticipant]) 
             raise unprocessable("invalid_result", f"{p.account_id} is not a player of this match")
         if mode in ("casual", "ranked") and part.team != p.team:
             raise unprocessable("invalid_result", f"{p.account_id} was assigned to team {part.team}")
-    if mode == "ranked":
-        if set(ids) != set(players_by_id) or len(ids) != 10:
-            raise unprocessable("invalid_result", "Ranked results must list all 10 matched players")
-        if humans[0] != 5 or humans[1] != 5:
-            raise unprocessable("invalid_result", "Ranked results need 5 players per team")
+    # Ranked players the server never saw (no ticket redeemed) may be omitted: submit()
+    # rates them as abandoned. The game server cannot know their account ids.
 
 
 def submit(
@@ -103,42 +100,51 @@ def submit(
     _validate(body, match.mode, participants)
 
     account_ids = sorted({p.account_id for p in body.players})
+    listed: dict[uuid.UUID, ResultPlayer] = {p.account_id: p for p in body.players}
+    roster = sorted((p for p in participants if p.role == "player"), key=lambda p: str(p.account_id))
+    # Ranked: matched players missing from the result never joined -> abandoned.
+    missing = [p for p in roster if p.account_id not in listed] if match.mode == "ranked" else []
     rating_changes: dict[str, dict[str, float]] = {}
     new_ratings: dict[uuid.UUID, tuple[float, float]] = {}
 
     if match.mode == "ranked":
-        # Lock rating rows in a stable order (no deadlocks between concurrent results).
-        rows = {
-            r.account_id: r
-            for r in db.scalars(
-                select(Rating).where(Rating.account_id.in_(account_ids)).order_by(Rating.account_id).with_for_update()
-            ).all()
-        }
-        teams: dict[int, list] = {0: [], 1: []}
-        for p in body.players:
-            teams[p.team].append(p)
-        pre = {
-            t: [glicko.Glicko(rows[p.account_id].rating, rows[p.account_id].deviation, rows[p.account_id].volatility) for p in teams[t]]
-            for t in (0, 1)
-        }
-        forced = [(t, i) for t in (0, 1) for i, p in enumerate(teams[t]) if p.abandoned]
-        post = glicko.team_match_updates(pre[0], pre[1], body.winner_team, forced)
-        for t in (0, 1):
-            for i, p in enumerate(teams[t]):
-                row = rows[p.account_id]
-                before = row.rating
-                new = post[t][i]
-                row.rating = new.rating
-                row.deviation = new.deviation
-                row.volatility = new.volatility
-                row.games += 1
-                if t == body.winner_team and not p.abandoned:
-                    row.wins += 1
-                else:
-                    row.losses += 1
-                row.updated_at = now
-                new_ratings[p.account_id] = (before, new.rating)
-                rating_changes[str(p.account_id)] = {"before": round(before, 2), "after": round(new.rating, 2)}
+        teams: dict[int, list[tuple[uuid.UUID, bool]]] = {0: [], 1: []}
+        for part in roster:
+            entry = listed.get(part.account_id)
+            teams[part.team].append((part.account_id, entry.abandoned if entry else True))
+        if teams[0] and teams[1]:
+            # Lock rating rows in a stable order (no deadlocks between concurrent results).
+            rows = {
+                r.account_id: r
+                for r in db.scalars(
+                    select(Rating)
+                    .where(Rating.account_id.in_([p.account_id for p in roster]))
+                    .order_by(Rating.account_id)
+                    .with_for_update()
+                ).all()
+            }
+            pre = {
+                t: [glicko.Glicko(rows[a].rating, rows[a].deviation, rows[a].volatility) for a, _ in teams[t]]
+                for t in (0, 1)
+            }
+            forced = [(t, i) for t in (0, 1) for i, (_, abandoned) in enumerate(teams[t]) if abandoned]
+            post = glicko.team_match_updates(pre[0], pre[1], body.winner_team, forced)
+            for t in (0, 1):
+                for i, (aid, abandoned) in enumerate(teams[t]):
+                    row = rows[aid]
+                    before = row.rating
+                    new = post[t][i]
+                    row.rating = new.rating
+                    row.deviation = new.deviation
+                    row.volatility = new.volatility
+                    row.games += 1
+                    if t == body.winner_team and not abandoned:
+                        row.wins += 1
+                    else:
+                        row.losses += 1
+                    row.updated_at = now
+                    new_ratings[aid] = (before, new.rating)
+                    rating_changes[str(aid)] = {"before": round(before, 2), "after": round(new.rating, 2)}
 
     # Mastery XP (all modes; private x0.5), badge unlocks and history rows.
     mastery_rows = {
@@ -162,10 +168,10 @@ def submit(
             abandoned=p.abandoned,
             afk=p.afk,
         )
-        row = mastery_rows[(p.account_id, p.fighter)]
-        old_level = level_for_xp(row.xp)
-        row.xp += gained
-        new_level = level_for_xp(row.xp)
+        mastery_row = mastery_rows[(p.account_id, p.fighter)]
+        old_level = level_for_xp(mastery_row.xp)
+        mastery_row.xp += gained
+        new_level = level_for_xp(mastery_row.xp)
         unlocks = [
             f"{p.fighter}_{tier}" for tier, lvl in BADGE_TIERS.items() if old_level < lvl <= new_level
         ]
@@ -179,7 +185,7 @@ def submit(
         mastery_changes[str(p.account_id)] = {
             "fighter": p.fighter,
             "xp_gained": gained,
-            "xp": row.xp,
+            "xp": mastery_row.xp,
             "level": new_level,
             "badges_unlocked": unlocks,
         }
@@ -199,6 +205,28 @@ def submit(
                 abandoned=p.abandoned,
                 afk=p.afk,
                 xp_gained=gained,
+                rating_before=before_after[0] if before_after else None,
+                rating_after=before_after[1] if before_after else None,
+                ended_at=now,
+            )
+        )
+    for part in missing:  # history rows for ranked no-shows (rated as abandoned, no XP)
+        before_after = new_ratings.get(part.account_id)
+        db.add(
+            MatchPlayerResult(
+                match_id=match_id,
+                account_id=part.account_id,
+                mode=match.mode,
+                team=part.team,
+                fighter=None,
+                won=False,
+                kos=0,
+                knocked_out=0,
+                damage_dealt=0.0,
+                control_seconds=0.0,
+                abandoned=True,
+                afk=False,
+                xp_gained=0,
                 rating_before=before_after[0] if before_after else None,
                 rating_after=before_after[1] if before_after else None,
                 ended_at=now,

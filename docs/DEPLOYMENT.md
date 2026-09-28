@@ -37,7 +37,9 @@ services/scripts/dev_down.sh
 State lives in `.run/` (git-ignored): `.run/pg` (cluster, owned by the `postgres` user when
 the script runs as root), `.run/dev.env` (0600, random DB password), `.run/service.{log,pid}`,
 `.run/allocator/` (dev server secret, agent log, per-match logs). The dev allocator uses
-server id `dev-local`, region `local`, public host `127.0.0.1`, UDP 24610–24699 on loopback.
+server id `dev-local`, region `local`, public host `127.0.0.1` (clients connect via
+loopback), UDP 24610–24699. The allocator's fixed command line has no bind-address
+argument: the game server chooses its bind address (bind 127.0.0.1 in local-only setups).
 
 ## 2. Native production (Linux host)
 

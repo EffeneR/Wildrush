@@ -45,6 +45,7 @@ var visual_offset: Vector3 = Vector3.ZERO
 var correction_stats: Dictionary = {"reconciles": 0, "max_error_m": 0.0, "sum_error_m": 0.0, "snaps": 0, "late_snaps": 0}
 var results: Dictionary = {}
 var reconnect_token: String = ""
+var live: bool = false                 # welcomed by the server: it has admitted us, inputs may flow
 var host: String = ""
 var port: int = 0
 
@@ -53,7 +54,9 @@ func _ready() -> void:
 	Net.client_handler = self
 	Net.client_connected.connect(func() -> void: _set_status("connected", ""))
 	Net.client_failed.connect(func(r: String) -> void: _set_status("failed", r))
-	Net.client_disconnected.connect(func() -> void: _set_status("disconnected", ""))
+	Net.client_disconnected.connect(func() -> void:
+		live = false
+		_set_status("disconnected", ""))
 
 
 func _set_status(s: String, detail: String) -> void:
@@ -69,13 +72,15 @@ func connect_to(p_host: String, p_port: int, auth: Dictionary) -> int:
 	a["build"] = WR.BUILD_ID
 	if reconnect_token != "":
 		a["reconnect"] = reconnect_token
+	live = false
 	_set_status("connecting", "%s:%d" % [p_host, p_port])
 	return Net.start_client(p_host, p_port, a)
 
 
 func leave() -> void:
-	if Net.role == "client":
+	if Net.role == "client" and live:
 		Net.send_msg({"t": "leave"})
+	live = false
 	Net.close()
 	_teardown_world()
 	_set_status("idle", "")
@@ -92,6 +97,9 @@ func on_auth_reply(d: Dictionary) -> void:
 func on_server_msg(d: Dictionary) -> void:
 	match String(d.get("t", "")):
 		"welcome":
+			# The server sends this only after admitting us, so from here unreliable inputs can no
+			# longer overtake the reliable authentication-complete notification (D-013).
+			live = true
 			info.merge(d, true)
 			observer = bool(d.get("observer", false))
 			reconnect_token = String(d.get("token", reconnect_token))
@@ -232,7 +240,8 @@ func _physics_process(_delta: float) -> void:
 	sent_history.append(inp)
 	while sent_history.size() > Protocol.INPUT_REDUNDANCY:
 		sent_history.pop_front()
-	Net.send_inputs(sent_history)
+	if live:
+		Net.send_inputs(sent_history)
 	pred_tick += 1
 	pctx.tick = pred_tick
 	pctx.events = []
@@ -371,7 +380,8 @@ func _flush_events() -> void:
 # requests (lobby / match)
 # ------------------------------------------------------------------------------------------
 func request(d: Dictionary) -> void:
-	Net.send_msg(d)
+	if live:
+		Net.send_msg(d)
 
 
 func local_view_state() -> Dictionary:

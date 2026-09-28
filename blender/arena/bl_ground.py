@@ -226,22 +226,22 @@ class Ground:
         fid = f["id"]
         if fid == "plaza_b":
             for a in (-13.0, 13.0):
-                out.append((Rect(a - 0.2, a + 0.2, -13.2, 13.2), "stone_trim"))
-                out.append((Rect(-13.2, 13.2, a - 0.2, a + 0.2), "stone_trim"))
+                out.append((Rect(a - 0.2, a + 0.2, -13.2, 13.2), "paving_cobble"))
+                out.append((Rect(-13.2, 13.2, a - 0.2, a + 0.2), "paving_cobble"))
             for a in (-19.0, 19.0):
-                out.append((Rect(a - 0.2, a + 0.2, -19.5, 19.5), "stone_trim"))
-            out.append((Rect(-0.2, 0.2, -20.0, -13.2), "stone_trim"))
-            out.append((Rect(-0.2, 0.2, 13.2, 20.0), "stone_trim"))
+                out.append((Rect(a - 0.2, a + 0.2, -19.5, 19.5), "paving_cobble"))
+            out.append((Rect(-0.2, 0.2, -20.0, -13.2), "paving_cobble"))
+            out.append((Rect(-0.2, 0.2, 13.2, 20.0), "paving_cobble"))
         elif fid == "deck_a":
             for z in (-12.5, 12.5):
-                out.append((Rect(-50.5, -34.5, z - 0.2, z + 0.2), "stone_trim"))
+                out.append((Rect(-50.5, -34.5, z - 0.2, z + 0.2), "paving_cobble"))
             for x in (-50.5, -34.5):
-                out.append((Rect(x - 0.2, x + 0.2, -12.5, 12.5), "stone_trim"))
-            out.append((Rect(-50.3, -34.7, -0.2, 0.2), "stone_trim"))
+                out.append((Rect(x - 0.2, x + 0.2, -12.5, 12.5), "paving_cobble"))
+            out.append((Rect(-50.3, -34.7, -0.2, 0.2), "paving_cobble"))
         elif fid == "spawn_plaza" or fid == "spawn_plaza_s":
             zc = -49.0 if fid == "spawn_plaza" else 49.0
-            out.append((Rect(-10.0, 10.0, zc - 0.2, zc + 0.2), "stone_trim"))
-            out.append((Rect(-0.2, 0.2, min(zc, zc * 0.86), max(zc, zc * 0.86)), "stone_trim"))
+            out.append((Rect(-10.0, 10.0, zc - 0.2, zc + 0.2), "paving_cobble"))
+            out.append((Rect(-0.2, 0.2, min(zc, zc * 0.86), max(zc, zc * 0.86)), "paving_cobble"))
         elif fid in ("north_row", "north_row_s"):
             # central drainage channel of setts running along the street
             zc = -37.0 if fid == "north_row" else 37.0

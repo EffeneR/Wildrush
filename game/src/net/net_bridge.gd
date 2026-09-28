@@ -20,6 +20,7 @@ var role: String = ""                 # "" | "server" | "client"
 var server_handler: Object = null
 var client_handler: Object = null
 var auth_payload: Dictionary = {}
+var admitted: bool = false            # client: the server admitted us (authentication done on both sides)
 var stats: Dictionary = {"in_bytes": 0, "out_bytes": 0, "in_packets": 0, "out_packets": 0, "dropped": 0}
 var _rate: Dictionary = {}            # peer -> {"sec": int, "inp": int, "msg": int}
 
@@ -68,6 +69,7 @@ func _setup_smp(server: bool) -> void:
 		smp.connection_failed.connect(func() -> void: client_failed.emit("connection failed"))
 		smp.server_disconnected.connect(func() -> void:
 			role = ""
+			admitted = false
 			client_disconnected.emit())
 
 
@@ -79,6 +81,7 @@ func close() -> void:
 		smp.multiplayer_peer = null
 	smp = null
 	role = ""
+	admitted = false
 	_rate.clear()
 
 
@@ -160,6 +163,7 @@ func _on_auth_failed(id: int) -> void:
 
 func _on_peer_connected(id: int) -> void:
 	if role == "client" and id == 1:
+		admitted = true
 		client_connected.emit()
 	elif role == "server":
 		peer_joined.emit(id)
@@ -247,7 +251,7 @@ func s_msg(data: PackedByteArray) -> void:
 # senders
 # ------------------------------------------------------------------------------------------
 func send_inputs(frames: Array) -> void:
-	if role != "client" or smp == null:
+	if role != "client" or smp == null or not admitted:
 		return
 	var data: PackedByteArray = Protocol.encode_inputs(frames)
 	_count_out(data)
@@ -255,7 +259,7 @@ func send_inputs(frames: Array) -> void:
 
 
 func send_msg(d: Dictionary) -> void:
-	if role != "client" or smp == null:
+	if role != "client" or smp == null or not admitted:
 		return
 	var data: PackedByteArray = Protocol.pack(d)
 	_count_out(data)
@@ -264,24 +268,32 @@ func send_msg(d: Dictionary) -> void:
 
 func send_raw_msg(data: PackedByteArray) -> void:
 	## Test hook: sends arbitrary bytes on the message channel (used by security tests).
-	if role == "client" and smp != null:
+	if role == "client" and smp != null and admitted:
 		c_msg.rpc_id(1, data)
 
 
 func send_raw_input(data: PackedByteArray) -> void:
-	if role == "client" and smp != null:
+	if role == "client" and smp != null and admitted:
 		c_input.rpc_id(1, data)
 
 
+func _peer_ok(id: int) -> bool:
+	## True only while the ENet peer is fully connected (disconnect signals can lag behind).
+	if peer == null:
+		return false
+	var pp: ENetPacketPeer = peer.get_peer(id)
+	return pp != null and pp.get_state() == ENetPacketPeer.STATE_CONNECTED
+
+
 func send_snapshot(id: int, data: PackedByteArray) -> void:
-	if role != "server" or smp == null:
+	if role != "server" or smp == null or not _peer_ok(id):
 		return
 	_count_out(data)
 	s_snapshot.rpc_id(id, data)
 
 
 func send_to(id: int, d: Dictionary) -> void:
-	if role != "server" or smp == null:
+	if role != "server" or smp == null or not _peer_ok(id):
 		return
 	var data: PackedByteArray = var_to_bytes(d)
 	_count_out(data)

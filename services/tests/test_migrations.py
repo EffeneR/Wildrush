@@ -74,7 +74,7 @@ def test_app_never_creates_tables(migrated_url):
 
 def test_migration_files_are_plain_python():
     versions = sorted((SERVICES_DIR / "alembic" / "versions").glob("*.py"))
-    assert [p.name for p in versions] == ["0001_initial_schema.py"]
+    assert [p.name for p in versions] == ["0001_initial_schema.py", "0002_nullable_history_fighter.py"]
     # no credentials in alembic.ini: the URL comes from WR_DATABASE_URL at runtime
     ini_lines = Path(SERVICES_DIR / "alembic.ini").read_text().splitlines()
     assert not any(line.strip().startswith("sqlalchemy.url") for line in ini_lines)

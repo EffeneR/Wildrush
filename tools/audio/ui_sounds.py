@@ -1,12 +1,12 @@
 """WILDRUSH UI / announcer cues (mono, 2D). Musical, crisp and short; the match-state cues are
 designed to be mutually distinct:
 
-  zone_activate   brassy open-fifth horn swell (D4/A4/D5), ~1.4 s
+  zone_activate   brassy open-fifth horn swell (D4/A4/D5), ~1.9 s incl. tail
   zone_reveal     soft ascending 2-note marimba chime (E5 -> B5)
   zone_ally       bright ascending major arpeggio (C) + warm pad  -> positive
   zone_enemy      low tritone/minor-9th brass stab bending down    -> tense
   zone_contested  6 fast alternating square-wave pulses A5/F5      -> pulsing alert
-  score_warning_n bell motif with 2 / 3 / 4 rising notes, faster and brighter per level
+  score_warning_n repeated same-pitch 'ding' x2 / x3 / x4 (G5 / A5 / B5), faster per level
 """
 from __future__ import annotations
 
@@ -54,10 +54,10 @@ def blip(f, dur, tau, harm=0.15, attack=0.001):
 # --------------------------------------------------------------------------- zone / score (essential)
 @cue("zone_activate")
 def zone_activate(v, rng):
-    out = mk(2.2)
-    put(out, brass([hz("D4"), hz("A4"), hz("D5")], 1.0, rng, attack=0.08, release=0.45,
+    out = mk(1.8)
+    put(out, brass([hz("D4"), hz("A4"), hz("D5")], 0.8, rng, attack=0.07, release=0.35,
                    bright=(500.0, 3200.0, 1800.0)), 0.0, 0)
-    put(out, timpani(rng, hz("D2"), 1.2), 0.0, -8)
+    put(out, timpani(rng, hz("D2"), 1.1), 0.0, -8)
     put(out, bell(hz("A5"), 1.2, tau=0.5, bright=0.6), 0.02, -16)
     return verb(out, 1.4, 0.22, "zone_act")
 
@@ -111,24 +111,28 @@ def zone_contested(v, rng):
 
 
 def _score_warning(level, rng):
-    notes = [["C5", "G5"], ["D5", "A5", "D6"], ["E5", "B5", "E6", "B6"]][level - 1]
-    step = [0.17, 0.13, 0.1][level - 1]
-    bright = [0.4, 0.8, 1.2][level - 1]
+    """Escalating score warning: a repeated same-pitch 'ding' (a gesture no other cue uses -
+    zone_reveal / knockout are two-note intervals, zone_contested alternates two square pulses).
+    Level 1/2/3 = 2/3/4 dings, G5/A5/B5, faster and brighter, with a low pulse from level 2."""
+    note = hz(["G5", "A5", "B5"][level - 1])
+    count = level + 1
+    step = [0.16, 0.13, 0.105][level - 1]
+    bright = [0.9, 1.3, 1.8][level - 1]
     out = mk(1.8)
-    for k, note in enumerate(notes):
-        n = ns(0.6)
+    for k in range(count):
+        n = ns(0.5)
         t = tvec(n)
-        tone = fm_tone(hz(note), n, 3.0, (0.4 + bright) * np.exp(-t / 0.05)) * env_ad(n, 0.002, 0.22)
-        tone += 0.5 * osc_tri(hz(note), n) * env_ad(n, 0.002, 0.18)
-        put(out, nrm(fade_edges(tone, 0.0, 0.1)), step * k, -1.0 * (k != len(notes) - 1))
+        tone = fm_tone(note, n, 3.0, bright * np.exp(-t / 0.06)) * env_ad(n, 0.0015, 0.16)
+        tone += 0.6 * osc_tri(note, n) * env_ad(n, 0.0015, 0.12)
+        tone += 0.25 * osc_sine(2 * note, n) * env_ad(n, 0.001, 0.05)
+        put(out, nrm(fade_edges(tone, 0.0, 0.1)), step * k, 0.0 if k == count - 1 else -1.5)
         if level >= 2:
             m = ns(0.12)
-            low = osc_sine(hz(notes[0]) / 4, m) * env_ad(m, 0.002, 0.04)
-            put(out, nrm(low), step * k, -9)
+            put(out, nrm(osc_sine(note / 4, m) * env_ad(m, 0.002, 0.05)), step * k, -9)
     if level == 3:
         n = ns(0.55)
         t = tvec(n)
-        sus = osc_tri(hz("B6"), n) * (0.6 + 0.4 * np.sin(TWO_PI * 12 * t)) * env_pts(n, [(0, 0), (0.02, 1), (0.55, 0)])
+        sus = osc_tri(note, n) * (0.6 + 0.4 * np.sin(TWO_PI * 12 * t)) * env_pts(n, [(0, 0), (0.02, 1), (0.55, 0)])
         put(out, nrm(sus), step * 3 + 0.05, -8)
         put(out, taiko(rng, 80.0, 0.6), 0.0, -8)
     return verb(out, 0.9, 0.15, f"sw{level}")

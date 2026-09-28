@@ -128,7 +128,7 @@ def test_ranked_with_bots_rejected(client, app):
 @pytest.mark.parametrize(
     "mutate",
     [
-        lambda b: b["players"].pop(),                                     # ranked must list all 10
+        lambda b: b["players"].append(dict(b["players"][0])),             # same player twice
         lambda b: b["players"][0].update(team=1 - b["players"][0]["team"]),  # wrong team
         lambda b: b["players"][1].update(fighter=b["players"][0]["fighter"]),  # species twice
         lambda b: b["players"][0].update(account_id="00000000-0000-4000-8000-000000000009"),
@@ -243,3 +243,47 @@ def test_history_pagination_and_privacy(client, app, clock):
     stranger = make_account(app, "Stranger")
     assert client.get(f"/v1/matches/{match_ids[0]}", headers=stranger.headers).status_code == 404
     assert client.get("/v1/matches/history", headers=stranger.headers).json() == []
+
+
+def test_ranked_players_missing_from_result_are_rated_as_abandoned(client, app):
+    srv, players, match_id, teams = ranked_setup(client, app, prefix="ns")
+    no_shows = [teams[0][4], teams[1][4]]  # never connected: the server cannot list them
+    present = {0: teams[0][:4], 1: teams[1][:4]}
+    body = result_body(match_id, present, winner=0)
+    r = submit(client, app, srv, match_id, body)
+    assert r.status_code == 200, r.text
+    out = r.json()
+    assert set(out["rating_changes"]) == {str(p.id) for p in players}  # all 10 rated
+    for p in no_shows:
+        assert out["rating_changes"][str(p.id)]["after"] < 1500.0  # a loss, even on the winning team
+        assert str(p.id) not in out["mastery_changes"]
+    for p in present[0]:
+        assert out["rating_changes"][str(p.id)]["after"] > 1500.0
+    with ctx_of(app).tx() as db:
+        for p in no_shows:
+            row = db.get(Rating, p.id)
+            assert (row.games, row.wins, row.losses) == (1, 0, 1)
+    hist = client.get("/v1/matches/history", headers=no_shows[0].headers).json()
+    assert hist[0]["match_id"] == match_id and hist[0]["fighter"] is None
+    assert hist[0]["won"] is False and hist[0]["xp_gained"] == 0 and hist[0]["rating_delta"] < 0
+    again = submit(client, app, srv, match_id, body)
+    assert again.status_code == 200 and again.json()["idempotent"] is True
+    assert db_snapshot(app, [p.id for p in players])[2] == 10  # 8 listed + 2 no-show history rows
+
+
+def test_godot_style_integral_floats_are_accepted_and_canonical(client, app):
+    # Godot's JSON parser turns every number into a float; 4.0 must be as good as 4.
+    srv, players, match_id, teams = ranked_setup(client, app, prefix="gf")
+    body = result_body(match_id, teams)
+    floaty = copy.deepcopy(body)
+    floaty["winner_team"] = 0.0
+    floaty["score"] = [250.0, 173.0]
+    for p in floaty["players"]:
+        p.update(team=float(p["team"]), kos=float(p["kos"]), knocked_out=float(p["knocked_out"]))
+    r = submit(client, app, srv, match_id, floaty)
+    assert r.status_code == 200 and r.json()["applied"] is True, r.text
+    r2 = submit(client, app, srv, match_id, body)  # same values as ints -> same canonical body
+    assert r2.status_code == 200 and r2.json()["idempotent"] is True
+    bad = copy.deepcopy(body)
+    bad["players"][0]["kos"] = 4.5
+    assert submit(client, app, srv, match_id, bad).status_code == 422

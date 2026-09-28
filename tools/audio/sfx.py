@@ -354,13 +354,14 @@ def grab(v, rng):
 # --------------------------------------------------------------------------- hits / defence (essential)
 @cue("hit_light")
 def hit_light(v, rng):
-    p = pick(v, [1.0, 0.93, 1.07, 0.97, 1.1])
+    p = pick(v, [1.0, 0.9, 1.12, 0.95, 1.06])
+    tau = pick(v, [0.03, 0.026, 0.034, 0.028, 0.032])
     out = mk(0.2)
-    put(out, thud(rng, 0.16, 230 * p, 125 * p, 0.008, 0.03, attack=0.0008, noise=0.5, noise_lp=900), 0.0, 0)
+    put(out, thud(rng, 0.16, 230 * p, 125 * p, 0.008, tau, attack=0.0008, noise=0.5, noise_lp=900), 0.0, 0)
     n = ns(0.05)
     pap = bp(white(n, rng), 450, 1300, 2) * env_ad(n, 0.0003, 0.009)
-    put(out, nrm(pap), 0.0, -5)
-    put(out, snap(rng, 0.03, pick(v, [3200, 2800, 3600, 3000, 3400]), tau=0.0025, bw_oct=1.0), 0.001, -6)
+    put(out, nrm(pap), 0.0, pick(v, [-5, -4, -6, -5, -3]))
+    put(out, snap(rng, 0.03, pick(v, [3200, 2700, 3800, 3000, 3500]), tau=0.0025, bw_oct=1.0), 0.001, -6)
     exc = np.zeros(ns(0.05))
     exc[0] = 1.0
     put(out, nrm(resonator(exc, pick(v, [1900, 2100, 1750, 2000, 2250]), 0.006)), 0.001, -12)
@@ -369,10 +370,11 @@ def hit_light(v, rng):
 
 @cue("hit_heavy")
 def hit_heavy(v, rng):
-    p = pick(v, [1.0, 0.92, 1.06, 0.97])
-    q = pick(v, [1.0, 1.08, 0.94, 1.03])
+    p = pick(v, [1.0, 0.9, 1.08, 0.95])
+    q = pick(v, [1.0, 1.1, 0.92, 1.05])
+    tau = pick(v, [0.085, 0.095, 0.075, 0.09])
     out = mk(0.36)
-    put(out, thud(rng, 0.34, 150 * p, 52 * p, 0.028, 0.085, attack=0.001, noise=0.45, noise_lp=380, drive=2.0), 0.0)
+    put(out, thud(rng, 0.34, 150 * p, 52 * p, 0.028, tau, attack=0.001, noise=0.45, noise_lp=380, drive=2.0), 0.0)
     n = ns(0.1)
     put(out, nrm(bp(white(n, rng), 250, 800, 2) * env_ad(n, 0.0005, 0.022)), 0.0, -7)
     crack_modes = [(900 * q, 0.016, 1.0), (1650 * q, 0.012, 0.7), (2750 * q, 0.009, 0.5), (4100 * q, 0.006, 0.3)]

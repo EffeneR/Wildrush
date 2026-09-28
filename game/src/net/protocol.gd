@@ -210,9 +210,19 @@ static func encode_snapshot(server_tick: int, ack_seq: int, qdepth: int, m: Dict
 	if own.is_empty():
 		b.put_u16(0)
 	else:
-		var ob: PackedByteArray = var_to_bytes(own)
+		# own = {"packed": FighterState.to_packed(), "pos", "vel", "on_floor"}
+		var ob: PackedByteArray = own["packed"]
 		b.put_u16(ob.size())
 		b.put_data(ob)
+		var op: Vector3 = own["pos"]
+		b.put_float(op.x)
+		b.put_float(op.y)
+		b.put_float(op.z)
+		var ov: Vector3 = own["vel"]
+		b.put_float(ov.x)
+		b.put_float(ov.y)
+		b.put_float(ov.z)
+		b.put_u8(1 if bool(own["on_floor"]) else 0)
 	return b.data_array
 
 
@@ -269,11 +279,17 @@ static func decode_snapshot(data: PackedByteArray) -> Dictionary:
 	s["fighters"] = fs
 	if b.get_available_bytes() >= 2:
 		var olen: int = b.get_u16()
-		if olen > 0 and b.get_available_bytes() >= olen:
+		if olen > 0 and b.get_available_bytes() >= olen + 25:
 			var res: Array = b.get_data(olen)
-			var v: Variant = bytes_to_var(res[1])
-			if typeof(v) == TYPE_DICTIONARY:
-				s["own"] = v
+			var d: Dictionary = FighterState.unpack_dict(res[1])
+			var pos := Vector3(b.get_float(), b.get_float(), b.get_float())
+			var vel := Vector3(b.get_float(), b.get_float(), b.get_float())
+			var on_floor: bool = b.get_u8() == 1
+			if not d.is_empty() and MathX.is_finite_vec3(pos) and MathX.is_finite_vec3(vel):
+				d["pos"] = pos
+				d["vel"] = vel
+				d["on_floor"] = on_floor
+				s["own"] = d
 	return s
 
 

@@ -28,6 +28,7 @@ import bpy  # noqa: E402
 import common as C  # noqa: E402
 import bl_core as B  # noqa: E402
 import bl_ground as G  # noqa: E402
+import bl_arch as A  # noqa: E402
 
 T0 = time.time()
 
@@ -58,7 +59,7 @@ def flush(out: G.Out, cols):
     for (chunk, key), mb in sorted(out.mbs.items()):
         if mb.empty():
             continue
-        name = f"{chunk}_{key}"
+        name = f"{key}_{chunk}" if key.startswith(C.SPECIAL_PREFIXES) else f"{chunk}_{key}"
         ob = B.mesh_object(mb, name, cols[chunk], props={"wr_cat": key, "wr_chunk": chunk})
         made.append(ob)
     for chunk, name, mb, props in out.specials:
@@ -88,12 +89,16 @@ def main():
         g.balustrades(); log("balustrades")
         g.ramps(); g.bridges(); log("stairs, ramps, bridges")
         g.puddles(); g.decals(); log("puddles + decals")
+    if "buildings" not in skip:
+        bld = A.Buildings(lay, out, kit)
+        bld.build(); log(f"buildings: {len(bld.parcels)} parcels")
     objs = flush(out, cols)
     tris = sum(sum(len(p.vertices) - 2 for p in o.data.polygons) for o in objs if o.type == "MESH")
     log(f"objects={len(objs)} tris~{tris}")
     if not a.no_save:
-        bpy.ops.file.make_paths_relative()
         bpy.ops.wm.save_as_mainfile(filepath=C.BLEND_PATH, compress=True)
+        bpy.ops.file.make_paths_relative()
+        bpy.ops.wm.save_mainfile(filepath=C.BLEND_PATH, compress=True)
         log(f"saved {C.BLEND_PATH}")
     return 0
 

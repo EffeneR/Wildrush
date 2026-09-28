@@ -1,0 +1,155 @@
+{
+  "test": "ten_clients",
+  "ok": false,
+  "reasons": [
+    "server logged errors"
+  ],
+  "duration_s": 157.6,
+  "server_joins": 10,
+  "match_start": [
+    {
+      "bots": 0,
+      "ev": "match_start",
+      "fighters": 10,
+      "t": 511
+    }
+  ],
+  "violations": 0,
+  "clients": {
+    "c00": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2738,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.038,
+      "max_pred_err_m": 3.256,
+      "in_bytes": 1718294,
+      "out_bytes": 422004,
+      "hits_seen": 381,
+      "errors": [],
+      "exit": 0
+    },
+    "c01": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2785,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0365,
+      "max_pred_err_m": 2.31,
+      "in_bytes": 1739488,
+      "out_bytes": 424997,
+      "hits_seen": 385,
+      "errors": [],
+      "exit": 0
+    },
+    "c02": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2778,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0359,
+      "max_pred_err_m": 2.122,
+      "in_bytes": 1752885,
+      "out_bytes": 428276,
+      "hits_seen": 390,
+      "errors": [],
+      "exit": 0
+    },
+    "c03": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2815,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0442,
+      "max_pred_err_m": 2.78,
+      "in_bytes": 1782781,
+      "out_bytes": 430971,
+      "hits_seen": 394,
+      "errors": [],
+      "exit": 0
+    },
+    "c04": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2803,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0357,
+      "max_pred_err_m": 2.305,
+      "in_bytes": 1776427,
+      "out_bytes": 431318,
+      "hits_seen": 395,
+      "errors": [],
+      "exit": 0
+    },
+    "c05": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2850,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0403,
+      "max_pred_err_m": 2.172,
+      "in_bytes": 1794489,
+      "out_bytes": 433225,
+      "hits_seen": 397,
+      "errors": [],
+      "exit": 0
+    },
+    "c06": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2824,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0355,
+      "max_pred_err_m": 2.083,
+      "in_bytes": 1772554,
+      "out_bytes": 434013,
+      "hits_seen": 397,
+      "errors": [],
+      "exit": 0
+    },
+    "c07": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2849,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0384,
+      "max_pred_err_m": 2.567,
+      "in_bytes": 1783332,
+      "out_bytes": 434058,
+      "hits_seen": 397,
+      "errors": [],
+      "exit": 0
+    },
+    "c08": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2847,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0457,
+      "max_pred_err_m": 3.226,
+      "in_bytes": 1792707,
+      "out_bytes": 434254,
+      "hits_seen": 397,
+      "errors": [],
+      "exit": 0
+    },
+    "c09": {
+      "welcome": true,
+      "match_setup": true,
+      "snapshots": 2805,
+      "late_snaps": 0,
+      "mean_pred_err_m": 0.0403,
+      "max_pred_err_m": 1.734,
+      "in_bytes": 1775296,
+      "out_bytes": 434797,
+      "hits_seen": 397,
+      "errors": [],
+      "exit": 0
+    }
+  },
+  "avg_client_down_kbps": 94.3,
+  "server_errors": [
+    "ERROR: Unable to send packet on channel 0, max channels: 0"
+  ],
+  "network": "localhost (no netsim)"
+}

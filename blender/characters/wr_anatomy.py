@@ -612,8 +612,12 @@ class CurveParam:
         self.N = N
         self.B = np.cross(self.tang, N)
 
-    def project(self, P):
+    def project(self, P, chunk=60000):
         """Returns s (arc length), radial distance, angle, tangent for each point."""
+        if len(P) > chunk:
+            outs = [self.project(P[i:i + chunk], chunk) for i in range(0, len(P), chunk)]
+            return (np.concatenate([o[0] for o in outs]), np.concatenate([o[1] for o in outs]),
+                    np.concatenate([o[2] for o in outs]), np.concatenate([o[3] for o in outs]))
         A = self.T[:-1][None, :, :]
         D = P[:, None, :] - A
         u = np.clip((D * self.tang[None]).sum(-1), 0.0, self.seglen[None, :])

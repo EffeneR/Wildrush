@@ -579,6 +579,7 @@ func _on_sim_events(evs: Array) -> void:
 	recorder.add_events(evs)
 
 
+const LOCAL_ONLY_EVENTS: Array[String] = ["guard_up", "guard_down", "land", "jump", "action", "predicted_hit"]
 const GLOBAL_EVENTS: Array[String] = ["zone_state", "score", "score_warning", "zone_revealed", "zone_rotated",
 	"zone_activated", "sudden_death", "match_end", "countdown", "ko", "respawn"]
 
@@ -587,8 +588,12 @@ func _send_events() -> void:
 	for c in _live_conns():
 		var team: int = -1 if bool(c["observer"]) else int(roster.players.get(int(c["pid"]), {}).get("team", -1))
 		var out: Array = []
+		var me: int = -1 if bool(c["observer"]) else _entity_of(int(c["pid"]))
 		for e in _pending_events:
-			if GLOBAL_EVENTS.has(String(e["type"])):
+			var et: String = String(e["type"])
+			if LOCAL_ONLY_EVENTS.has(et) and int(e.get("e", -1)) != me:
+				continue   # derivable from snapshot state (guard flags, grounded, clips)
+			if GLOBAL_EVENTS.has(et):
 				out.append(e)
 				continue
 			var ok: bool = true
@@ -626,10 +631,7 @@ func _send_snapshots() -> void:
 		if me >= 0:
 			var mf: FighterBody = sim.fighter(me)
 			if mf != null and mf.present:
-				own = mf.st.to_dict()
-				own["pos"] = mf.global_position
-				own["vel"] = mf.velocity
-				own["on_floor"] = mf.is_on_floor()
+				own = {"packed": mf.st.to_packed(), "pos": mf.global_position, "vel": mf.velocity, "on_floor": mf.is_on_floor()}
 		var qd: int = (c["inputs"] as Dictionary).size()
 		Net.send_snapshot(int(c["peer"]), Protocol.encode_snapshot(sim.tick, int(c["acked"]), qd, m, roster_status, fs, own))
 

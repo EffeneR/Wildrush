@@ -91,15 +91,15 @@ class Matchmaker:
             if members.get(row.id)
         ]
         capacity: dict[str, int] = defaultdict(int)
-        for server_id, n in free.items():
-            capacity[region_of[server_id]] += n
+        for host_id, n in free.items():
+            capacity[region_of[host_id]] += n
         formed = form_matches(mode, entries, capacity, now, self.params)
         ids = []
         for fm in formed:
-            server_id = self._pick_server(fm.region, free, region_of)
-            if server_id is None:  # pragma: no cover - capacity was checked
+            picked = self._pick_server(fm.region, free, region_of)
+            if picked is None:  # pragma: no cover - capacity was checked
                 continue
-            ids.append(self._create_match(db, fm, server_id, by_id))
+            ids.append(self._create_match(db, fm, picked, by_id))
         return ids
 
     @staticmethod

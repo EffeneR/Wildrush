@@ -15,6 +15,11 @@ redeem, started, result + retransmit) and `wildrush_svc/security.py`.
   `before` accepts any ISO 8601 datetime (naive = UTC).
 * **Request bodies** must carry `Content-Type: application/json` (FastAPI strict content
   type); otherwise the body is not parsed and the request fails with 422.
+* **Numbers**: integer fields of result bodies (`team`, `winner_team`, `kos`,
+  `knocked_out`, `score`) also accept integral floats such as `4.0` (Godot's JSON parser
+  turns every number into a float); strings, booleans and fractional values are 422.
+  `latency_ms` values may be fractional (rounded to whole ms). Booleans must be JSON
+  booleans.
 * **base64url** everywhere = RFC 4648 §5 alphabet **without `=` padding**.
 * **Session token**: base64url of 32 random bytes = 43 characters. Stored as
   hex(SHA-256(token ASCII)). Absolute 12 h lifetime from login (not sliding).
@@ -98,7 +103,8 @@ route / method), `conflict` (409, lost a race on a unique constraint — retry),
   (same content; JSON key order may differ). `rating_changes` is `{}` for casual/private.
 * `GET /v1/matches/{id}` → `{"match_id","mode","state","region","created_at","started_at",
   "ended_at","result": <stored canonical body>|null,"rating_changes","mastery_changes"}`.
-* History items also carry `xp_gained`. Server-browser items also carry `build_id`, `protocol`.
+* History items also carry `xp_gained`; `fighter` is `null` for a ranked no-show (see §4
+  Results). Server-browser items also carry `build_id`, `protocol`.
 * `POST /v1/matches/{id}/started` → `{"ok": true, "state": "running"}`.
 * `GET /healthz` when the DB is down: 503 `{"ok": false, "db": "unavailable", "error": {...}}`.
 * Admin CLI extras: `enable-server`, `rotate-secret`, and `--write-secret-file PATH`
@@ -173,15 +179,22 @@ bound from the service clock instead of SQL `now()` (same semantics; lets tests 
 time). Redeeming for a match that is no longer ready/running → 409 `match_closed`.
 
 **Results.**
-* Checks, in order: 404 match → 403 allocated server → (finished: idempotent/409) →
-  409 running → 422 validation → apply.
+* Checks, in order: 401 signature → 422 schema → 422 `match_id_mismatch` (body vs URL) →
+  404 match → 403 allocated server → (already finished: idempotent 200 / 409
+  `result_conflict`) → 409 `match_not_running` → 422 semantic checks → apply.
 * Idempotency compares a canonical form (sorted keys, players sorted by `account_id`, bots
   by `(team, fighter)`, numbers normalized), so a retransmission with different key order
   is still "the same body".
 * `invalid_result` when: duplicate players; more than 5 fighters (humans + bots) on a team;
   a species twice on one team; a player who is not a *player* participant of the match;
-  casual/ranked player on another team than assigned; ranked result not listing all 10
-  matched players exactly once (abandoned/AFK players must be listed with the flags).
+  casual/ranked player on another team than assigned. List each fighter slot once: a
+  human whose slot was taken over by a bot (AFK, D-015) is listed as that human with
+  `afk: true`, not additionally as a bot.
+* **Ranked no-shows**: the server only learns account ids through ticket redemption, so it
+  lists the players it saw (with `abandoned`/`afk` flags as observed). Matched ranked
+  players missing from the result are rated as abandoned (a loss), earn 0 XP and get a
+  history row with `fighter: null`; `rating_changes` always covers all 10 matched players.
+  Casual/private players missing from a result get nothing.
 * `winner_team` must be 0 or 1 (draws are not representable; Turf Shift always resolves).
 * Rating (ranked only): Glicko-2 (τ = 0.5, RD clamped 30…350); each player vs. a composite
   opponent (opposing team's mean rating, RMS deviation); one rating period per match;
