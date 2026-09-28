@@ -1,0 +1,111 @@
+{
+  "condition": {
+    "name": "rtt0_loss0",
+    "rtt": 0,
+    "loss": 0.0,
+    "jitter": 0
+  },
+  "proxy": {
+    "c2s": 19275,
+    "s2c": 8290,
+    "c2s_dropped": 0,
+    "s2c_dropped": 0,
+    "clients": 5,
+    "rtt_ms": 0.0,
+    "jitter_ms": 0.0,
+    "loss": 0.0
+  },
+  "clients": {
+    "c0": {
+      "snaps": 1511,
+      "mean_err_m": 0.0294,
+      "max_err_m": 2.425,
+      "pending_inputs": 7,
+      "teleports": 1,
+      "match_setups": 1,
+      "counts": {
+        "blocks_on_me": 0,
+        "conf_actions": 53,
+        "confirmed_hits": 147,
+        "dup_confirmed": 0,
+        "hits_on_me": 6,
+        "pred_actions": 53,
+        "predicted_confirmed": 17,
+        "predicted_hits": 47,
+        "reconnects": 0
+      },
+      "errors": [],
+      "exit": 0
+    },
+    "c1": {
+      "snaps": 1520,
+      "mean_err_m": 0.0275,
+      "max_err_m": 1.707,
+      "pending_inputs": 7,
+      "teleports": 1,
+      "match_setups": 1,
+      "counts": {
+        "blocks_on_me": 1,
+        "conf_actions": 54,
+        "confirmed_hits": 147,
+        "dup_confirmed": 0,
+        "hits_on_me": 15,
+        "pred_actions": 59,
+        "predicted_confirmed": 23,
+        "predicted_hits": 81,
+        "reconnects": 0
+      },
+      "errors": [],
+      "exit": 0
+    },
+    "c2": {
+      "snaps": 1522,
+      "mean_err_m": 0.0325,
+      "max_err_m": 1.194,
+      "pending_inputs": 8,
+      "teleports": 2,
+      "match_setups": 1,
+      "counts": {
+        "blocks_on_me": 8,
+        "conf_actions": 0,
+        "confirmed_hits": 147,
+        "dup_confirmed": 0,
+        "hits_on_me": 24,
+        "pred_actions": 0,
+        "predicted_confirmed": 0,
+        "predicted_hits": 0,
+        "reconnects": 0
+      },
+      "errors": [],
+      "exit": 0
+    },
+    "c3": {
+      "snaps": 1383,
+      "mean_err_m": 0.0281,
+      "max_err_m": 2.325,
+      "pending_inputs": 7,
+      "teleports": 3,
+      "match_setups": 2,
+      "counts": {
+        "blocks_on_me": 0,
+        "conf_actions": 47,
+        "confirmed_hits": 143,
+        "dup_confirmed": 0,
+        "hits_on_me": 18,
+        "pred_actions": 47,
+        "predicted_confirmed": 16,
+        "predicted_hits": 47,
+        "reconnects": 1
+      },
+      "errors": [],
+      "exit": 0
+    }
+  },
+  "ok": true,
+  "reasons": [],
+  "server": {
+    "reconnected": 1,
+    "violations": 0,
+    "errors": []
+  }
+}

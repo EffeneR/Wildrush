@@ -1,0 +1,451 @@
+{
+  "test": "netsim_matrix",
+  "ok": true,
+  "note": "localhost simulation via UDP proxy; not WAN verification",
+  "conditions": [
+    {
+      "condition": {
+        "name": "rtt0_loss0",
+        "rtt": 0,
+        "loss": 0.0,
+        "jitter": 0
+      },
+      "proxy": {
+        "c2s": 19275,
+        "s2c": 8290,
+        "c2s_dropped": 0,
+        "s2c_dropped": 0,
+        "clients": 5,
+        "rtt_ms": 0.0,
+        "jitter_ms": 0.0,
+        "loss": 0.0
+      },
+      "clients": {
+        "c0": {
+          "snaps": 1511,
+          "mean_err_m": 0.0294,
+          "max_err_m": 2.425,
+          "pending_inputs": 7,
+          "teleports": 1,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 53,
+            "confirmed_hits": 147,
+            "dup_confirmed": 0,
+            "hits_on_me": 6,
+            "pred_actions": 53,
+            "predicted_confirmed": 17,
+            "predicted_hits": 47,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c1": {
+          "snaps": 1520,
+          "mean_err_m": 0.0275,
+          "max_err_m": 1.707,
+          "pending_inputs": 7,
+          "teleports": 1,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 1,
+            "conf_actions": 54,
+            "confirmed_hits": 147,
+            "dup_confirmed": 0,
+            "hits_on_me": 15,
+            "pred_actions": 59,
+            "predicted_confirmed": 23,
+            "predicted_hits": 81,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c2": {
+          "snaps": 1522,
+          "mean_err_m": 0.0325,
+          "max_err_m": 1.194,
+          "pending_inputs": 8,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 8,
+            "conf_actions": 0,
+            "confirmed_hits": 147,
+            "dup_confirmed": 0,
+            "hits_on_me": 24,
+            "pred_actions": 0,
+            "predicted_confirmed": 0,
+            "predicted_hits": 0,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c3": {
+          "snaps": 1383,
+          "mean_err_m": 0.0281,
+          "max_err_m": 2.325,
+          "pending_inputs": 7,
+          "teleports": 3,
+          "match_setups": 2,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 47,
+            "confirmed_hits": 143,
+            "dup_confirmed": 0,
+            "hits_on_me": 18,
+            "pred_actions": 47,
+            "predicted_confirmed": 16,
+            "predicted_hits": 47,
+            "reconnects": 1
+          },
+          "errors": [],
+          "exit": 0
+        }
+      },
+      "ok": true,
+      "reasons": [],
+      "server": {
+        "reconnected": 1,
+        "violations": 0,
+        "errors": []
+      }
+    },
+    {
+      "condition": {
+        "name": "rtt50_loss1",
+        "rtt": 50,
+        "loss": 0.01,
+        "jitter": 3
+      },
+      "proxy": {
+        "c2s": 19444,
+        "s2c": 8295,
+        "c2s_dropped": 202,
+        "s2c_dropped": 97,
+        "clients": 5,
+        "rtt_ms": 50.0,
+        "jitter_ms": 3.0,
+        "loss": 0.01
+      },
+      "clients": {
+        "c0": {
+          "snaps": 1496,
+          "mean_err_m": 0.0324,
+          "max_err_m": 1.604,
+          "pending_inputs": 10,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 1,
+            "conf_actions": 51,
+            "confirmed_hits": 136,
+            "dup_confirmed": 0,
+            "hits_on_me": 9,
+            "pred_actions": 54,
+            "predicted_confirmed": 14,
+            "predicted_hits": 46,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c1": {
+          "snaps": 1508,
+          "mean_err_m": 0.0447,
+          "max_err_m": 2.065,
+          "pending_inputs": 11,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 53,
+            "confirmed_hits": 138,
+            "dup_confirmed": 0,
+            "hits_on_me": 21,
+            "pred_actions": 59,
+            "predicted_confirmed": 18,
+            "predicted_hits": 66,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c2": {
+          "snaps": 1508,
+          "mean_err_m": 0.0387,
+          "max_err_m": 1.977,
+          "pending_inputs": 11,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 9,
+            "conf_actions": 0,
+            "confirmed_hits": 141,
+            "dup_confirmed": 0,
+            "hits_on_me": 11,
+            "pred_actions": 0,
+            "predicted_confirmed": 0,
+            "predicted_hits": 0,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c3": {
+          "snaps": 1457,
+          "mean_err_m": 0.0352,
+          "max_err_m": 2.84,
+          "pending_inputs": 12,
+          "teleports": 3,
+          "match_setups": 2,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 38,
+            "confirmed_hits": 142,
+            "dup_confirmed": 0,
+            "hits_on_me": 13,
+            "pred_actions": 43,
+            "predicted_confirmed": 11,
+            "predicted_hits": 30,
+            "reconnects": 1
+          },
+          "errors": [],
+          "exit": 0
+        }
+      },
+      "ok": true,
+      "reasons": [],
+      "server": {
+        "reconnected": 1,
+        "violations": 0,
+        "errors": []
+      }
+    },
+    {
+      "condition": {
+        "name": "rtt100_loss2",
+        "rtt": 100,
+        "loss": 0.02,
+        "jitter": 5
+      },
+      "proxy": {
+        "c2s": 17394,
+        "s2c": 8350,
+        "c2s_dropped": 380,
+        "s2c_dropped": 175,
+        "clients": 5,
+        "rtt_ms": 100.0,
+        "jitter_ms": 5.0,
+        "loss": 0.02
+      },
+      "clients": {
+        "c0": {
+          "snaps": 1499,
+          "mean_err_m": 0.0369,
+          "max_err_m": 2.294,
+          "pending_inputs": 13,
+          "teleports": 3,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 52,
+            "confirmed_hits": 162,
+            "dup_confirmed": 0,
+            "hits_on_me": 30,
+            "pred_actions": 52,
+            "predicted_confirmed": 19,
+            "predicted_hits": 65,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c1": {
+          "snaps": 1511,
+          "mean_err_m": 0.041,
+          "max_err_m": 2.87,
+          "pending_inputs": 12,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 3,
+            "conf_actions": 44,
+            "confirmed_hits": 166,
+            "dup_confirmed": 0,
+            "hits_on_me": 30,
+            "pred_actions": 49,
+            "predicted_confirmed": 16,
+            "predicted_hits": 71,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c2": {
+          "snaps": 1511,
+          "mean_err_m": 0.0395,
+          "max_err_m": 2.155,
+          "pending_inputs": 13,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 10,
+            "conf_actions": 0,
+            "confirmed_hits": 167,
+            "dup_confirmed": 0,
+            "hits_on_me": 14,
+            "pred_actions": 0,
+            "predicted_confirmed": 0,
+            "predicted_hits": 0,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c3": {
+          "snaps": 1457,
+          "mean_err_m": 0.0976,
+          "max_err_m": 3.304,
+          "pending_inputs": 11,
+          "teleports": 3,
+          "match_setups": 2,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 50,
+            "confirmed_hits": 161,
+            "dup_confirmed": 0,
+            "hits_on_me": 21,
+            "pred_actions": 54,
+            "predicted_confirmed": 23,
+            "predicted_hits": 89,
+            "reconnects": 1
+          },
+          "errors": [],
+          "exit": 0
+        }
+      },
+      "ok": true,
+      "reasons": [],
+      "server": {
+        "reconnected": 1,
+        "violations": 0,
+        "errors": []
+      }
+    },
+    {
+      "condition": {
+        "name": "rtt150_loss3",
+        "rtt": 150,
+        "loss": 0.03,
+        "jitter": 8
+      },
+      "proxy": {
+        "c2s": 17156,
+        "s2c": 8364,
+        "c2s_dropped": 543,
+        "s2c_dropped": 261,
+        "clients": 5,
+        "rtt_ms": 150.0,
+        "jitter_ms": 8.0,
+        "loss": 0.03
+      },
+      "clients": {
+        "c0": {
+          "snaps": 1475,
+          "mean_err_m": 0.0426,
+          "max_err_m": 2.221,
+          "pending_inputs": 16,
+          "teleports": 3,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 52,
+            "confirmed_hits": 167,
+            "dup_confirmed": 0,
+            "hits_on_me": 26,
+            "pred_actions": 54,
+            "predicted_confirmed": 30,
+            "predicted_hits": 93,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c1": {
+          "snaps": 1478,
+          "mean_err_m": 0.08,
+          "max_err_m": 3.15,
+          "pending_inputs": 14,
+          "teleports": 2,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 0,
+            "conf_actions": 60,
+            "confirmed_hits": 168,
+            "dup_confirmed": 0,
+            "hits_on_me": 18,
+            "pred_actions": 58,
+            "predicted_confirmed": 19,
+            "predicted_hits": 76,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c2": {
+          "snaps": 1482,
+          "mean_err_m": 0.0421,
+          "max_err_m": 2.153,
+          "pending_inputs": 15,
+          "teleports": 1,
+          "match_setups": 1,
+          "counts": {
+            "blocks_on_me": 5,
+            "conf_actions": 0,
+            "confirmed_hits": 169,
+            "dup_confirmed": 0,
+            "hits_on_me": 16,
+            "pred_actions": 0,
+            "predicted_confirmed": 0,
+            "predicted_hits": 0,
+            "reconnects": 0
+          },
+          "errors": [],
+          "exit": 0
+        },
+        "c3": {
+          "snaps": 1418,
+          "mean_err_m": 0.0725,
+          "max_err_m": 2.827,
+          "pending_inputs": 14,
+          "teleports": 2,
+          "match_setups": 2,
+          "counts": {
+            "blocks_on_me": 12,
+            "conf_actions": 68,
+            "confirmed_hits": 165,
+            "dup_confirmed": 0,
+            "hits_on_me": 25,
+            "pred_actions": 64,
+            "predicted_confirmed": 22,
+            "predicted_hits": 109,
+            "reconnects": 1
+          },
+          "errors": [],
+          "exit": 0
+        }
+      },
+      "ok": true,
+      "reasons": [],
+      "server": {
+        "reconnected": 1,
+        "violations": 0,
+        "errors": []
+      }
+    }
+  ]
+}

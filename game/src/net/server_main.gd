@@ -572,6 +572,24 @@ func _tick_match() -> void:
 		_send_events()
 	if sim.tick % 60 == 0:
 		_check_afk_reconnect_forfeit()
+	if sim.tick % 120 == 0:
+		_broadcast_board()
+
+
+func _broadcast_board() -> void:
+	## Public scoreboard (KOs, damage, zone time, ping) every 2 s — no positional data.
+	var peer_of_entity: Dictionary = {}
+	for p in roster.players.values():
+		var pidv: int = int(p["pid"])
+		if pid_to_peer.has(pidv):
+			peer_of_entity[int(p["team"]) * WR.TEAM_SIZE + int(p["slot"])] = int(pid_to_peer[pidv])
+	var rows: Array = []
+	for f in sim.fighters:
+		rows.append({"e": f.entity_id, "kos": f.st.kos, "kod": f.st.knocked_out, "dmg": int(round(f.st.damage_dealt)),
+			"ctrl_s": int(f.st.get_meta("zone_ticks", 0)) / WR.TICK_RATE, "connected": f.present,
+			"ping_ms": int(Net.rtt_ms(int(peer_of_entity[f.entity_id]))) if peer_of_entity.has(f.entity_id) else -1})
+	for c in _live_conns():
+		Net.send_to(int(c["peer"]), {"t": "board", "rows": rows})
 
 
 func _on_sim_events(evs: Array) -> void:

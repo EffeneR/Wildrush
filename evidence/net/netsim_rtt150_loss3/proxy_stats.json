@@ -1,0 +1,1 @@
+{"proxy_stats": {"c2s": 17156, "s2c": 8364, "c2s_dropped": 543, "s2c_dropped": 261, "clients": 5, "rtt_ms": 150.0, "jitter_ms": 8.0, "loss": 0.03}, "time": 1790607812.300217}

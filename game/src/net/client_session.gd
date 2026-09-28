@@ -44,6 +44,7 @@ var predicted_keys: Dictionary = {}    # dedupe predicted vs confirmed hits
 var visual_offset: Vector3 = Vector3.ZERO
 var correction_stats: Dictionary = {"reconciles": 0, "max_error_m": 0.0, "sum_error_m": 0.0, "snaps": 0, "late_snaps": 0}
 var results: Dictionary = {}
+var board: Array = []                  # public scoreboard rows (server, every 2 s)
 var reconnect_token: String = ""
 var live: bool = false                 # welcomed by the server: it has admitted us, inputs may flow
 var host: String = ""
@@ -117,6 +118,8 @@ func on_server_msg(d: Dictionary) -> void:
 			chat_received.emit(d)
 		"ping":
 			ping_received.emit(d)
+		"board":
+			board = d.get("rows", [])
 		"results":
 			results = d.get("result", {})
 			results_received.emit(results)
