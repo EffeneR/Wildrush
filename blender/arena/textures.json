@@ -87,11 +87,35 @@
   ],
   "skyline": [
    24.0,
-   12.0
+   48.0
   ],
   "roof_metal": [
    2.0,
    2.0
+  ],
+  "banner": [
+   1.0,
+   1.0
+  ],
+  "puddle": [
+   1.0,
+   1.0
+  ],
+  "foliage": [
+   1.0,
+   1.0
+  ],
+  "detail": [
+   1.0,
+   1.0
+  ],
+  "ironwork": [
+   1.0,
+   1.0
+  ],
+  "flat": [
+   1.0,
+   1.0
   ]
  },
  "files": [
@@ -107,38 +131,38 @@
   {
    "file": "banner_normal.png",
    "size": [
-    512,
-    1024
+    1024,
+    2048
    ],
    "mode": "RGB",
-   "sha256": "7e639d96b5f9017053df0f8f65888e4d893dd63296a18b15ecf4af80d43e2180"
+   "sha256": "22e23001094d29cd8fe45850f41c7bd5572b4fd8ca53d627ced7799bfb3e42c0"
   },
   {
    "file": "bark_albedo.png",
    "size": [
-    512,
+    1024,
     1024
    ],
    "mode": "RGB",
-   "sha256": "778f74abcaccc08b684c55e0f65104799307db95da2340519d3de3febd964c39"
+   "sha256": "43560d90ee5e3b6d8a10b8772a049201c4315f386831e2f6e4be33da5c218374"
   },
   {
    "file": "bark_normal.png",
    "size": [
-    512,
+    1024,
     1024
    ],
    "mode": "RGB",
-   "sha256": "3319dd77e309c7339dad9338a23e96a16335154445da55b5d5c3816bbc3dd3c6"
+   "sha256": "8a4f3a5dc2ec551d75ba32e71ea3e704d0896116611ab3c2a4d859795ca98add"
   },
   {
    "file": "bark_orm.png",
    "size": [
-    256,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "3d6c8ba73c5beeb0c93c65f26dd895cf0b1d03901b909683e53e80b5bb56e505"
+   "sha256": "9ea167ee512df55292b3e08b4ea693a8cd32cd4078c56e52c7beb3d5553e7038"
   },
   {
    "file": "brick_brown_albedo.png",
@@ -161,11 +185,11 @@
   {
    "file": "brick_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "ac2bc892fb80514fec18449ba9fa2ad5383ebaa4e6c6c1608570ab4de7ebc702"
+   "sha256": "74ebea625f0118b00d5325c6817438c8663f5eddd6bf5c773d2f1cd7d54f4a63"
   },
   {
    "file": "brick_red_albedo.png",
@@ -179,29 +203,29 @@
   {
    "file": "bronze_albedo.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "d959dd530dcdcb09a14d0c17277d6307106846ce55a56c5aeed3913465320515"
+   "sha256": "aaacc587227c42db3053a399896067da456e72bb0442c27c6c0246842ac405e7"
   },
   {
    "file": "bronze_normal.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "d8f135e820b565a0eb895e1c64ef083a03b62609f694f901e04affcc3dd7714c"
+   "sha256": "c2f6cbd8a6355f46c980453cc09f43e279a22ff3c8e6c4366f29083f7a0c9549"
   },
   {
    "file": "bronze_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "f7d64d8a6e84b33e8e507a7fa47cb9f1e93121badb6c3cdeddd0ca91feeb401c"
+   "sha256": "133b2faaf9cb6bd0b8f9417135fb01458acb3f3aa8dad3856a8f7113a8d207e8"
   },
   {
    "file": "canvas_cream_albedo.png",
@@ -210,7 +234,7 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "d6661ecb6dab16fe569646c9967e6391a2722fe4193803ae92f4be3fa4a304c9"
+   "sha256": "a42951f09c9ddbc492c6697f9ac622775ef4fc70c853e9ecf6381dab107d1c18"
   },
   {
    "file": "canvas_green_albedo.png",
@@ -219,7 +243,7 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "1dc842bf47765916ab51bb96da9f00721fa038fe7493b42f74808f1ffc1a2a89"
+   "sha256": "6279693614673a17723ddd057710eb0d6aeca5f72ac0dbec78b7198f2d9a3a5e"
   },
   {
    "file": "canvas_normal.png",
@@ -228,16 +252,16 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "ba085b9720ef87044ec384da634bfdc5e4030ece3ec8dd252886ccbc2f3d4b04"
+   "sha256": "1ee2a6d28b35ae1261b95e72fab90f4c5ff72137d1d74453830a12ccca026ded"
   },
   {
    "file": "canvas_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "129226bd51fd0caf97bf03c619dc8714bdbf187e66baa462cfc16f4766b0928e"
+   "sha256": "aac895f4e9227d174725668bc13f2fd424416e4c0621da37803a64d261f31054"
   },
   {
    "file": "canvas_red_albedo.png",
@@ -246,7 +270,7 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "be099857570493df788c0adb357bae56cc44e2a66a17fdfa6cfaaa06bc7a46c6"
+   "sha256": "9351935a6b5c89a95629f99a110bff5c9307e4da758dffa3fad454c3c0a51912"
   },
   {
    "file": "concrete_albedo.png",
@@ -269,11 +293,11 @@
   {
    "file": "concrete_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "c49cc7079cbe952ca0ab6ffc01b62d8a7cc9ff613de9687ef2ccec3c27c844ca"
+   "sha256": "646b364f3c67ad0d7db53e466403746632496424cd1b325d5836af80bbf42398"
   },
   {
    "file": "container_blue_albedo.png",
@@ -305,11 +329,11 @@
   {
    "file": "container_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "d22a7eb3a23d9686eaea52692a737b1a62e78c17989fb9a97a3097f9808fc043"
+   "sha256": "82f504dd4505ea7257aa3c99e182d02b926bfbba2c9ebdeeb5fff8253511590c"
   },
   {
    "file": "container_red_albedo.png",
@@ -354,7 +378,7 @@
     2048
    ],
    "mode": "RGBA",
-   "sha256": "89df1309c1b23a272d5fcfd3d1a29c5e6a98583bc4e08982e1b4a6bc5302a30e"
+   "sha256": "485e9c7b07443c071baf52967222d1e73669f3f628d9e53c4b0f122b21609aea"
   },
   {
    "file": "foliage_normal.png",
@@ -363,61 +387,61 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "d0142e027865e20f831456507c36e5940292bb672d998fc7320d048a89cd91d3"
+   "sha256": "715eb5cd1f403eb98f23a476b6a520ff64163c2cf1147432a5eb2c0f74b527fb"
   },
   {
    "file": "hazard_albedo.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "9027003028120f5335f762a2bf05a3d309270c66a9c361c613efcf3ebd3d9d93"
+   "sha256": "a7ef5cc11c3c3b18eb2bfdd981773ff4ad59b96880ee12f62eadd148ebc6e4c4"
   },
   {
    "file": "hazard_normal.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "abb12c15ecb2a88ee66706fec31dacc526678edb72b0a873c28100828ffa9a33"
+   "sha256": "4a8fdd6c369dd9a6d1febdd0f4f3a9e4a9f15841c660c52b8960e4b902c6806c"
   },
   {
    "file": "hazard_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "f2edefcb56277b5199e82ea1168eaad0bb0ec61b8ddf5524491e79d33504b495"
+   "sha256": "677653dc037249cdbb8ba31582a867be19cbc571f66c62e596de629872da8db5"
   },
   {
    "file": "iron_albedo.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "b1d8bbd73ef8b194b64c20618be67ad523c6b4ed4ef866f6b6b7dad31a85ce80"
+   "sha256": "a56e07b035f37a77a658b55bb2512885a5f022136b2d78c81a8da4ed8d37a27f"
   },
   {
    "file": "iron_normal.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "a15ae2519f8cfcab4c169bf1b3c05c43b72230d6766184548cabc8aacee4c217"
+   "sha256": "9ef4ee2c470bcb982e40dc9165dd311471bf7f35fc8614b95035857c8be2769e"
   },
   {
    "file": "iron_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "d5e6499459ace66f30473a37124023a15768ba764117a94a2be6015746314f3b"
+   "sha256": "0f7a956f50db24379efc077e6a7f133b0f964b1df834148d790ea1539a7b736b"
   },
   {
    "file": "ironwork_albedo.png",
@@ -435,7 +459,7 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "df9be2a6540a46400978ba5964ba10a06a670537e3d32f9db4db4a93b8925280"
+   "sha256": "91ecf02815acba81d50120dd058cbdbed6d1cc4cf4c9321d5f8245b9a7957bf3"
   },
   {
    "file": "metal_deck_normal.png",
@@ -449,11 +473,11 @@
   {
    "file": "metal_deck_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "e602c02c215ad14b101146ef270112168f6c6ef81d6f0d6ed8fa9031091ee482"
+   "sha256": "628a76c60f6a7748659e15fa1f3dc679f8ccd4f18112f953e96460e68d2f1698"
   },
   {
    "file": "paint_yellow_albedo.png",
@@ -476,11 +500,11 @@
   {
    "file": "paint_yellow_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "3e34dbbc3ca4f54a9c74dc7c4afbf86473b4822ca85fad43d1dfdf12e58ac9fe"
+   "sha256": "452ce69530c630ecdbf469bcad99fe488e70c2c311f30b881fbdff54476f2140"
   },
   {
    "file": "paving_cobble_albedo.png",
@@ -593,11 +617,11 @@
   {
    "file": "plaster_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "b34ef87b2cf2a4cc6a3906670991a4e9c78b825a4e24c7b8575d5d81d445de21"
+   "sha256": "8e7f8d1bab6a800d5e57814f49548c786e7e5b2f708b30326089547dd589dd40"
   },
   {
    "file": "plaster_rose_albedo.png",
@@ -620,29 +644,29 @@
   {
    "file": "puddle_albedo.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGBA",
-   "sha256": "0181735c570756b7464a8d3f67164ebce052e421ef02278fc69135280bbc1ed3"
+   "sha256": "6c9333026d24cfbdcd18f2c6e2a2bb22540d730135022a091510424ef5b2fb00"
   },
   {
    "file": "puddle_normal.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "169bc49c34cdb12aacf2c6170d2d2f51dfb946d85fb8fb3db8d88903b76a1a3d"
+   "sha256": "362fcdff0c8416df423bdcf54132929c03d0357aa30bdbf9bde0a9fb168bfd47"
   },
   {
    "file": "puddle_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "da98a753ad6c9f58dae16ec62af44315ffcd75ee49712315d42e3f912466e72c"
+   "sha256": "ca99595c854b2cb9a319f40fd4a6568df905b3a4c6be893df644d0463dc2bfd5"
   },
   {
    "file": "roof_metal_albedo.png",
@@ -651,7 +675,7 @@
     1024
    ],
    "mode": "RGB",
-   "sha256": "f432a10f51032b77c2e57dd1a35fdcee422e25684230746bba22c25840075522"
+   "sha256": "629df89e57187d869e37e625803c9eeea48a406d78b1dea7dbde27b496955314"
   },
   {
    "file": "roof_metal_normal.png",
@@ -665,11 +689,11 @@
   {
    "file": "roof_metal_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "213962a20f95cf45e9f8eb5dc93ba59b0166f6f2b65badd86f39408a643e8e9e"
+   "sha256": "17483020ff8eff42b1c75befa8137d59b82c1c1d0dbbce397b64cc01284b65c5"
   },
   {
    "file": "roof_terracotta_albedo.png",
@@ -692,11 +716,11 @@
   {
    "file": "roof_terracotta_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "80fd92b9848a5895c322ecb186cf3e9a64bcec32094bf90cb7a6ebac125b1c08"
+   "sha256": "64c3706d94457fd20f8ae9502f20a8b5d52427d53b6c7d4f4afc307894a914a1"
   },
   {
    "file": "skyline_albedo.png",
@@ -719,29 +743,29 @@
   {
    "file": "soil_albedo.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "9a509fe06f5975632c1ad8439115adadbf17bb3efbae7befe9a06235faa51cfb"
+   "sha256": "6851d0ddcbd9e682ff04b57b5adf1261e13c56f97bd1fdd05851d76e18837a95"
   },
   {
    "file": "soil_normal.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "ea9b88d08782b46707b49f27b7ff1e0bf55ada360bd7903ad3064e1b526aa519"
+   "sha256": "8c9fe6debda2cbec7e3ce77ac6736fc7325b2eba03fe712e39b87a1a80166558"
   },
   {
    "file": "soil_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "fa7a11787704ad21d27e90278e318e0755af6aa0d6af82a22818ad863bdd86a7"
+   "sha256": "dff9c25e02c1593ff9a16819679be31c0b72eb68ddea33eff6d02c7631cd068a"
   },
   {
    "file": "stone_ashlar_albedo.png",
@@ -764,38 +788,38 @@
   {
    "file": "stone_ashlar_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "0acaa922a08fe9eb7fc9a518b827ff911c7e99c057eb6c58e3b3675c1e46a8ff"
+   "sha256": "c485dd33662db8aad108ad7a82085328f608636d128fe63038a8b13851a2410d"
   },
   {
    "file": "stone_canal_albedo.png",
    "size": [
     1024,
-    768
+    1024
    ],
    "mode": "RGB",
-   "sha256": "0e473f605263390fbba422aecbd4de74df800e69d01efe6940e7747497fd5907"
+   "sha256": "55315747532ddcd53c0cd822caad963d6862965bd9b7439f42719caaacbabf82"
   },
   {
    "file": "stone_canal_normal.png",
    "size": [
     1024,
-    768
+    1024
    ],
    "mode": "RGB",
-   "sha256": "4ad8d96e786d1b1589f5be2b6d5921869a559bab640cec850db42fee1d8c5aa2"
+   "sha256": "9e99d7d579419eef5b15768271a772e2d6254713376cdd3cf54a15ac45ab1270"
   },
   {
    "file": "stone_canal_orm.png",
    "size": [
-    512,
-    384
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "46e3d5ce30ab6c8fc3571a84ddd19412fdecf8623b62d16a546564ee1b02a873"
+   "sha256": "cace147482f26790afd46726a6307d69ba462f48d06d2ddae6988c49dbc165d9"
   },
   {
    "file": "stone_trim_albedo.png",
@@ -818,11 +842,11 @@
   {
    "file": "stone_trim_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "25713351f68c7e5d036d51e448376895a912bf9a41a0a436ec37dd0c19d77f4c"
+   "sha256": "a347cb1261d12ba8c0e43e02fdb002e14801ea1d17ae5e0298dcde81d7d6fe5a"
   },
   {
    "file": "water_albedo.png",
@@ -845,11 +869,11 @@
   {
    "file": "water_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "9249f9121a55395c97fdb3508234fcb8142b2027b7b8cbdecfc52ca527083820"
+   "sha256": "ce827450c55c281bbdcfed8a603cdfd35f34e4942c7b4a50d04266627f128011"
   },
   {
    "file": "wood_planks_albedo.png",
@@ -872,11 +896,11 @@
   {
    "file": "wood_planks_orm.png",
    "size": [
-    512,
-    512
+    1024,
+    1024
    ],
    "mode": "RGB",
-   "sha256": "c2b66472476cd3b4beb7d1da90c49ca5ade55539be5cdfb037e8520c2eb4e5ca"
+   "sha256": "8213ef2658e395ca173f013236ea27023ce2381b652986fe9a83c678bc56c523"
   }
  ]
 }

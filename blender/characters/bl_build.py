@@ -72,6 +72,19 @@ def heat_weights(src, arm, names):
     return W, empty, unweighted
 
 
+def side_mask(V, W, names, band=0.02):
+    """Left*/Right* limb bones may only influence their own side of the body (x>0 = left)."""
+    x = V[:, 0]
+    wl = smoothstep(-band, band, x)
+    wr = 1.0 - wl
+    for k, n in enumerate(names):
+        if n.startswith("Left"):
+            W[:, k] *= wl
+        elif n.startswith("Right"):
+            W[:, k] *= wr
+    return W
+
+
 def jaw_mask(V, rig, S):
     m = rig["mouth"]
     o = np.array(m["frame_o"])
@@ -286,10 +299,13 @@ def main():
     hj = Wb[:, hi] + Wb[:, ji]
     Wb[:, ji] = hj * jm
     Wb[:, hi] = hj * (1 - jm)
+    Wb = side_mask(V, Wb, names)
     Wb = limit_normalize(Wb, 4)
     write_vgroups(body, Wb, names)
     Wc = transfer_weights(src, cloth, names)
     Wc = smooth_weights(cloth, Wc, iters=3, alpha=0.5)
+    Vc, _ = mesh_arrays(cloth)
+    Wc = side_mask(Vc, Wc, names)
     # clothing never follows the jaw / ears / fingers
     for nm in ("Jaw",):
         k = names.index(nm)

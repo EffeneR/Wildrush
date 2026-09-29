@@ -69,53 +69,77 @@ def setup_materials(mesh, fid, texdir, palette, relpath_base=None):
     # cloth: palette composite (editable colours) -> base colour
     m = mats[fid + "_cloth"]
     nt, bsdf = _clear(m)
-    mask = _tex(nt, _img(p(f"{fid}_cloth_mask.png"), "Non-Color"), (-1100, 200))
-    det = _tex(nt, _img(p(f"{fid}_cloth_detail.png"), "Non-Color"), (-1100, -100))
+    # same formula as game/src/present/shaders/palette_cloth.gdshader:
+    #   albedo = primary*m.r + secondary*m.g + accent*m.b + trim*(1-sum)  times  (0.35 + 0.65*detail)
+    #   (mask and detail sampled as sRGB colour textures)
+    mask = _tex(nt, _img(p(f"{fid}_cloth_mask.png"), "sRGB"), (-1300, 200))
+    det = _tex(nt, _img(p(f"{fid}_cloth_detail.png"), "sRGB"), (-1300, -300))
     sep = nt.nodes.new("ShaderNodeSeparateColor")
-    sep.location = (-800, 200)
+    sep.location = (-1050, 200)
     nt.links.new(mask.outputs["Color"], sep.inputs["Color"])
     cols = {}
     for i, key in enumerate(("primary", "secondary", "accent", "trim")):
         rgb = nt.nodes.new("ShaderNodeRGB")
         rgb.name = rgb.label = "palette_" + key
         rgb.outputs[0].default_value = hex_to_lin(palette[key])
-        rgb.location = (-800, -150 - 120 * i)
+        rgb.location = (-1050, -120 - 120 * i)
         cols[key] = rgb
-    # trim -> primary (R) -> secondary (G) -> accent (B)
-    m1 = nt.nodes.new("ShaderNodeMix")
-    m1.data_type = "RGBA"
-    m1.location = (-550, 150)
-    nt.links.new(sep.outputs["Red"], m1.inputs["Factor"])
-    nt.links.new(cols["trim"].outputs[0], m1.inputs[6])
-    nt.links.new(cols["primary"].outputs[0], m1.inputs[7])
-    m2 = nt.nodes.new("ShaderNodeMix")
-    m2.data_type = "RGBA"
-    m2.location = (-350, 150)
-    nt.links.new(sep.outputs["Green"], m2.inputs["Factor"])
-    nt.links.new(m1.outputs[2], m2.inputs[6])
-    nt.links.new(cols["secondary"].outputs[0], m2.inputs[7])
-    m3 = nt.nodes.new("ShaderNodeMix")
-    m3.data_type = "RGBA"
-    m3.location = (-150, 150)
-    nt.links.new(sep.outputs["Blue"], m3.inputs["Factor"])
-    nt.links.new(m2.outputs[2], m3.inputs[6])
-    nt.links.new(cols["accent"].outputs[0], m3.inputs[7])
-    mul = nt.nodes.new("ShaderNodeMix")
-    mul.data_type = "RGBA"
-    mul.blend_type = "MULTIPLY"
-    mul.location = (50, 150)
-    mul.inputs["Factor"].default_value = 1.0
-    nt.links.new(m3.outputs[2], mul.inputs[6])
-    gain = nt.nodes.new("ShaderNodeMath")
-    gain.operation = "MULTIPLY"
-    gain.inputs[1].default_value = 1.25
-    gain.location = (-800, -650)
+
+    def scale(col_out, fac_out, loc):
+        mm = nt.nodes.new("ShaderNodeMix")
+        mm.data_type = "RGBA"
+        mm.blend_type = "MULTIPLY"
+        mm.location = loc
+        mm.inputs["Factor"].default_value = 1.0
+        nt.links.new(col_out, mm.inputs[6])
+        cv = nt.nodes.new("ShaderNodeCombineColor")
+        cv.location = (loc[0] - 150, loc[1] - 80)
+        for ch in ("Red", "Green", "Blue"):
+            nt.links.new(fac_out, cv.inputs[ch])
+        nt.links.new(cv.outputs["Color"], mm.inputs[7])
+        return mm.outputs[2]
+
+    def addc(a, b, loc):
+        mm = nt.nodes.new("ShaderNodeMix")
+        mm.data_type = "RGBA"
+        mm.blend_type = "ADD"
+        mm.location = loc
+        mm.inputs["Factor"].default_value = 1.0
+        nt.links.new(a, mm.inputs[6])
+        nt.links.new(b, mm.inputs[7])
+        return mm.outputs[2]
+    s1 = nt.nodes.new("ShaderNodeMath")
+    s1.operation = "ADD"
+    s1.location = (-850, 420)
+    nt.links.new(sep.outputs["Red"], s1.inputs[0])
+    nt.links.new(sep.outputs["Green"], s1.inputs[1])
+    s2 = nt.nodes.new("ShaderNodeMath")
+    s2.operation = "ADD"
+    s2.location = (-700, 420)
+    nt.links.new(s1.outputs[0], s2.inputs[0])
+    nt.links.new(sep.outputs["Blue"], s2.inputs[1])
+    tw = nt.nodes.new("ShaderNodeMath")
+    tw.operation = "SUBTRACT"
+    tw.use_clamp = True
+    tw.location = (-550, 420)
+    tw.inputs[0].default_value = 1.0
+    nt.links.new(s2.outputs[0], tw.inputs[1])
+    c_p = scale(cols["primary"].outputs[0], sep.outputs["Red"], (-600, 200))
+    c_s = scale(cols["secondary"].outputs[0], sep.outputs["Green"], (-600, 50))
+    c_a = scale(cols["accent"].outputs[0], sep.outputs["Blue"], (-600, -100))
+    c_t = scale(cols["trim"].outputs[0], tw.outputs[0], (-600, -250))
+    mix = addc(addc(c_p, c_s, (-350, 150)), addc(c_a, c_t, (-350, -150)), (-150, 0))
     sepd = nt.nodes.new("ShaderNodeSeparateColor")
-    sepd.location = (-900, -500)
+    sepd.location = (-1050, -650)
     nt.links.new(det.outputs["Color"], sepd.inputs["Color"])
-    nt.links.new(sepd.outputs["Red"], gain.inputs[0])
-    nt.links.new(gain.outputs[0], mul.inputs[7])
-    nt.links.new(mul.outputs[2], bsdf.inputs["Base Color"])
+    dm = nt.nodes.new("ShaderNodeMath")
+    dm.operation = "MULTIPLY_ADD"
+    dm.location = (-850, -650)
+    dm.inputs[1].default_value = 0.65
+    dm.inputs[2].default_value = 0.35
+    nt.links.new(sepd.outputs["Red"], dm.inputs[0])
+    final = scale(mix, dm.outputs[0], (50, 0))
+    nt.links.new(final, bsdf.inputs["Base Color"])
     # pre-composited copy for export (not linked in the editable material)
     bc = _tex(nt, _img(p(f"{fid}_cloth_basecolor.png"), "sRGB"), (-500, 500))
     bc.name = bc.label = "export_basecolor"

@@ -1,0 +1,62 @@
+Briarport art build  2026-09-29T01:07:23Z
+blender: /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/blender (Blender 4.5.9 LTS)
+layout:  game/data/arena/briarport_layout.json sha256=79026ab94a36f5bf
+
+=== 01:07:23 textures
+textures up to date (87 files)
+
+=== 01:07:23 blender build + verify + export
+[arena     0.5s] floors
+[arena     0.5s] canals + water
+[arena     0.7s] balustrades
+[arena     0.8s] stairs, ramps, bridges
+[arena     0.8s] puddles + decals
+[arena     2.5s] buildings: 97 parcels
+[arena     2.7s] props: layout solids
+[arena     2.8s] props: decor (2 decor placements adjusted)
+[arena     2.9s] skyline
+[arena     4.1s] objects=228 tris~328149
+Info: Saved as "briarport.blend"
+Info: Total files 86 | Changed 0 | Failed 0
+Info: Saved "briarport.blend"
+[arena     4.5s] saved /home/user/Wildrush/blender/arena/briarport.blend
+[arena     7.6s] verify: check_floors done (0 failures so far)
+[arena     7.6s] verify: check_ramps done (0 failures so far)
+[arena     7.9s] verify: check_solids done (0 failures so far)
+[arena     8.0s] verify: check_zones done (0 failures so far)
+[arena     8.0s] verify: check_specials done (0 failures so far)
+[arena     8.1s] verify: check_budgets done (0 failures so far)
+[arena     8.1s] verification: passed=True failures=0 stats={'floor_samples': 5988, 'floor_worst_err_m': 0.005, 'floor_worst_at': ('north_row', -42.64, -38.62, 'puddle_08'), 'headroom_samples': 5988, 'ramp_worst_err_m': 0.0, 'face_samples': 15184, 'face_worst_err_m': 0.14, 'special_counts': {'water': 7, 'puddle': 10, 'foliage': 12, 'emissive': 22, 'banner': 16, 'emit_smoke': 4}, 'triangles': 328149, 'materials': 36, 'layout_overlaps_skipped': ['platform_c_ramp', 'platform_c_ramp_s']}
+INFO Draco mesh compression is available, use library at /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+[arena    11.5s] exported briarport_A.glb: 96493 tris, 47 mesh nodes, 6 shared meshes, 19 materials, 3642 KiB
+[arena    12.7s] exported briarport_B.glb: 47312 tris, 62 mesh nodes, 8 shared meshes, 16 materials, 1317 KiB
+[arena    15.2s] exported briarport_C.glb: 18646 tris, 27 mesh nodes, 4 shared meshes, 21 materials, 976 KiB
+[arena    16.4s] exported briarport_north.glb: 88600 tris, 42 mesh nodes, 4 shared meshes, 26 materials, 5959 KiB
+[arena    18.8s] exported briarport_south.glb: 73762 tris, 41 mesh nodes, 4 shared meshes, 27 materials, 4968 KiB
+[arena    19.6s] exported briarport_skyline.glb: 3336 tris, 5 mesh nodes, 0 shared meshes, 12 materials, 206 KiB
+[arena    19.6s] manifest /home/user/Wildrush/game/assets/arena/arena_art.json: 328149 tris, 36 materials, 86 textures
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
+=== 01:07:45 godot scratch import check
+scratch project: /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/arenacheck
+godot import clean: 6 glb + 87 textures imported
+ARENA_CHECK {"failures":0,"floor_samples":216,"floor_worst_err_m":0.00399994850158691,"materials":36,"passed":true,"special_nodes":{"banner_":16,"emissive_":22,"emit_smoke_":4,"foliage_":12,"puddle_":10,"water_":7},"triangles":328149}
+
+=== 01:08:59 review renders
+[render] overview -> /home/user/Wildrush/evidence/arena/blender_overview.png (375.7s)
+[render] topdown -> /home/user/Wildrush/evidence/arena/blender_topdown.png (297.1s)
+[render] A -> /home/user/Wildrush/evidence/arena/blender_A.png (500.7s)
+[render] B -> /home/user/Wildrush/evidence/arena/blender_B.png (254.1s)
+[render] C -> /home/user/Wildrush/evidence/arena/blender_C.png (310.9s)
+[render] north -> /home/user/Wildrush/evidence/arena/blender_north.png (140.8s)
+[render] south -> /home/user/Wildrush/evidence/arena/blender_south.png (225.8s)
+
+=== 01:44:07 done
+  res://assets/arena/briarport_A.glb            96493 tris    3642 KiB
+  res://assets/arena/briarport_B.glb            47312 tris    1317 KiB
+  res://assets/arena/briarport_C.glb            18646 tris     976 KiB
+  res://assets/arena/briarport_north.glb        88600 tris    5959 KiB
+  res://assets/arena/briarport_south.glb        73762 tris    4968 KiB
+  res://assets/arena/briarport_skyline.glb       3336 tris     206 KiB
+  total 328149 tris, 36 materials, 86 textures (47 MiB), verification passed=True
+BUILD OK

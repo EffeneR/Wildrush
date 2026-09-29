@@ -24,6 +24,7 @@ var mouse_captured: bool = false
 var input_enabled: bool = true
 var free_look_speed: float = 12.0    # spectator free camera (m/s)
 var spectator_free: bool = false
+var auto_yaw: bool = false            # follow the target's facing (spectating / autopilot runs)
 var _dist: float = DIST
 var _shake: float = 0.0
 var _shake_t: float = 0.0
@@ -97,6 +98,8 @@ func _process(dt: float) -> void:
 		return
 	if target == null or not is_instance_valid(target):
 		return
+	if auto_yaw:
+		yaw = lerp_angle(yaw, target.rotation.y, 1.0 - exp(-3.0 * dt))
 	var guard: bool = Input.is_action_pressed("guard") and input_enabled
 	_dist = lerpf(_dist, DIST_GUARD if guard else DIST, 1.0 - exp(-6.0 * dt))
 	var want_focus: Vector3 = target.global_position + Vector3(0, HEIGHT * target_height / 1.7, 0)

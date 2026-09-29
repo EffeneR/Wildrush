@@ -14,6 +14,7 @@ var _local_body: FighterBody = null
 var _dummy_brains: Dictionary = {}
 var _finished_sent: bool = false
 var _pending_events: Array = []
+var vis := TeamVisibility.new()        # same fog-of-war rules as online (minimap / plates)
 
 
 func setup(p: Dictionary) -> void:
@@ -55,9 +56,19 @@ func setup(p: Dictionary) -> void:
 	sim.match_finished.connect(_on_finished)
 
 
+var _bot_names: Array = []
+
+
 func _add_bot(fid: String, team: int, slot: int, diff: String, rng: RandomNumberGenerator) -> void:
-	var names: Array = ["Ash", "Birch", "Cobble", "Dune", "Ember", "Flint", "Gale", "Hazel", "Ivy", "Juniper"]
-	var f: FighterBody = sim.add_fighter(fid, team, slot, "%s (Bot)" % names[(team * 5 + slot + rng.randi_range(0, 9)) % names.size()], true)
+	if _bot_names.is_empty():
+		_bot_names = ["Ash", "Birch", "Cobble", "Dune", "Ember", "Flint", "Gale", "Hazel", "Ivy", "Juniper", "Kestrel", "Loam"]
+		for i in range(_bot_names.size() - 1, 0, -1):   # deterministic shuffle from the match seed
+			var k: int = rng.randi_range(0, i)
+			var tmp: Variant = _bot_names[i]
+			_bot_names[i] = _bot_names[k]
+			_bot_names[k] = tmp
+	var bot_name: String = "%s (Bot)" % String(_bot_names.pop_back())
+	var f: FighterBody = sim.add_fighter(fid, team, slot, bot_name, true)
 	var b := BotAI.new()
 	b.difficulty = diff
 	sim.bot_brains[f.entity_id] = b
@@ -80,12 +91,12 @@ func _setup_training(t: Dictionary) -> void:
 	for i in range(sim.fighters.size()):
 		var f2: FighterBody = sim.fighters[i]
 		if f2.is_dummy:
-			f2.global_position = c + Vector3(-4.0 + 4.0 * f2.slot, 0.002, -3.0)
+			f2.global_position = c + Vector3(-4.0 + 4.0 * f2.slot, 0.002, 4.5)   # in front of the fountain
 			f2.st.yaw = MathX.yaw_from_dir(Vector3(0, 0, 1))   # face the player (south)
 			f2.apply_yaw()
 			f2.set_meta("safe_pos", f2.global_position)
 			f2.set_meta("train_pos", f2.global_position)
-	_local_body.global_position = c + Vector3(0, 0.002, 6.0)
+	_local_body.global_position = c + Vector3(0, 0.002, 10.5)
 	_local_body.st.yaw = 0.0
 	_local_body.apply_yaw()
 	_local_body.set_meta("safe_pos", _local_body.global_position)
@@ -121,7 +132,9 @@ func physics_step(inp: InputFrame) -> void:
 			recorder.begin(sim, sim.match_id, mode, {})
 	if inp != null:
 		sim.set_input(local_entity, inp)
-	var evs: Array[Dictionary] = sim.step_tick()
+	var _evs: Array[Dictionary] = sim.step_tick()
+	if sim.tick % 3 == 0:
+		vis.update(sim.tick, sim.fighters, sim.ctx.space)
 	if recorder.active:
 		recorder.capture(sim)
 	if mode == WR.MODE_TRAINING:
@@ -162,7 +175,10 @@ func _on_finished(result: Dictionary) -> void:
 func views(_dt: float) -> Dictionary:
 	var out: Dictionary = {}
 	for f in sim.fighters:
-		out[f.entity_id] = MatchHost.view_from_body(f, sim.tick)
+		var vs: Dictionary = MatchHost.view_from_body(f, sim.tick)
+		if f.team != local_team and not vis.visible_to(local_team, f.entity_id, sim.tick):
+			vs["unseen"] = true
+		out[f.entity_id] = vs
 	return out
 
 
@@ -193,6 +209,10 @@ func roster() -> Array:
 
 
 func send_ping(pos: Vector3, kind: String) -> void:
+	if kind == "enemy":
+		for f in sim.fighters:
+			if f.team != local_team and f.st.alive and f.global_position.distance_to(pos) < 3.0 and vis.visible_to(local_team, f.entity_id, sim.tick):
+				vis.mark_pinged(local_team, f.entity_id, sim.tick)
 	ping.emit({"from": local_entity, "pos": pos, "kind": kind})
 
 

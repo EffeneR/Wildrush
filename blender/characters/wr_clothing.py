@@ -471,18 +471,378 @@ def nyx_jacket_colour(F, L, z_crop, sleeve_t):
     return f
 
 
-# placeholders for the other fighters (filled in when their outfits are built)
+# ============================================================================= shared garment builders
+def pal(p=0.0, s=0.0, a=0.0):
+    return lambda P: np.tile([p, s, a], (len(P), 1))
+
+
+def g_top(F, L, z_bottom, neck_front, neck_back, off=0.0035, thick=0.0075, colour=None, sleeve=None, name="top"):
+    """Fitted under-top / athletic top: z_bottom -> neckline, sleeveless or short sleeves (t_end on arm chain)."""
+    z_neck = F.p["neck_base_z"]
+    reg = m_and(m_zband(z_bottom, 10.0), neckline(F, z_neck + neck_front, z_neck + neck_back),
+                torso_side(L) if sleeve is None else sleeve_cut(L, sleeve))
+    lo, hi = body_bbox(F, z_bottom - 0.05, z_neck + 0.12)
+    return Garment(name, shell_node(F.proxy, reg, off, thick, lo, hi, edge_k=0.002), reg, cover_margin=0.020,
+                   colour=colour or pal(), base=F.proxy, inner=off)
+
+
+def g_upper(F, L, name, z_bottom, sleeve_t, neck_front, neck_back, off=0.019, thick=0.010, colour=None,
+            open_front=0.0, folds_amp=0.0035, cover=True, armhole_in=0.0):
+    """Jacket / vest.  sleeve_t None = sleeveless; open_front = half-width (m) of the front opening."""
+    z_neck = F.p["neck_base_z"]
+    parts = [m_zband(z_bottom, 10.0), neckline(F, z_neck + neck_front, z_neck + neck_back)]
+    if sleeve_t is None:
+        # sleeveless: vertical armhole planes just inside the shoulder joints (no flaps over the deltoids)
+        xcut = F.p["sh_x"] - armhole_in
+        z_arm = F.p["sh_z"] - 0.13            # armpit: below it the allowance widens (armhole bottom)
+
+        def vcut(P, xc=xcut, za=z_arm):
+            return np.abs(P[:, 0]) - (xc + 1.6 * np.maximum(0.0, za - P[:, 2]))
+        parts.append(torso_side(L))
+        parts.append(vcut)
+    else:
+        parts.append(sleeve_cut(L, sleeve_t))
+    if open_front > 0:
+        zc = F.p["rib_z"]
+
+        def opening(P, w=open_front, zc=zc):
+            front = P[:, 1] < -0.02
+            wz = w * (0.55 + 0.45 * np.clip((P[:, 2] - (zc - 0.10)) / 0.25, 0, 1))
+            return np.where(front, wz - np.abs(P[:, 0]), -1.0)
+        parts.append(opening)
+    reg = m_and(*parts)
+    folds = fold_fn(F, folds_amp, zfreq=30, xyfreq=14, seed=21) if folds_amp > 0 else None
+    lo, hi = body_bbox(F, z_bottom - 0.05, z_neck + 0.14)
+    return Garment(name, shell_node(F.proxy, reg, off, thick, lo, hi, folds=folds), reg,
+                   cover_margin=0.022 if cover else None, colour=colour or pal(1.0), base=F.proxy, inner=off - thick / 2)
+
+
+def g_hem(F, L, upper_region, z_bottom, sleeve_t, off, thick, colour, name, front_band=None):
+    parts = [m_and(m_zband(z_bottom - 0.01, z_bottom + 0.022), torso_side(L))]
+    if sleeve_t is not None:
+        parts.append(sleeve_cut(L, 10.0, sleeve_t - 0.07, other=1.0))
+    if front_band is not None:
+        w = front_band
+
+        def band(P, w=w):
+            return np.where(P[:, 1] < -0.02, np.abs(np.abs(P[:, 0]) - w) - 0.014, 1.0)
+        parts.append(band)
+    reg = m_and(upper_region, m_or(*parts))
+    lo, hi = body_bbox(F, z_bottom - 0.05, F.p["neck_base_z"] + 0.14)
+    return Garment(name, shell_node(F.proxy, reg, off, thick, lo, hi), reg, colour=colour)
+
+
+def g_lower(F, L, name, t_hem, z_top, off_hips=0.013, bag=(0.012, 0.015, 0.020, 0.024, 0.017, 0.010),
+            thigh_hem=None, colour=None, folds_amp=0.004):
+    """Trousers (t_hem along the shin) or shorts (thigh_hem along the thigh)."""
+    J = F.J
+    p = F.p
+    if thigh_hem is not None:
+        def hem_term(P, t_th=thigh_hem):
+            out = np.full(len(P), -1.0)
+            for side, s in (("Left", 1), ("Right", -1)):
+                a, b = L[side + "_th"]
+                t, Ls = seg_t(P, a, b)
+                on = (s * P[:, 0] > 0.0) & (P[:, 2] < p["hip_z"])
+                out = np.where(on, (t - t_th) * Ls, out)
+            return out
+    else:
+        hem_term = leg_hem(F, L, t_hem)
+    reg = m_and(m_plane([0, 0, z_top], [0, -0.25, 1.0]), hem_term, torso_side(L))
+    tail_hole = m_capsule(F.tail_pts[0] + np.array([0, -0.05, 0]), F.tail_pts[min(4, len(F.tail_pts) - 1)],
+                          F.tail_radii[0] + 0.012)
+    reg = m_and(reg, m_not(tail_hole))
+
+    def off_fn(P):
+        o = np.full(len(P), off_hips)
+        for side in ("Left", "Right"):
+            a, b = L[side + "_sh"]
+            t, Ls = seg_t(P, a, b)
+            s = 1 if side == "Left" else -1
+            on = (s * P[:, 0] > 0.02)
+            bg = np.interp(t, [-1.0, -0.4, 0.0, 0.35, 0.62, 0.80], list(bag))
+            o = np.where(on & (P[:, 2] < p["hip_z"] - 0.05), bg, o)
+        return o
+    folds = fold_fn(F, folds_amp, zfreq=34, xyfreq=13, seed=5,
+                    rings=[(J["LeftKnee"][2] + 0.01, 0.035, 0.45, 0.034), (J["LeftAnkle"][2] + 0.10, 0.04, 0.7, 0.026)])
+    lo, hi = body_bbox(F, 0.0, z_top + 0.05)
+    node = trouser_node(F, reg, off_fn, 0.010, lo, hi, folds)
+    g = Garment(name, node, reg, cover_margin=0.022, colour=colour or pal(), base=F.proxy, inner=off_hips - 0.005)
+    g.off_fn = off_fn
+    return g
+
+
+def trouser_node(F, region, off_fn, thick, lo, hi, folds, crotch_drop=0.055):
+    """Hips part follows the whole proxy; below the crotch each leg gets its own tube from its own
+    leg proxy, clipped to its side, so baggy legs never fill the gap between the thighs."""
+    zc = F.p["hip_z"] - crotch_drop
+    half = thick * 0.5
+
+    def fn(P):
+        blo, bhi = P.min(axis=0), P.max(axis=0)
+        o = off_fn(P)
+        d = F.proxy.ev(P, blo, bhi, 0.05)
+        s_all = np.abs(d - o) - half
+        s_all = np.maximum(s_all, zc - 0.015 - P[:, 2])
+        out = s_all
+        for side, sg in (("Left", 1.0), ("Right", -1.0)):
+            dl = F.leg_proxy[side].ev(P, blo, bhi, 0.05)
+            s_leg = np.abs(dl - o) - half
+            s_leg = np.maximum(s_leg, P[:, 2] - (zc + 0.015))
+            s_leg = np.maximum(s_leg, -sg * P[:, 0] - 0.002)
+            out = smin(out, s_leg, 0.004)
+        if folds is not None:
+            near = np.abs(out) < 0.02
+            if np.any(near):
+                out = out.copy()
+                out[near] -= folds(P[near])
+        return smax(out, region(P), 0.0035)
+    return Func(fn, lo, hi)
+
+
+def g_band(F, L, name, z0, z1, off, thick, colour, folds=None):
+    reg = m_and(m_zband(z0, z1), torso_side(L))
+    lo, hi = body_bbox(F, z0 - 0.05, z1 + 0.05)
+    return Garment(name, shell_node(F.proxy, reg, off, thick, lo, hi, folds=folds), reg, colour=colour)
+
+
+def g_buckle(F, name, c, size, colour):
+    b = RoundBox(c, size, None, rnd=0.004)
+    b = Subtract(b, Offset_body(F, 0.020), k=0.003)
+    return Garment(name, b, m_sphere(c, 0.1), colour=colour)
+
+
+def g_hood(F, name, colour, scale=1.0, lift=0.0):
+    J = F.J
+    nb = J["Neck"]
+    s = scale
+    hood_c = nb + np.array([0.0, 0.070 * s, 0.035 + lift])
+    outer = Ellipsoid(hood_c, (0.118 * s, 0.062 * s, 0.086 * s), rot_x(-0.35))
+    inner = Ellipsoid(hood_c + np.array([0.0, -0.028, 0.030]), (0.092 * s, 0.042 * s, 0.070 * s), rot_x(-0.35))
+    hood = Subtract(outer, inner, k=0.012)
+    torus = Torus(nb + np.array([0, 0.012, 0.030 + lift]), rot_x(-0.25), 0.080 * s + (F.p["neck_r"][0] - 0.05), 0.026)
+    hood = Union([hood, Intersect(torus, HalfSpace(nb + np.array([0, -0.005, 0]), [0, -1, 0]), k=0.02)], k=0.03)
+    hood = Subtract(hood, Offset_body(F, 0.010), k=0.006)
+    return Garment(name, hood, m_sphere(hood_c, 0.25), colour=colour)
+
+
+def g_wrist(F, L, side, name, t0, t1, colour, off=0.0032, thick=0.0060):
+    el, wr = L[side + "_fa"]
+    reg = m_and(m_seg(el, wr, t0, t1), arm_side(L, side))
+    lo = np.minimum(el, wr) - 0.12
+    hi = np.maximum(el, wr) + 0.12
+    return Garment(name, shell_node(F.body, reg, off, thick, lo, hi, folds=wrap_ridges(el, wr, pitch=0.017, amp=0.0010),
+                                    edge_k=0.002, base_m=0.02), reg, cover_margin=0.012, base=F.body, inner=0.0003,
+                   colour=colour)
+
+
+def g_ankle(F, L, side, name, t0, t1, colour, off_profile=((0.74, 0.016), (0.84, 0.009), (0.96, 0.0035))):
+    kn, an = L[side + "_sh"]
+    s = 1 if side == "Left" else -1
+    reg = m_and(m_seg(kn, an, t0, t1), lambda P, s=s: -s * P[:, 0], m_zband(-1.0, F.p["hip_z"] - 0.1))
+    lo = np.minimum(kn, an) - 0.12
+    hi = np.maximum(kn, an) + 0.12
+    ts = [a for a, _ in off_profile]
+    os_ = [b for _, b in off_profile]
+
+    def off(P, kn=kn, an=an):
+        t, _ = seg_t(P, kn, an)
+        return np.interp(t, ts, os_)
+    return Garment(name, shell_node(F.body, reg, off, 0.0065, lo, hi, folds=wrap_ridges(kn, an, pitch=0.019, amp=0.0010),
+                                    edge_k=0.002, base_m=0.03), reg, cover_margin=0.012, base=F.body, inner=0.0003,
+                   colour=colour)
+
+
+def g_pad(F, L, side, which, name, colour, base_off, size=(0.055, 0.065), thick=0.014):
+    """Soft fabric pad (knee / elbow): thick quilted cap on the joint front/back (B11: no hard armour)."""
+    J = F.J
+    s = 1 if side == "Left" else -1
+    if which == "knee":
+        c = J[side + "Knee"] + np.array([0, -0.045, 0.0])
+        half = m_and(m_zband(c[2] - size[1], c[2] + size[1] * 0.9), lambda P, cx=c[0], w=size[0]: np.abs(P[:, 0] - cx) - w,
+                     m_plane(J[side + "Knee"] + np.array([0, -0.004, 0]), [0, 1, 0]))
+        lo, hi = c - 0.15, c + 0.15
+        base = F.proxy
+    else:  # elbow (back of the elbow)
+        el = J[side + "Elbow"]
+        sh = J[side + "Shoulder"]
+        wr = J[side + "Wrist"]
+        ua = normalize(el - sh)
+        fa = normalize(wr - el)
+        back = normalize(np.cross(ua, np.array([0.0, 0.0, 1.0])) * 0 + np.array([0.0, 1.0, 0.0]))
+        c = el + back * 0.03
+
+        def half(P, el=el, ua=ua, fa=fa, w=size[0], h=size[1]):
+            rel = P - el
+            along = np.where(rel @ ua < 0, rel @ ua, rel @ fa)
+            d_side = np.abs(rel @ normalize(np.cross(ua, fa) + 1e-9)) if False else np.zeros(len(P))
+            behind = -(rel @ np.array([0.0, 1.0, 0.0])) + 0.004
+            return np.maximum.reduce([np.abs(along) - h, behind, np.linalg.norm(rel, axis=1) - (w + 0.05)])
+        lo, hi = el - 0.18, el + 0.18
+        base = F.body
+    quilt = lambda P: 0.0022 * np.clip(np.sin(P[:, 0] * 180) * np.sin(P[:, 2] * 180) * 2.0, -1, 1)
+    node = shell_node(base, half, base_off, thick, lo, hi, folds=quilt, edge_k=0.006, base_m=0.03)
+    return Garment(name, node, half, colour=colour)
+
+
+def g_pocket(F, side, name, frac=0.50, out=0.075, size=(0.022, 0.062, 0.070), colour=None):
+    J = F.J
+    s = 1 if side == "Left" else -1
+    hip, knee = J[side + "Hip"], J[side + "Knee"]
+    pc = hip + (knee - hip) * frac + np.array([s * out, 0.010, 0.0])
+    pocket = RoundBox(pc, size, rot_z(s * 0.10) @ rot_y(-s * 0.05), rnd=0.010)
+    pocket = Subtract(pocket, Offset_body(F, 0.010), k=0.004)
+    flap = RoundBox(pc + np.array([s * 0.010, 0.0, size[2] - 0.010]), (size[0] - 0.002, size[1] + 0.004, 0.016), rot_z(s * 0.10), rnd=0.006)
+    flap = Subtract(flap, Offset_body(F, 0.012), k=0.004)
+    return Garment(name, Union([pocket, flap], k=0.004), m_sphere(pc, 0.15), colour=colour or pal())
+
+
+def g_zip(F, name, z0, z1, off, colour):
+    """Raised zipper placket down the front centre."""
+    def reg(P, z0=z0, z1=z1):
+        return np.maximum.reduce([np.abs(P[:, 0]) - 0.008, z0 - P[:, 2], P[:, 2] - z1, P[:, 1] + 0.0])
+    lo, hi = body_bbox(F, z0 - 0.05, z1 + 0.05)
+    return Garment(name, shell_node(F.proxy, reg, off, 0.012, lo, hi, edge_k=0.002), reg, colour=colour)
+
+
+# ============================================================================= Bruno
 def clothes_bruno(F, L):
-    raise NotImplementedError
+    """Navy sleeveless vest with cobalt upper-back panel + hood, charcoal shorts with belt,
+    blue wrist/hand wraps, soft padded knee pads (B11), short tail through the shorts."""
+    p = F.p
+    J = F.J
+    G = []
+    z_vest = p["waist_z"] - 0.035
+    zc = J["UpperChest"][2]
+
+    def vest_colour(P, zc=zc):
+        n = len(P)
+        back = P[:, 1] > 0.03
+        panel = back & (P[:, 2] > zc - 0.06)                      # cobalt upper-back panel
+        piping = (np.abs(np.abs(P[:, 0]) - 0.075) < 0.010) & (P[:, 1] < -0.03) & (P[:, 2] > zc - 0.10)
+        sec = panel.astype(float)
+        acc = piping.astype(float) * (1 - sec)
+        return np.stack([1 - sec - acc, sec, acc], 1)
+    vest = g_upper(F, L, "vest", z_vest, None, 0.030, 0.070, off=0.018, thick=0.011, colour=vest_colour, armhole_in=0.030)
+    G.append(vest)
+    G.append(g_hem(F, L, vest.region, z_vest, None, 0.0205, 0.0135, pal(0, 1, 0), "vest_hem"))
+    G.append(g_zip(F, "vest_zip", z_vest + 0.01, p["neck_base_z"] + 0.03, 0.022, pal(0, 0, 1)))
+    G.append(g_hood(F, "hood", lambda P: np.stack([np.ones(len(P)) * 0.0 + 1.0, np.zeros(len(P)), np.zeros(len(P))], 1), scale=1.12))
+    z_top = p["waist_z"] - 0.015
+    shorts = g_lower(F, L, "shorts", None, z_top, off_hips=0.012, thigh_hem=0.78,
+                     bag=(0.014, 0.018, 0.022, 0.024, 0.020, 0.012), colour=pal())
+    G.append(shorts)
+    G.append(g_band(F, L, "belt", z_top - 0.040, z_top - 0.004, 0.025, 0.012, pal()))
+    G.append(g_buckle(F, "buckle", np.array([0.0, -0.13, z_top - 0.022]), (0.028, 0.008, 0.020), pal(0, 0, 1)))
+    for side in ("Left", "Right"):
+        G.append(g_pocket(F, side, side + "_pocket", frac=0.42, out=0.085, size=(0.022, 0.060, 0.062)))
+        G.append(g_wrist(F, L, side, side + "_wrap", 0.52, 0.99, lambda P: np.tile([0, 1, 0], (len(P), 1)),
+                         off=0.0035, thick=0.0068))
+        G.append(g_pad(F, L, side, "knee", side + "_kneepad", pal(), base_off=0.016, size=(0.058, 0.070), thick=0.018))
+    return G
 
 
+# ============================================================================= Vex
 def clothes_vex(F, L):
-    raise NotImplementedError
+    """Dark-plum cropped open jacket with a copper panel on the anatomical RIGHT shoulder only
+    (B8), dark under-shirt, charcoal rolled trousers, belt, fingerless wraps, hood. No scarf."""
+    p = F.p
+    J = F.J
+    G = []
+    z_crop = p["rib_z"] - 0.075
+    G.append(g_top(F, L, p["waist_z"] - 0.06, 0.012, 0.040, colour=pal()))
+    right_sh = J["RightShoulder"]
+
+    def jacket_colour(P, rs=right_sh, zc=J["UpperChest"][2]):
+        n = len(P)
+        # copper panel: anatomical right shoulder = -X side, top of the shoulder / upper sleeve
+        d = P - (rs + np.array([-0.02, 0.0, 0.03]))
+        panel = (P[:, 0] < -0.06) & (np.linalg.norm(d, axis=1) < 0.13) & (P[:, 2] > rs[2] - 0.07)
+        sec = panel.astype(float)
+        collar = (P[:, 2] > p["neck_base_z"] + 0.02).astype(float) * (1 - sec)
+        return np.stack([1 - sec - collar * 0.0, sec, collar * 0.0], 1)
+    jacket = g_upper(F, L, "jacket", z_crop, 1.45, 0.045, 0.085, off=0.020, thick=0.010, colour=jacket_colour,
+                     open_front=0.060)
+    G.append(jacket)
+    G.append(g_hem(F, L, jacket.region, z_crop, 1.45, 0.0215, 0.0130, pal(1.0), "jacket_hem"))
+    G.append(g_hood(F, "hood", pal(1.0), scale=1.02, lift=0.012))
+    z_top = p["waist_z"] - 0.02
+    tr = g_lower(F, L, "trousers", 0.66, z_top, off_hips=0.013, bag=(0.013, 0.016, 0.021, 0.024, 0.019, 0.016), colour=pal())
+    G.append(tr)
+    # rolled cuffs at the shin hem
+    for side in ("Left", "Right"):
+        kn, an = L[side + "_sh"]
+        s = 1 if side == "Left" else -1
+        reg = m_and(m_seg(kn, an, 0.58, 0.68), lambda P, s=s: -s * P[:, 0], m_zband(-1, p["hip_z"] - 0.1))
+        lo, hi = np.minimum(kn, an) - 0.15, np.maximum(kn, an) + 0.15
+        G.append(Garment(side + "_cuff", shell_node(F.proxy, reg, 0.026, 0.014, lo, hi, edge_k=0.004), reg, colour=pal()))
+        G.append(g_wrist(F, L, side, side + "_glove", 0.70, 1.02, pal(), off=0.0035, thick=0.0065))
+        G.append(g_pocket(F, side, side + "_pocket", frac=0.45, out=0.080, size=(0.020, 0.055, 0.060)))
+    G.append(g_band(F, L, "belt", z_top - 0.042, z_top - 0.006, 0.024, 0.012, pal()))
+    G.append(g_buckle(F, "buckle", np.array([0.0, -0.118, z_top - 0.024]), (0.024, 0.007, 0.018), pal(0, 0, 1)))
+    return G
 
 
+# ============================================================================= Hops
 def clothes_hops(F, L):
-    raise NotImplementedError
+    """Teal cropped jacket (short sleeves, hood), full-coverage charcoal athletic top reaching the
+    waistband, mid-thigh charcoal shorts with mint waistband (B9), ankle wraps, fingerless gloves."""
+    p = F.p
+    J = F.J
+    G = []
+    z_crop = p["rib_z"] - 0.070
+    z_top = p["waist_z"] - 0.010
+    G.append(g_top(F, L, z_top - 0.035, 0.016, 0.045, colour=pal(0, 1, 0), name="athletic_top"))
+    jacket = g_upper(F, L, "jacket", z_crop, 0.55, 0.045, 0.085, off=0.019, thick=0.010, colour=pal(1.0),
+                     open_front=0.050)
+    G.append(jacket)
+    G.append(g_hem(F, L, jacket.region, z_crop, 0.55, 0.0212, 0.0128, pal(0, 0, 1), "jacket_trim"))
+    G.append(g_hood(F, "hood", pal(1.0), scale=0.98, lift=0.010))
+    shorts = g_lower(F, L, "shorts", None, z_top, off_hips=0.010, thigh_hem=0.55,
+                     bag=(0.010, 0.012, 0.014, 0.014, 0.012, 0.010), colour=pal(0, 1, 0), folds_amp=0.003)
+    G.append(shorts)
+    G.append(g_band(F, L, "waistband", z_top - 0.040, z_top - 0.004, 0.018, 0.012, pal(0, 0, 1)))
+    for side in ("Left", "Right"):
+        G.append(g_ankle(F, L, side, side + "_anklewrap", 0.80, 1.05, pal(),
+                         off_profile=((0.80, 0.006), (0.92, 0.004), (1.0, 0.0035))))
+        G.append(g_wrist(F, L, side, side + "_glove", 0.72, 1.02, pal(1.0), off=0.0035, thick=0.0065))
+    # thigh strap (left)
+    hip, knee = J["LeftHip"], J["LeftKnee"]
+    reg = m_and(m_seg(hip, knee, 0.60, 0.68), lambda P: -P[:, 0], m_zband(-1, p["hip_z"] - 0.05))
+    G.append(Garment("thigh_strap", shell_node(F.proxy, reg, 0.006, 0.008, hip - 0.25, hip + 0.25, edge_k=0.002), reg, colour=pal()))
+    return G
 
 
+# ============================================================================= Scrap
 def clothes_scrap(F, L):
-    raise NotImplementedError
+    """Slate sleeveless vest (hood, amber accents), cropped charcoal trousers, belt, wrist wraps
+    with amber stripes, soft elbow and knee pads (B11). No gadgets."""
+    p = F.p
+    J = F.J
+    G = []
+    z_vest = p["waist_z"] - 0.030
+    zc = J["UpperChest"][2]
+
+    def vest_colour(P, zc=zc):
+        yoke = (P[:, 2] > zc + 0.05) & (np.abs(P[:, 0]) > 0.07)          # amber shoulder yokes
+        stripe = (np.abs(np.abs(P[:, 0]) - 0.060) < 0.008) & (P[:, 1] < -0.03) & (P[:, 2] < zc + 0.05)
+        sec = yoke.astype(float)
+        acc = stripe.astype(float) * (1 - sec)
+        return np.stack([1 - sec - acc, sec, acc], 1)
+    vest = g_upper(F, L, "vest", z_vest, None, 0.030, 0.070, off=0.018, thick=0.011, colour=vest_colour, armhole_in=0.028)
+    G.append(vest)
+    G.append(g_hem(F, L, vest.region, z_vest, None, 0.0205, 0.0135, pal(), "vest_hem"))
+    G.append(g_zip(F, "vest_zip", z_vest + 0.01, p["neck_base_z"] + 0.03, 0.022, pal(0, 0, 1)))
+    G.append(g_hood(F, "hood", pal(1.0), scale=1.08))
+    z_top = p["waist_z"] - 0.015
+    tr = g_lower(F, L, "trousers", 0.62, z_top, off_hips=0.013, bag=(0.013, 0.017, 0.022, 0.025, 0.020, 0.016), colour=pal())
+    G.append(tr)
+    G.append(g_band(F, L, "belt", z_top - 0.040, z_top - 0.004, 0.025, 0.012, pal()))
+    G.append(g_buckle(F, "buckle", np.array([0.0, -0.140, z_top - 0.022]), (0.026, 0.008, 0.019), pal(0, 1, 0)))
+    for side in ("Left", "Right"):
+        el, wr = L[side + "_fa"]
+        G.append(g_wrist(F, L, side, side + "_wrap", 0.55, 1.0, stripe_colour(el, wr, [(0.60, 0.66), (0.90, 0.95)])))
+        G.append(g_pad(F, L, side, "knee", side + "_kneepad", pal(), base_off=0.018, size=(0.056, 0.062), thick=0.016))
+        G.append(g_pad(F, L, side, "elbow", side + "_elbowpad", pal(), base_off=0.004, size=(0.045, 0.050), thick=0.013))
+        G.append(g_pocket(F, side, side + "_pocket", frac=0.50, out=0.090, size=(0.022, 0.060, 0.066)))
+    return G

@@ -56,6 +56,17 @@ def save_rgb(path, lin_rgb, is_data=False):
     Image.fromarray(img, "RGB").save(path, optimize=True)
 
 
+def save_normal(path, img01, size):
+    """Downsample a [0,1]-encoded tangent-space normal map (box filter + renormalise)."""
+    n = img01 * 2.0 - 1.0
+    H = n.shape[0]
+    f = max(1, H // size)
+    if f > 1:
+        n = n.reshape(H // f, f, H // f, f, 3).mean(axis=(1, 3))
+    n /= np.maximum(np.linalg.norm(n, axis=-1, keepdims=True), 1e-6)
+    save_rgb(path, n * 0.5 + 0.5, is_data=True)
+
+
 def save_rgba(path, rgba):
     img = (np.clip(rgba, 0, 1) * 255 + 0.5).astype(np.uint8)
     Image.fromarray(img, "RGBA").save(path, optimize=True)
@@ -242,6 +253,7 @@ def main():
     ap.add_argument("out")
     ap.add_argument("--size", type=int, default=2048)
     ap.add_argument("--cloth-size", type=int, default=2048)
+    ap.add_argument("--normal-size", type=int, default=1024)
     args = ap.parse_args()
     t0 = time.time()
     wdir = os.path.join(args.work, args.fid)
@@ -271,7 +283,7 @@ def main():
     save_rgb(os.path.join(args.out, f"{fid}_fur_albedo.png"), fb.image(albedo))
     t = time.time()
     nrm = fb.normal_from_height(hfn, strength=spec.get("normal_strength", 0.00045))
-    save_rgb(os.path.join(args.out, f"{fid}_fur_normal.png"), fb.image(nrm), is_data=True)
+    save_normal(os.path.join(args.out, f"{fid}_fur_normal.png"), fb.image(nrm), args.normal_size)
     log(f"  fur normal ({time.time() - t:.1f}s)")
 
     # ---------------- cloth
@@ -299,19 +311,34 @@ def main():
     detail = detail * (0.30 + 0.70 * ao ** 1.1)
     mask_img = cb.image(mask)
     det_img = cb.image(detail[:, None], iters=24)[..., 0]
+    # the game's palette shader samples mask+detail as source_color (sRGB-decoded) and computes
+    # albedo = palette_mix(mask) * (0.35 + 0.65 * detail); store detail sRGB-encoded so the decoded
+    # value is the linear AO x fabric factor, keep the mask binary-ish.
     save_rgba(os.path.join(args.out, f"{fid}_cloth_mask.png"),
               np.concatenate([mask_img, np.ones(mask_img.shape[:2] + (1,))], -1))
-    save_rgb(os.path.join(args.out, f"{fid}_cloth_detail.png"), np.repeat(det_img[..., None], 3, -1), is_data=True)
+    save_rgb(os.path.join(args.out, f"{fid}_cloth_detail.png"), np.repeat(det_img[..., None], 3, -1), is_data=False)
     nrm = cb.normal_from_height(lambda P: fabric(P) * 0.35 + wr_fur.seam_height(F, P), strength=0.0011)
-    save_rgb(os.path.join(args.out, f"{fid}_cloth_normal.png"), cb.image(nrm), is_data=True)
+    save_normal(os.path.join(args.out, f"{fid}_cloth_normal.png"), cb.image(nrm), args.normal_size)
     pal = fj["palettes"]["default"]
     cols = [hex_lin(pal["primary"]), hex_lin(pal["secondary"]), hex_lin(pal["accent"]), hex_lin(pal["trim"])]
-    m = mask_img
+    m = srgb_to_lin(mask_img)
     rest = np.clip(1 - m.sum(-1, keepdims=True), 0, 1)
     base = m[..., 0:1] * cols[0] + m[..., 1:2] * cols[1] + m[..., 2:3] * cols[2] + rest * cols[3]
-    base = base * det_img[..., None] * 1.25
+    base = base * (0.35 + 0.65 * det_img[..., None])
     save_rgb(os.path.join(args.out, f"{fid}_cloth_basecolor.png"), base)
     log(f"  cloth textures ({time.time() - t:.1f}s)")
+
+    # ---------------- clothing side check (CHARACTER_CONTRACT §6: mirrored clothing sides)
+    reg_stats = {}
+    for ch, nm in ((0, "primary"), (1, "secondary"), (2, "accent")):
+        sel = mask[:, ch] > 0.5
+        n = int(sel.sum())
+        if n:
+            x = cb.P[sel, 0]
+            reg_stats[nm] = dict(texels=n, frac_left_x_pos=round(float((x > 0.02).mean()), 4),
+                                 frac_right_x_neg=round(float((x < -0.02).mean()), 4))
+    with open(os.path.join(wdir, "texture_checks.json"), "w") as fh:
+        json.dump(dict(cloth_regions=reg_stats), fh, indent=1)
 
     # ---------------- eye / detail
     save_rgb(os.path.join(args.out, f"{fid}_eye.png"), eye_texture(spec["eye"]))

@@ -1,0 +1,55 @@
+[remap]
+
+importer="scene"
+importer_version=1
+
+[params]
+
+animation/import=true
+animation/fps=60
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+_subresources={
+"animations": {
+"guard_hold": {
+"settings/loop_mode": 1
+},
+"idle": {
+"settings/loop_mode": 1
+},
+"jump_air": {
+"settings/loop_mode": 1
+},
+"jump_fall": {
+"settings/loop_mode": 1
+},
+"run_b": {
+"settings/loop_mode": 1
+},
+"run_f": {
+"settings/loop_mode": 1
+},
+"run_l": {
+"settings/loop_mode": 1
+},
+"run_r": {
+"settings/loop_mode": 1
+},
+"victory": {
+"settings/loop_mode": 1
+},
+"walk_b": {
+"settings/loop_mode": 1
+},
+"walk_f": {
+"settings/loop_mode": 1
+},
+"walk_l": {
+"settings/loop_mode": 1
+},
+"walk_r": {
+"settings/loop_mode": 1
+}
+}
+}

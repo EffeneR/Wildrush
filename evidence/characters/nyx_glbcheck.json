@@ -1,0 +1,274 @@
+{
+ "file": "/home/user/Wildrush/game/assets/characters/nyx/nyx.glb",
+ "ok": true,
+ "operator": [
+  "FINISHED"
+ ],
+ "armatures": 1,
+ "bones": 49,
+ "bone_names": [
+  "Hips",
+  "Spine",
+  "Chest",
+  "UpperChest",
+  "Neck",
+  "Head",
+  "Jaw",
+  "LeftEar1",
+  "LeftEar2",
+  "RightEar1",
+  "RightEar2",
+  "LeftShoulder",
+  "LeftUpperArm",
+  "LeftLowerArm",
+  "LeftHand",
+  "LeftThumb1",
+  "LeftThumb2",
+  "LeftIndex1",
+  "LeftIndex2",
+  "LeftMiddle1",
+  "LeftMiddle2",
+  "LeftRing1",
+  "LeftRing2",
+  "RightShoulder",
+  "RightUpperArm",
+  "RightLowerArm",
+  "RightHand",
+  "RightThumb1",
+  "RightThumb2",
+  "RightIndex1",
+  "RightIndex2",
+  "RightMiddle1",
+  "RightMiddle2",
+  "RightRing1",
+  "RightRing2",
+  "LeftUpperLeg",
+  "LeftLowerLeg",
+  "LeftFoot",
+  "LeftToes",
+  "RightUpperLeg",
+  "RightLowerLeg",
+  "RightFoot",
+  "RightToes",
+  "Tail1",
+  "Tail2",
+  "Tail3",
+  "Tail4",
+  "Tail5",
+  "Tail6"
+ ],
+ "meshes": 2,
+ "triangles": 37918,
+ "materials": [
+  "nyx_cloth",
+  "nyx_detail",
+  "nyx_eye",
+  "nyx_fur"
+ ],
+ "animations": {
+  "defeat": [
+   0.0,
+   48.0
+  ],
+  "dodge_b": [
+   0.0,
+   8.8
+  ],
+  "dodge_f": [
+   0.0,
+   8.8
+  ],
+  "dodge_l": [
+   0.0,
+   8.8
+  ],
+  "dodge_r": [
+   0.0,
+   8.8
+  ],
+  "getup": [
+   0.0,
+   10.8
+  ],
+  "grabbed": [
+   0.0,
+   10.8
+  ],
+  "guard_block": [
+   0.0,
+   4.8
+  ],
+  "guard_break": [
+   0.0,
+   21.6
+  ],
+  "guard_enter": [
+   0.0,
+   2.4
+  ],
+  "guard_exit": [
+   0.0,
+   2.8
+  ],
+  "guard_hold": [
+   0.0,
+   24.0
+  ],
+  "heavy": [
+   0.0,
+   24.4
+  ],
+  "hit_back": [
+   0.0,
+   7.2
+  ],
+  "hit_front": [
+   0.0,
+   7.2
+  ],
+  "hit_heavy": [
+   0.0,
+   12.0
+  ],
+  "idle": [
+   0.0,
+   48.0
+  ],
+  "jump_air": [
+   0.0,
+   12.0
+  ],
+  "jump_fall": [
+   0.0,
+   12.0
+  ],
+  "jump_land": [
+   0.0,
+   4.8
+  ],
+  "jump_start": [
+   0.0,
+   2.8
+  ],
+  "knockdown": [
+   0.0,
+   19.2
+  ],
+  "knockout": [
+   0.0,
+   28.8
+  ],
+  "light_air": [
+   0.0,
+   9.6
+  ],
+  "light_l": [
+   0.0,
+   11.2
+  ],
+  "light_r": [
+   0.0,
+   11.2
+  ],
+  "light_s": [
+   0.0,
+   11.2
+  ],
+  "perch_climb": [
+   0.0,
+   10.8
+  ],
+  "respawn": [
+   0.0,
+   19.2
+  ],
+  "run_b": [
+   0.0,
+   16.0
+  ],
+  "run_f": [
+   0.0,
+   16.0
+  ],
+  "run_l": [
+   0.0,
+   16.0
+  ],
+  "run_r": [
+   0.0,
+   16.0
+  ],
+  "skill_e": [
+   0.0,
+   19.6
+  ],
+  "skill_q_air": [
+   0.0,
+   9.6
+  ],
+  "skill_q_land": [
+   0.0,
+   8.4
+  ],
+  "skill_q_land_miss": [
+   0.0,
+   15.6
+  ],
+  "skill_q_prep": [
+   0.0,
+   7.2
+  ],
+  "skill_r_counter": [
+   0.0,
+   10.8
+  ],
+  "skill_r_left": [
+   0.0,
+   10.0
+  ],
+  "skill_r_right": [
+   0.0,
+   10.0
+  ],
+  "stagger": [
+   0.0,
+   14.4
+  ],
+  "turn_l": [
+   0.0,
+   12.0
+  ],
+  "turn_r": [
+   0.0,
+   12.0
+  ],
+  "victory": [
+   0.0,
+   60.0
+  ],
+  "walk_b": [
+   0.0,
+   24.0
+  ],
+  "walk_f": [
+   0.0,
+   24.0
+  ],
+  "walk_l": [
+   0.0,
+   24.0
+  ],
+  "walk_r": [
+   0.0,
+   24.0
+  ]
+ },
+ "images": [
+  "nyx_cloth_basecolor",
+  "nyx_cloth_normal",
+  "nyx_detail",
+  "nyx_eye",
+  "nyx_fur_albedo",
+  "nyx_fur_normal"
+ ]
+}

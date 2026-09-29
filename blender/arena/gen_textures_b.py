@@ -71,10 +71,10 @@ def gen_metal_deck():
 
 # =============================================================================== IRON (painted, dark)
 def gen_iron():
-    S = 512
-    n1 = T.fbm(S, S, 8, 5, 211)
-    chips = T.smoothstep(0.8, 0.9, T.fbm(S, S, 24, 4, 212))
-    rust = T.smoothstep(0.72, 0.9, T.fbm(S, S, 6, 5, 213))
+    S = 1024
+    n1 = T.fbm(S, S, 16, 5, 211)
+    chips = T.smoothstep(0.8, 0.9, T.fbm(S, S, 48, 4, 212))
+    rust = T.smoothstep(0.72, 0.9, T.fbm(S, S, 12, 5, 213))
     hgt = -chips * 0.3 + (n1 - 0.5) * 0.05
     nrm = T.height_to_normal(hgt, 2.0)
     base = T.rgb((42, 46, 44)) * (0.85 + 0.3 * n1[..., None])
@@ -123,7 +123,7 @@ def gen_container():
     rough = np.clip(0.55 + rust * 0.35 + (n1 - 0.5) * 0.1, 0, 1)
     metal = np.clip(0.25 - rust * 0.25, 0, 1)
     _save("container_normal", T.normal_u8(nrm))
-    _save("container_orm", T.downsample(T.orm_u8(ao, rough, metal).astype(F32), 2).round().astype(np.uint8))
+    _save("container_orm", T.orm_u8(ao, rough, metal))
     for name, col in (("container_blue", (44, 86, 128)), ("container_red", (150, 52, 40)), ("container_green", (58, 96, 70))):
         base = T.rgb(col) * (0.9 + 0.16 * n1[..., None]) * (0.9 + 0.1 * np.tile(prof[None, :], (S, 1))[..., None])
         base *= (1 - 0.3 * streak)[..., None]
@@ -133,13 +133,13 @@ def gen_container():
 
 # =============================================================================== HAZARD STRIPES
 def gen_hazard():
-    S = 512
+    S = 1024
     yy, xx = np.mgrid[0:S, 0:S].astype(F32) + 0.5
     P = S / 5.0
     s = ((xx + yy) % P) / P
     stripe = T.smoothstep(0.48, 0.52, s) * (1 - T.smoothstep(0.98, 1.0, s)) + (1 - T.smoothstep(0.0, 0.02, s)) * 0
-    wear = T.smoothstep(0.62, 0.8, T.fbm(S, S, 12, 5, 241))
-    n1 = T.fbm(S, S, 16, 4, 242)
+    wear = T.smoothstep(0.62, 0.8, T.fbm(S, S, 24, 5, 241))
+    n1 = T.fbm(S, S, 32, 4, 242)
     yel = T.rgb((226, 178, 38)) * (0.9 + 0.14 * n1[..., None])
     blk = T.rgb((34, 34, 34)) * (0.9 + 0.2 * n1[..., None])
     base = T.mix(yel, blk, stripe)
@@ -164,7 +164,7 @@ def gen_canvas():
     fade = T.fbm(S, S, 2, 4, 254)
     rough = np.clip(0.9 + (wr - 0.5) * 0.06, 0, 1)
     _save("canvas_normal", T.normal_u8(nrm))
-    _save("canvas_orm", T.downsample(T.orm_u8(ao, rough, 0.0).astype(F32), 2).round().astype(np.uint8))
+    _save("canvas_orm", T.orm_u8(ao, rough, 0.0))
     for name, col in (("canvas_red", (156, 42, 36)), ("canvas_green", (52, 84, 56)), ("canvas_cream", (206, 192, 162))):
         base = T.rgb(col) * (0.9 + 0.1 * weave[..., None]) * (0.95 + 0.08 * fade[..., None])
         base = T.mix(base, np.ones_like(base) * T.rgb((70, 62, 50)), dirt * 0.12)
@@ -246,15 +246,16 @@ def gen_banner():
     _save("banner_albedo", T.to_u8(out))
     hgt = np.tile((folds * 1.5)[None, :] if folds.ndim == 1 else folds * 1.5, (1, 1)) + weave * 0.05
     nrm = T.height_to_normal(hgt, 3.0)
-    _save("banner_normal", T.normal_u8(T.downsample(nrm, 2)))
+    _save("banner_normal", T.normal_u8(nrm))
 
 
 # =============================================================================== FOLIAGE ATLAS (alpha)
 FOLIAGE_LAYOUT = {
     "canopy_a": (0, 0, 1024, 1024),
     "canopy_b": (1024, 0, 1024, 1024),
-    "ivy": (0, 1024, 1024, 512),
-    "weeds": (0, 1536, 1024, 512),
+    "ivy": (0, 1024, 512, 1024),          # tall (1:2): climbing ivy rooted at the bottom edge
+    "weeds": (512, 1536, 512, 512),
+    "moss_patch": (512, 1024, 512, 512),  # low ivy/moss clump for low walls
     "flowers": (1024, 1024, 1024, 512),
     "shrub": (1024, 1536, 1024, 512),
 }
@@ -310,19 +311,58 @@ def gen_foliage():
         for bx, by, bs in blobs:
             bw, bh = w * bs, h * bs
             _cluster(d, rr, x0 + bx * w - bw / 2, y0 + by * h - bh / 2, bw, bh, int(900 * bs), (22 * SS, 40 * SS), greens)
-    # ivy: hanging strands from the top edge
+    # ivy: climbing mass rooted along the bottom edge, thinning upward with an irregular crown
     x0, y0, w, h = [v * SS for v in FOLIAGE_LAYOUT["ivy"]]
-    for s in range(60):
-        sx = x0 + r.random() * w
-        length = h * r.uniform(0.3, 0.98)
-        y = y0
-        x = sx
-        while y < y0 + length:
-            ang = r.uniform(0, 2 * math.pi)
-            L = r.uniform(14, 26) * SS
-            _leaf(d, x + r.uniform(-12, 12) * SS, y, L, L * 0.45, ang, ivyg[int(r.integers(len(ivyg)))] + (255,))
-            y += r.uniform(6, 14) * SS
-            x += r.uniform(-4, 4) * SS
+    rr = T.rng(275)
+    stems = []
+    for sidx in range(6):
+        sx = x0 + (0.08 + 0.84 * sidx / 5 + rr.uniform(-0.05, 0.05)) * w
+        sy = y0 + h
+        top = y0 + h * rr.uniform(0.02, 0.4)
+        pts = [(sx, sy)]
+        while sy > top:
+            sy -= rr.uniform(10, 22) * SS
+            sx += rr.uniform(-7, 7) * SS
+            sx = min(max(sx, x0 + 10 * SS), x0 + w - 10 * SS)
+            pts.append((sx, sy))
+            if rr.random() < 0.2:
+                ex = min(max(sx + rr.uniform(-50, 50) * SS, x0 + 10 * SS), x0 + w - 10 * SS)
+                stems.append([(sx, sy), (ex, sy - rr.uniform(30, 90) * SS)])
+        stems.append(pts)
+    for pts in stems:
+        d.line(pts, fill=(58, 48, 36, 255), width=int(3 * SS))
+    for pts in stems:
+        for (px, py) in pts:
+            depth = (py - y0) / h                           # 0 top .. 1 bottom
+            for _ in range(int(3 + 5 * depth)):
+                L = rr.uniform(12, 24) * SS
+                col = ivyg[int(rr.integers(len(ivyg)))]
+                k = 0.65 + 0.35 * depth + rr.uniform(-0.1, 0.1)
+                col = tuple(int(max(0, min(255, c * k))) for c in col) + (255,)
+                lx = min(max(px + rr.uniform(-22, 22) * SS, x0 + 6 * SS), x0 + w - 6 * SS)
+                _leaf(d, lx, py + rr.uniform(-14, 14) * SS, L, L * 0.62, rr.uniform(0, 2 * math.pi), col)
+    # dense base
+    for i in range(1100):
+        px = x0 + 8 * SS + rr.random() * (w - 16 * SS)
+        py = y0 + h - (rr.random() ** 2.2) * h * 0.3
+        L = rr.uniform(12, 22) * SS
+        col = ivyg[int(rr.integers(len(ivyg)))]
+        k = 0.7 + rr.uniform(-0.15, 0.15)
+        col = tuple(int(max(0, min(255, c * k))) for c in col) + (255,)
+        _leaf(d, px, py, L, L * 0.62, rr.uniform(0, 2 * math.pi), col)
+    # low ivy clump (for low walls): rooted at the bottom, rounded crown
+    x0, y0, w, h = [v * SS for v in FOLIAGE_LAYOUT["moss_patch"]]
+    rm = T.rng(277)
+    for i in range(900):
+        u = rm.random()
+        crown = 0.25 + 0.7 * math.sin(math.pi * u) ** 0.8
+        px = x0 + 10 * SS + u * (w - 20 * SS)
+        py = y0 + h - rm.random() ** 1.3 * crown * h * 0.95
+        L = rm.uniform(10, 18) * SS
+        col = ivyg[int(rm.integers(len(ivyg)))]
+        k = 0.7 + rm.uniform(-0.15, 0.2)
+        col = tuple(int(max(0, min(255, c * k))) for c in col) + (255,)
+        _leaf(d, px, py, L, L * 0.62, rm.uniform(0, 2 * math.pi), col)
     # weeds / grass tufts along the bottom
     x0, y0, w, h = [v * SS for v in FOLIAGE_LAYOUT["weeds"]]
     for i in range(700):
@@ -372,7 +412,7 @@ def gen_foliage():
 
 # =============================================================================== BARK
 def gen_bark():
-    W, H = 512, 1024
+    W, H = 1024, 1024
     ridges = T.fbm(H, W, 12, 5, 291, aspect=0.12)
     cracks = T.smoothstep(0.35, 0.5, ridges)
     fine = T.fbm(H, W, 32, 3, 292)
@@ -406,15 +446,15 @@ def gen_water():
 
 # =============================================================================== PUDDLE
 def gen_puddle():
-    S = 512
+    S = 1024
     yy, xx = np.mgrid[0:S, 0:S].astype(F32) + 0.5
     d = np.sqrt((xx - S / 2) ** 2 + (yy - S / 2) ** 2) / (S / 2)
-    edge_n = T.fbm(S, S, 6, 4, 311)
-    alpha = 1.0 - T.smoothstep(0.55, 0.98, d + (edge_n - 0.5) * 0.3)
-    base = T.rgb((46, 46, 44)) * np.ones((S, S, 1), F32) * (0.9 + 0.2 * T.fbm(S, S, 8, 3, 312)[..., None])
+    edge_n = T.fbm(S, S, 6, 4, 311)                   # same shapes at 1K
+    alpha = (1.0 - T.smoothstep(0.35, 0.98, d + (edge_n - 0.5) * 0.3)) * 0.72
+    base = T.rgb((38, 38, 36)) * np.ones((S, S, 1), F32) * (0.9 + 0.2 * T.fbm(S, S, 8, 3, 312)[..., None])
     out = np.concatenate([base, alpha[..., None]], -1)
     _save("puddle_albedo", T.to_u8(out))
-    rip = T.fbm(S, S, 16, 3, 313)
+    rip = T.fbm(S, S, 32, 3, 313)
     nrm = T.height_to_normal(rip, 0.6)
     _save("puddle_normal", T.normal_u8(nrm))
     rough = np.clip(0.04 + (1 - alpha) * 0.5, 0, 1)
@@ -440,29 +480,29 @@ def gen_concrete():
 
 # =============================================================================== SOIL
 def gen_soil():
-    S = 512
-    n1 = T.fbm(S, S, 10, 5, 331)
+    S = 1024
+    n1 = T.fbm(S, S, 20, 5, 331)
     peb_pts = T.rng(332).random((260, 2))
     pid, f1, f2 = T.voronoi(S, S, peb_pts)
-    peb = T.smoothstep(4.0, 1.5, f1) * (T.rng(333).random(260) < 0.5)[pid]
+    peb = T.smoothstep(8.0, 3.0, f1) * (T.rng(333).random(260) < 0.5)[pid]
     hgt = n1 * 0.3 + peb * 0.6
     nrm = T.height_to_normal(hgt, 3.0)
     ao = T.ao_from_height(hgt, strength=2.0)
     base = T.rgb((62, 48, 36)) * (0.8 + 0.4 * n1[..., None])
     base = T.mix(base, np.ones_like(base) * T.rgb((128, 118, 104)), peb * 0.8)
-    leaves = T.smoothstep(0.8, 0.9, T.fbm(S, S, 20, 3, 334)) * 0.6
+    leaves = T.smoothstep(0.8, 0.9, T.fbm(S, S, 40, 3, 334)) * 0.6
     base = T.mix(base, np.ones_like(base) * T.rgb((120, 90, 40)), leaves)
     _save_set("soil", base * ao[..., None] ** 0.5, nrm, T.orm_u8(ao, np.full_like(n1, 0.95), 0.0), orm_half=False)
 
 
 # =============================================================================== BRONZE (patina)
 def gen_bronze():
-    S = 512
+    S = 1024
     n1 = T.fbm(S, S, 14, 5, 341)
     streak = T.streaks(S, S, 342, cover=0.6, base=12)
     pat = np.clip(T.smoothstep(0.55, 0.85, n1) * 0.45 + streak * 0.55, 0, 1)
     base = T.mix(T.rgb((116, 80, 46)) * np.ones((S, S, 1), F32), T.rgb((86, 138, 118)) * np.ones((S, S, 1), F32), pat)
-    base *= (0.85 + 0.2 * T.fbm(S, S, 24, 3, 343)[..., None])
+    base *= (0.85 + 0.2 * T.fbm(S, S, 48, 3, 343)[..., None])
     rough = np.clip(0.35 + pat * 0.5, 0, 1)
     metal = np.clip(0.95 - pat, 0, 1)
     nrm = T.height_to_normal(n1 * 0.2, 1.0)

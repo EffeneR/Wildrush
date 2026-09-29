@@ -77,7 +77,7 @@ MATERIALS = {
     "skyline": _m("skyline_albedo", None, "skyline_orm", "skyline"),
     "ironwork": _m("ironwork_albedo", None, None, "ironwork", alpha="clip", two_sided=True, roughness=0.5, metallic=0.4),
     "detail": _m("detail_albedo", "detail_normal", "detail_orm", "detail"),
-    "emissive_lamp": _m(None, None, None, "flat", color=(1.0, 0.86, 0.62), emission=(1.0, 0.78, 0.45), strength=6.0,
+    "emissive_lamp": _m(None, None, None, "flat", color=(0.95, 0.8, 0.55), emission=(1.0, 0.72, 0.38), strength=2.5,
                         roughness=0.2),
 }
 

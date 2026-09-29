@@ -1,0 +1,17 @@
+; WILDRUSH character import check — scratch project (created by tools/build_characters.sh).
+config_version=5
+
+[application]
+config/name="wildrush_charcheck"
+config/features=PackedStringArray("4.7", "Forward Plus")
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+
+[filesystem]
+import/blender/enabled=false
+import/fbx2gltf/enabled=false
+
+[rendering]
+renderer/rendering_method="forward_plus"

@@ -1,0 +1,364 @@
+{
+ "fighter": "nyx",
+ "fps": 60,
+ "in_place": true,
+ "root_motion": false,
+ "forward": "-Y (Blender) / +Z (glTF)",
+ "clips": {
+  "idle": {
+   "duration": 2.0,
+   "nominal": 2.0,
+   "frames": 120,
+   "loop": true
+  },
+  "walk_f": {
+   "duration": 1.0,
+   "nominal": 1.0,
+   "frames": 60,
+   "loop": true,
+   "ref_speed": 2.0
+  },
+  "walk_b": {
+   "duration": 1.0,
+   "nominal": 1.0,
+   "frames": 60,
+   "loop": true,
+   "ref_speed": 2.0
+  },
+  "walk_l": {
+   "duration": 1.0,
+   "nominal": 1.0,
+   "frames": 60,
+   "loop": true,
+   "ref_speed": 2.0
+  },
+  "walk_r": {
+   "duration": 1.0,
+   "nominal": 1.0,
+   "frames": 60,
+   "loop": true,
+   "ref_speed": 2.0
+  },
+  "run_f": {
+   "duration": 0.6667,
+   "nominal": 0.6667,
+   "frames": 40,
+   "loop": true,
+   "ref_speed": 7.2
+  },
+  "run_b": {
+   "duration": 0.6667,
+   "nominal": 0.6667,
+   "frames": 40,
+   "loop": true,
+   "ref_speed": 5.328
+  },
+  "run_l": {
+   "duration": 0.6667,
+   "nominal": 0.6667,
+   "frames": 40,
+   "loop": true,
+   "ref_speed": 6.336
+  },
+  "run_r": {
+   "duration": 0.6667,
+   "nominal": 0.6667,
+   "frames": 40,
+   "loop": true,
+   "ref_speed": 6.336
+  },
+  "turn_l": {
+   "duration": 0.5,
+   "nominal": 0.5,
+   "frames": 30,
+   "loop": false
+  },
+  "turn_r": {
+   "duration": 0.5,
+   "nominal": 0.5,
+   "frames": 30,
+   "loop": false
+  },
+  "jump_start": {
+   "duration": 0.1167,
+   "nominal": 0.12,
+   "frames": 7,
+   "loop": false
+  },
+  "jump_air": {
+   "duration": 0.5,
+   "nominal": 0.5,
+   "frames": 30,
+   "loop": true
+  },
+  "jump_fall": {
+   "duration": 0.5,
+   "nominal": 0.5,
+   "frames": 30,
+   "loop": true
+  },
+  "jump_land": {
+   "duration": 0.2,
+   "nominal": 0.2,
+   "frames": 12,
+   "loop": false
+  },
+  "dodge_f": {
+   "duration": 0.3667,
+   "nominal": 0.367,
+   "frames": 22,
+   "loop": false
+  },
+  "dodge_b": {
+   "duration": 0.3667,
+   "nominal": 0.367,
+   "frames": 22,
+   "loop": false
+  },
+  "dodge_l": {
+   "duration": 0.3667,
+   "nominal": 0.367,
+   "frames": 22,
+   "loop": false
+  },
+  "dodge_r": {
+   "duration": 0.3667,
+   "nominal": 0.367,
+   "frames": 22,
+   "loop": false
+  },
+  "guard_enter": {
+   "duration": 0.1,
+   "nominal": 0.1,
+   "frames": 6,
+   "loop": false
+  },
+  "guard_hold": {
+   "duration": 1.0,
+   "nominal": 1.0,
+   "frames": 60,
+   "loop": true
+  },
+  "guard_exit": {
+   "duration": 0.1167,
+   "nominal": 0.12,
+   "frames": 7,
+   "loop": false
+  },
+  "guard_block": {
+   "duration": 0.2,
+   "nominal": 0.2,
+   "frames": 12,
+   "loop": false
+  },
+  "guard_break": {
+   "duration": 0.9,
+   "nominal": 0.9,
+   "frames": 54,
+   "loop": false
+  },
+  "hit_front": {
+   "duration": 0.3,
+   "nominal": 0.3,
+   "frames": 18,
+   "loop": false
+  },
+  "hit_back": {
+   "duration": 0.3,
+   "nominal": 0.3,
+   "frames": 18,
+   "loop": false
+  },
+  "hit_heavy": {
+   "duration": 0.5,
+   "nominal": 0.5,
+   "frames": 30,
+   "loop": false
+  },
+  "stagger": {
+   "duration": 0.6,
+   "nominal": 0.6,
+   "frames": 36,
+   "loop": false
+  },
+  "knockdown": {
+   "duration": 0.8,
+   "nominal": 0.8,
+   "frames": 48,
+   "loop": false
+  },
+  "getup": {
+   "duration": 0.45,
+   "nominal": 0.45,
+   "frames": 27,
+   "loop": false
+  },
+  "grabbed": {
+   "duration": 0.45,
+   "nominal": 0.45,
+   "frames": 27,
+   "loop": false
+  },
+  "knockout": {
+   "duration": 1.2,
+   "nominal": 1.2,
+   "frames": 72,
+   "loop": false
+  },
+  "respawn": {
+   "duration": 0.8,
+   "nominal": 0.8,
+   "frames": 48,
+   "loop": false
+  },
+  "victory": {
+   "duration": 2.5,
+   "nominal": 2.5,
+   "frames": 150,
+   "loop": true
+  },
+  "defeat": {
+   "duration": 2.0,
+   "nominal": 2.0,
+   "frames": 120,
+   "loop": false
+  },
+  "light_s": {
+   "duration": 0.4667,
+   "nominal": 0.467,
+   "frames": 28,
+   "loop": false
+  },
+  "light_l": {
+   "duration": 0.4667,
+   "nominal": 0.467,
+   "frames": 28,
+   "loop": false
+  },
+  "light_r": {
+   "duration": 0.4667,
+   "nominal": 0.467,
+   "frames": 28,
+   "loop": false
+  },
+  "light_air": {
+   "duration": 0.4,
+   "nominal": 0.4,
+   "frames": 24,
+   "loop": false
+  },
+  "heavy": {
+   "duration": 1.0167,
+   "nominal": 1.017,
+   "frames": 61,
+   "loop": false
+  },
+  "skill_q_prep": {
+   "duration": 0.3,
+   "nominal": 0.3,
+   "frames": 18,
+   "loop": false
+  },
+  "skill_q_air": {
+   "duration": 0.4,
+   "nominal": 0.4,
+   "frames": 24,
+   "loop": false
+  },
+  "skill_q_land": {
+   "duration": 0.35,
+   "nominal": 0.35,
+   "frames": 21,
+   "loop": false
+  },
+  "skill_q_land_miss": {
+   "duration": 0.65,
+   "nominal": 0.65,
+   "frames": 39,
+   "loop": false
+  },
+  "skill_e": {
+   "duration": 0.8167,
+   "nominal": 0.82,
+   "frames": 49,
+   "loop": false
+  },
+  "skill_r_left": {
+   "duration": 0.4167,
+   "nominal": 0.42,
+   "frames": 25,
+   "loop": false
+  },
+  "skill_r_right": {
+   "duration": 0.4167,
+   "nominal": 0.42,
+   "frames": 25,
+   "loop": false
+  },
+  "skill_r_counter": {
+   "duration": 0.45,
+   "nominal": 0.45,
+   "frames": 27,
+   "loop": false
+  },
+  "perch_climb": {
+   "duration": 0.45,
+   "nominal": 0.45,
+   "frames": 27,
+   "loop": false
+  }
+ },
+ "alignment": {
+  "nyx_light_s#0": {
+   "max_error_m": 0.0024,
+   "clip": "light_s"
+  },
+  "nyx_light_l#0": {
+   "max_error_m": 0.0234,
+   "clip": "light_l"
+  },
+  "nyx_light_r#0": {
+   "max_error_m": 0.0226,
+   "clip": "light_r"
+  },
+  "nyx_light_air#0": {
+   "max_error_m": 0.0782,
+   "clip": "light_air"
+  },
+  "nyx_heavy#0": {
+   "max_error_m": 0.0115,
+   "clip": "heavy"
+  },
+  "nyx_crosscut#0": {
+   "max_error_m": 0.0401,
+   "clip": "skill_e"
+  },
+  "nyx_crosscut#1": {
+   "max_error_m": 0.0264,
+   "clip": "skill_e"
+  },
+  "nyx_slip_counter#0": {
+   "max_error_m": 0.007,
+   "clip": "skill_r_counter"
+  },
+  "nyx_pounce#0": {
+   "max_error_m": 0.0016,
+   "clip": "skill_q_air+skill_q_land+skill_q_land_miss"
+  }
+ },
+ "bones": 49,
+ "triangles": 37838,
+ "materials": [
+  "nyx_fur",
+  "nyx_cloth",
+  "nyx_eye",
+  "nyx_detail"
+ ],
+ "cloth_textures": {
+  "mask": "nyx_cloth_mask.png",
+  "detail": "nyx_cloth_detail.png",
+  "normal": "nyx_cloth_normal.png",
+  "note": "R=primary G=secondary B=accent, trim=none; see CHARACTER_CONTRACT \u00a74"
+ },
+ "alignment_space": "object space of the in-place clip (action-local x,y,z -> Blender -x,-z,y)"
+}

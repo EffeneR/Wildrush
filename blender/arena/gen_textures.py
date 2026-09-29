@@ -42,15 +42,20 @@ def save(name: str, arr: np.ndarray, mode: str | None = None) -> None:
     WRITTEN.append(p)
 
 
+def half_ok(a) -> bool:
+    """Downsampling by 2 is allowed only if every side stays >= 1024 px (contract: 1K-2K)."""
+    return min(a.shape[0], a.shape[1]) >= 2048
+
+
 def save_set(name: str, albedo, normal=None, orm=None, orm_half: bool = True, normal_half: bool = False):
     save(name + "_albedo", T.to_u8(albedo) if albedo.dtype != np.uint8 else albedo)
     if normal is not None:
-        if normal_half:
+        if normal_half and half_ok(normal):
             normal = T.downsample(normal, 2)
             normal /= np.linalg.norm(normal, axis=-1, keepdims=True)
         save(name + "_normal", T.normal_u8(normal))
     if orm is not None:
-        if orm_half:
+        if orm_half and half_ok(orm):
             orm = T.downsample(orm.astype(F32), 2).round().astype(np.uint8)
         save(name + "_orm", orm)
 
@@ -117,7 +122,7 @@ def gen_brick():
         alb *= (0.55 + 0.45 * ao[..., None])
         save(variant + "_albedo", T.to_u8(alb))
     save("brick_normal", T.normal_u8(nrm))
-    save("brick_orm", T.downsample(orm.astype(F32), 2).round().astype(np.uint8))
+    save("brick_orm", orm)
 
 
 # =============================================================================== PLASTER
@@ -134,7 +139,7 @@ def gen_plaster():
     streak = T.streaks(S, S, 36, cover=0.35)
     rough = np.clip(0.86 + (grain - 0.5) * 0.1, 0, 1)
     save("plaster_normal", T.normal_u8(nrm))
-    save("plaster_orm", T.downsample(T.orm_u8(ao, rough, 0.0).astype(F32), 2).round().astype(np.uint8))
+    save("plaster_orm", T.orm_u8(ao, rough, 0.0))
     # brick pattern for spall area
     yy, xx = np.mgrid[0:S, 0:S]
     course = (yy // 28) % 2
@@ -204,7 +209,7 @@ def gen_stone_trim():
 
 # =============================================================================== CANAL STONE
 def gen_stone_canal():
-    W, H = 1024, 768                                  # 4 m x 3 m, v=0 at y=-3, v=1 at y=0
+    W, H = 1024, 1024                                 # 4 m x 3 m, v=0 at y=-3, v=1 at y=0
     r = T.rng(71)
     rows = T.split_evenly(H, 6)
     layout = [(T.random_partition(W, 180, 400, r), int(r.integers(0, W))) for _ in rows]

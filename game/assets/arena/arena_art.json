@@ -1,0 +1,1745 @@
+{
+ "name": "Briarport",
+ "version": 1,
+ "generated": "2026-09-29",
+ "generator": {
+  "entry": "tools/build_arena_art.sh",
+  "script": "blender/arena/build_arena.py",
+  "blender": "4.5.9 LTS",
+  "source_blend": "blender/arena/briarport.blend"
+ },
+ "layout": {
+  "path": "game/data/arena/briarport_layout.json",
+  "sha256": "79026ab94a36f5bf2c648f86505ebd49ac2c7472f3e9968467cf0143632fd14b",
+  "version": 1
+ },
+ "coordinates": {
+  "glb_space": "Godot/layout space: X east, Y up, Z south, metres. Chunks are authored in world space; instance each GLB at the identity transform.",
+  "layout_to_blender": "bx = x, by = -z, bz = y (glTF export converts back to Y up)"
+ },
+ "chunks": [
+  {
+   "id": "A",
+   "path": "res://assets/arena/briarport_A.glb",
+   "file": "briarport_A.glb",
+   "sha256": "40012ac6b11ebaa2c66a87c281b8d76539f0a0d5c8c12a5ebe8ec17cdc25c6f8",
+   "bytes": 3729448,
+   "transform": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "bounds": {
+    "min": [
+     -69.25,
+     -3.0,
+     -20.75
+    ],
+    "max": [
+     -22.0,
+     18.76,
+     20.75
+    ]
+   },
+   "triangles": 96493,
+   "triangles_unique_meshes": 91887,
+   "nodes": 47,
+   "mesh_nodes": 47,
+   "meshes": 27,
+   "shared_meshes": 6,
+   "materials": [
+    "stone_ashlar",
+    "stone_trim",
+    "iron",
+    "bronze",
+    "detail",
+    "emissive_lamp",
+    "banner",
+    "wood_planks",
+    "plaster_ochre",
+    "ironwork",
+    "roof_terracotta",
+    "brick_red",
+    "plaster_white",
+    "stone_canal",
+    "paving_flag",
+    "paving_cobble",
+    "foliage",
+    "water",
+    "puddle"
+   ],
+   "textures": [
+    "textures/banner_albedo.png",
+    "textures/banner_normal.png",
+    "textures/brick_normal.png",
+    "textures/brick_orm.png",
+    "textures/brick_red_albedo.png",
+    "textures/bronze_albedo.png",
+    "textures/bronze_normal.png",
+    "textures/bronze_orm.png",
+    "textures/detail_albedo.png",
+    "textures/detail_normal.png",
+    "textures/detail_orm.png",
+    "textures/foliage_albedo.png",
+    "textures/foliage_normal.png",
+    "textures/iron_albedo.png",
+    "textures/iron_normal.png",
+    "textures/iron_orm.png",
+    "textures/ironwork_albedo.png",
+    "textures/paving_cobble_albedo.png",
+    "textures/paving_cobble_normal.png",
+    "textures/paving_cobble_orm.png",
+    "textures/paving_flag_albedo.png",
+    "textures/paving_flag_normal.png",
+    "textures/paving_flag_orm.png",
+    "textures/plaster_normal.png",
+    "textures/plaster_ochre_albedo.png",
+    "textures/plaster_orm.png",
+    "textures/plaster_white_albedo.png",
+    "textures/puddle_albedo.png",
+    "textures/puddle_normal.png",
+    "textures/puddle_orm.png",
+    "textures/roof_terracotta_albedo.png",
+    "textures/roof_terracotta_normal.png",
+    "textures/roof_terracotta_orm.png",
+    "textures/stone_ashlar_albedo.png",
+    "textures/stone_ashlar_normal.png",
+    "textures/stone_ashlar_orm.png",
+    "textures/stone_canal_albedo.png",
+    "textures/stone_canal_normal.png",
+    "textures/stone_canal_orm.png",
+    "textures/stone_trim_albedo.png",
+    "textures/stone_trim_normal.png",
+    "textures/stone_trim_orm.png",
+    "textures/water_albedo.png",
+    "textures/water_normal.png",
+    "textures/water_orm.png",
+    "textures/wood_planks_albedo.png",
+    "textures/wood_planks_normal.png",
+    "textures/wood_planks_orm.png"
+   ]
+  },
+  {
+   "id": "B",
+   "path": "res://assets/arena/briarport_B.glb",
+   "file": "briarport_B.glb",
+   "sha256": "bbe1eea9ad6f44d22648d18532fc2550d1b56dd6a7230d2cf29401c0e810c17b",
+   "bytes": 1349508,
+   "transform": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "bounds": {
+    "min": [
+     -25.928,
+     -0.034,
+     -20.379
+    ],
+    "max": [
+     22.09,
+     7.49,
+     20.05
+    ]
+   },
+   "triangles": 47312,
+   "triangles_unique_meshes": 40526,
+   "nodes": 62,
+   "mesh_nodes": 62,
+   "meshes": 20,
+   "shared_meshes": 8,
+   "materials": [
+    "stone_ashlar",
+    "stone_trim",
+    "soil",
+    "wood_planks",
+    "canvas_red",
+    "detail",
+    "canvas_green",
+    "iron",
+    "emissive_lamp",
+    "paving_cobble",
+    "paving_flag",
+    "foliage",
+    "bronze",
+    "bark",
+    "puddle",
+    "water"
+   ],
+   "textures": [
+    "textures/bark_albedo.png",
+    "textures/bark_normal.png",
+    "textures/bark_orm.png",
+    "textures/bronze_albedo.png",
+    "textures/bronze_normal.png",
+    "textures/bronze_orm.png",
+    "textures/canvas_green_albedo.png",
+    "textures/canvas_normal.png",
+    "textures/canvas_orm.png",
+    "textures/canvas_red_albedo.png",
+    "textures/detail_albedo.png",
+    "textures/detail_normal.png",
+    "textures/detail_orm.png",
+    "textures/foliage_albedo.png",
+    "textures/foliage_normal.png",
+    "textures/iron_albedo.png",
+    "textures/iron_normal.png",
+    "textures/iron_orm.png",
+    "textures/paving_cobble_albedo.png",
+    "textures/paving_cobble_normal.png",
+    "textures/paving_cobble_orm.png",
+    "textures/paving_flag_albedo.png",
+    "textures/paving_flag_normal.png",
+    "textures/paving_flag_orm.png",
+    "textures/puddle_albedo.png",
+    "textures/puddle_normal.png",
+    "textures/puddle_orm.png",
+    "textures/soil_albedo.png",
+    "textures/soil_normal.png",
+    "textures/soil_orm.png",
+    "textures/stone_ashlar_albedo.png",
+    "textures/stone_ashlar_normal.png",
+    "textures/stone_ashlar_orm.png",
+    "textures/stone_trim_albedo.png",
+    "textures/stone_trim_normal.png",
+    "textures/stone_trim_orm.png",
+    "textures/water_albedo.png",
+    "textures/water_normal.png",
+    "textures/water_orm.png",
+    "textures/wood_planks_albedo.png",
+    "textures/wood_planks_normal.png",
+    "textures/wood_planks_orm.png"
+   ]
+  },
+  {
+   "id": "C",
+   "path": "res://assets/arena/briarport_C.glb",
+   "file": "briarport_C.glb",
+   "sha256": "febc9e23c1e83a65ac5a813bbd34ba6693f4fefe1179e6295a1cc886a6f95ecf",
+   "bytes": 999544,
+   "transform": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "bounds": {
+    "min": [
+     22.0,
+     -0.1,
+     -20.477
+    ],
+    "max": [
+     70.808,
+     21.331,
+     20.49
+    ]
+   },
+   "triangles": 18646,
+   "triangles_unique_meshes": 14608,
+   "nodes": 27,
+   "mesh_nodes": 27,
+   "meshes": 21,
+   "shared_meshes": 4,
+   "materials": [
+    "wood_planks",
+    "canvas_green",
+    "canvas_cream",
+    "container_blue",
+    "iron",
+    "container_red",
+    "paint_yellow",
+    "stone_ashlar",
+    "brick_brown",
+    "stone_trim",
+    "detail",
+    "roof_terracotta",
+    "brick_red",
+    "concrete",
+    "paving_flag",
+    "paving_cobble",
+    "paving_concrete",
+    "hazard",
+    "metal_deck",
+    "foliage",
+    "puddle"
+   ],
+   "textures": [
+    "textures/brick_brown_albedo.png",
+    "textures/brick_normal.png",
+    "textures/brick_orm.png",
+    "textures/brick_red_albedo.png",
+    "textures/canvas_cream_albedo.png",
+    "textures/canvas_green_albedo.png",
+    "textures/canvas_normal.png",
+    "textures/canvas_orm.png",
+    "textures/concrete_albedo.png",
+    "textures/concrete_normal.png",
+    "textures/concrete_orm.png",
+    "textures/container_blue_albedo.png",
+    "textures/container_normal.png",
+    "textures/container_orm.png",
+    "textures/container_red_albedo.png",
+    "textures/detail_albedo.png",
+    "textures/detail_normal.png",
+    "textures/detail_orm.png",
+    "textures/foliage_albedo.png",
+    "textures/foliage_normal.png",
+    "textures/hazard_albedo.png",
+    "textures/hazard_normal.png",
+    "textures/hazard_orm.png",
+    "textures/iron_albedo.png",
+    "textures/iron_normal.png",
+    "textures/iron_orm.png",
+    "textures/metal_deck_albedo.png",
+    "textures/metal_deck_normal.png",
+    "textures/metal_deck_orm.png",
+    "textures/paint_yellow_albedo.png",
+    "textures/paint_yellow_normal.png",
+    "textures/paint_yellow_orm.png",
+    "textures/paving_cobble_albedo.png",
+    "textures/paving_cobble_normal.png",
+    "textures/paving_cobble_orm.png",
+    "textures/paving_concrete_albedo.png",
+    "textures/paving_concrete_normal.png",
+    "textures/paving_concrete_orm.png",
+    "textures/paving_flag_albedo.png",
+    "textures/paving_flag_normal.png",
+    "textures/paving_flag_orm.png",
+    "textures/puddle_albedo.png",
+    "textures/puddle_normal.png",
+    "textures/puddle_orm.png",
+    "textures/roof_terracotta_albedo.png",
+    "textures/roof_terracotta_normal.png",
+    "textures/roof_terracotta_orm.png",
+    "textures/stone_ashlar_albedo.png",
+    "textures/stone_ashlar_normal.png",
+    "textures/stone_ashlar_orm.png",
+    "textures/stone_trim_albedo.png",
+    "textures/stone_trim_normal.png",
+    "textures/stone_trim_orm.png",
+    "textures/wood_planks_albedo.png",
+    "textures/wood_planks_normal.png",
+    "textures/wood_planks_orm.png"
+   ]
+  },
+  {
+   "id": "north",
+   "path": "res://assets/arena/briarport_north.glb",
+   "file": "briarport_north.glb",
+   "sha256": "79cdefab7e360fedfed02b5fd729a40e5aa90e653000414636b56c1827ca5093",
+   "bytes": 6102588,
+   "transform": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "bounds": {
+    "min": [
+     -69.49,
+     -3.0,
+     -65.477
+    ],
+    "max": [
+     68.28,
+     21.967,
+     -14.7
+    ]
+   },
+   "triangles": 88600,
+   "triangles_unique_meshes": 87656,
+   "nodes": 44,
+   "mesh_nodes": 42,
+   "meshes": 34,
+   "shared_meshes": 4,
+   "materials": [
+    "stone_ashlar",
+    "stone_trim",
+    "soil",
+    "iron",
+    "emissive_lamp",
+    "banner",
+    "brick_red",
+    "detail",
+    "wood_planks",
+    "roof_terracotta",
+    "brick_brown",
+    "bronze",
+    "ironwork",
+    "canvas_red",
+    "canvas_green",
+    "plaster_white",
+    "plaster_ochre",
+    "concrete",
+    "plaster_rose",
+    "plaster_cream",
+    "stone_canal",
+    "paving_cobble",
+    "paving_flag",
+    "paving_concrete",
+    "foliage",
+    "puddle"
+   ],
+   "textures": [
+    "textures/banner_albedo.png",
+    "textures/banner_normal.png",
+    "textures/brick_brown_albedo.png",
+    "textures/brick_normal.png",
+    "textures/brick_orm.png",
+    "textures/brick_red_albedo.png",
+    "textures/bronze_albedo.png",
+    "textures/bronze_normal.png",
+    "textures/bronze_orm.png",
+    "textures/canvas_green_albedo.png",
+    "textures/canvas_normal.png",
+    "textures/canvas_orm.png",
+    "textures/canvas_red_albedo.png",
+    "textures/concrete_albedo.png",
+    "textures/concrete_normal.png",
+    "textures/concrete_orm.png",
+    "textures/detail_albedo.png",
+    "textures/detail_normal.png",
+    "textures/detail_orm.png",
+    "textures/foliage_albedo.png",
+    "textures/foliage_normal.png",
+    "textures/iron_albedo.png",
+    "textures/iron_normal.png",
+    "textures/iron_orm.png",
+    "textures/ironwork_albedo.png",
+    "textures/paving_cobble_albedo.png",
+    "textures/paving_cobble_normal.png",
+    "textures/paving_cobble_orm.png",
+    "textures/paving_concrete_albedo.png",
+    "textures/paving_concrete_normal.png",
+    "textures/paving_concrete_orm.png",
+    "textures/paving_flag_albedo.png",
+    "textures/paving_flag_normal.png",
+    "textures/paving_flag_orm.png",
+    "textures/plaster_cream_albedo.png",
+    "textures/plaster_normal.png",
+    "textures/plaster_ochre_albedo.png",
+    "textures/plaster_orm.png",
+    "textures/plaster_rose_albedo.png",
+    "textures/plaster_white_albedo.png",
+    "textures/puddle_albedo.png",
+    "textures/puddle_normal.png",
+    "textures/puddle_orm.png",
+    "textures/roof_terracotta_albedo.png",
+    "textures/roof_terracotta_normal.png",
+    "textures/roof_terracotta_orm.png",
+    "textures/soil_albedo.png",
+    "textures/soil_normal.png",
+    "textures/soil_orm.png",
+    "textures/stone_ashlar_albedo.png",
+    "textures/stone_ashlar_normal.png",
+    "textures/stone_ashlar_orm.png",
+    "textures/stone_canal_albedo.png",
+    "textures/stone_canal_normal.png",
+    "textures/stone_canal_orm.png",
+    "textures/stone_trim_albedo.png",
+    "textures/stone_trim_normal.png",
+    "textures/stone_trim_orm.png",
+    "textures/wood_planks_albedo.png",
+    "textures/wood_planks_normal.png",
+    "textures/wood_planks_orm.png"
+   ]
+  },
+  {
+   "id": "south",
+   "path": "res://assets/arena/briarport_south.glb",
+   "file": "briarport_south.glb",
+   "sha256": "8fd7773c4565abf619c963e395e54f3f732cad139b518a982b215f9eb2876667",
+   "bytes": 5087284,
+   "transform": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "bounds": {
+    "min": [
+     -61.28,
+     -3.0,
+     14.88
+    ],
+    "max": [
+     68.28,
+     21.967,
+     65.49
+    ]
+   },
+   "triangles": 73762,
+   "triangles_unique_meshes": 72818,
+   "nodes": 43,
+   "mesh_nodes": 41,
+   "meshes": 33,
+   "shared_meshes": 4,
+   "materials": [
+    "stone_ashlar",
+    "stone_trim",
+    "soil",
+    "iron",
+    "emissive_lamp",
+    "banner",
+    "brick_brown",
+    "detail",
+    "wood_planks",
+    "roof_terracotta",
+    "bronze",
+    "plaster_white",
+    "canvas_green",
+    "brick_red",
+    "plaster_ochre",
+    "ironwork",
+    "canvas_red",
+    "canvas_cream",
+    "plaster_cream",
+    "concrete",
+    "plaster_rose",
+    "stone_canal",
+    "paving_cobble",
+    "paving_flag",
+    "paving_concrete",
+    "foliage",
+    "puddle"
+   ],
+   "textures": [
+    "textures/banner_albedo.png",
+    "textures/banner_normal.png",
+    "textures/brick_brown_albedo.png",
+    "textures/brick_normal.png",
+    "textures/brick_orm.png",
+    "textures/brick_red_albedo.png",
+    "textures/bronze_albedo.png",
+    "textures/bronze_normal.png",
+    "textures/bronze_orm.png",
+    "textures/canvas_cream_albedo.png",
+    "textures/canvas_green_albedo.png",
+    "textures/canvas_normal.png",
+    "textures/canvas_orm.png",
+    "textures/canvas_red_albedo.png",
+    "textures/concrete_albedo.png",
+    "textures/concrete_normal.png",
+    "textures/concrete_orm.png",
+    "textures/detail_albedo.png",
+    "textures/detail_normal.png",
+    "textures/detail_orm.png",
+    "textures/foliage_albedo.png",
+    "textures/foliage_normal.png",
+    "textures/iron_albedo.png",
+    "textures/iron_normal.png",
+    "textures/iron_orm.png",
+    "textures/ironwork_albedo.png",
+    "textures/paving_cobble_albedo.png",
+    "textures/paving_cobble_normal.png",
+    "textures/paving_cobble_orm.png",
+    "textures/paving_concrete_albedo.png",
+    "textures/paving_concrete_normal.png",
+    "textures/paving_concrete_orm.png",
+    "textures/paving_flag_albedo.png",
+    "textures/paving_flag_normal.png",
+    "textures/paving_flag_orm.png",
+    "textures/plaster_cream_albedo.png",
+    "textures/plaster_normal.png",
+    "textures/plaster_ochre_albedo.png",
+    "textures/plaster_orm.png",
+    "textures/plaster_rose_albedo.png",
+    "textures/plaster_white_albedo.png",
+    "textures/puddle_albedo.png",
+    "textures/puddle_normal.png",
+    "textures/puddle_orm.png",
+    "textures/roof_terracotta_albedo.png",
+    "textures/roof_terracotta_normal.png",
+    "textures/roof_terracotta_orm.png",
+    "textures/soil_albedo.png",
+    "textures/soil_normal.png",
+    "textures/soil_orm.png",
+    "textures/stone_ashlar_albedo.png",
+    "textures/stone_ashlar_normal.png",
+    "textures/stone_ashlar_orm.png",
+    "textures/stone_canal_albedo.png",
+    "textures/stone_canal_normal.png",
+    "textures/stone_canal_orm.png",
+    "textures/stone_trim_albedo.png",
+    "textures/stone_trim_normal.png",
+    "textures/stone_trim_orm.png",
+    "textures/wood_planks_albedo.png",
+    "textures/wood_planks_normal.png",
+    "textures/wood_planks_orm.png"
+   ]
+  },
+  {
+   "id": "skyline",
+   "path": "res://assets/arena/briarport_skyline.glb",
+   "file": "briarport_skyline.glb",
+   "sha256": "491d6658f1402c0681237ea121c4db0e9d61268c3e47f93688b71ec8a98b6839",
+   "bytes": 211532,
+   "transform": [
+    [
+     1,
+     0,
+     0,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     0,
+     0,
+     1
+    ]
+   ],
+   "bounds": {
+    "min": [
+     -170.0,
+     -3.0,
+     -135.179
+    ],
+    "max": [
+     240.0,
+     48.0,
+     131.666
+    ]
+   },
+   "triangles": 3336,
+   "triangles_unique_meshes": 3336,
+   "nodes": 5,
+   "mesh_nodes": 5,
+   "meshes": 5,
+   "shared_meshes": 0,
+   "materials": [
+    "skyline",
+    "roof_terracotta",
+    "plaster_cream",
+    "brick_red",
+    "roof_metal",
+    "paving_cobble",
+    "stone_canal",
+    "stone_trim",
+    "stone_ashlar",
+    "detail",
+    "bronze",
+    "water"
+   ],
+   "textures": [
+    "textures/brick_normal.png",
+    "textures/brick_orm.png",
+    "textures/brick_red_albedo.png",
+    "textures/bronze_albedo.png",
+    "textures/bronze_normal.png",
+    "textures/bronze_orm.png",
+    "textures/detail_albedo.png",
+    "textures/detail_normal.png",
+    "textures/detail_orm.png",
+    "textures/paving_cobble_albedo.png",
+    "textures/paving_cobble_normal.png",
+    "textures/paving_cobble_orm.png",
+    "textures/plaster_cream_albedo.png",
+    "textures/plaster_normal.png",
+    "textures/plaster_orm.png",
+    "textures/roof_metal_albedo.png",
+    "textures/roof_metal_normal.png",
+    "textures/roof_metal_orm.png",
+    "textures/roof_terracotta_albedo.png",
+    "textures/roof_terracotta_normal.png",
+    "textures/roof_terracotta_orm.png",
+    "textures/skyline_albedo.png",
+    "textures/skyline_orm.png",
+    "textures/stone_ashlar_albedo.png",
+    "textures/stone_ashlar_normal.png",
+    "textures/stone_ashlar_orm.png",
+    "textures/stone_canal_albedo.png",
+    "textures/stone_canal_normal.png",
+    "textures/stone_canal_orm.png",
+    "textures/stone_trim_albedo.png",
+    "textures/stone_trim_normal.png",
+    "textures/stone_trim_orm.png",
+    "textures/water_albedo.png",
+    "textures/water_normal.png",
+    "textures/water_orm.png"
+   ]
+  }
+ ],
+ "totals": {
+  "triangles": 328149,
+  "materials": 36,
+  "textures": 86,
+  "texture_bytes": 49644141,
+  "chunk_bytes": 17479904
+ },
+ "budgets": {
+  "triangles_max": 1200000,
+  "materials_max": 40,
+  "texture_size": "1K-2K",
+  "triangles_ok": true,
+  "materials_ok": true
+ },
+ "materials": [
+  {
+   "name": "banner",
+   "albedo": "textures/banner_albedo.png",
+   "normal": "textures/banner_normal.png",
+   "alpha": "MASK",
+   "double_sided": true,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "bark",
+   "albedo": "textures/bark_albedo.png",
+   "normal": "textures/bark_normal.png",
+   "orm": "textures/bark_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "brick_brown",
+   "albedo": "textures/brick_brown_albedo.png",
+   "normal": "textures/brick_normal.png",
+   "orm": "textures/brick_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "brick_red",
+   "albedo": "textures/brick_red_albedo.png",
+   "normal": "textures/brick_normal.png",
+   "orm": "textures/brick_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "bronze",
+   "albedo": "textures/bronze_albedo.png",
+   "normal": "textures/bronze_normal.png",
+   "orm": "textures/bronze_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "canvas_cream",
+   "albedo": "textures/canvas_cream_albedo.png",
+   "normal": "textures/canvas_normal.png",
+   "orm": "textures/canvas_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": true,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "canvas_green",
+   "albedo": "textures/canvas_green_albedo.png",
+   "normal": "textures/canvas_normal.png",
+   "orm": "textures/canvas_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": true,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "canvas_red",
+   "albedo": "textures/canvas_red_albedo.png",
+   "normal": "textures/canvas_normal.png",
+   "orm": "textures/canvas_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": true,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "concrete",
+   "albedo": "textures/concrete_albedo.png",
+   "normal": "textures/concrete_normal.png",
+   "orm": "textures/concrete_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "container_blue",
+   "albedo": "textures/container_blue_albedo.png",
+   "normal": "textures/container_normal.png",
+   "orm": "textures/container_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.6,
+    2.6
+   ],
+   "used": true
+  },
+  {
+   "name": "container_red",
+   "albedo": "textures/container_red_albedo.png",
+   "normal": "textures/container_normal.png",
+   "orm": "textures/container_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.6,
+    2.6
+   ],
+   "used": true
+  },
+  {
+   "name": "detail",
+   "albedo": "textures/detail_albedo.png",
+   "normal": "textures/detail_normal.png",
+   "orm": "textures/detail_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "emissive_lamp",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "emissive": {
+    "color": [
+     1.0,
+     0.72,
+     0.38
+    ],
+    "strength": 2.5
+   },
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "foliage",
+   "albedo": "textures/foliage_albedo.png",
+   "normal": "textures/foliage_normal.png",
+   "alpha": "MASK",
+   "double_sided": true,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "hazard",
+   "albedo": "textures/hazard_albedo.png",
+   "normal": "textures/hazard_normal.png",
+   "orm": "textures/hazard_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "iron",
+   "albedo": "textures/iron_albedo.png",
+   "normal": "textures/iron_normal.png",
+   "orm": "textures/iron_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "ironwork",
+   "albedo": "textures/ironwork_albedo.png",
+   "alpha": "MASK",
+   "double_sided": true,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "metal_deck",
+   "albedo": "textures/metal_deck_albedo.png",
+   "normal": "textures/metal_deck_normal.png",
+   "orm": "textures/metal_deck_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.5,
+    1.5
+   ],
+   "used": true
+  },
+  {
+   "name": "paint_yellow",
+   "albedo": "textures/paint_yellow_albedo.png",
+   "normal": "textures/paint_yellow_normal.png",
+   "orm": "textures/paint_yellow_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "paving_cobble",
+   "albedo": "textures/paving_cobble_albedo.png",
+   "normal": "textures/paving_cobble_normal.png",
+   "orm": "textures/paving_cobble_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    4.0,
+    4.0
+   ],
+   "used": true
+  },
+  {
+   "name": "paving_concrete",
+   "albedo": "textures/paving_concrete_albedo.png",
+   "normal": "textures/paving_concrete_normal.png",
+   "orm": "textures/paving_concrete_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    8.0,
+    8.0
+   ],
+   "used": true
+  },
+  {
+   "name": "paving_flag",
+   "albedo": "textures/paving_flag_albedo.png",
+   "normal": "textures/paving_flag_normal.png",
+   "orm": "textures/paving_flag_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    5.0,
+    5.0
+   ],
+   "used": true
+  },
+  {
+   "name": "plaster_cream",
+   "albedo": "textures/plaster_cream_albedo.png",
+   "normal": "textures/plaster_normal.png",
+   "orm": "textures/plaster_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    3.0,
+    3.0
+   ],
+   "used": true
+  },
+  {
+   "name": "plaster_ochre",
+   "albedo": "textures/plaster_ochre_albedo.png",
+   "normal": "textures/plaster_normal.png",
+   "orm": "textures/plaster_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    3.0,
+    3.0
+   ],
+   "used": true
+  },
+  {
+   "name": "plaster_rose",
+   "albedo": "textures/plaster_rose_albedo.png",
+   "normal": "textures/plaster_normal.png",
+   "orm": "textures/plaster_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    3.0,
+    3.0
+   ],
+   "used": true
+  },
+  {
+   "name": "plaster_white",
+   "albedo": "textures/plaster_white_albedo.png",
+   "normal": "textures/plaster_normal.png",
+   "orm": "textures/plaster_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    3.0,
+    3.0
+   ],
+   "used": true
+  },
+  {
+   "name": "puddle",
+   "albedo": "textures/puddle_albedo.png",
+   "normal": "textures/puddle_normal.png",
+   "orm": "textures/puddle_orm.png",
+   "alpha": "BLEND",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "roof_metal",
+   "albedo": "textures/roof_metal_albedo.png",
+   "normal": "textures/roof_metal_normal.png",
+   "orm": "textures/roof_metal_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "roof_terracotta",
+   "albedo": "textures/roof_terracotta_albedo.png",
+   "normal": "textures/roof_terracotta_normal.png",
+   "orm": "textures/roof_terracotta_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "skyline",
+   "albedo": "textures/skyline_albedo.png",
+   "orm": "textures/skyline_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    24.0,
+    48.0
+   ],
+   "used": true
+  },
+  {
+   "name": "soil",
+   "albedo": "textures/soil_albedo.png",
+   "normal": "textures/soil_normal.png",
+   "orm": "textures/soil_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    1.0,
+    1.0
+   ],
+   "used": true
+  },
+  {
+   "name": "stone_ashlar",
+   "albedo": "textures/stone_ashlar_albedo.png",
+   "normal": "textures/stone_ashlar_normal.png",
+   "orm": "textures/stone_ashlar_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    3.0,
+    3.0
+   ],
+   "used": true
+  },
+  {
+   "name": "stone_canal",
+   "albedo": "textures/stone_canal_albedo.png",
+   "normal": "textures/stone_canal_normal.png",
+   "orm": "textures/stone_canal_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    4.0,
+    3.0
+   ],
+   "used": true
+  },
+  {
+   "name": "stone_trim",
+   "albedo": "textures/stone_trim_albedo.png",
+   "normal": "textures/stone_trim_normal.png",
+   "orm": "textures/stone_trim_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  },
+  {
+   "name": "water",
+   "albedo": "textures/water_albedo.png",
+   "normal": "textures/water_normal.png",
+   "orm": "textures/water_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    6.0,
+    6.0
+   ],
+   "used": true
+  },
+  {
+   "name": "wood_planks",
+   "albedo": "textures/wood_planks_albedo.png",
+   "normal": "textures/wood_planks_normal.png",
+   "orm": "textures/wood_planks_orm.png",
+   "alpha": "OPAQUE",
+   "double_sided": false,
+   "texel_m_per_uv": [
+    2.0,
+    2.0
+   ],
+   "used": true
+  }
+ ],
+ "textures": [
+  "textures/banner_albedo.png",
+  "textures/banner_normal.png",
+  "textures/bark_albedo.png",
+  "textures/bark_normal.png",
+  "textures/bark_orm.png",
+  "textures/brick_brown_albedo.png",
+  "textures/brick_normal.png",
+  "textures/brick_orm.png",
+  "textures/brick_red_albedo.png",
+  "textures/bronze_albedo.png",
+  "textures/bronze_normal.png",
+  "textures/bronze_orm.png",
+  "textures/canvas_cream_albedo.png",
+  "textures/canvas_green_albedo.png",
+  "textures/canvas_normal.png",
+  "textures/canvas_orm.png",
+  "textures/canvas_red_albedo.png",
+  "textures/concrete_albedo.png",
+  "textures/concrete_normal.png",
+  "textures/concrete_orm.png",
+  "textures/container_blue_albedo.png",
+  "textures/container_normal.png",
+  "textures/container_orm.png",
+  "textures/container_red_albedo.png",
+  "textures/detail_albedo.png",
+  "textures/detail_normal.png",
+  "textures/detail_orm.png",
+  "textures/foliage_albedo.png",
+  "textures/foliage_normal.png",
+  "textures/hazard_albedo.png",
+  "textures/hazard_normal.png",
+  "textures/hazard_orm.png",
+  "textures/iron_albedo.png",
+  "textures/iron_normal.png",
+  "textures/iron_orm.png",
+  "textures/ironwork_albedo.png",
+  "textures/metal_deck_albedo.png",
+  "textures/metal_deck_normal.png",
+  "textures/metal_deck_orm.png",
+  "textures/paint_yellow_albedo.png",
+  "textures/paint_yellow_normal.png",
+  "textures/paint_yellow_orm.png",
+  "textures/paving_cobble_albedo.png",
+  "textures/paving_cobble_normal.png",
+  "textures/paving_cobble_orm.png",
+  "textures/paving_concrete_albedo.png",
+  "textures/paving_concrete_normal.png",
+  "textures/paving_concrete_orm.png",
+  "textures/paving_flag_albedo.png",
+  "textures/paving_flag_normal.png",
+  "textures/paving_flag_orm.png",
+  "textures/plaster_cream_albedo.png",
+  "textures/plaster_normal.png",
+  "textures/plaster_ochre_albedo.png",
+  "textures/plaster_orm.png",
+  "textures/plaster_rose_albedo.png",
+  "textures/plaster_white_albedo.png",
+  "textures/puddle_albedo.png",
+  "textures/puddle_normal.png",
+  "textures/puddle_orm.png",
+  "textures/roof_metal_albedo.png",
+  "textures/roof_metal_normal.png",
+  "textures/roof_metal_orm.png",
+  "textures/roof_terracotta_albedo.png",
+  "textures/roof_terracotta_normal.png",
+  "textures/roof_terracotta_orm.png",
+  "textures/skyline_albedo.png",
+  "textures/skyline_orm.png",
+  "textures/soil_albedo.png",
+  "textures/soil_normal.png",
+  "textures/soil_orm.png",
+  "textures/stone_ashlar_albedo.png",
+  "textures/stone_ashlar_normal.png",
+  "textures/stone_ashlar_orm.png",
+  "textures/stone_canal_albedo.png",
+  "textures/stone_canal_normal.png",
+  "textures/stone_canal_orm.png",
+  "textures/stone_trim_albedo.png",
+  "textures/stone_trim_normal.png",
+  "textures/stone_trim_orm.png",
+  "textures/water_albedo.png",
+  "textures/water_normal.png",
+  "textures/water_orm.png",
+  "textures/wood_planks_albedo.png",
+  "textures/wood_planks_normal.png",
+  "textures/wood_planks_orm.png"
+ ],
+ "special_meshes": {
+  "water": [
+   {
+    "node": "water_canal_n",
+    "chunk": "A",
+    "y": -1.0,
+    "layout_id": "canal_n"
+   },
+   {
+    "node": "water_canal_w",
+    "chunk": "A",
+    "y": -1.0,
+    "layout_id": "canal_w"
+   },
+   {
+    "node": "water_canal_e",
+    "chunk": "A",
+    "y": -1.0,
+    "layout_id": "canal_e"
+   },
+   {
+    "node": "water_canal_n_s",
+    "chunk": "A",
+    "y": -1.0,
+    "layout_id": "canal_n_s"
+   },
+   {
+    "node": "water_fountain",
+    "chunk": "B",
+    "y": 0.53
+   },
+   {
+    "node": "water_fountain_bowl",
+    "chunk": "B",
+    "y": 2.81
+   },
+   {
+    "node": "water_harbour",
+    "chunk": "skyline",
+    "y": -1.0
+   }
+  ],
+  "puddle": [
+   {
+    "node": "puddle_01",
+    "chunk": "A"
+   },
+   {
+    "node": "puddle_02",
+    "chunk": "A"
+   },
+   {
+    "node": "puddle_10",
+    "chunk": "A"
+   },
+   {
+    "node": "puddle_03",
+    "chunk": "B"
+   },
+   {
+    "node": "puddle_04",
+    "chunk": "B"
+   },
+   {
+    "node": "puddle_05",
+    "chunk": "C"
+   },
+   {
+    "node": "puddle_06",
+    "chunk": "C"
+   },
+   {
+    "node": "puddle_07",
+    "chunk": "north"
+   },
+   {
+    "node": "puddle_08",
+    "chunk": "north"
+   },
+   {
+    "node": "puddle_09",
+    "chunk": "south"
+   }
+  ],
+  "foliage": [
+   {
+    "node": "foliage_flowers_A",
+    "chunk": "A"
+   },
+   {
+    "node": "foliage_ivy_A",
+    "chunk": "A"
+   },
+   {
+    "node": "foliage_weeds_A",
+    "chunk": "A"
+   },
+   {
+    "node": "foliage_planters_B",
+    "chunk": "B"
+   },
+   {
+    "node": "foliage_trees_B",
+    "chunk": "B"
+   },
+   {
+    "node": "foliage_ivy_C",
+    "chunk": "C"
+   },
+   {
+    "node": "foliage_flowers_north",
+    "chunk": "north"
+   },
+   {
+    "node": "foliage_ivy_north",
+    "chunk": "north"
+   },
+   {
+    "node": "foliage_planters_north",
+    "chunk": "north"
+   },
+   {
+    "node": "foliage_flowers_south",
+    "chunk": "south"
+   },
+   {
+    "node": "foliage_ivy_south",
+    "chunk": "south"
+   },
+   {
+    "node": "foliage_planters_south",
+    "chunk": "south"
+   }
+  ],
+  "emissive": [
+   {
+    "node": "emissive_lamp_001",
+    "chunk": "A"
+   },
+   {
+    "node": "emissive_lamp_002",
+    "chunk": "A"
+   },
+   {
+    "node": "emissive_lamp_003",
+    "chunk": "A"
+   },
+   {
+    "node": "emissive_lamp_004",
+    "chunk": "A"
+   },
+   {
+    "node": "emissive_lantern_005",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_006",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_007",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_008",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_009",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_010",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_011",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lantern_012",
+    "chunk": "B"
+   },
+   {
+    "node": "emissive_lamp_013",
+    "chunk": "north"
+   },
+   {
+    "node": "emissive_lamp_014",
+    "chunk": "north"
+   },
+   {
+    "node": "emissive_lamp_015",
+    "chunk": "north"
+   },
+   {
+    "node": "emissive_lamp_016",
+    "chunk": "north"
+   },
+   {
+    "node": "emissive_walllamps_north",
+    "chunk": "north"
+   },
+   {
+    "node": "emissive_lamp_017",
+    "chunk": "south"
+   },
+   {
+    "node": "emissive_lamp_018",
+    "chunk": "south"
+   },
+   {
+    "node": "emissive_lamp_019",
+    "chunk": "south"
+   },
+   {
+    "node": "emissive_lamp_020",
+    "chunk": "south"
+   },
+   {
+    "node": "emissive_walllamps_south",
+    "chunk": "south"
+   }
+  ],
+  "banner": [
+   {
+    "node": "banner_post_029_0",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_029_1",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_351_0",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_351_1",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_869_0",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_869_1",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_618_0",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_post_618_1",
+    "chunk": "A"
+   },
+   {
+    "node": "banner_wall_698",
+    "chunk": "north"
+   },
+   {
+    "node": "banner_wall_483",
+    "chunk": "north"
+   },
+   {
+    "node": "banner_gatehouse_north",
+    "chunk": "north"
+   },
+   {
+    "node": "banner_hardware_north",
+    "chunk": "north"
+   },
+   {
+    "node": "banner_wall_311",
+    "chunk": "south"
+   },
+   {
+    "node": "banner_wall_466",
+    "chunk": "south"
+   },
+   {
+    "node": "banner_gatehouse_south",
+    "chunk": "south"
+   },
+   {
+    "node": "banner_hardware_south",
+    "chunk": "south"
+   }
+  ],
+  "emit_smoke": [
+   {
+    "node": "emit_smoke_01",
+    "chunk": "north",
+    "pos": [
+     -40.0,
+     16.0,
+     -45.0
+    ]
+   },
+   {
+    "node": "emit_smoke_04",
+    "chunk": "north",
+    "pos": [
+     30.0,
+     16.0,
+     -45.0
+    ]
+   },
+   {
+    "node": "emit_smoke_02",
+    "chunk": "south",
+    "pos": [
+     40.0,
+     16.0,
+     45.0
+    ]
+   },
+   {
+    "node": "emit_smoke_03",
+    "chunk": "south",
+    "pos": [
+     -30.0,
+     17.729,
+     45.0
+    ]
+   }
+  ]
+ },
+ "special_mesh_rules": {
+  "water_": "water surface quads at the layout water y (replace with the water shader)",
+  "puddle_": "flat puddles at floor + 0.005 m, own material (wet decal)",
+  "foliage_": "alpha-clip, two-sided leaves/ivy/flowers",
+  "emissive_": "lamp glass (emissive)",
+  "banner_": "cloth, two-sided (optional wind)",
+  "emit_smoke_": "empties (Node3D) marking chimney smoke emitters"
+ },
+ "lod": {
+  "authored_lods": "none (single LOD0 per mesh)",
+  "strategy": "Godot importer automatic mesh LOD (glTF import option meshes/generate_lods = true, the default) + the triangle budget below is before LOD",
+  "suggested_visibility_ranges_m": {
+   "props_small (barrels, pallets, crates < 1.5 m)": 60,
+   "decals (grates, manholes, paint)": 45,
+   "foliage_ivy / flowers": 70,
+   "skyline chunk": "no limit (always visible)"
+  },
+  "occlusion": "buildings are closed shells; OccluderInstance3D can be baked from the chunk meshes"
+ },
+ "collision": "none in the art (the game builds collision/nav from the layout JSON)",
+ "verification": {
+  "passed": true,
+  "stats": {
+   "floor_samples": 5988,
+   "floor_worst_err_m": 0.005,
+   "floor_worst_at": [
+    "north_row",
+    -42.64,
+    -38.62,
+    "puddle_08"
+   ],
+   "headroom_samples": 5988,
+   "ramp_worst_err_m": 0.0,
+   "face_samples": 15184,
+   "face_worst_err_m": 0.14,
+   "special_counts": {
+    "water": 7,
+    "puddle": 10,
+    "foliage": 12,
+    "emissive": 22,
+    "banner": 16,
+    "emit_smoke": 4
+   },
+   "triangles": 328149,
+   "materials": 36,
+   "layout_overlaps_skipped": [
+    "platform_c_ramp",
+    "platform_c_ramp_s"
+   ]
+  },
+  "failures": {},
+  "tolerances": {
+   "floor_m": 0.03,
+   "face_m": 0.15,
+   "headroom_m": 2.4
+  }
+ },
+ "decisions": [
+  "Visual walls sit exactly on the layout solid faces; thin perimeter solids are deepened outward (outside the playable area) so roofs read correctly.",
+  "Spawn exits and yard gates get arched passages springing at 2.6 m (nothing below 2.4 m over walkable floor).",
+  "Canal walls run from y=-3 to the adjoining walkable level and follow the terrace stairs; balustrades follow every water_edge blocker (visual only).",
+  "Crane yaw -100 is read as a compass bearing so the jib points from (66,-6) toward the Loading Yard; its hook stays outside the 9 m scoring circle.",
+  "Boats keep the layout yaw unless that would place a hull crosswise in a narrow canal; then the hull is aligned with the canal (decor only).",
+  "Zone rings are not baked; only paving patterns well inside/outside the 9 m radius are used.",
+  "decor nudged: {'decor': 'boat', 'at': [-30.0, 12.0], 'yaw_from': 0.0, 'yaw_to': 90.0}",
+  "decor nudged: {'decor': 'barrel_group', 'from': [-53.5, -13.5], 'to': [-50.0, -13.5]}"
+ ]
+}

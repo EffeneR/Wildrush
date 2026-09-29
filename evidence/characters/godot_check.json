@@ -1,0 +1,630 @@
+{
+ "bruno": {
+  "bone_names": [
+   "Hips",
+   "Spine",
+   "Chest",
+   "UpperChest",
+   "Neck",
+   "Head",
+   "Jaw",
+   "LeftEar1",
+   "LeftEar2",
+   "RightEar1",
+   "RightEar2",
+   "LeftShoulder",
+   "LeftUpperArm",
+   "LeftLowerArm",
+   "LeftHand",
+   "LeftThumb1",
+   "LeftThumb2",
+   "LeftIndex1",
+   "LeftIndex2",
+   "LeftMiddle1",
+   "LeftMiddle2",
+   "LeftRing1",
+   "LeftRing2",
+   "RightShoulder",
+   "RightUpperArm",
+   "RightLowerArm",
+   "RightHand",
+   "RightThumb1",
+   "RightThumb2",
+   "RightIndex1",
+   "RightIndex2",
+   "RightMiddle1",
+   "RightMiddle2",
+   "RightRing1",
+   "RightRing2",
+   "LeftUpperLeg",
+   "LeftLowerLeg",
+   "LeftFoot",
+   "LeftToes",
+   "RightUpperLeg",
+   "RightLowerLeg",
+   "RightFoot",
+   "RightToes",
+   "Tail1",
+   "Tail2",
+   "Tail3"
+  ],
+  "bones": 46,
+  "clips": {
+   "defeat": {
+    "length": 2.0,
+    "loop": 0,
+    "tracks": 45
+   },
+   "dodge_b": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 45
+   },
+   "dodge_f": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 45
+   },
+   "dodge_l": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 45
+   },
+   "dodge_r": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 45
+   },
+   "getup": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 45
+   },
+   "grabbed": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 45
+   },
+   "guard_block": {
+    "length": 0.2,
+    "loop": 0,
+    "tracks": 45
+   },
+   "guard_break": {
+    "length": 0.9,
+    "loop": 0,
+    "tracks": 45
+   },
+   "guard_enter": {
+    "length": 0.1,
+    "loop": 0,
+    "tracks": 45
+   },
+   "guard_exit": {
+    "length": 0.1167,
+    "loop": 0,
+    "tracks": 45
+   },
+   "guard_hold": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 45
+   },
+   "heavy": {
+    "length": 1.0333,
+    "loop": 0,
+    "tracks": 45
+   },
+   "hit_back": {
+    "length": 0.3,
+    "loop": 0,
+    "tracks": 45
+   },
+   "hit_front": {
+    "length": 0.3,
+    "loop": 0,
+    "tracks": 45
+   },
+   "hit_heavy": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 45
+   },
+   "idle": {
+    "length": 2.0,
+    "loop": 1,
+    "tracks": 45
+   },
+   "jump_air": {
+    "length": 0.5,
+    "loop": 1,
+    "tracks": 45
+   },
+   "jump_fall": {
+    "length": 0.5,
+    "loop": 1,
+    "tracks": 45
+   },
+   "jump_land": {
+    "length": 0.2,
+    "loop": 0,
+    "tracks": 45
+   },
+   "jump_start": {
+    "length": 0.1167,
+    "loop": 0,
+    "tracks": 45
+   },
+   "knockdown": {
+    "length": 0.8,
+    "loop": 0,
+    "tracks": 45
+   },
+   "knockout": {
+    "length": 1.2,
+    "loop": 0,
+    "tracks": 45
+   },
+   "light_air": {
+    "length": 0.4167,
+    "loop": 0,
+    "tracks": 45
+   },
+   "light_l": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 45
+   },
+   "light_r": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 45
+   },
+   "light_s": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 45
+   },
+   "respawn": {
+    "length": 0.8,
+    "loop": 0,
+    "tracks": 45
+   },
+   "run_b": {
+    "length": 0.7,
+    "loop": 1,
+    "tracks": 45
+   },
+   "run_f": {
+    "length": 0.7,
+    "loop": 1,
+    "tracks": 45
+   },
+   "run_l": {
+    "length": 0.7,
+    "loop": 1,
+    "tracks": 45
+   },
+   "run_r": {
+    "length": 0.7,
+    "loop": 1,
+    "tracks": 45
+   },
+   "skill_e": {
+    "length": 0.85,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_q_charge": {
+    "length": 0.5,
+    "loop": 1,
+    "tracks": 45
+   },
+   "skill_q_hit": {
+    "length": 0.3,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_q_miss": {
+    "length": 0.55,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_q_wall": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_q_windup": {
+    "length": 0.25,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_r_block": {
+    "length": 0.2,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_r_enter": {
+    "length": 0.15,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_r_exit": {
+    "length": 0.25,
+    "loop": 0,
+    "tracks": 45
+   },
+   "skill_r_hold": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 45
+   },
+   "stagger": {
+    "length": 0.6,
+    "loop": 0,
+    "tracks": 45
+   },
+   "turn_l": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 45
+   },
+   "turn_r": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 45
+   },
+   "victory": {
+    "length": 2.5,
+    "loop": 1,
+    "tracks": 45
+   },
+   "walk_b": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 45
+   },
+   "walk_f": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 45
+   },
+   "walk_l": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 45
+   },
+   "walk_r": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 45
+   }
+  },
+  "id": "bruno",
+  "length_mismatch": [],
+  "loop_mismatch": [],
+  "materials": [
+   "bruno_fur",
+   "bruno_cloth",
+   "bruno_eye",
+   "bruno_detail"
+  ],
+  "missing_clips": [],
+  "skinned": true,
+  "triangles": 37838
+ },
+ "nyx": {
+  "bone_names": [
+   "Hips",
+   "Spine",
+   "Chest",
+   "UpperChest",
+   "Neck",
+   "Head",
+   "Jaw",
+   "LeftEar1",
+   "LeftEar2",
+   "RightEar1",
+   "RightEar2",
+   "LeftShoulder",
+   "LeftUpperArm",
+   "LeftLowerArm",
+   "LeftHand",
+   "LeftThumb1",
+   "LeftThumb2",
+   "LeftIndex1",
+   "LeftIndex2",
+   "LeftMiddle1",
+   "LeftMiddle2",
+   "LeftRing1",
+   "LeftRing2",
+   "RightShoulder",
+   "RightUpperArm",
+   "RightLowerArm",
+   "RightHand",
+   "RightThumb1",
+   "RightThumb2",
+   "RightIndex1",
+   "RightIndex2",
+   "RightMiddle1",
+   "RightMiddle2",
+   "RightRing1",
+   "RightRing2",
+   "LeftUpperLeg",
+   "LeftLowerLeg",
+   "LeftFoot",
+   "LeftToes",
+   "RightUpperLeg",
+   "RightLowerLeg",
+   "RightFoot",
+   "RightToes",
+   "Tail1",
+   "Tail2",
+   "Tail3",
+   "Tail4",
+   "Tail5",
+   "Tail6"
+  ],
+  "bones": 49,
+  "clips": {
+   "defeat": {
+    "length": 2.0,
+    "loop": 0,
+    "tracks": 48
+   },
+   "dodge_b": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "dodge_f": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "dodge_l": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "dodge_r": {
+    "length": 0.3667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "getup": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 48
+   },
+   "grabbed": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 48
+   },
+   "guard_block": {
+    "length": 0.2,
+    "loop": 0,
+    "tracks": 48
+   },
+   "guard_break": {
+    "length": 0.9,
+    "loop": 0,
+    "tracks": 48
+   },
+   "guard_enter": {
+    "length": 0.1,
+    "loop": 0,
+    "tracks": 48
+   },
+   "guard_exit": {
+    "length": 0.1167,
+    "loop": 0,
+    "tracks": 48
+   },
+   "guard_hold": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 48
+   },
+   "heavy": {
+    "length": 1.0167,
+    "loop": 0,
+    "tracks": 48
+   },
+   "hit_back": {
+    "length": 0.3,
+    "loop": 0,
+    "tracks": 48
+   },
+   "hit_front": {
+    "length": 0.3,
+    "loop": 0,
+    "tracks": 48
+   },
+   "hit_heavy": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 48
+   },
+   "idle": {
+    "length": 2.0,
+    "loop": 1,
+    "tracks": 48
+   },
+   "jump_air": {
+    "length": 0.5,
+    "loop": 1,
+    "tracks": 48
+   },
+   "jump_fall": {
+    "length": 0.5,
+    "loop": 1,
+    "tracks": 48
+   },
+   "jump_land": {
+    "length": 0.2,
+    "loop": 0,
+    "tracks": 48
+   },
+   "jump_start": {
+    "length": 0.1167,
+    "loop": 0,
+    "tracks": 48
+   },
+   "knockdown": {
+    "length": 0.8,
+    "loop": 0,
+    "tracks": 48
+   },
+   "knockout": {
+    "length": 1.2,
+    "loop": 0,
+    "tracks": 48
+   },
+   "light_air": {
+    "length": 0.4,
+    "loop": 0,
+    "tracks": 48
+   },
+   "light_l": {
+    "length": 0.4667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "light_r": {
+    "length": 0.4667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "light_s": {
+    "length": 0.4667,
+    "loop": 0,
+    "tracks": 48
+   },
+   "perch_climb": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 48
+   },
+   "respawn": {
+    "length": 0.8,
+    "loop": 0,
+    "tracks": 48
+   },
+   "run_b": {
+    "length": 0.6667,
+    "loop": 1,
+    "tracks": 48
+   },
+   "run_f": {
+    "length": 0.6667,
+    "loop": 1,
+    "tracks": 48
+   },
+   "run_l": {
+    "length": 0.6667,
+    "loop": 1,
+    "tracks": 48
+   },
+   "run_r": {
+    "length": 0.6667,
+    "loop": 1,
+    "tracks": 48
+   },
+   "skill_e": {
+    "length": 0.8167,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_q_air": {
+    "length": 0.4,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_q_land": {
+    "length": 0.35,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_q_land_miss": {
+    "length": 0.65,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_q_prep": {
+    "length": 0.3,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_r_counter": {
+    "length": 0.45,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_r_left": {
+    "length": 0.4167,
+    "loop": 0,
+    "tracks": 48
+   },
+   "skill_r_right": {
+    "length": 0.4167,
+    "loop": 0,
+    "tracks": 48
+   },
+   "stagger": {
+    "length": 0.6,
+    "loop": 0,
+    "tracks": 48
+   },
+   "turn_l": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 48
+   },
+   "turn_r": {
+    "length": 0.5,
+    "loop": 0,
+    "tracks": 48
+   },
+   "victory": {
+    "length": 2.5,
+    "loop": 1,
+    "tracks": 48
+   },
+   "walk_b": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 48
+   },
+   "walk_f": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 48
+   },
+   "walk_l": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 48
+   },
+   "walk_r": {
+    "length": 1.0,
+    "loop": 1,
+    "tracks": 48
+   }
+  },
+  "id": "nyx",
+  "length_mismatch": [],
+  "loop_mismatch": [],
+  "materials": [
+   "nyx_fur",
+   "nyx_cloth",
+   "nyx_eye",
+   "nyx_detail"
+  ],
+  "missing_clips": [],
+  "skinned": true,
+  "triangles": 37838
+ }
+}

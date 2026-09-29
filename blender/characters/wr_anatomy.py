@@ -129,18 +129,18 @@ FIGHTER_PARAMS = {
         ball_y=-0.100, foot_w=0.125, foot_r=(0.043, 0.047), toe_r=(0.025, 0.033, 0.023),
         pelvis_z=0.915, waist_z=1.050, rib_z=1.255, chest_z=1.300, neck_base_z=1.480, head_joint_z=1.575,
         sh_z=1.440, sh_x=0.205, clav_x=0.030,
-        ua_len=0.290, fa_len=0.270, palm_len=0.088, fing_len=(0.036, 0.029), thumb_len=(0.032, 0.026),
+        ua_len=0.290, fa_len=0.270, palm_len=0.092, fing_len=(0.037, 0.030), thumb_len=(0.033, 0.027),
         pelvis_r=(0.150, 0.115, 0.110), waist_r=(0.140, 0.112, 0.120), rib_r=(0.168, 0.130, 0.165),
         pec_r=(0.085, 0.050, 0.065), glute_r=(0.078, 0.068, 0.080), trap_r=(0.150, 0.075, 0.075), lat=1.0,
         neck_r=(0.080, 0.068),
-        delt_r=(0.068, 0.060, 0.078), ua_r=(0.060, 0.046), bicep=(0.042, 0.060, 0.040), tricep=(0.044, 0.070, 0.040),
-        fa_r=(0.056, 0.038), fa_mass=(0.050, 0.080, 0.045),
-        thigh_r=(0.098, 0.062), quad=(0.068, 0.115, 0.060), hams=(0.062, 0.110, 0.058), shin_r=(0.060, 0.040),
-        calf=(0.052, 0.085, 0.050), knee_r=0.050,
-        hand_w=0.086, hand_t=0.036, finger_r=0.0140, thumb_r=0.0145, claw_len=0.013,
-        tail_n=3, tail_len=0.30, tail_r=(0.042, 0.036, 0.028, 0.018), tail_shape="dog", tail_base=(0.0, 0.100, 0.915),
-        head_c=(0.0, -0.010, 1.668), cran_r=(0.082, 0.088, 0.080), eye_r=0.0175,
-        ear_len=0.095, ear_w=0.055,
+        delt_r=(0.080, 0.070, 0.086), ua_r=(0.068, 0.053), bicep=(0.052, 0.066, 0.049), tricep=(0.054, 0.076, 0.048),
+        fa_r=(0.064, 0.044), fa_mass=(0.060, 0.088, 0.054),
+        thigh_r=(0.104, 0.066), quad=(0.072, 0.118, 0.064), hams=(0.066, 0.112, 0.060), shin_r=(0.066, 0.045),
+        calf=(0.058, 0.088, 0.055), knee_r=0.054,
+        hand_w=0.096, hand_t=0.040, finger_r=0.0155, thumb_r=0.0160, claw_len=0.013,
+        tail_n=3, tail_len=0.30, tail_r=(0.052, 0.046, 0.036, 0.026), tail_shape="dog", tail_base=(0.0, 0.100, 0.915),
+        head_c=(0.0, -0.010, 0.0), cran_r=(0.080, 0.086, 0.078), eye_r=0.0175, head_scale=1.10,
+        ear_len=0.105, ear_w=0.070,
     ),
     "vex": dict(
         sex="m", H=1.73, species="fox",
@@ -155,9 +155,9 @@ FIGHTER_PARAMS = {
         thigh_r=(0.078, 0.047), quad=(0.050, 0.110, 0.045), hams=(0.046, 0.100, 0.044), shin_r=(0.044, 0.028),
         calf=(0.036, 0.080, 0.034), knee_r=0.037,
         hand_w=0.068, hand_t=0.027, finger_r=0.0103, thumb_r=0.0108,
-        tail_n=6, tail_len=0.92, tail_r=(0.050, 0.095, 0.105, 0.045), tail_shape="fox", tail_base=(0.0, 0.085, 0.950),
-        head_c=(0.0, -0.012, 1.632), cran_r=(0.068, 0.080, 0.070), eye_r=0.0185,
-        ear_len=0.105, ear_w=0.050,
+        tail_n=6, tail_len=1.00, tail_r=(0.050, 0.095, 0.105, 0.045), tail_shape="fox", tail_base=(0.0, 0.085, 0.950),
+        head_c=(0.0, -0.012, 0.0), cran_r=(0.066, 0.078, 0.068), eye_r=0.0185, head_scale=1.12,
+        ear_len=0.112, ear_w=0.074,
     ),
     "hops": dict(
         sex="f", H=1.67, species="rabbit",
@@ -174,8 +174,8 @@ FIGHTER_PARAMS = {
         calf=(0.042, 0.085, 0.040), knee_r=0.040,
         hand_w=0.064, hand_t=0.026, finger_r=0.0100, thumb_r=0.0105,
         tail_n=2, tail_len=0.10, tail_r=(0.050, 0.070, 0.060, 0.040), tail_shape="rabbit", tail_base=(0.0, 0.110, 0.905),
-        head_c=(0.0, -0.014, 1.575), cran_r=(0.068, 0.080, 0.074), eye_r=0.0200,
-        ear_len=0.36, ear_w=0.056,
+        head_c=(0.0, -0.014, 0.0), cran_r=(0.066, 0.078, 0.070), eye_r=0.0200, head_scale=1.12,
+        ear_len=0.34, ear_w=0.072,
     ),
     "scrap": dict(
         sex="m", H=1.63, species="raccoon",
@@ -193,8 +193,8 @@ FIGHTER_PARAMS = {
         calf=(0.046, 0.075, 0.044), knee_r=0.044,
         hand_w=0.076, hand_t=0.031, finger_r=0.0118, thumb_r=0.0122, claw_len=0.016,
         tail_n=6, tail_len=0.78, tail_r=(0.060, 0.085, 0.082, 0.055), tail_shape="raccoon", tail_base=(0.0, 0.095, 0.865),
-        head_c=(0.0, -0.012, 1.540), cran_r=(0.078, 0.080, 0.074), eye_r=0.0180,
-        ear_len=0.060, ear_w=0.048,
+        head_c=(0.0, -0.012, 0.0), cran_r=(0.074, 0.078, 0.070), eye_r=0.0180, head_scale=1.10,
+        ear_len=0.064, ear_w=0.054,
     ),
 }
 
@@ -560,7 +560,7 @@ def tail_curve(F):
         ang = np.radians(-35 + 25 * t)
         yaw = np.zeros(n)
     elif shape == "dog":
-        ang = np.radians(10 + 95 * t)                  # curls up and forward
+        ang = np.radians(15 + 55 * t)                  # short, carried up with a gentle curl
         yaw = np.zeros(n)
     else:  # rabbit puff
         ang = np.radians(10 + 10 * t)
@@ -749,27 +749,33 @@ def ear_node(F, Hf, s, base_hl, length, width, thick, tilt_out, tilt_back, twist
         ear_local = Subtract(outer, inner, k=0.004)
         ear_local = Intersect(ear_local, HalfSpace([0, -0.005, 0], [0, -1, 0]), k=0.004)
         pts_local = [np.array([0, 0.0, 0]), np.array([0, length * 0.45, 0]), np.array([0, length * 1.02, 0])]
-    elif shape == "long":       # rabbit: long blade, 3 bones
-        outer = RoundCone([0, 0, 0], [0, length * 0.55, 0], width * 0.36, width * 0.50)
-        outer2 = RoundCone([0, length * 0.55, 0], [0, length * 0.97, 0], width * 0.50, width * 0.16)
-        o = Union([outer, outer2], k=0.02)
+    elif shape == "long":       # rabbit: long leaf with near-constant width and a rounded tip, 3 bones
+        segs = [(0.00, 0.30), (0.18, 0.46), (0.55, 0.50), (0.82, 0.44), (0.97, 0.26)]
+        o = Union([RoundCone([0, length * a0, 0], [0, length * a1, 0], width * r0, width * r1)
+                   for (a0, r0), (a1, r1) in zip(segs[:-1], segs[1:])], k=0.02)
         outer_s = Local(o, [0, 0, 0], np.eye(3), (1.0, 1.0, thick / width))
-        inner = RoundCone([0, length * 0.10, 0], [0, length * 0.55, 0], width * 0.26, width * 0.40)
-        inner2 = RoundCone([0, length * 0.55, 0], [0, length * 0.92, 0], width * 0.40, width * 0.10)
-        i2 = Union([inner, inner2], k=0.02)
-        inner_s = Local(i2, [0, 0, thick * 0.60], np.eye(3), (1.0, 1.0, thick * 0.85 / width))
+        isegs = [(0.10, 0.20), (0.22, 0.34), (0.55, 0.38), (0.80, 0.33), (0.93, 0.16)]
+        i2 = Union([RoundCone([0, length * a0, 0], [0, length * a1, 0], width * r0, width * r1)
+                    for (a0, r0), (a1, r1) in zip(isegs[:-1], isegs[1:])], k=0.02)
+        inner_s = Local(i2, [0, 0, thick * 0.62], np.eye(3), (1.0, 1.0, thick * 0.80 / width))
         ear_local = Subtract(outer_s, inner_s, k=0.005)
         pts_local = [np.array([0, 0.0, 0]), np.array([0, length * 0.33, 0]), np.array([0, length * 0.66, 0]),
                      np.array([0, length * 0.99, 0])]
-    elif shape == "folded":     # dog: base rises, flap folds forward/down over the side of the head
-        fold = np.array([0.0, length * 0.30, 0.004])
-        up_part = RoundCone([0, 0, 0], fold, width * 0.30, width * 0.36)
-        up_s = Local(up_part, [0, 0, 0], np.eye(3), (1.0, 1.0, thick / width))
-        flap_c = fold + np.array([0.14 * length, -0.20 * length, 0.26 * length])
-        flap = Local(Ellipsoid([0, 0, 0], (width * 0.50, length * 0.44, thick * 0.55)), flap_c,
-                     rot_x(-1.0) @ rot_z(-0.30), (1, 1, 1))
-        ear_local = Union([up_s, flap], k=0.012)
-        pts_local = [np.array([0, 0.0, 0]), fold, fold + np.array([0.18 * length, -0.40 * length, 0.50 * length])]
+    elif shape == "folded":     # dog: short rise, then a broad flap folding down beside the eye
+        fold = np.array([0.030, length * 0.20, 0.0])
+        up_part = RoundCone([0, 0, 0], fold, width * 0.28, width * 0.30)
+        up_s = Local(up_part, [0, 0, 0], np.eye(3), (1.0, 1.0, thick * 1.4 / width))
+        # flap: flattened ellipsoid hanging outward-down-forward from the fold, outside the skull
+        tip = fold + np.array([0.052, -length * 0.62, length * 0.26])
+        fy = normalize(tip - fold)
+        fz = normalize(np.cross(fy, np.array([0.0, 0.0, 1.0])))      # flap normal ~ outward (local x)
+        fz = normalize(np.array([1.0, 0.0, 0.0]) - fy * np.dot(np.array([1.0, 0.0, 0.0]), fy))
+        fx = np.cross(fy, fz)
+        Rf = np.stack([fx, fy, fz], axis=1)
+        mid = (fold + tip) * 0.5
+        flap = Local(Ellipsoid([0, 0, 0], (width * 0.50, np.linalg.norm(tip - fold) * 0.58, thick * 0.5)), mid, Rf, (1, 1, 1))
+        ear_local = Union([up_s, flap], k=0.014)
+        pts_local = [np.array([0, 0.0, 0]), fold, tip]
     else:
         raise ValueError(shape)
     # mirror the local x for the right side ear (Local frame handles world placement)
@@ -801,6 +807,35 @@ def mouth_parts(F, Hf, lip_y, lip_z, corner_y, half_w, gap, cavity, occl_pitch, 
     cav = Ellipsoid(cav_c, cavity, Mf.R)
     F.mouth.update(dict(frame_o=o.tolist(), frame_R=Mf.R.tolist(), back=back, half_w=half_w, lip_y=lip_y))
     return sl, cav, Mf
+
+
+def fluff(center, radii, R, flow, amp, seed=0, f_across=58.0, f_along=14.0):
+    """Fur ruff: ellipsoid with streaky outward tufts pointing along `flow`."""
+    base = Ellipsoid(center, radii, R)
+    fl = normalize(flow)
+    c = v3(center)
+    rmax = float(max(radii))
+
+    def fn(P):
+        rel = P - c
+        along = rel @ fl
+        across = rel - np.outer(along, fl)
+        Q = across * f_across + np.outer(along * f_along, fl)
+        n = perlin3(Q, 1.0, seed) * 0.7 + perlin3(Q * 2.1, 1.0, seed + 3) * 0.3
+        side = np.clip(along / rmax + 0.35, 0.0, 1.0)
+        return amp * 0.8 * np.clip(n * 1.5, -0.3, 1.0) * (0.3 + 0.7 * side)
+    return Displace(base, fn, amp)
+
+
+def clumps(base, dirs, length, r0, r1=0.0035, seed=0):
+    """Fan of fat tapered fur clumps (reads as fluffy fur, not spikes)."""
+    rng = np.random.RandomState(seed)
+    out = []
+    for i, d in enumerate(dirs):
+        d = normalize(v3(d) + rng.normal(0, 0.08, 3))
+        L = length * (0.8 + 0.4 * rng.rand())
+        out.append(RoundCone(base, base + d * L, r0 * (0.85 + 0.3 * rng.rand()), r1))
+    return out
 
 
 def tufts(base, dirs, length, r0, r1=0.0012):
@@ -839,9 +874,8 @@ def build_head(F):
         for s in (1, -1):
             parts.append(Ellipsoid(hp(s * 0.046, 0.028, -0.024), R3(0.034, 0.036, 0.031)))            # cheekbones
             parts.append(Ellipsoid(hp(s * 0.030, 0.058, 0.029), R3(0.026, 0.017, 0.012), rot_z(s * -0.3)))  # brow
-            parts.append(Ellipsoid(hp(s * 0.058, 0.000, -0.040), R3(0.026, 0.040, 0.034), rot_z(s * 0.45)))  # ruff
-            b = hp(s * 0.062, -0.006, -0.044)
-            fur += tufts(b, [v3(s * 0.8, 0.55, -0.55), v3(s * 0.9, 0.25, -0.75)], 0.026 * S, 0.009 * S)
+            fur.append(fluff(hp(s * 0.058, 0.000, -0.040), R3(0.027, 0.041, 0.035), rot_z(s * 0.45),
+                             v3(s * 0.8, 0.5, -0.5), 0.007 * S, seed=21 + s))                          # cheek ruff
         parts.append(RoundCone(hp(0, 0.056, 0.012), hp(0, 0.094, -0.012), 0.022 * S, 0.0155 * S))  # bridge
         for s in (1, -1):
             details.append(Sphere(hp(s * 0.0168, 0.087, -0.031), 0.0186 * S))                    # whisker pads
@@ -857,101 +891,100 @@ def build_head(F):
                       tilt_out=19, tilt_back=6, twist=24, shape="pointed", n_bones=2)
         jaw_pivot = hp(0, -0.010, -0.038)
         chin = hp(0, 0.080, -0.060)
-        teeth = [("upper", 0.012, 0.091, -0.047, 0.0085), ("lower", 0.0105, 0.084, -0.054, 0.006)]
+        teeth = [("upper", 0.012, 0.089, -0.045, 0.0060), ("lower", 0.0105, 0.082, -0.056, 0.0045)]
         whisk = dict(y=0.092, z=-0.030, x=0.024)
     elif sp == "fox":
-        parts.append(Ellipsoid(hp(0, -0.008, 0.004), cr))
-        parts.append(Ellipsoid(hp(0, 0.030, -0.018), R3(0.054, 0.050, 0.046)))
+        parts.append(Ellipsoid(hp(0, -0.010, 0.006), cr))
+        parts.append(Ellipsoid(hp(0, 0.026, -0.014), R3(0.056, 0.052, 0.046)))                     # wedge face
         for s in (1, -1):
-            parts.append(Ellipsoid(hp(s * 0.042, 0.028, -0.020), R3(0.032, 0.034, 0.030)))
-            parts.append(Ellipsoid(hp(s * 0.027, 0.058, 0.026), R3(0.022, 0.016, 0.011), rot_z(s * -0.35)))
-            parts.append(Ellipsoid(hp(s * 0.056, -0.012, -0.038), R3(0.028, 0.048, 0.034), rot_z(s * 0.55) @ rot_x(0.2)))
-            b = hp(s * 0.062, -0.020, -0.046)
-            fur += tufts(b, [v3(s * 0.7, 0.8, -0.45), v3(s * 0.8, 0.55, -0.75)], 0.040 * S, 0.012 * S)
-        parts.append(RoundCone(hp(0, 0.050, -0.014), hp(0, 0.128, -0.030), 0.030 * S, 0.0125 * S))
-        parts.append(RoundCone(hp(0, 0.045, 0.004), hp(0, 0.118, -0.020), 0.020 * S, 0.010 * S))
-        details.append(RoundCone(hp(0, 0.060, -0.040), hp(0, 0.118, -0.044), 0.020 * S, 0.008 * S))
-        nose_c = hp(0, 0.1345, -0.029)
-        details.append(Ellipsoid(nose_c, R3(0.0100, 0.0080, 0.0075), rot_x(0.25)))
-        lip = dict(lip_y=0.118, lip_z=-0.038, corner_y=0.060, half_w=0.024, gap=0.0034,
-                   cavity=(0.017, 0.036, 0.008), pitch=8.0)
-        eye_c = (0.0315, 0.060, 0.010)
+            parts.append(Ellipsoid(hp(s * 0.044, 0.018, -0.022), R3(0.036, 0.040, 0.032)))           # cheeks
+            parts.append(Ellipsoid(hp(s * 0.027, 0.056, 0.026), R3(0.023, 0.016, 0.011), rot_z(s * -0.35)))
+            fur.append(fluff(hp(s * 0.058, -0.006, -0.036), R3(0.034, 0.048, 0.038), rot_z(s * 0.55) @ rot_x(0.2),
+                             v3(s * 0.8, 0.5, -0.45), 0.011 * S, seed=31 + s))
+        parts.append(RoundCone(hp(0, 0.046, -0.012), hp(0, 0.124, -0.029), 0.037 * S, 0.0135 * S))  # wedge muzzle
+        parts.append(RoundCone(hp(0, 0.038, 0.010), hp(0, 0.117, -0.019), 0.025 * S, 0.011 * S))    # bridge
+        details.append(RoundCone(hp(0, 0.052, -0.040), hp(0, 0.110, -0.043), 0.023 * S, 0.009 * S))  # lower jaw
+        nose_c = hp(0, 0.1295, -0.0275)
+        details.append(Ellipsoid(nose_c, R3(0.0105, 0.0085, 0.0078), rot_x(0.25)))
+        lip = dict(lip_y=0.112, lip_z=-0.037, corner_y=0.056, half_w=0.025, gap=0.0034,
+                   cavity=(0.017, 0.032, 0.008), pitch=8.0)
+        eye_c = (0.0315, 0.058, 0.010)
         eye_kw = dict(yaw_out=16, pitch=-4, w_open=er * 1.0, h_up=er * 0.52, h_lo=er * 0.46, tilt=18)
-        ear_kw = dict(base_hl=(0.040, -0.024, 0.050), length=p["ear_len"], width=p["ear_w"], thick=0.024,
-                      tilt_out=14, tilt_back=6, twist=16, shape="pointed", n_bones=2)
+        ear_kw = dict(base_hl=(0.040, -0.022, 0.050), length=p["ear_len"], width=p["ear_w"], thick=0.026,
+                      tilt_out=15, tilt_back=4, twist=16, shape="pointed", n_bones=2)
         jaw_pivot = hp(0, -0.012, -0.034)
-        chin = hp(0, 0.112, -0.046)
-        teeth = [("upper", 0.013, 0.108, -0.036, 0.009), ("lower", 0.011, 0.100, -0.042, 0.0065)]
-        whisk = dict(y=0.110, z=-0.030, x=0.017)
+        chin = hp(0, 0.106, -0.046)
+        teeth = [("upper", 0.013, 0.102, -0.034, 0.0065), ("lower", 0.011, 0.095, -0.042, 0.005)]
+        whisk = dict(y=0.104, z=-0.030, x=0.018)
     elif sp == "dog":
-        parts.append(Ellipsoid(hp(0, -0.012, 0.010), cr))
-        parts.append(Ellipsoid(hp(0, 0.022, -0.020), R3(0.066, 0.058, 0.056)))
+        parts.append(Ellipsoid(hp(0, -0.014, 0.012), cr))                                            # broad skull
+        parts.append(Ellipsoid(hp(0, 0.036, 0.016), R3(0.058, 0.040, 0.040)))                        # forehead
+        parts.append(Ellipsoid(hp(0, 0.020, -0.024), R3(0.060, 0.050, 0.048)))                        # face mass
         for s in (1, -1):
-            parts.append(Ellipsoid(hp(s * 0.054, 0.012, -0.030), R3(0.036, 0.042, 0.040)))
-            parts.append(Ellipsoid(hp(s * 0.032, 0.058, 0.030), R3(0.028, 0.018, 0.014), rot_z(s * -0.25)))
-        parts.append(RoundBox(hp(0, 0.098, -0.030), R3(0.036, 0.050, 0.030), rot_x(0.06), rnd=0.024 * S))
-        parts.append(RoundCone(hp(0, 0.056, 0.012), hp(0, 0.120, -0.008), 0.030 * S, 0.026 * S))
+            parts.append(Ellipsoid(hp(s * 0.052, 0.016, -0.028), R3(0.036, 0.044, 0.040)))            # masseter / cheeks
+            parts.append(Ellipsoid(hp(s * 0.031, 0.058, 0.031), R3(0.027, 0.017, 0.013), rot_z(s * -0.25)))  # brow ridge
+        parts.append(RoundCone(hp(0, 0.052, 0.006), hp(0, 0.140, -0.012), 0.030 * S, 0.023 * S))      # bridge (after the stop)
+        parts.append(Ellipsoid(hp(0, 0.104, -0.030), R3(0.037, 0.055, 0.029)))                        # muzzle mass
         for s in (1, -1):
-            details.append(Ellipsoid(hp(s * 0.026, 0.110, -0.050), R3(0.022, 0.040, 0.020), rot_x(0.08)))
-        details.append(Ellipsoid(hp(0, 0.100, -0.068), R3(0.026, 0.040, 0.014), rot_x(0.10)))
-        nose_c = hp(0, 0.149, -0.010)
-        details.append(Ellipsoid(nose_c, R3(0.0215, 0.0135, 0.0150), rot_x(0.2)))
-        lip = dict(lip_y=0.143, lip_z=-0.056, corner_y=0.050, half_w=0.036, gap=0.0040,
+            details.append(Ellipsoid(hp(s * 0.022, 0.114, -0.046), R3(0.019, 0.040, 0.019), rot_x(0.10)))  # flews
+        details.append(Ellipsoid(hp(0, 0.100, -0.062), R3(0.023, 0.042, 0.013), rot_x(0.08)))              # lower jaw
+        nose_c = hp(0, 0.1585, -0.0125)
+        details.append(Ellipsoid(nose_c, R3(0.0225, 0.0140, 0.0160), rot_x(0.2)))
+        lip = dict(lip_y=0.147, lip_z=-0.056, corner_y=0.054, half_w=0.038, gap=0.0040,
                    cavity=(0.028, 0.045, 0.010), pitch=4.0)
-        eye_c = (0.0355, 0.060, 0.018)
+        eye_c = (0.0360, 0.060, 0.020)
         eye_kw = dict(yaw_out=12, pitch=-2, w_open=er * 0.95, h_up=er * 0.62, h_lo=er * 0.55, tilt=4)
-        ear_kw = dict(base_hl=(0.052, -0.022, 0.058), length=p["ear_len"], width=p["ear_w"], thick=0.016,
-                      tilt_out=38, tilt_back=0, twist=30, shape="folded", n_bones=2)
+        ear_kw = dict(base_hl=(0.054, -0.020, 0.052), length=p["ear_len"], width=p["ear_w"], thick=0.014,
+                      tilt_out=30, tilt_back=0, twist=20, shape="folded", n_bones=2)
         jaw_pivot = hp(0, -0.012, -0.040)
-        chin = hp(0, 0.130, -0.070)
-        teeth = [("upper", 0.024, 0.140, -0.055, 0.011), ("lower", 0.021, 0.132, -0.062, 0.0085)]
-        whisk = dict(y=0.130, z=-0.035, x=0.030)
+        chin = hp(0, 0.132, -0.068)
+        teeth = [("upper", 0.024, 0.144, -0.053, 0.008), ("lower", 0.021, 0.136, -0.062, 0.006)]
+        whisk = dict(y=0.136, z=-0.035, x=0.030)
     elif sp == "rabbit":
-        parts.append(Ellipsoid(hp(0, -0.004, 0.006), cr))
-        parts.append(Ellipsoid(hp(0, 0.034, -0.020), R3(0.054, 0.052, 0.050)))
+        parts.append(Ellipsoid(hp(0, -0.004, 0.008), cr))
+        parts.append(Ellipsoid(hp(0, 0.034, -0.018), R3(0.054, 0.050, 0.048)))
         for s in (1, -1):
-            parts.append(Ellipsoid(hp(s * 0.046, 0.034, -0.034), R3(0.036, 0.038, 0.034)))
+            parts.append(Ellipsoid(hp(s * 0.044, 0.034, -0.030), R3(0.036, 0.036, 0.032)))            # chubby cheeks
             parts.append(Ellipsoid(hp(s * 0.030, 0.056, 0.024), R3(0.022, 0.016, 0.011), rot_z(s * -0.2)))
-        parts.append(RoundCone(hp(0, 0.050, 0.008), hp(0, 0.090, -0.012), 0.024 * S, 0.021 * S))
+        parts.append(Ellipsoid(hp(0, 0.074, -0.020), R3(0.031, 0.032, 0.027)))                        # rounded muzzle
         for s in (1, -1):
-            details.append(Sphere(hp(s * 0.0135, 0.093, -0.030), 0.0185 * S))
-        details.append(Ellipsoid(hp(0, 0.082, -0.050), R3(0.017, 0.020, 0.013)))
-        nose_c = hp(0, 0.1045, -0.017)
-        details.append(Ellipsoid(nose_c, R3(0.0090, 0.0060, 0.0065), rot_x(0.3)))
-        lip = dict(lip_y=0.096, lip_z=-0.042, corner_y=0.066, half_w=0.022, gap=0.0034,
-                   cavity=(0.017, 0.022, 0.008), pitch=10.0)
+            details.append(Sphere(hp(s * 0.0125, 0.093, -0.030), 0.0150 * S))                         # muzzle pads (split lip)
+        details.append(Ellipsoid(hp(0, 0.080, -0.048), R3(0.015, 0.018, 0.012)))
+        nose_c = hp(0, 0.1030, -0.0175)
+        details.append(Ellipsoid(nose_c, R3(0.0088, 0.0058, 0.0064), rot_x(0.3)))
+        lip = dict(lip_y=0.094, lip_z=-0.041, corner_y=0.066, half_w=0.021, gap=0.0034,
+                   cavity=(0.016, 0.020, 0.008), pitch=10.0)
         eye_c = (0.0385, 0.056, 0.014)
         eye_kw = dict(yaw_out=24, pitch=-2, w_open=er * 0.96, h_up=er * 0.66, h_lo=er * 0.58, tilt=6)
-        ear_kw = dict(base_hl=(0.030, -0.030, 0.058), length=p["ear_len"], width=p["ear_w"], thick=0.020,
-                      tilt_out=12, tilt_back=10, twist=12, shape="long", n_bones=3)
+        ear_kw = dict(base_hl=(0.036, -0.030, 0.058), length=p["ear_len"], width=p["ear_w"], thick=0.022,
+                      tilt_out=14, tilt_back=12, twist=10, shape="long", n_bones=3)
         jaw_pivot = hp(0, -0.008, -0.036)
-        chin = hp(0, 0.080, -0.054)
-        teeth = [("incisor", 0.0042, 0.097, -0.043, 0.0095)]
-        whisk = dict(y=0.094, z=-0.028, x=0.017)
+        chin = hp(0, 0.078, -0.054)
+        teeth = [("incisor", 0.0042, 0.095, -0.042, 0.0085)]
+        whisk = dict(y=0.092, z=-0.028, x=0.017)
     elif sp == "raccoon":
-        parts.append(Ellipsoid(hp(0, -0.008, 0.004), cr))
-        parts.append(Ellipsoid(hp(0, 0.026, -0.020), R3(0.062, 0.052, 0.050)))
+        parts.append(Ellipsoid(hp(0, -0.008, 0.006), cr))
+        parts.append(Ellipsoid(hp(0, 0.026, -0.018), R3(0.060, 0.050, 0.046)))
         for s in (1, -1):
-            parts.append(Ellipsoid(hp(s * 0.052, 0.022, -0.020), R3(0.036, 0.036, 0.034)))
+            parts.append(Ellipsoid(hp(s * 0.050, 0.016, -0.022), R3(0.038, 0.040, 0.034)))
             parts.append(Ellipsoid(hp(s * 0.030, 0.055, 0.026), R3(0.026, 0.016, 0.012), rot_z(s * -0.3)))
-            parts.append(Ellipsoid(hp(s * 0.070, -0.004, -0.040), R3(0.036, 0.040, 0.038), rot_z(s * 0.30)))
-            b = hp(s * 0.080, -0.008, -0.044)
-            fur += tufts(b, [v3(s * 1.0, 0.3, -0.35), v3(s * 0.9, 0.2, -0.8), v3(s * 0.9, 0.5, 0.1)], 0.036 * S, 0.012 * S)
-        parts.append(RoundCone(hp(0, 0.048, -0.012), hp(0, 0.110, -0.030), 0.030 * S, 0.015 * S))
-        parts.append(RoundCone(hp(0, 0.044, 0.006), hp(0, 0.104, -0.020), 0.021 * S, 0.012 * S))
-        details.append(RoundCone(hp(0, 0.058, -0.042), hp(0, 0.100, -0.045), 0.020 * S, 0.010 * S))
-        nose_c = hp(0, 0.1160, -0.028)
-        details.append(Ellipsoid(nose_c, R3(0.0115, 0.0085, 0.0085), rot_x(0.25)))
-        lip = dict(lip_y=0.103, lip_z=-0.040, corner_y=0.058, half_w=0.026, gap=0.0034,
-                   cavity=(0.019, 0.030, 0.008), pitch=8.0)
+            fur.append(fluff(hp(s * 0.066, -0.004, -0.034), R3(0.036, 0.044, 0.040), rot_z(s * 0.30),
+                             v3(s * 1.0, 0.25, -0.35), 0.012 * S, seed=41 + s))
+        parts.append(RoundCone(hp(0, 0.046, -0.014), hp(0, 0.099, -0.027), 0.034 * S, 0.018 * S))    # fuller, shorter muzzle
+        parts.append(RoundCone(hp(0, 0.042, 0.008), hp(0, 0.094, -0.018), 0.023 * S, 0.014 * S))
+        details.append(RoundCone(hp(0, 0.056, -0.040), hp(0, 0.092, -0.043), 0.021 * S, 0.012 * S))
+        nose_c = hp(0, 0.1065, -0.0255)
+        details.append(Ellipsoid(nose_c, R3(0.0120, 0.0090, 0.0088), rot_x(0.25)))
+        lip = dict(lip_y=0.095, lip_z=-0.039, corner_y=0.056, half_w=0.027, gap=0.0034,
+                   cavity=(0.019, 0.028, 0.008), pitch=8.0)
         eye_c = (0.0345, 0.058, 0.010)
         eye_kw = dict(yaw_out=12, pitch=-3, w_open=er * 0.96, h_up=er * 0.62, h_lo=er * 0.55, tilt=6)
-        ear_kw = dict(base_hl=(0.050, -0.026, 0.050), length=p["ear_len"], width=p["ear_w"], thick=0.018,
-                      tilt_out=24, tilt_back=8, twist=18, shape="round", n_bones=2)
+        ear_kw = dict(base_hl=(0.056, -0.028, 0.050), length=p["ear_len"], width=p["ear_w"], thick=0.018,
+                      tilt_out=28, tilt_back=8, twist=18, shape="round", n_bones=2)
         jaw_pivot = hp(0, -0.010, -0.036)
-        chin = hp(0, 0.096, -0.050)
-        teeth = [("upper", 0.012, 0.096, -0.038, 0.0085), ("lower", 0.010, 0.090, -0.044, 0.006)]
-        whisk = dict(y=0.098, z=-0.030, x=0.019)
+        chin = hp(0, 0.088, -0.050)
+        teeth = [("upper", 0.012, 0.088, -0.036, 0.0060), ("lower", 0.010, 0.082, -0.044, 0.0045)]
+        whisk = dict(y=0.090, z=-0.030, x=0.020)
     else:
         raise ValueError(sp)
 
@@ -1040,9 +1073,16 @@ def build_body(F):
     tp = build_torso(F, proxy=True)
     ap = [build_arm(F, s, proxy=True) for s in ("Left", "Right")]
     lp = [build_leg(F, s, proxy=True) for s in ("Left", "Right")]
-    # union with the real torso/limbs so the proxy always encloses the body
-    real = [torso, F.parts["arm_Left"], F.parts["arm_Right"], F.parts["leg_Left"], F.parts["leg_Right"]]
-    F.proxy = Union([Union([tp] + ap + lp, k=0.055)] + real, k=0.030)
+    # union with the real torso/limbs so the proxy always encloses the body.  Each leg blends
+    # into the torso smoothly, but the two legs meet with a sharp min: no cloth web between thighs.
+    ta = Union([Union([tp] + ap, k=0.055), torso, F.parts["arm_Left"], F.parts["arm_Right"]], k=0.030)
+    legs = []
+    F.leg_proxy = {}
+    for i, side in enumerate(("Left", "Right")):
+        lg = Union([lp[i], F.parts["leg_" + side]], k=0.030)
+        F.leg_proxy[side] = lg
+        legs.append(Union([ta, lg], k=0.050))
+    F.proxy = Union(legs, k=0.0)
     F.landmarks["head_frame"] = dict(o=F.head_frame.o.tolist(), R=F.head_frame.R.tolist())
     return F
 

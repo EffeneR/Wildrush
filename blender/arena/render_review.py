@@ -70,7 +70,20 @@ def setup_world(sc):
     bg = nt.nodes.new("ShaderNodeBackground")
     bg.inputs["Strength"].default_value = 0.22
     outn = nt.nodes.new("ShaderNodeOutputWorld")
-    nt.links.new(sky.outputs["Color"], bg.inputs["Color"])
+    # below the horizon the physical sky is black: blend to a hazy ground colour (review only)
+    tc = nt.nodes.new("ShaderNodeTexCoord")
+    sep = nt.nodes.new("ShaderNodeSeparateXYZ")
+    ramp = nt.nodes.new("ShaderNodeMapRange")
+    ramp.inputs["From Min"].default_value = -0.02
+    ramp.inputs["From Max"].default_value = 0.03
+    mix = nt.nodes.new("ShaderNodeMix")
+    mix.data_type = "RGBA"
+    mix.inputs[6].default_value = (1.9, 1.75, 1.55, 1.0)      # ground haze (scaled by strength 0.22)
+    nt.links.new(tc.outputs["Generated"], sep.inputs["Vector"])
+    nt.links.new(sep.outputs["Z"], ramp.inputs["Value"])
+    nt.links.new(ramp.outputs["Result"], mix.inputs["Factor"])
+    nt.links.new(sky.outputs["Color"], mix.inputs[7])
+    nt.links.new(mix.outputs[2], bg.inputs["Color"])
     nt.links.new(bg.outputs["Background"], outn.inputs["Surface"])
 
 

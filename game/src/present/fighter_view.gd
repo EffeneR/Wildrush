@@ -70,7 +70,7 @@ func setup(p_def: FighterDef, p_palette: String, p_relation: String, p_show_mark
 	name = "View_%s" % fid
 	_collect_durations()
 	var glb_path: String = CHAR_DIR + fid + "/" + fid + ".glb"
-	if ResourceLoader.exists(glb_path):
+	if ResourceLoader.exists(glb_path) and FileAccess.file_exists(glb_path + ".import"):
 		_setup_glb(glb_path)
 	if model == null:
 		rig = ProcRig.new()
@@ -282,6 +282,22 @@ func apply_state(vs: Dictionary, dt: float) -> void:
 		_drive("", 0.0, local_v, grounded, dt)
 	if marker != null:
 		marker.visible = alive
+	_near_camera_fade()
+
+
+var _cam_faded: bool = false
+
+
+func _near_camera_fade() -> void:
+	## A fighter between the camera and its target (or under the camera) must not fill the screen.
+	var cam: Camera3D = get_viewport().get_camera_3d()
+	if cam == null or relation == "self":
+		return
+	var d: float = cam.global_position.distance_to(global_position + Vector3(0, def.height * 0.5, 0))
+	var fade: bool = d < 1.35
+	if fade != _cam_faded:
+		_cam_faded = fade
+		model.visible = not fade
 
 
 func _drive(clip: String, t: float, local_v: Vector3, grounded: bool, dt: float) -> void:

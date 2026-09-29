@@ -379,6 +379,32 @@ class Buildings:
                 p.H = 13.2
                 p.roof = "tower"
 
+    # ------------------------------------------------------------------ queries
+    def roof_height_at(self, x, z):
+        """Top of the roof surface at (x, z) (max over parcels containing the point), or None."""
+        best = None
+        for p in self.parcels:
+            r = p.r
+            if not r.contains(x, z) or not hasattr(p, "ridge"):
+                continue
+            H = p.H
+            if p.roof in ("gable", "gable_front") and p.rise > 0:
+                if p.ridge == "x":
+                    d, half = abs(z - r.cz), r.d / 2
+                else:
+                    d, half = abs(x - r.cx), r.w / 2
+                h = H + (half - d) * math.tan(p.pitch)
+            elif p.roof in ("hip", "tower"):
+                o = 0.5 if p.roof == "hip" else 0.45
+                tp = math.tan(p.pitch) if p.roof == "hip" else math.tan(math.radians(52))
+                dx = min(x - (r.x0 - o), (r.x1 + o) - x)
+                dz = min(z - (r.z0 - o), (r.z1 + o) - z)
+                h = (H - o * tp if p.roof == "hip" else H) + min(dx, dz) * tp
+            else:
+                h = H + 1.0
+            best = h if best is None else max(best, h)
+        return best
+
     # ------------------------------------------------------------------ build
     def build(self):
         self.plan()
@@ -558,9 +584,8 @@ class Buildings:
             # --- upper floors
             for fi, fy in enumerate(floors):
                 if style == "gatehouse":
-                    if i % 2 == 0 or n_bays == 1:
-                        ww = 0.9
-                        openings.append(Opening(sc - ww / 2, sc + ww / 2, fy + 0.9, fy + 2.4, arch=ww / 2, depth=0.16, key="win_arch", floor=fi + 1))
+                    ww = 0.9 if (i % 2 == 0 or n_bays == 1) else 0.7
+                    openings.append(Opening(sc - ww / 2, sc + ww / 2, fy + 0.9, fy + 2.4, arch=ww / 2, depth=0.16, key="win_arch", floor=fi + 1))
                     continue
                 if style == "warehouse_gate":
                     continue
@@ -716,7 +741,7 @@ class Buildings:
         if o.y1 > p.g - 0.3:
             return
         s = o.s1 + 0.45
-        y = max(2.75, o.y1 + 0.2)
+        y = max(3.0, o.y1 + 0.35)            # lantern bottom >= 2.58 m (headroom rule)
         fbox(mb, fr, s - 0.04, s + 0.04, y - 0.05, y + 0.05, 0.0, 0.32, "iron", skip=("back",))
         fbox(mb, fr, s - 0.13, s + 0.13, y - 0.42, y - 0.36, 0.14, 0.4, "iron", skip=())
         fbox(mb, fr, s - 0.15, s + 0.15, y - 0.06, y + 0.02, 0.12, 0.42, "iron", skip=())
@@ -793,18 +818,20 @@ class Buildings:
         # ivy (restrained): on some canal-house / townhouse corners
         rng = random.Random(hash_str(p.solid["id"]) + ord(side) * 13 + p.idx)
         if style in ("canal_house", "townhouse", "warehouse") and rng.random() < 0.16 and ln > 4:
-            sq = 0.1 if rng.random() < 0.5 else ln - 1.9
-            self.ivy(p, fr, sq, sq + 1.8, rng.uniform(3.0, 5.0), rng.uniform(6.0, H - 0.8))
+            w = rng.uniform(2.4, 3.6)
+            sq = 0.05 if rng.random() < 0.5 else ln - w - 0.05
+            base = min((lvl for _, k, lvl in cls if k == "floor"), default=0.0)
+            if not any(o.kind in ("door", "shop") and o.s0 < sq + w + 0.3 and o.s1 > sq - 0.3 for o in openings):
+                self.ivy(p, fr, sq, sq + w, base, base + min(2.0 * w, H - 0.8))
 
     @staticmethod
     def near_door(s, openings):
         return any(o.kind in ("door", "shop") and o.s0 - 0.35 < s < o.s1 + 0.35 for o in openings)
 
-    def ivy(self, p, fr, s0, s1, y_lo, y_hi, d=0.05):
+    def ivy(self, p, fr, s0, s1, y_lo, y_hi, d=0.04):
         fm = self.out.mb(p.chunk, "foliage_ivy")
         u0, v0, u1, v1 = C.atlas_uv(self.fol, "ivy", inset_px=4)
-        # hang from y_hi down to y_lo (texture top = strand start); never below 2.4 m off the wall
-        y_lo = max(y_lo, 2.6)
+        # climbing ivy rooted at the ground, flush on the wall (0.04 m, inside the face tolerance)
         fm.poly([fr.P(s0, y_lo, d), fr.P(s1, y_lo, d), fr.P(s1, y_hi, d), fr.P(s0, y_hi, d)], "foliage",
                 uv=[(u0, v0), (u1, v0), (u1, v1), (u0, v1)])
 
@@ -875,18 +902,30 @@ class Buildings:
         wall_with_openings(mb, fr, 0.0, H, [o], rows)
         # voussoirs + keystone
         self.surround(p, mb, fr, Opening(0.0, L, 0.0, spring + rad, arch=rad, depth=0.0, kind="win"), False, None)
-        # cornice/parapet line continues
-        fbox(mb, fr, -0.02, L + 0.02, p.g - 0.12, p.g + 0.1, 0.0, 0.1, "stone_trim", skip=("back",))
+        # impost bands of the neighbouring faces stop at the voussoirs (no band across the opening)
         # sign over the gate (lane/north_row side only)
         kind0 = [k for _, k, _ in cls]
         if p.style == "warehouse_gate" and side == "w":
             atlas_quad(mb, [fr.P(L / 2 - 2.2, spring + rad + 0.5, 0.06), fr.P(L / 2 + 2.2, spring + rad + 0.5, 0.06),
                             fr.P(L / 2 + 2.2, spring + rad + 1.05, 0.06), fr.P(L / 2 - 2.2, spring + rad + 1.05, 0.06)],
                        self.atl, "sign_yard", fr.n)
-        if p.style == "gatehouse" and side == "s" and r.cz < 0 or p.style == "gatehouse" and side == "n" and r.cz > 0:
-            atlas_quad(mb, [fr.P(L / 2 - 1.1, spring + rad + 0.45, 0.06), fr.P(L / 2 + 1.1, spring + rad + 0.45, 0.06),
-                            fr.P(L / 2 + 1.1, spring + rad + 1.0, 0.06), fr.P(L / 2 - 1.1, spring + rad + 1.0, 0.06)],
-                       self.atl, "sign_north_row", fr.n)
+        if p.style == "gatehouse":
+            spawn_side = (side == "n") if r.cz < 0 else (side == "s")
+            if spawn_side:
+                atlas_quad(mb, [fr.P(L / 2 - 1.1, spring + rad + 0.45, 0.06), fr.P(L / 2 + 1.1, spring + rad + 0.45, 0.06),
+                                fr.P(L / 2 + 1.1, spring + rad + 1.0, 0.06), fr.P(L / 2 - 1.1, spring + rad + 1.0, 0.06)],
+                           self.atl, "sign_north_row", fr.n)
+            else:
+                atlas_quad(mb, [fr.P(L / 2 - 0.5, spring + rad + 0.4, 0.06), fr.P(L / 2 + 0.5, spring + rad + 0.4, 0.06),
+                                fr.P(L / 2 + 0.5, spring + rad + 1.4, 0.06), fr.P(L / 2 - 0.5, spring + rad + 1.4, 0.06)],
+                           self.atl, "sign_emblem", fr.n)
+            # lanterns on both jambs (bottom above 2.5 m)
+            for sj in (-0.45, L + 0.45):
+                em = self.out.mb(p.chunk, "emissive_walllamps")
+                em.fbox(fr.O, fr.t, fr.n, sj - 0.11, sj + 0.11, 2.75, 3.05, 0.16, 0.38, "emissive_lamp", skip=("bottom",))
+                mb.fbox(fr.O, fr.t, fr.n, sj - 0.04, sj + 0.04, 3.05, 3.15, 0.0, 0.32, "iron", skip=("back",))
+                mb.fbox(fr.O, fr.t, fr.n, sj - 0.15, sj + 0.15, 3.05, 3.12, 0.12, 0.42, "iron")
+                mb.fbox(fr.O, fr.t, fr.n, sj - 0.13, sj + 0.13, 2.68, 2.75, 0.14, 0.4, "iron")
 
     # ------------------------------------------------------------------ roofs
     def build_roof(self, p, mb, exp):
@@ -1090,6 +1129,17 @@ class Buildings:
             fbox(mb, fr, cs - 1.05, cs + 1.05, H - 2.75, H - 0.65, 0.0, 0.05, "stone_trim", skip=("back", "front"))
         # finial
         mb.lathe([(0.1, 0.0), (0.18, 0.3), (0.05, 1.0), (0.0, 1.4)], 8, "bronze", M=M_translate(r.cx, yr, r.cz), cap_top=False)
+        # banners on the tower faces (banner_* cloth, two-sided), flanking the clock
+        bm = self.out.mb(p.chunk, "banner_gatehouse")
+        for side in ("n", "s"):
+            fr = self.face_frame(r, side)
+            cs = fr.L / 2
+            for off in (-2.4, 2.4):
+                s0_, s1_ = cs + off - 0.7, cs + off + 0.7
+                y1_, y0_ = H - 1.0, H - 1.0 - 2.8
+                mb.fbox(fr.O, fr.t, fr.n, s0_ - 0.15, s1_ + 0.15, y1_, y1_ + 0.08, 0.0, 0.2, "iron")
+                bm.poly([fr.P(s0_, y0_, 0.12), fr.P(s1_, y0_, 0.12), fr.P(s1_, y1_, 0.12), fr.P(s0_, y1_, 0.12)], "banner",
+                        uv=[(0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0)], facing=fr.n)
 
     def chimneys(self, p, mb):
         if p.style not in ("townhouse", "canal_house") or p.passage or p.roof not in ("gable", "gable_front"):

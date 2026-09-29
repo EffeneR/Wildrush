@@ -39,8 +39,8 @@ func _build_environment() -> void:
 	env = Environment.new()
 	var sky := Sky.new()
 	var psm := ProceduralSkyMaterial.new()
-	psm.sky_top_color = Color(0.32, 0.5, 0.78)
-	psm.sky_horizon_color = Color(0.78, 0.76, 0.7)
+	psm.sky_top_color = Color(0.36, 0.55, 0.8)
+	psm.sky_horizon_color = Color(0.86, 0.82, 0.74)
 	psm.ground_bottom_color = Color(0.2, 0.18, 0.16)
 	psm.ground_horizon_color = Color(0.62, 0.58, 0.52)
 	psm.sun_angle_max = 30.0
@@ -48,10 +48,12 @@ func _build_environment() -> void:
 	env.background_mode = Environment.BG_SKY
 	env.sky = sky
 	env.ambient_light_source = Environment.AMBIENT_SOURCE_SKY
-	env.ambient_light_energy = 0.75
+	env.ambient_light_color = Color(0.92, 0.86, 0.78)
+	env.ambient_light_sky_contribution = 0.55
+	env.ambient_light_energy = 0.95
 	env.reflected_light_source = Environment.REFLECTION_SOURCE_SKY
 	env.tonemap_mode = Environment.TONE_MAPPER_ACES
-	env.tonemap_exposure = 1.0
+	env.tonemap_exposure = 1.12
 	env.tonemap_white = 6.0
 	env.glow_enabled = true
 	env.glow_intensity = 0.35
@@ -68,8 +70,8 @@ func _build_environment() -> void:
 	sun = DirectionalLight3D.new()
 	sun.name = "Sun"
 	sun.rotation_degrees = Vector3(-48.0, -32.0, 0.0)
-	sun.light_color = Color(1.0, 0.94, 0.84)
-	sun.light_energy = 1.35
+	sun.light_color = Color(1.0, 0.93, 0.8)
+	sun.light_energy = 1.9
 	sun.shadow_enabled = true
 	sun.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
 	sun.directional_shadow_max_distance = 70.0

@@ -233,7 +233,7 @@ func build(p_fid: String, height: float, palette: Dictionary) -> void:
 			"scrap":
 				_sphere(ears, 0.055 * s, Vector3(sx2 * 0.1 * s, 0.03 * s, 0.01 * s), fur_mat, Vector3(1.0, 1.0, 0.45))
 	# tail
-	var tail_spec: Dictionary = {"nyx": [6, 0.028, 0.15], "vex": [6, 0.07, 0.13], "scrap": [6, 0.06, 0.12], "bruno": [3, 0.035, 0.1], "hops": [1, 0.075, 0.05]}.get(fid, [4, 0.04, 0.12])
+	var tail_spec: Array = {"nyx": [6, 0.028, 0.15], "vex": [6, 0.07, 0.13], "scrap": [6, 0.06, 0.12], "bruno": [3, 0.035, 0.1], "hops": [1, 0.075, 0.05]}.get(fid, [4, 0.04, 0.12])
 	_tail_n = int(tail_spec[0])
 	var parent: Node3D = _pivot("tail0", hips, Vector3(0, 0.02 * s, 0.13 * s))
 	for i in range(_tail_n):

@@ -1,0 +1,13 @@
+; Scratch project used only by tools/build_arena_art.sh to verify that the Briarport art
+; chunks import cleanly (a copy of game/assets/arena is placed under res://assets/arena/).
+; Never used by the game.
+config_version=5
+
+[application]
+
+config/name="arenacheck"
+
+[rendering]
+
+renderer/rendering_method="forward_plus"
+textures/vram_compression/import_etc2_astc=true
