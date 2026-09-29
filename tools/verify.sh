@@ -41,6 +41,14 @@ ui_shots() {
   command -v xvfb-run >/dev/null || return 2
   xvfb-run -a -s "-screen 0 3440x1440x24" "$GODOT_BIN" --path game res://tools/ui_screenshots.tscn
 }
+online_check() {  # the game's own HTTP client against a live loopback control service
+  services/scripts/dev_up.sh || return 1
+  "$GODOT_BIN" --headless --path game res://tools/online_client_check.tscn -- \
+    --service-url http://127.0.0.1:8080 --json "$ROOT/evidence/online/online_client_check.json"
+  local rc=$?
+  services/scripts/dev_down.sh || rc=1
+  return $rc
+}
 
 step import import_clean
 step unit_tests unit_tests
@@ -52,6 +60,7 @@ if [[ "$MODE" != "--quick" ]]; then
   step ten_clients py tests/integration/test_ten_clients.py
   step netsim_matrix py tests/integration/test_netsim_matrix.py
   step exports_and_fresh_build tools/verify_export.sh
+  step online_client_check online_check
   step e2e_ranked py tests/integration/test_e2e_ranked.py
   if command -v xvfb-run >/dev/null; then step ui_screenshots ui_shots; else blocked ui_screenshots "xvfb-run not installed"; fi
   blocked windows_client_run "no Windows machine in this environment (export is built and PE-checked)"
