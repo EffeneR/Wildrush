@@ -74,6 +74,9 @@ ls "$UD/replays/"*.wrr > /dev/null 2>&1 && STEP[save_replay]=PASS || STEP[save_r
 # d) Windows client: exported file exists and is a PE executable
 WEXE="$ROOT/builds/windows_client/WILDRUSH.exe"
 if [[ -f "$WEXE" ]] && head -c 2 "$WEXE" | grep -q "MZ"; then STEP[windows_export_pe]=PASS; else STEP[windows_export_pe]=FAIL; fi
+# console wrapper (docs/TROUBLESHOOTING.md tells players to run it to see startup errors)
+WCON="${WEXE%.exe}.console.exe"
+if [[ -f "$WCON" ]] && head -c 2 "$WCON" | grep -q "MZ"; then STEP[windows_console_wrapper]=PASS; else STEP[windows_console_wrapper]=FAIL; fi
 STEP[windows_run]=BLOCKED
 
 {

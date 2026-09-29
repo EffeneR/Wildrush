@@ -1,0 +1,19 @@
+{
+  "when": "2026-09-29T09:58:26Z", "mode": "core", "commit": "5661019",
+  "steps": [
+    {"name": "import", "status": "PASS", "seconds": 5, "log": "evidence/verify/logs/import.log"},
+    {"name": "unit_tests", "status": "FAIL", "seconds": 58, "log": "evidence/verify/logs/unit_tests.log"},
+    {"name": "arena_analysis", "status": "PASS", "seconds": 2, "log": "evidence/verify/logs/arena_analysis.log"},
+    {"name": "services_tests", "status": "PASS", "seconds": 52, "log": "evidence/verify/logs/services_tests.log"},
+    {"name": "audio_check", "status": "PASS", "seconds": 32, "log": "evidence/verify/logs/audio_check.log"},
+    {"name": "security_game_server", "status": "PASS", "seconds": 73, "log": "evidence/verify/logs/security_game_server.log"},
+    {"name": "ten_clients", "status": "PASS", "seconds": 155, "log": "evidence/verify/logs/ten_clients.log"},
+    {"name": "netsim_matrix", "status": "PASS", "seconds": 336, "log": "evidence/verify/logs/netsim_matrix.log"},
+    {"name": "exports_and_fresh_build", "status": "PASS", "seconds": 230, "log": "evidence/verify/logs/exports_and_fresh_build.log"},
+    {"name": "online_client_check", "status": "PASS", "seconds": 6, "log": "evidence/verify/logs/online_client_check.log"},
+    {"name": "e2e_ranked", "status": "PASS", "seconds": 563, "log": "evidence/verify/logs/e2e_ranked.log"},
+    {"name": "ui_screenshots", "status": "PASS", "seconds": 148, "log": "evidence/verify/logs/ui_screenshots.log"},
+    {"name": "windows_client_run", "status": "BLOCKED: no Windows machine in this environment (export is built and PE-checked)", "seconds": 0, "log": ""},
+    {"name": "docker_compose_up", "status": "BLOCKED: no Docker daemon in this environment (compose config statically checked by services/scripts/check_deploy_config.sh)", "seconds": 0, "log": ""}
+  ]
+}

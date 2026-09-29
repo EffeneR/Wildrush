@@ -4,12 +4,12 @@
 | Symptom | Fix |
 |---|---|
 | Very low frame rate | Settings → Display: quality **low** or **competitive**, render scale 0.75, frame cap 60. Update GPU drivers (Vulkan 1.3). |
-| Game does not start / Vulkan error | The client needs a Vulkan-capable GPU/driver. On Windows update the GPU driver; the Windows build also includes the console wrapper `WILDRUSH.console.exe` which prints the error. |
+| Game does not start / Vulkan error | The client needs a Vulkan-capable GPU/driver. On Windows update the GPU driver; the Windows build also includes the console wrapper `WILDRUSH.console.exe` (next to `WILDRUSH.exe`) which prints the error. Every run also writes a log to `logs/godot.log` in the user data folder (below). |
 | Mouse controls the menu during a match | Click inside the game window to capture the mouse again (Esc releases it). |
 | Controller not detected | Connect it before launching; check Settings → Controls → gamepad column. |
 | Reset all settings | Delete `settings.cfg` in the user data folder (below) or use "Reset" in each settings tab. |
 
-User data folder (settings, offline profile, replays):
+User data folder (settings, offline profile, replays, logs):
 * Windows `%APPDATA%\WILDRUSH\`
 * Linux `~/.local/share/WILDRUSH/`
 

@@ -12,13 +12,16 @@ source .toolchain/paths.env
 OUT="$ROOT/evidence/verify"
 mkdir -p "$OUT/logs"
 MODE="${1:-core}"
+COMMIT="$(git rev-parse --short HEAD)"
+git diff --quiet HEAD && DIRTY=false || DIRTY=true
 declare -a NAMES STATUS SECS LOGS
 
-step() {  # step <name> <command...>
+step() {  # step <name> <command...>; the command's full output goes to STEP_LOG
   local name="$1"; shift
   local log="$OUT/logs/$name.log"
   local t0=$(date +%s)
   echo "[verify] $name ..."
+  STEP_LOG="$log"
   if "$@" > "$log" 2>&1; then st=PASS; else st=FAIL; fi
   NAMES+=("$name"); STATUS+=("$st"); SECS+=($(( $(date +%s) - t0 ))); LOGS+=("${log#$ROOT/}")
   echo "[verify] $name: $st ($(( $(date +%s) - t0 )) s)"
@@ -29,11 +32,16 @@ blocked() {  # blocked <name> <reason>
   echo "[verify] $1: BLOCKED ($2)"
 }
 
+# Output checks read the finished step log after the process exits. (Piping into `grep -q`
+# under pipefail misreports: grep exits at the first match, tee then dies of SIGPIPE on any
+# later line, which turned a passing test run into FAIL and could turn an ERROR into PASS.)
 import_clean() {
-  "$GODOT_BIN" --headless --path game --import 2>&1 | tee /dev/stderr | grep -q "ERROR" && return 1 || return 0
+  "$GODOT_BIN" --headless --path game --import || return 1
+  ! grep -q "ERROR" "$STEP_LOG"
 }
 unit_tests() {
-  "$GODOT_BIN" --headless --fixed-fps 60 --path game res://tests/test_runner.tscn 2>&1 | tee /dev/stderr | grep -qE "TESTS: [0-9]+ passed, 0 failed"
+  "$GODOT_BIN" --headless --fixed-fps 60 --path game res://tests/test_runner.tscn || return 1
+  grep -qE "TESTS: [0-9]+ passed, 0 failed" "$STEP_LOG"
 }
 arena() { "$GODOT_BIN" --headless --path game res://tools/arena_analysis.tscn; }
 py() { "$PYTHON_BIN" "$@"; }
@@ -72,7 +80,7 @@ fi
 
 {
   echo "{"
-  echo "  \"when\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\", \"mode\": \"$MODE\", \"commit\": \"$(git rev-parse --short HEAD)\","
+  echo "  \"when\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\", \"mode\": \"$MODE\", \"commit\": \"$COMMIT\", \"tree_dirty_at_start\": $DIRTY,"
   echo "  \"steps\": ["
   for i in "${!NAMES[@]}"; do
     sep=","; [[ $i -eq $(( ${#NAMES[@]} - 1 )) ]] && sep=""
