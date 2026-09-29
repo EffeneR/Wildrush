@@ -1,24 +1,23 @@
-# WILDRUSH dev stack smoke test — 2026-09-27T14:56:00Z
+# WILDRUSH dev stack smoke test — 2026-09-29T11:06:00Z
 [dev] starting PostgreSQL on 127.0.0.1:55432
 [dev] applying migrations (alembic upgrade head)
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
-INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, history rows for ranked no-shows
 [dev] starting control service on http://127.0.0.1:8080
 [dev] healthy: {"ok":true,"db":"ok"}
 [dev] service  : http://127.0.0.1:8080   (log /home/user/Wildrush/.run/service.log)
 [dev] database : 127.0.0.1:55432/wildrush   (credentials in /home/user/Wildrush/.run/dev.env)
 [dev] admin CLI: set -a; source /home/user/Wildrush/.run/dev.env; set +a; cd services && /home/user/Wildrush/.venv/bin/python -m wildrush_svc.admin list-servers
 [dev] postgres : running, accepting connections on 127.0.0.1:55432
-[dev] service  : running (pid 30358) http://127.0.0.1:8080/healthz -> {"ok":true,"db":"ok"}
+[dev] service  : running (pid 11169) http://127.0.0.1:8080/healthz -> {"ok":true,"db":"ok"}
 [dev] allocator: not running (optional; see services/scripts/dev_allocator.sh)
 [dev] using the dummy game server stand-in (DUMMY_BEHAVIOR=sleep)
 [dev] starting allocator dev-local (region local) -> http://127.0.0.1:8080
-[dev] allocator running (pid 30413); it is listed in http://127.0.0.1:8080/v1/servers; log /home/user/Wildrush/.run/allocator/allocator.log
-[smoke] private match 73a090d0-67fa-476d-9b1c-f7f180133f1e on 127.0.0.1:24611 (join code T733DEGF), observer joined
+[dev] allocator running (pid 11221); it is listed in http://127.0.0.1:8080/v1/servers; log /home/user/Wildrush/.run/allocator/allocator.log
+[smoke] private match 429b26ab-eb0b-4192-b23f-48f520d7afa7 on 127.0.0.1:24610 (join code ZVR2N3EZ), observer joined
 [dev] smoke test passed
 [dev] allocator stopped
 [dev] allocator not running
-[dev] stopping control service (pid 30358)
+[dev] stopping control service (pid 11169)
 [dev] stopping PostgreSQL
 # exit_code: 0

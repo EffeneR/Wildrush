@@ -79,9 +79,11 @@ PASS test_skills_vex_hops_scrap.gd:test_vex_false_start_no_damage_sidestep_disgu
 PASS test_skills_vex_hops_scrap.gd:test_vex_sidewinder_curves_strikes_and_stops_at_contact
 PASS test_skills_vex_hops_scrap.gd:test_vex_sidewinder_stops_at_wall
 PASS test_skills_vex_hops_scrap.gd:test_vex_tail_sweep_low_guard_and_radius
-bot match: ticks=28800 wall_ms=53804 score=[102, 50] winner=0 reason=time
+bot match: ticks=28800 wall_ms=53447 score=[102, 50] winner=0 reason=time
 event counts: { "land": 147, "action": 2844, "skill_fx": 479, "zone_state": 95, "interrupted": 671, "cr": 82, "hit": 931, "wall_bump": 10, "guard_up": 1246, "bark": 33, "block": 181, "guard_down": 1162, "grab": 8, "afterimage": 23, "ko": 9, "evaded": 6, "resisted": 14, "score": 152, "respawn": 8, "protect_end": 8, "jump": 12, "grab_resisted": 4, "zone_revealed": 7, "getup": 12, "zone_rotated": 7, "parry": 3, "guard_break": 5, "grab_broken": 2, "match_end": 1 }
 zones controlled: ["B", "A", "C"] skills used: { "hops_bound": 18, "hops_dropkick": 59, "nyx_pounce": 51, "bruno_rush": 56, "vex_sidewinder": 60, "bruno_bark": 42, "nyx_crosscut": 58, "scrap_turnabout": 28, "hops_double_kick": 50, "scrap_leg_sweep": 42, "vex_tail_sweep": 33, "vex_false_start": 26, "nyx_slip": 18, "scrap_catch_turn": 36, "bruno_stand_firm": 25 }
 max stuck ticks outside zone: { 1: 150, 8: 120, 2: 240, 9: 210, 4: 180, 6: 210, 3: 90, 7: 570, 5: 180, 0: 390 }
 PASS test_zz_bot_match.gd:test_full_bot_match_all_zones
-TESTS: 79 passed, 0 failed, 4294 checks, 57372 ms
+TESTS: 79 passed, 0 failed, 4294 checks, 56845 ms
+WARNING: 116 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

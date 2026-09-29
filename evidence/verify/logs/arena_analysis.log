@@ -11,11 +11,11 @@ Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
   "fairness_target_pct": 10.0,
   "godot": "4.7.2-stable (official)",
   "navmesh": {
-    "bake_ms": 76,
+    "bake_ms": 94,
     "polygons": 715,
     "pruned_island_polygons": 111,
     "saved": true,
-    "sync_frames": 15,
+    "sync_frames": 14,
     "vertices": 802
   },
   "ok": true,

@@ -8,9 +8,9 @@ INFO  [alembic.runtime.migration] Will assume transactional DDL.
 [dev] database : 127.0.0.1:55432/wildrush   (credentials in /home/user/Wildrush/.run/dev.env)
 [dev] admin CLI: set -a; source /home/user/Wildrush/.run/dev.env; set +a; cd services && /home/user/Wildrush/.venv/bin/python -m wildrush_svc.admin list-servers
 [dev] starting allocator dev-local (region local) -> http://127.0.0.1:8080
-[dev] allocator running (pid 32645); it is listed in http://127.0.0.1:8080/v1/servers; log /home/user/Wildrush/.run/allocator/allocator.log
+[dev] allocator running (pid 8379); it is listed in http://127.0.0.1:8080/v1/servers; log /home/user/Wildrush/.run/allocator/allocator.log
 [dev] allocator stopped
 [dev] allocator not running
-[dev] stopping control service (pid 32613)
+[dev] stopping control service (pid 8342)
 [dev] stopping PostgreSQL
-{"ok": true, "reasons": [], "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3", "wall_s": 563.0}
+{"ok": true, "reasons": [], "match_id": "ba4262e2-ae44-4205-addd-a47d85ce00e2", "wall_s": 564.6}

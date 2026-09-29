@@ -1,0 +1,9 @@
+# tools/setup_env.sh re-run 2026-09-29T11:02:17Z at 6354d25
+[setup] cached: Godot_v4.7.2-stable_linux.x86_64.zip
+[setup] cached: Godot_v4.7.2-stable_export_templates.tpz
+[setup] godot: 4.7.2.stable.official.ed1daf0bf
+[setup] cached: blender-4.5.9-linux-x64.tar.xz
+[setup] blender: Blender 4.5.9 LTS
+[setup] python venv ready: Python 3.11.15
+[setup] done. paths written to .toolchain/paths.env
+# exit_code: 0

@@ -63,7 +63,7 @@
     },
     "honest_client_kept_playing": {
       "pass": true,
-      "detail": 1330
+      "detail": 1355
     },
     "badpw_saw_rejection": {
       "pass": true,
@@ -71,7 +71,7 @@
         {
           "detail": "bad_password",
           "ev": "status",
-          "ms": 17,
+          "ms": 16,
           "status": "failed"
         }
       ]
@@ -93,7 +93,7 @@
         {
           "detail": "tickets_not_accepted",
           "ev": "status",
-          "ms": 22,
+          "ms": 16,
           "status": "failed"
         }
       ]

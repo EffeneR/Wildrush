@@ -1,1 +1,1 @@
-{"proxy_stats": {"c2s": 20021, "s2c": 8662, "c2s_dropped": 0, "s2c_dropped": 0, "clients": 5, "rtt_ms": 0.0, "jitter_ms": 0.0, "loss": 0.0}, "time": 1790674707.5482223}
+{"proxy_stats": {"c2s": 19292, "s2c": 8557, "c2s_dropped": 0, "s2c_dropped": 0, "clients": 5, "rtt_ms": 0.0, "jitter_ms": 0.0, "loss": 0.0}, "time": 1790677217.9634836}

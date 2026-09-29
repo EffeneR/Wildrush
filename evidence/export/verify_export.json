@@ -1,5 +1,5 @@
 {
-  "fresh_dir": "/tmp/wildrush_g12.acPzgT", "user_data": "/tmp/wildrush_g12.acPzgT/userdata/WILDRUSH",
+  "fresh_dir": "/tmp/wildrush_g12.BVlBy5", "user_data": "/tmp/wildrush_g12.BVlBy5/userdata/WILDRUSH",
   "server_exit": 0, "client_exit": 0, "flow_exit": 0,
   "windows_run_note": "no Windows machine in this environment; export verified as PE only",
   "steps": {
@@ -7,6 +7,7 @@
     "export:Linux Client (verification)": "PASS",
     "save_replay": "PASS",
     "export:Windows Client": "PASS",
+    "windows_console_wrapper": "PASS",
     "save_settings": "PASS",
     "export:Linux Server": "PASS",
     "offline_flow": "PASS",

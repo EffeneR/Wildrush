@@ -163,5 +163,5 @@ tests/test_servers.py::test_health_and_version PASSED                    [ 98%]
 tests/test_servers.py::test_healthz_reports_db_down PASSED               [ 99%]
 tests/test_servers.py::test_admin_cli PASSED                             [100%]
 
-============================= 156 passed in 50.48s =============================
+============================= 156 passed in 54.40s =============================
 [run_tests] raw output saved to /home/user/Wildrush/evidence/services/pytest_latest.txt (exit code 0)
