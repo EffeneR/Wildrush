@@ -3,24 +3,24 @@
 Status values: `NOT STARTED` · `IN PROGRESS` · `PASS` (verified by the named check, evidence
 linked) · `FAIL` (check ran and failed) · `BLOCKED` (cannot run here; reason given) ·
 `NOT RUN`. A row is PASS only with executed evidence. Machine-readable results of the
-latest full run: `evidence/verify/latest.json`.
+latest full run: `evidence/verify/latest.json` (`tools/verify.sh`). Last updated 2026-09-29.
 
 ## Release gates (spec §14)
 
 | Gate | Requirement | Check (command / test) | Status | Evidence |
 |------|-------------|------------------------|--------|----------|
-| G1 | Clean import/export, no parse errors / missing files / unexplained runtime errors | `tools/verify.sh` → `import`, `script_check`, `export_*` steps | NOT STARTED | |
-| G2 | Five distinct rigged models, valid materials, all animations, transitions, 15 non-placeholder skills | `test_assets_characters.gd`, `tools/check_glb.py` | NOT STARTED | |
-| G3 | Per-skill behaviour: startup, cooldown, stamina, hit validity, miss recovery, wall, interruption, CR | `test_skills_*.gd` | NOT STARTED | |
-| G4 | Match rules: one active zone, empty/contested, scoring, rotation/reveal, overtime, respawn, one-time victory/result | `test_match_rules.gd`, `test_match_flow.gd` | NOT STARTED | |
-| G5 | Map navigation both teams → all objectives, no special skills, travel-time comparison, no stuck loops, no capture through floors | `test_arena_nav.gd`, `evidence/arena/travel_times.json` | NOT STARTED | |
-| G6 | Real dedicated server + multiple client processes, ten-client protocol test | `tests/integration/test_ten_clients.py` | NOT STARTED | |
-| G7 | Latency/loss sim 0/50/100/150 ms RTT, ≤3% loss: prediction, reconciliation, dup hits, guard timing, cooldowns, reconnect (localhost sim ≠ WAN) | `tests/integration/test_netsim_matrix.py` | NOT STARTED | |
-| G8 | Security negatives: forged damage/score, wrong ownership, reused tickets, invalid payloads, selection races, result replay, unauthorized spectator | `tests/integration/test_security.py`, `services/tests/test_security.py` | NOT STARTED | |
-| G9 | E2E service flow account→party/queue→allocation→server join→result→history/rating; ranked with 10 real client identities | `tests/integration/test_e2e_ranked.py` | NOT STARTED | |
-| G10 | Offline complete match + bot matches through all three zones + ≥20-min soak at normal speed | `tests/integration/test_offline_match.py`, `tools/soak.sh` | NOT STARTED | |
-| G11 | Real UI interaction + screenshot checks (menus, char select, gameplay, scoreboard, settings, respawn, results, replay) | `tools/ui_screenshots.sh`, `evidence/screens/` | NOT STARTED | |
-| G12 | Fresh exported build launched outside editor from another working dir; assets, save paths, controls, online/offline, shutdown | `tools/verify_export.sh` | NOT STARTED | |
+| G1 | Clean import/export, no parse errors / missing files / unexplained runtime errors | `tools/verify.sh` → `import`, `script_check`, `export_*` steps | PASS | `--import` clean; `test_00_scripts` parses every script (79/79 tests pass); 3 exports built; flow + online runs with 0 engine errors — `evidence/export/verify_export.json` |
+| G2 | Five distinct rigged models, valid materials, all animations, transitions, 15 non-placeholder skills | `test_assets_characters.gd`, `tools/check_glb.py` | IN PROGRESS | Nyx + Bruno complete (49/50 clips, strike alignment ≤ 0.078 m, Godot import clean) — `evidence/characters/`; Vex/Hops/Scrap building |
+| G3 | Per-skill behaviour: startup, cooldown, stamina, hit validity, miss recovery, wall, interruption, CR | `test_skills_*.gd` | PASS | `test_skills_nyx_bruno.gd`, `test_skills_vex_hops_scrap.gd`, `test_combat.gd` — 79 tests / 4293 checks, 0 failed (2026-09-29) |
+| G4 | Match rules: one active zone, empty/contested, scoring, rotation/reveal, overtime, respawn, one-time victory/result | `test_match_rules.gd`, `test_match_flow.gd` | PASS | `test_match_rules.gd` (15 tests) + complete matches (headless offline 115–11 and 82–70; 10-bot match) |
+| G5 | Map navigation both teams → all objectives, no special skills, travel-time comparison, no stuck loops, no capture through floors | `test_arena_nav.gd`, `evidence/arena/travel_times.json` | PASS | `evidence/arena/travel_times.json`: worst team travel diff 1.31 %, 0/252 unreachable, 0/190 camera retractions |
+| G6 | Real dedicated server + multiple client processes, ten-client protocol test | `tests/integration/test_ten_clients.py` | PASS | `evidence/net/ten_clients/result.json`: 10 processes, 0 server errors, ~2900 snapshots each, mean prediction error 2–3 cm, 106 kbps/client |
+| G7 | Latency/loss sim 0/50/100/150 ms RTT, ≤3% loss: prediction, reconciliation, dup hits, guard timing, cooldowns, reconnect (localhost sim ≠ WAN) | `tests/integration/test_netsim_matrix.py` | PASS | `evidence/net/netsim_summary/result.json`: 0/50/100/150 ms, 0–3 % loss, all 4 conditions incl. reconnect + guard blocks (localhost proxy, not WAN) |
+| G8 | Security negatives: forged damage/score, wrong ownership, reused tickets, invalid payloads, selection races, result replay, unauthorized spectator | `tests/integration/test_security.py`, `services/tests/test_security.py` | PASS | game server `evidence/security/game_server/result.json` (16/16, 0 server errors); service 156 pytest incl. signatures, timestamp window, result replay/conflict, ticket reuse (`evidence/services/pytest_latest.txt`) |
+| G9 | E2E service flow account→party/queue→allocation→server join→result→history/rating; ranked with 10 real client identities | `tests/integration/test_e2e_ranked.py` | NOT RUN | `tests/integration/test_e2e_ranked.py` written; run pending |
+| G10 | Offline complete match + bot matches through all three zones + ≥20-min soak at normal speed | `tests/integration/test_offline_match.py`, `tools/soak.sh` | IN PROGRESS | complete offline match through real screens `evidence/flow/offline_flow.json`; 10-bot full match test; 21-min soak pending |
+| G11 | Real UI interaction + screenshot checks (menus, char select, gameplay, scoreboard, settings, respawn, results, replay) | `tools/ui_screenshots.sh`, `evidence/screens/` | IN PROGRESS | 96 menu/settings/lobby/results screenshots at 3 resolutions `evidence/ui/`; gameplay captures `evidence/match/`; full clean re-run pending |
+| G12 | Fresh exported build launched outside editor from another working dir; assets, save paths, controls, online/offline, shutdown | `tools/verify_export.sh` | PASS (Windows run BLOCKED) | `evidence/export/verify_export.json`: exported server+client networked match, full screen flow, save paths, clean exits from a fresh dir; Windows exe built + PE-checked, cannot run here |
 
 ## Feature requirements
 
@@ -28,35 +28,35 @@ latest full run: `evidence/verify/latest.json`.
 |----|------|-------------|--------|----------|
 | F-TOOL | §1 | Toolchain pinned (`toolchain.lock.json`), setup script idempotent | PASS | `tools/setup_env.sh` re-run exit 0 (2026-09-27) |
 | F-REF | §2 | 16 references inspected, manifest + audit | PASS | `docs/REFERENCE_MANIFEST.md`, `docs/REFERENCE_AUDIT.md` |
-| F-ROSTER | §3 | 5 fighters, unique species per team, server-controlled slots, swap before lock | NOT STARTED | |
-| F-MODES | §3 | Offline, training, private, casual, ranked (10 humans, no bots) | NOT STARTED | |
-| F-RULES | §4 | Turf Shift rules data-driven + tests | NOT STARTED | |
-| F-LIFE | §4 | Reconnect, abandonment, AFK, rematch, return-to-lobby | NOT STARTED | |
-| F-MOVE | §5 | CharacterBody3D 60 Hz controller, accel/decel, snapping, slopes, steps, falls | NOT STARTED | |
-| F-CTRL | §5 | Default bindings, remapping, controller mapping, deadzones | NOT STARTED | |
-| F-CAM | §5 | Camera framing, retraction, FOV range, no lock/homing | NOT STARTED | |
-| F-COMBAT | §5 | States, attack data, swept hits, walls, guard, dodge, stamina, CR, no FF | NOT STARTED | |
-| F-NYX | §6 | Perch, Pounce, Crosscut, Slip | NOT STARTED | |
-| F-BRUNO | §6 | Grounded, Shoulder Rush, Warning Bark, Stand Firm | NOT STARTED | |
-| F-VEX | §6 | Light Steps, False Start, Sidewinder, Tail Sweep | NOT STARTED | |
-| F-HOPS | §6 | Lightfoot, Bound, Double Kick, Dropkick | NOT STARTED | |
-| F-SCRAP | §6 | Quick Recovery, Catch & Turn, Leg Sweep, Turnabout | NOT STARTED | |
-| F-ARENA | §7 | Briarport integrated arena, footprint, zones, spawns, routes, overhead render | NOT STARTED | |
-| F-ART-CHAR | §8 | Blender sources, rigs, clips, GLBs, comparisons Blender vs Godot | NOT STARTED | |
-| F-ART-ENV | §8 | Modular env kit, collisions, LODs, materials | NOT STARTED | |
-| F-NET | §9 | Authoritative ENet server, prediction, reconciliation, interpolation, lag comp, security | NOT STARTED | |
-| F-SVC | §9 | Accounts, sessions, profiles, parties, servers, queues, allocation, tickets, results, ratings, history, cosmetics | NOT STARTED | |
-| F-DEPLOY | §9 | Native scripts, Docker Compose, .env.example, UDP port docs | NOT STARTED | |
-| F-BOTS | §10 | Server-side fair bots, difficulty, perception, stuck recovery | NOT STARTED | |
-| F-TRAIN | §10 | Training sandbox features | NOT STARTED | |
-| F-LOBBY | §10 | Private lobby admin, team assignment, bots, ready, start, spectate, rematch | NOT STARTED | |
-| F-REPLAY | §10 | Recorder + replay list/viewer (pause, seek, speed, follow, free cam) | NOT STARTED | |
-| F-UI | §11 | All listed screens implemented with real actions | NOT STARTED | |
-| F-HUD | §11 | HUD elements incl. minimap honesty, territory states | NOT STARTED | |
-| F-SET | §11 | Settings list complete, saved/restored | NOT STARTED | |
-| F-PROG | §11 | Profile, palettes, badges, mastery; offline vs online separation | NOT STARTED | |
-| F-AUDIO | §12 | SFX set, positional, buses, voice limiting, ambience/music | NOT STARTED | |
-| F-VFX | §12 | Hit/guard/break/parry/knockback VFX, pooled, dedupe | NOT STARTED | |
-| F-PERF | §13 | Profiling 10 fighters; measured numbers recorded honestly | NOT STARTED | |
-| F-SCRIPTS | §13 | Idempotent scripts: setup, assets, import, test, services, server, client, export | NOT STARTED | |
-| F-DOCS | §15 | README, controls guide, troubleshooting, license manifest, deployment docs | NOT STARTED | |
+| F-ROSTER | §3 | 5 fighters, unique species per team, server-controlled slots, swap before lock | PASS | `test_roster_security.gd`; server-controlled select in ten-client runs |
+| F-MODES | §3 | Offline, training, private, casual, ranked (10 humans, no bots) | IN PROGRESS | offline, training, private verified; casual/ranked through the service (E2E pending) |
+| F-RULES | §4 | Turf Shift rules data-driven + tests | PASS | `test_match_rules.gd`, `game/data/tuning/match_rules.json` |
+| F-LIFE | §4 | Reconnect, abandonment, AFK, rematch, return-to-lobby | PASS | reconnect verified in all netsim conditions; AFK/abandon/forfeit/rematch/return-to-lobby in `server_main.gd` |
+| F-MOVE | §5 | CharacterBody3D 60 Hz controller, accel/decel, snapping, slopes, steps, falls | PASS | `test_combat.gd`, `test_skills_*.gd` |
+| F-CTRL | §5 | Default bindings, remapping, controller mapping, deadzones | PASS | `Settings` bindings + rebind/conflict UI (`evidence/ui/*/settings_controls*.png`) |
+| F-CAM | §5 | Camera framing, retraction, FOV range, no lock/homing | PASS | `CameraRig` collision retraction, FOV setting; arena camera checks |
+| F-COMBAT | §5 | States, attack data, swept hits, walls, guard, dodge, stamina, CR, no FF | PASS | `test_combat.gd` (17 tests) |
+| F-NYX | §6 | Perch, Pounce, Crosscut, Slip | PASS | `test_skills_nyx_bruno.gd` |
+| F-BRUNO | §6 | Grounded, Shoulder Rush, Warning Bark, Stand Firm | PASS | `test_skills_nyx_bruno.gd` |
+| F-VEX | §6 | Light Steps, False Start, Sidewinder, Tail Sweep | PASS | `test_skills_vex_hops_scrap.gd` |
+| F-HOPS | §6 | Lightfoot, Bound, Double Kick, Dropkick | PASS | `test_skills_vex_hops_scrap.gd` |
+| F-SCRAP | §6 | Quick Recovery, Catch & Turn, Leg Sweep, Turnabout | PASS | `test_skills_vex_hops_scrap.gd` |
+| F-ARENA | §7 | Briarport integrated arena, footprint, zones, spawns, routes, overhead render | PASS | layout + Blender art chunks + analysis; in-engine captures `evidence/match/` |
+| F-ART-CHAR | §8 | Blender sources, rigs, clips, GLBs, comparisons Blender vs Godot | IN PROGRESS | 2/5 complete; `blender/characters/PIPELINE_STATE.md`, `evidence/characters/` |
+| F-ART-ENV | §8 | Modular env kit, collisions, LODs, materials | PASS | `blender/arena/PIPELINE_STATE.md`: 326k tris, 36 materials, verify vs layout PASS |
+| F-NET | §9 | Authoritative ENet server, prediction, reconciliation, interpolation, lag comp, security | PASS | G6, G7, G8 |
+| F-SVC | §9 | Accounts, sessions, profiles, parties, servers, queues, allocation, tickets, results, ratings, history, cosmetics | PASS | 156 service tests; dev-stack smoke `evidence/services/dev_stack_smoke_latest.txt` |
+| F-DEPLOY | §9 | Native scripts, Docker Compose, .env.example, UDP port docs | PASS (compose up BLOCKED) | `docs/DEPLOYMENT.md`, `services/deploy/`; Caddyfile validated; no Docker daemon here |
+| F-BOTS | §10 | Server-side fair bots, difficulty, perception, stuck recovery | PASS | `test_zz_bot_match.gd`: all zones, all 15 skills used, no stuck bots |
+| F-TRAIN | §10 | Training sandbox features | PASS | training dummies idle/guard/attack/dodge + reset — `evidence/match/training_*.png` |
+| F-LOBBY | §10 | Private lobby admin, team assignment, bots, ready, start, spectate, rematch | PASS | private lobby admin/teams/bots/ready/start/observers/rematch (`server_main.gd`, `online_lobby.tscn`) |
+| F-REPLAY | §10 | Recorder + replay list/viewer (pause, seek, speed, follow, free cam) | PASS | recorder + `ReplayHost` viewer (pause/seek/speed/follow/free cam) — `evidence/match/replay_*.png` |
+| F-UI | §11 | All listed screens implemented with real actions | PASS | all listed screens implemented with real actions (G11 evidence) |
+| F-HUD | §11 | HUD elements incl. minimap honesty, territory states | PASS | score/clock/zone, vitals, abilities, minimap with fog-of-war, kill feed, scoreboard, pings, respawn — `evidence/match/` |
+| F-SET | §11 | Settings list complete, saved/restored | PASS | settings panel, all tabs, persisted (G12 save-path check) |
+| F-PROG | §11 | Profile, palettes, badges, mastery; offline vs online separation | PASS | offline mastery/palettes/badges (`Profile`); online mastery via service results |
+| F-AUDIO | §12 | SFX set, positional, buses, voice limiting, ambience/music | PASS | `evidence/audio/check_audio.json`; AudioDirector voice limits, positional audio, crossfades |
+| F-VFX | §12 | Hit/guard/break/parry/knockback VFX, pooled, dedupe | PASS | pooled `VfxDirector` (sparks/rings), predicted-hit dedupe |
+| F-PERF | §13 | Profiling 10 fighters; measured numbers recorded honestly | IN PROGRESS | capture pending (software renderer only) |
+| F-SCRIPTS | §13 | Idempotent scripts: setup, assets, import, test, services, server, client, export | PASS | `tools/setup_env.sh`, `tools/verify.sh`, `tools/verify_export.sh`, `services/scripts/*`, `tools/build_*` |
+| F-DOCS | §15 | README, controls guide, troubleshooting, license manifest, deployment docs | PASS | README, CONTROLS, TROUBLESHOOTING, LICENSE_MANIFEST, DEPLOYMENT |

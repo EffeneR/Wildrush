@@ -251,3 +251,38 @@ Small local commits on branch `claude/blissful-hypatia-rujnlz`; pushed only to t
 owner's own repository branch designated for this session (the session's delivery
 channel — the container is ephemeral). No public release, no other remotes.
 Large binaries (toolchain, builds) are not committed.
+
+## D-019 Presentation layer (match hosts)
+The match scene (`scenes/match.tscn`) never touches rule objects directly. It reads a
+`MatchHost` (`src/present/match_host.gd`): `LocalMatchHost` (offline/training — the same
+`MatchSim` + server-side bots in-process), `NetMatchHost` (online — predicted local fighter +
+100 ms interpolated remotes from `ClientSession`), `ReplayHost` (recorded 20 Hz frames +
+events, no re-simulation). `FighterView` plays the contract clips from the Blender GLB when
+imported, otherwise a procedural stand-in (`ProcRig`) with the same clip names/timings, so
+gameplay presentation never depends on art availability. Offline fog-of-war uses the same
+`TeamVisibility` rules as the server (minimap/plates show only what the team can see).
+
+## D-020 Untrusted input handling
+Client→server messages and auth payloads are Godot binary Variants; before `bytes_to_var`
+they are structurally validated (`Protocol.valid_variant_bytes`: nil/bool/int/float/String/
+Vector3/Array/Dictionary only, depth ≤ 4, ≤ 64 entries, strict UTF-8, exact length), so
+malformed or hostile bytes are dropped silently and never reach engine decoders. Abuse kicks
+are deferred to the end of the frame and every ENet-level peer is tracked (`_raw_peers`) so
+the server never addresses a peer ENet already dropped. Direct-connect servers (no service
+secret) reject tickets without computing an HMAC. Verified by `tests/integration/test_security.py`.
+
+## D-021 Connection robustness
+ENet peers use timeout limit 32 / min 12 s / max 30 s (engine default min is 5 s, shorter than
+a loading hitch on slow machines). Clients send no inputs before the server's `welcome`
+(which it sends only after admitting the peer), so unreliable inputs can never overtake the
+reliable authentication-complete packet. Heavy match assets are loaded on worker threads
+while the player is in menus (`Game.preload_match_assets`).
+
+## D-022 Builds and verification hooks
+Export presets: Windows client (single exe, `tools/` and `tests/` excluded), Linux dedicated
+server (`dedicated_server=true`, character/arena/audio assets excluded; `OS.has_feature(
+"dedicated_server")` makes the binary a server without flags), Linux client used only to
+verify builds here. Release templates refuse command-line scene overrides, so verification
+builds reach the flow test through `--flow-test` in `boot.gd` (active only when
+`res://tools/flow_test.tscn` is packed, i.e. never in the Windows client). Pipeline assets
+are used only when actually imported (`AssetUtil.imported`), never merely present on disk.
