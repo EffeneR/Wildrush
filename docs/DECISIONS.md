@@ -279,10 +279,25 @@ reliable authentication-complete packet. Heavy match assets are loaded on worker
 while the player is in menus (`Game.preload_match_assets`).
 
 ## D-022 Builds and verification hooks
-Export presets: Windows client (single exe, `tools/` and `tests/` excluded), Linux dedicated
+Export presets: Windows client (one exe with the pack embedded, plus the console wrapper
+`WILDRUSH.console.exe` in release builds too, for startup diagnostics; `tools/` and `tests/`
+excluded), Linux dedicated
 server (`dedicated_server=true`, character/arena/audio assets excluded; `OS.has_feature(
 "dedicated_server")` makes the binary a server without flags), Linux client used only to
 verify builds here. Release templates refuse command-line scene overrides, so verification
 builds reach the flow test through `--flow-test` in `boot.gd` (active only when
 `res://tools/flow_test.tscn` is packed, i.e. never in the Windows client). Pipeline assets
 are used only when actually imported (`AssetUtil.imported`), never merely present on disk.
+
+## D-023 Verification entry point semantics
+`tools/verify.sh` is the single record of a verification run (`evidence/verify/latest.json`,
+with the commit and whether the tree was dirty when the run started). A step is PASS only when
+its process exits 0 AND its output check passes; output checks grep the finished step log after
+the process has exited (never `cmd | tee | grep -q` under `pipefail`, which misreported a
+passing test run as FAIL and could report an import with errors as PASS). Steps that cannot
+run here are recorded as `BLOCKED: <reason>`, never PASS; any FAIL makes the script exit 1.
+Godot's "ObjectDB instances leaked at exit" warning is not a failure condition: it reports a
+fixed-size set of plain RefCounted objects still alive at shutdown — 17 with no test run,
+116 after one and still 116 after two complete bot matches in the same process, so it does not
+grow per match (measured; the likely holders are static caches such as `Behaviors._reg`, not
+yet confirmed object by object).

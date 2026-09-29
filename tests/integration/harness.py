@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import shutil
 import signal
 import socket
 import subprocess
@@ -106,7 +107,9 @@ class Run:
     procs: list[Proc] = field(default_factory=list)
 
     def __post_init__(self) -> None:
+        # the folder holds exactly one run's evidence (older runs live in git history)
         self.dir = ROOT / "evidence" / self.area / self.name
+        shutil.rmtree(self.dir, ignore_errors=True)
         self.dir.mkdir(parents=True, exist_ok=True)
 
     def _spawn(self, name: str, args: list[str], jsonl: bool = False, cwd: Path | None = None) -> Proc:

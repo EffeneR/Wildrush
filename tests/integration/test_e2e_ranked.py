@@ -72,6 +72,7 @@ def sh(*args: str, env: dict | None = None) -> int:
 
 
 def main() -> int:
+    shutil.rmtree(EVI, ignore_errors=True)   # one run's evidence only (older runs: git history)
     EVI.mkdir(parents=True, exist_ok=True)
     result: dict = {"test": "e2e_ranked", "ok": False, "reasons": [], "note": "loopback dev stack; not WAN"}
     for b in (SERVER_BIN, CLIENT_BIN):
