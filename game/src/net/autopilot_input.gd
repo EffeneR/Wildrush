@@ -16,6 +16,10 @@ var _prev_buttons: int = 0
 
 
 func setup(p_scenario: String, seed_value: int, _world: Node3D, _layout: ArenaLayout) -> void:
+	cleanup()   # a new match setup replaces the previous navigation map
+	nav_map = RID()
+	nav_region = RID()
+	_path = PackedVector3Array()
 	scenario = p_scenario
 	rng.seed = seed_value
 	var nm: NavigationMesh = load(ArenaBuilder.NAVMESH_PATH) if ResourceLoader.exists(ArenaBuilder.NAVMESH_PATH) else null

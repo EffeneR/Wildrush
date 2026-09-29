@@ -36,7 +36,7 @@ def main() -> int:
                                "--quit-after-s", str(SOAK_S + 60)], stdout=log, stderr=subprocess.STDOUT, cwd="/tmp")
     time.sleep(2.0)
     clients = [run.client(f"s{i}", "127.0.0.1", port, "fight", 100 + i, ["--fighter", ["nyx", "vex", "hops", "scrap"][i],
-               "--quit-after-s", str(SOAK_S)]) for i in range(4)]
+               "--stay", "--quit-after-s", str(SOAK_S)]) for i in range(4)]
     samples = []
     t0 = time.time()
     while time.time() - t0 < SOAK_S + 20 and server.poll() is None:
@@ -68,12 +68,17 @@ def main() -> int:
         res["reasons"].append(f"only {len(ends)} matches completed")
     if errors:
         res["reasons"].append("server errors")
-    if len(samples) > 4:
-        base = samples[1]["rss_kb"]
-        peak_end = max(s["rss_kb"] for s in samples[-4:])
-        res["rss_growth_pct"] = round(100.0 * (peak_end - base) / max(1, base), 1)
-        if res["rss_growth_pct"] > 25.0:
-            res["reasons"].append(f"server RSS grew {res['rss_growth_pct']} %")
+    # steady-state memory: compare the peak of the first full match with the peak of the last
+    # third of the run (the lobby-only first samples are excluded — a match legitimately loads state)
+    if len(samples) > 12:
+        third = len(samples) // 3
+        first_match_peak = max(s["rss_kb"] for s in samples[2:third + 2])
+        last_peak = max(s["rss_kb"] for s in samples[-third:])
+        res["rss_first_match_peak_kb"] = first_match_peak
+        res["rss_last_third_peak_kb"] = last_peak
+        res["rss_growth_pct"] = round(100.0 * (last_peak - first_match_peak) / max(1, first_match_peak), 1)
+        if res["rss_growth_pct"] > 15.0:
+            res["reasons"].append(f"server RSS grew {res['rss_growth_pct']} % between matches")
     for c in clients:
         st = [x for x in c.json_lines() if x.get("ev") == "stats"]
         errs = c.errors()

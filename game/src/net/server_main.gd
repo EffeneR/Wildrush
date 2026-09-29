@@ -40,6 +40,7 @@ var _afk_warned: Dictionary = {}
 var _forfeit_since: Array = [-1, -1]
 var result_payload: Dictionary = {}
 var replay_path: String = ""
+var matches_played: int = 0
 var log_lines: int = 0
 
 
@@ -494,6 +495,15 @@ func _begin_match() -> void:
 		sim.remove_fighter(f)
 	sim.rules = TurfShiftRules.new()
 	sim.rules.configure(Tuning.rules)
+	# a rematch starts from a clean slate: no occupancy, inputs or visibility memory carry over
+	sim.occupancy = ZoneOccupancy.new()
+	sim.occupancy.configure(Tuning.rules, layout.zones)
+	sim.inputs.clear()
+	sim.last_inputs.clear()
+	sim.result = {}
+	vis = TeamVisibility.new()
+	_pending_events.clear()
+	matches_played += 1
 	sim.result_emitted = false
 	sim.phase = WR.Phase.WAITING
 	for p in roster.players.values():
@@ -746,7 +756,8 @@ func _on_match_finished(result: Dictionary) -> void:
 	results_until = tick + WR.secs_to_ticks(float(Tuning.rules.get("results_s", 25)))
 	recorder.finish(result)
 	var dir: String = Config.replay_dir if Config.replay_dir != "" else "user://replays"
-	replay_path = dir.path_join("%s.wrr" % match_id.replace(":", "_"))
+	var rname: String = match_id.replace(":", "_") + ("" if matches_played <= 1 else "_%d" % matches_played)
+	replay_path = dir.path_join("%s.wrr" % rname)
 	var err: int = recorder.save(replay_path)
 	result["replay_file"] = replay_path if err == OK else ""
 	result_payload = result

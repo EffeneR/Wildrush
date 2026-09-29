@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[server] {"bots_allowed":true,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790671855","mode":"private","port":24750,"protocol":3,"t":0}
+[server] {"ev":"joined","observer":false,"peer":1185593882,"pid":2,"t":139}
+[server] {"ev":"joined","observer":false,"peer":167024095,"pid":3,"t":141}
+[server] {"ev":"joined","observer":false,"peer":1029176733,"pid":4,"t":141}
+[server] {"ev":"joined","observer":false,"peer":649060007,"pid":5,"t":141}
+[server] {"ev":"select","players":10,"t":142}
+[server] {"bots":6,"ev":"match_start","fighters":10,"t":270}
+[server] {"ev":"match_end","reason":"time","replay":"/home/user/Wildrush/evidence/soak/server_clients/replays/local-1790671855.wrr","score":[41,15],"t":29369,"winner":0}
+[server] {"ev":"left","peer":1185593882,"pid":2,"t":29437}
+[server] {"ev":"left","peer":649060007,"pid":5,"t":29437}
+[server] {"ev":"left","peer":1029176733,"pid":4,"t":29437}
+[server] {"ev":"left","peer":167024095,"pid":3,"t":29437}

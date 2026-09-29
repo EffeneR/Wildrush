@@ -1,0 +1,224 @@
+{
+  "test": "soak",
+  "duration_s": 495,
+  "target_s": 1260,
+  "matches_completed": 1,
+  "match_ends": [
+    {
+      "ev": "match_end",
+      "reason": "time",
+      "replay": "/home/user/Wildrush/evidence/soak/server_clients/replays/local-1790671855.wrr",
+      "score": [
+        41,
+        15
+      ],
+      "t": 29369,
+      "winner": 0
+    }
+  ],
+  "server_errors": [],
+  "samples": [
+    {
+      "t": 0,
+      "rss_kb": 99064,
+      "cpu": 21.2
+    },
+    {
+      "t": 15,
+      "rss_kb": 99852,
+      "cpu": 14.9
+    },
+    {
+      "t": 30,
+      "rss_kb": 99856,
+      "cpu": 16.4
+    },
+    {
+      "t": 45,
+      "rss_kb": 99856,
+      "cpu": 17.0
+    },
+    {
+      "t": 60,
+      "rss_kb": 99920,
+      "cpu": 17.4
+    },
+    {
+      "t": 75,
+      "rss_kb": 100240,
+      "cpu": 17.5
+    },
+    {
+      "t": 90,
+      "rss_kb": 102164,
+      "cpu": 17.8
+    },
+    {
+      "t": 105,
+      "rss_kb": 104064,
+      "cpu": 17.9
+    },
+    {
+      "t": 120,
+      "rss_kb": 105912,
+      "cpu": 18.0
+    },
+    {
+      "t": 135,
+      "rss_kb": 107772,
+      "cpu": 18.0
+    },
+    {
+      "t": 150,
+      "rss_kb": 109592,
+      "cpu": 17.9
+    },
+    {
+      "t": 165,
+      "rss_kb": 111536,
+      "cpu": 17.9
+    },
+    {
+      "t": 180,
+      "rss_kb": 113316,
+      "cpu": 17.8
+    },
+    {
+      "t": 195,
+      "rss_kb": 115268,
+      "cpu": 17.9
+    },
+    {
+      "t": 210,
+      "rss_kb": 117132,
+      "cpu": 18.0
+    },
+    {
+      "t": 225,
+      "rss_kb": 118980,
+      "cpu": 18.0
+    },
+    {
+      "t": 240,
+      "rss_kb": 120944,
+      "cpu": 18.1
+    },
+    {
+      "t": 255,
+      "rss_kb": 122704,
+      "cpu": 18.2
+    },
+    {
+      "t": 270,
+      "rss_kb": 124544,
+      "cpu": 18.3
+    },
+    {
+      "t": 285,
+      "rss_kb": 126516,
+      "cpu": 18.5
+    },
+    {
+      "t": 300,
+      "rss_kb": 128412,
+      "cpu": 18.6
+    },
+    {
+      "t": 315,
+      "rss_kb": 130132,
+      "cpu": 18.7
+    },
+    {
+      "t": 330,
+      "rss_kb": 132104,
+      "cpu": 18.8
+    },
+    {
+      "t": 345,
+      "rss_kb": 133984,
+      "cpu": 18.8
+    },
+    {
+      "t": 360,
+      "rss_kb": 135828,
+      "cpu": 18.8
+    },
+    {
+      "t": 375,
+      "rss_kb": 137628,
+      "cpu": 18.9
+    },
+    {
+      "t": 390,
+      "rss_kb": 139504,
+      "cpu": 18.9
+    },
+    {
+      "t": 405,
+      "rss_kb": 141328,
+      "cpu": 18.9
+    },
+    {
+      "t": 420,
+      "rss_kb": 143220,
+      "cpu": 18.9
+    },
+    {
+      "t": 435,
+      "rss_kb": 144948,
+      "cpu": 18.9
+    },
+    {
+      "t": 450,
+      "rss_kb": 146888,
+      "cpu": 18.9
+    },
+    {
+      "t": 465,
+      "rss_kb": 148712,
+      "cpu": 18.9
+    },
+    {
+      "t": 480,
+      "rss_kb": 150500,
+      "cpu": 18.9
+    },
+    {
+      "t": 495,
+      "rss_kb": 151576,
+      "cpu": 18.7
+    }
+  ],
+  "ok": false,
+  "reasons": [
+    "only 1 matches completed",
+    "server RSS grew 51.8 %"
+  ],
+  "rss_growth_pct": 51.8,
+  "clients": {
+    "s0": {
+      "stats_lines": 98,
+      "last_snaps": 9691,
+      "errors": [],
+      "exit": 0
+    },
+    "s1": {
+      "stats_lines": 98,
+      "last_snaps": 9696,
+      "errors": [],
+      "exit": 0
+    },
+    "s2": {
+      "stats_lines": 98,
+      "last_snaps": 9691,
+      "errors": [],
+      "exit": 0
+    },
+    "s3": {
+      "stats_lines": 98,
+      "last_snaps": 9696,
+      "errors": [],
+      "exit": 0
+    }
+  }
+}

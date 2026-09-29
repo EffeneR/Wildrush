@@ -44,7 +44,8 @@ func _ready() -> void:
 		_log({"ev": "results", "winner": r.get("winner_team"), "score": r.get("score"), "reason": r.get("ended_reason"),
 			"duration_s": r.get("duration_s")})
 		_log_stats()
-		get_tree().create_timer(1.0).timeout.connect(func() -> void: _finish(0)))
+		if not Config.has("stay"):   # --stay: remain for back-to-back matches (soak)
+			get_tree().create_timer(1.0).timeout.connect(func() -> void: _finish(0)))
 	session.events_ready.connect(_on_events)
 	session.server_notice.connect(func(d: Dictionary) -> void: _log({"ev": "notice", "msg": d}))
 	session.input_source = autopilot
