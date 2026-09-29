@@ -50,6 +50,10 @@ func _ready() -> void:
 	if Config.has("autopilot-self"):
 		params["autopilot_self"] = true
 	layout = ArenaLayout.load_file()
+	if Config.has("quality"):
+		# automation/profiling override for this run only (not saved)
+		Settings.set_value("display", "quality", Config.get_arg("quality"), false)
+		Settings.set_value("display", "vsync", false, false)
 	_setup_capture()
 	var mode: String = String(params.get("mode", "offline"))
 	match mode:

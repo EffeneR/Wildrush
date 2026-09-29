@@ -1,0 +1,8 @@
+{"draw_calls":1693.0,"fps":7.5,"max_ms":147.55,"mem_mb":136.5,"p50_ms":131.5,"p99_ms":147.55,"physics_ms":4.93,"prims":1310932.0,"t":8.0}
+{"draw_calls":1489.0,"fps":7.5,"max_ms":145.45,"mem_mb":141.5,"p50_ms":133.81,"p99_ms":145.45,"physics_ms":5.0,"prims":1585306.0,"t":16.01}
+{"draw_calls":918.0,"fps":7.5,"max_ms":149.8,"mem_mb":142.7,"p50_ms":132.97,"p99_ms":149.8,"physics_ms":4.11,"prims":654742.0,"t":24.0}
+{"draw_calls":1355.0,"fps":7.5,"max_ms":148.15,"mem_mb":143.7,"p50_ms":133.93,"p99_ms":148.15,"physics_ms":6.11,"prims":960982.0,"t":32.02}
+{"draw_calls":1155.0,"fps":7.5,"max_ms":147.06,"mem_mb":144.6,"p50_ms":132.95,"p99_ms":147.06,"physics_ms":5.34,"prims":986786.0,"t":40.02}
+{"draw_calls":1526.0,"fps":7.5,"max_ms":147.76,"mem_mb":145.5,"p50_ms":133.02,"p99_ms":147.76,"physics_ms":5.03,"prims":1123698.0,"t":48.0}
+{"draw_calls":1426.0,"fps":7.5,"max_ms":148.12,"mem_mb":147.0,"p50_ms":133.7,"p99_ms":148.12,"physics_ms":7.26,"prims":1591224.0,"t":56.01}
+{"draw_calls":1346.0,"fps":7.5,"max_ms":147.99,"mem_mb":147.6,"p50_ms":133.82,"p99_ms":147.99,"physics_ms":6.4,"prims":1063376.0,"t":64.01}

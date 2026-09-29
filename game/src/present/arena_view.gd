@@ -427,10 +427,10 @@ func _build_zones() -> void:
 		label.text = "%s · %s" % [id, String(z.get("name", ""))]
 		label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 		label.no_depth_test = false
-		label.pixel_size = 0.012
-		label.font_size = 64
-		label.outline_size = 12
-		label.position = c + Vector3(0, 5.5, 0)
+		label.pixel_size = 0.0065
+		label.font_size = 56
+		label.outline_size = 10
+		label.position = c + Vector3(0, 4.2, 0)
 		label.visible = false
 		add_child(label)
 		zone_nodes[id] = {"ring": ring, "mat": mat, "beacon": beacon, "beacon_mat": bmat, "label": label}
@@ -468,5 +468,8 @@ func update_zones(m: Dictionary, local_team: int, spectator: bool) -> void:
 		beacon.visible = shape_state >= 2
 		(zn["beacon_mat"] as StandardMaterial3D).albedo_color = Color(col.r, col.g, col.b, 0.22)
 		var label: Label3D = zn["label"]
-		label.visible = shape_state >= 1
+		var cam: Camera3D = get_viewport().get_camera_3d()
+		var cam_in_zone: bool = cam != null and Vector2(cam.global_position.x - layout.zone_center(String(id)).x,
+			cam.global_position.z - layout.zone_center(String(id)).z).length() < float(layout.zone(String(id)).get("radius", 9.0)) + 3.0
+		label.visible = shape_state >= 1 and not cam_in_zone   # the HUD already names the zone you stand in
 		label.modulate = col

@@ -1,0 +1,132 @@
+{
+  "ok": true,
+  "service": "http://127.0.0.1:8080",
+  "steps": [
+    {
+      "note": "loopback http accepted",
+      "pass": true,
+      "status": 0,
+      "step": "url_status"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "version"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 201,
+      "step": "register"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 201,
+      "step": "register_friend"
+    },
+    {
+      "note": "409 username_taken",
+      "pass": true,
+      "status": 409,
+      "step": "register_duplicate"
+    },
+    {
+      "note": "401 invalid_credentials",
+      "pass": true,
+      "status": 401,
+      "step": "login_wrong_password"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "login"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "me"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "profile_get"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "profile_patch"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 201,
+      "step": "party_create"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 201,
+      "step": "party_invite"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "party_current"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 204,
+      "step": "party_leave"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 202,
+      "step": "queue_join_casual"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "queue_status"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 204,
+      "step": "queue_leave"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "servers_list"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 200,
+      "step": "history"
+    },
+    {
+      "note": "",
+      "pass": true,
+      "status": 204,
+      "step": "logout"
+    },
+    {
+      "note": "401 after logout",
+      "pass": true,
+      "status": 401,
+      "step": "me_after_logout"
+    }
+  ]
+}

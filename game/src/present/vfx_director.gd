@@ -40,10 +40,10 @@ func _ready() -> void:
 		p.initial_velocity_min = 2.5
 		p.initial_velocity_max = 6.0
 		p.gravity = Vector3(0, -9.0, 0)
-		p.scale_amount_min = 0.03
-		p.scale_amount_max = 0.07
+		p.scale_amount_min = 0.6
+		p.scale_amount_max = 1.3
 		var qm := QuadMesh.new()
-		qm.size = Vector2(1, 1)
+		qm.size = Vector2(0.05, 0.05)   # sparks are small by construction (independent of particle scaling)
 		var m := StandardMaterial3D.new()
 		m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 		m.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES

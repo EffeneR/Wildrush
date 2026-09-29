@@ -1,0 +1,29 @@
+{
+  "renderer_note": "Mesa llvmpipe/lavapipe software rendering under Xvfb, 4 CPU threads shared with other processes; not representative of GPU hardware. 10 fighters (1 local + 9 bots), 1600x900.",
+  "runs": [
+    {
+      "file": "offline_high_1600x900.jsonl",
+      "rows": 7,
+      "fps_mean": 7.5,
+      "fps_min_window": 7.5,
+      "frame_ms_p50_median": 133.7,
+      "frame_ms_p99_max": 149.8,
+      "physics_ms_median": 5.34,
+      "draw_calls_median": 1355,
+      "primitives_median": 1063376,
+      "static_mem_mb_max": 147.6
+    },
+    {
+      "file": "offline_low_1600x900.jsonl",
+      "rows": 9,
+      "fps_mean": 7.5,
+      "fps_min_window": 7.5,
+      "frame_ms_p50_median": 133.45,
+      "frame_ms_p99_max": 147.87,
+      "physics_ms_median": 5.86,
+      "draw_calls_median": 658,
+      "primitives_median": 379836,
+      "static_mem_mb_max": 151.0
+    }
+  ]
+}
