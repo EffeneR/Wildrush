@@ -1,2 +1,2 @@
 {"proxy": "ready", "listen": 24651, "target": "127.0.0.1:24610"}
-{"proxy_stats": {"c2s": 17394, "s2c": 8350, "c2s_dropped": 380, "s2c_dropped": 175, "clients": 5, "rtt_ms": 100.0, "jitter_ms": 5.0, "loss": 0.02}, "time": 1790607728.2660263}
+{"proxy_stats": {"c2s": 19007, "s2c": 8712, "c2s_dropped": 405, "s2c_dropped": 190, "clients": 5, "rtt_ms": 100.0, "jitter_ms": 5.0, "loss": 0.02}, "time": 1790674875.5192277}

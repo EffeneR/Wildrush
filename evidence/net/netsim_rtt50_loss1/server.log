@@ -1,16 +1,16 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-[server] {"bots_allowed":true,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790607560","mode":"private","port":24610,"protocol":3,"t":0}
-[server] {"ev":"joined","observer":false,"peer":189975285,"pid":2,"t":151}
-[server] {"ev":"joined","observer":false,"peer":551304574,"pid":3,"t":175}
-[server] {"ev":"joined","observer":false,"peer":1501321587,"pid":4,"t":210}
-[server] {"ev":"select","players":10,"t":222}
-[server] {"ev":"joined","observer":false,"peer":368169498,"pid":5,"t":224}
-[server] {"bots":6,"ev":"match_start","fighters":10,"t":394}
-[server] {"ev":"left","peer":368169498,"pid":5,"t":2498}
-[server] {"ev":"reconnected","pid":5,"t":2681}
-[server] {"ev":"joined","observer":false,"peer":691848990,"pid":5,"t":2685}
-[server] {"ev":"left","peer":189975285,"pid":2,"t":4944}
-[server] {"ev":"left","peer":551304574,"pid":3,"t":4969}
-[server] {"ev":"left","peer":1501321587,"pid":4,"t":5002}
-[server] {"ev":"left","peer":691848990,"pid":5,"t":5019}
+[server] {"bots_allowed":true,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790674708","mode":"private","port":24610,"protocol":3,"t":0}
+[server] {"ev":"joined","observer":false,"peer":2044532968,"pid":2,"t":148}
+[server] {"ev":"joined","observer":false,"peer":1692682547,"pid":3,"t":165}
+[server] {"ev":"joined","observer":false,"peer":1370808983,"pid":4,"t":181}
+[server] {"ev":"select","players":10,"t":196}
+[server] {"ev":"joined","observer":false,"peer":1287752962,"pid":5,"t":199}
+[server] {"bots":6,"ev":"match_start","fighters":10,"t":313}
+[server] {"ev":"left","peer":1287752962,"pid":5,"t":2472}
+[server] {"ev":"reconnected","pid":5,"t":2655}
+[server] {"ev":"joined","observer":false,"peer":605519713,"pid":5,"t":2659}
+[server] {"ev":"left","peer":2044532968,"pid":2,"t":4941}
+[server] {"ev":"left","peer":1692682547,"pid":3,"t":4958}
+[server] {"ev":"left","peer":1370808983,"pid":4,"t":4975}
+[server] {"ev":"left","peer":605519713,"pid":5,"t":4992}

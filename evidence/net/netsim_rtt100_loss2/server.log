@@ -1,16 +1,15 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-[server] {"bots_allowed":true,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790607644","mode":"private","port":24610,"protocol":3,"t":0}
-[server] {"ev":"joined","observer":false,"peer":421298083,"pid":2,"t":163}
-[server] {"ev":"joined","observer":false,"peer":140912864,"pid":3,"t":180}
-[server] {"ev":"joined","observer":false,"peer":466567050,"pid":4,"t":205}
-[server] {"ev":"select","players":10,"t":227}
-[server] {"ev":"joined","observer":false,"peer":1281172259,"pid":5,"t":232}
-[server] {"bots":6,"ev":"match_start","fighters":10,"t":344}
-[server] {"ev":"left","peer":1281172259,"pid":5,"t":2499}
-[server] {"ev":"reconnected","pid":5,"t":2687}
-[server] {"ev":"joined","observer":false,"peer":1944039802,"pid":5,"t":2693}
-[server] {"ev":"left","peer":421298083,"pid":2,"t":4950}
-[server] {"ev":"left","peer":140912864,"pid":3,"t":4967}
-[server] {"ev":"left","peer":466567050,"pid":4,"t":4992}
-[server] {"ev":"left","peer":1944039802,"pid":5,"t":5020}
+[server] {"bots_allowed":true,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790674792","mode":"private","port":24610,"protocol":3,"t":0}
+[server] {"ev":"joined","observer":false,"peer":540755170,"pid":2,"t":152}
+[server] {"ev":"joined","observer":false,"peer":85865902,"pid":3,"t":172}
+[server] {"ev":"joined","observer":false,"peer":1447541928,"pid":4,"t":190}
+[server] {"ev":"select","players":10,"t":198}
+[server] {"ev":"joined","observer":false,"peer":851094653,"pid":5,"t":204}
+[server] {"bots":6,"ev":"match_start","fighters":10,"t":366}
+[server] {"ev":"left","peer":851094653,"pid":5,"t":2471}
+[server] {"ev":"reconnected","pid":5,"t":2658}
+[server] {"ev":"joined","observer":false,"peer":1577990466,"pid":5,"t":2665}
+[server] {"ev":"left","peer":540755170,"pid":2,"t":4939}
+[server] {"ev":"left","peer":85865902,"pid":3,"t":4959}
+[server] {"ev":"left","peer":1577990466,"pid":5,"t":4990}
