@@ -1,0 +1,38 @@
+[dev] starting PostgreSQL on 127.0.0.1:55432
+[dev] applying migrations (alembic upgrade head)
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+[dev] starting control service on http://127.0.0.1:8080
+[dev] healthy: {"ok":true,"db":"ok"}
+[dev] service  : http://127.0.0.1:8080   (log /home/user/Wildrush/.run/service.log)
+[dev] database : 127.0.0.1:55432/wildrush   (credentials in /home/user/Wildrush/.run/dev.env)
+[dev] admin CLI: set -a; source /home/user/Wildrush/.run/dev.env; set +a; cd services && /home/user/Wildrush/.venv/bin/python -m wildrush_svc.admin list-servers
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[online_check] PASS (21 steps)
+[online_check] url_status             ok loopback http accepted
+[online_check] version                ok 
+[online_check] register               ok 
+[online_check] register_friend        ok 
+[online_check] register_duplicate     ok 409 username_taken
+[online_check] login_wrong_password   ok 401 invalid_credentials
+[online_check] login                  ok 
+[online_check] me                     ok 
+[online_check] profile_get            ok 
+[online_check] profile_patch          ok 
+[online_check] party_create           ok 
+[online_check] party_invite           ok 
+[online_check] party_current          ok 
+[online_check] party_leave            ok 
+[online_check] queue_join_casual      ok 
+[online_check] queue_status           ok 
+[online_check] queue_leave            ok 
+[online_check] servers_list           ok 
+[online_check] history                ok 
+[online_check] logout                 ok 
+[online_check] me_after_logout        ok 401 after logout
+WARNING: 37 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+[dev] allocator not running
+[dev] stopping control service (pid 32267)
+[dev] stopping PostgreSQL
