@@ -149,8 +149,8 @@ func _build_world(mode: String) -> void:
 		rig.capture_mouse(not on and not paused))
 	hud.replay_command.connect(_on_replay_command)
 	AudioDirector.music("music_match", 2.0)
-	if mode == "replay":
-		rig.capture_mouse(false)
+	if mode == "replay" or host.spectator:
+		rig.capture_mouse(false)   # spectators look around with the right mouse button held
 	else:
 		rig.capture_mouse(true)
 
@@ -310,6 +310,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	if host is ReplayHost:
 		_replay_input(event)
 		return
+	if host.spectator:
+		_observer_input(event)
+		return
 	if event is InputEventMouseButton and (event as InputEventMouseButton).pressed and not rig.mouse_captured:
 		rig.capture_mouse(true)
 	# spectating allies while knocked out
@@ -399,6 +402,35 @@ func _replay_input(event: InputEvent) -> void:
 		var mb := event as InputEventMouseButton
 		if mb.button_index == MOUSE_BUTTON_RIGHT:
 			rig.capture_mouse(mb.pressed)
+
+
+func _observer_input(event: InputEvent) -> void:
+	## Authorized observers (private matches): follow any fighter or fly freely.
+	if event is InputEventKey and (event as InputEventKey).pressed and not event.is_echo():
+		match (event as InputEventKey).keycode:
+			KEY_TAB:
+				_cycle_follow()
+			KEY_F:
+				free_cam = not free_cam
+				rig.spectator_free = free_cam
+				if not free_cam:
+					_attach_camera(follow_entity)
+	if event.is_action_pressed("attack_light"):
+		_cycle_follow()
+	if event is InputEventMouseButton and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_RIGHT:
+		rig.capture_mouse((event as InputEventMouseButton).pressed)
+
+
+func _cycle_follow() -> void:
+	free_cam = false
+	rig.spectator_free = false
+	var ks: Array = host.fighter_info.keys()
+	ks.sort()
+	var i: int = ks.find(follow_entity)
+	follow_entity = int(ks[(i + 1) % ks.size()])
+	_attach_camera(follow_entity)
+	if host is NetMatchHost:
+		(host as NetMatchHost).request_follow(follow_entity)
 
 
 func _on_replay_command(cmd: String, value: float) -> void:

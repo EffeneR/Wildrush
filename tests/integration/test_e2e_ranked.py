@@ -35,6 +35,17 @@ MATCH_TIMEOUT_S = 16 * 60
 
 
 def api(method: str, path: str, token: str | None = None, body: dict | None = None) -> tuple[int, dict | list]:
+    """HTTP call that honours the service's rate limits (429 + Retry-After) instead of bypassing them:
+    all ten test identities share one loopback IP, and registration is limited to 5/min per IP."""
+    for _ in range(6):
+        code, d, retry = _api_once(method, path, token, body)
+        if code != 429:
+            return code, d
+        time.sleep(min(90, max(1, retry)))
+    return code, d
+
+
+def _api_once(method: str, path: str, token: str | None, body: dict | None) -> tuple[int, dict | list, int]:
     data = json.dumps(body).encode() if body is not None else None
     req = urllib.request.Request(BASE + path, data=data, method=method)
     req.add_header("Content-Type", "application/json")
@@ -43,13 +54,14 @@ def api(method: str, path: str, token: str | None = None, body: dict | None = No
     try:
         with urllib.request.urlopen(req, timeout=15) as r:
             raw = r.read()
-            return r.status, (json.loads(raw) if raw else {})
+            return r.status, (json.loads(raw) if raw else {}), 0
     except urllib.error.HTTPError as e:
         raw = e.read()
+        retry = int(e.headers.get("Retry-After", "60") or 60)
         try:
-            return e.code, json.loads(raw)
+            return e.code, json.loads(raw), retry
         except json.JSONDecodeError:
-            return e.code, {"raw": raw.decode(errors="replace")}
+            return e.code, {"raw": raw.decode(errors="replace")}, retry
 
 
 def sh(*args: str, env: dict | None = None) -> int:

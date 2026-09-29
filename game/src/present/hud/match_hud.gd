@@ -15,6 +15,8 @@ var views: Dictionary = {}
 var camera_rig: CameraRig = null
 var root: Control
 var scorebar: HudScorebar
+var roster_strip: HudRosterStrip
+var _roster_t: float = 0.0
 var minimap: HudMinimap
 var overhead: HudOverhead
 var hp_meter: HudMeter
@@ -96,6 +98,9 @@ func _relayout() -> void:
 		return
 	var vp: Vector2 = root.get_viewport_rect().size
 	scorebar.position = Vector2((vp.x - scorebar.size.x * hud_scale) * 0.5, 10)
+	if roster_strip != null:
+		roster_strip.scale = Vector2.ONE * hud_scale
+		roster_strip.position = Vector2((vp.x - roster_strip.size.x * hud_scale) * 0.5, 10 + 124 * hud_scale)
 	minimap.position = Vector2(vp.x - minimap.size.x * hud_scale - 16, 16)
 	vitals_box.position = Vector2((vp.x - vitals_box.size.x * hud_scale) * 0.5, vp.y - vitals_box.size.y * hud_scale - 22)
 	ability_box.position = Vector2(vp.x - ability_box.size.x * hud_scale - 22, vp.y - ability_box.size.y * hud_scale - 18)
@@ -121,6 +126,11 @@ func _build() -> void:
 	for z in layout.zones:
 		scorebar.zone_names[String(z["id"])] = String(z.get("name", ""))
 	root.add_child(scorebar)
+
+	roster_strip = HudRosterStrip.new()
+	roster_strip.size = Vector2(620, 46)
+	root.add_child(roster_strip)
+	roster_strip.setup(host, host.local_team if not host.spectator else 0)
 
 	minimap = HudMinimap.new()
 	minimap.size = Vector2(250, 234)
@@ -395,6 +405,10 @@ func _build_replay_bar() -> void:
 func update(dt: float, vstates: Dictionary, m: Dictionary, follow_entity: int) -> void:
 	m["spectator"] = host.spectator
 	scorebar.update_state(m, dt)
+	_roster_t += dt
+	if _roster_t > 0.25:
+		_roster_t = 0.0
+		roster_strip.refresh()
 	# minimap dots: allies always; enemies only when their state is present (visible)
 	var dots: Array = []
 	for e in vstates.keys():
