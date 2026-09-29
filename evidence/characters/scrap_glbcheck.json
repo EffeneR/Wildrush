@@ -1,0 +1,270 @@
+{
+ "file": "/home/user/Wildrush/game/assets/characters/scrap/scrap.glb",
+ "ok": true,
+ "operator": [
+  "FINISHED"
+ ],
+ "armatures": 1,
+ "bones": 49,
+ "bone_names": [
+  "Hips",
+  "Spine",
+  "Chest",
+  "UpperChest",
+  "Neck",
+  "Head",
+  "Jaw",
+  "LeftEar1",
+  "LeftEar2",
+  "RightEar1",
+  "RightEar2",
+  "LeftShoulder",
+  "LeftUpperArm",
+  "LeftLowerArm",
+  "LeftHand",
+  "LeftThumb1",
+  "LeftThumb2",
+  "LeftIndex1",
+  "LeftIndex2",
+  "LeftMiddle1",
+  "LeftMiddle2",
+  "LeftRing1",
+  "LeftRing2",
+  "RightShoulder",
+  "RightUpperArm",
+  "RightLowerArm",
+  "RightHand",
+  "RightThumb1",
+  "RightThumb2",
+  "RightIndex1",
+  "RightIndex2",
+  "RightMiddle1",
+  "RightMiddle2",
+  "RightRing1",
+  "RightRing2",
+  "LeftUpperLeg",
+  "LeftLowerLeg",
+  "LeftFoot",
+  "LeftToes",
+  "RightUpperLeg",
+  "RightLowerLeg",
+  "RightFoot",
+  "RightToes",
+  "Tail1",
+  "Tail2",
+  "Tail3",
+  "Tail4",
+  "Tail5",
+  "Tail6"
+ ],
+ "meshes": 2,
+ "triangles": 37918,
+ "materials": [
+  "scrap_cloth",
+  "scrap_detail",
+  "scrap_eye",
+  "scrap_fur"
+ ],
+ "animations": {
+  "defeat": [
+   0.0,
+   48.0
+  ],
+  "dodge_b": [
+   0.0,
+   8.8
+  ],
+  "dodge_f": [
+   0.0,
+   8.8
+  ],
+  "dodge_l": [
+   0.0,
+   8.8
+  ],
+  "dodge_r": [
+   0.0,
+   8.8
+  ],
+  "getup": [
+   0.0,
+   10.8
+  ],
+  "grabbed": [
+   0.0,
+   10.8
+  ],
+  "guard_block": [
+   0.0,
+   4.8
+  ],
+  "guard_break": [
+   0.0,
+   21.6
+  ],
+  "guard_enter": [
+   0.0,
+   2.4
+  ],
+  "guard_exit": [
+   0.0,
+   2.8
+  ],
+  "guard_hold": [
+   0.0,
+   24.0
+  ],
+  "heavy": [
+   0.0,
+   24.4
+  ],
+  "hit_back": [
+   0.0,
+   7.2
+  ],
+  "hit_front": [
+   0.0,
+   7.2
+  ],
+  "hit_heavy": [
+   0.0,
+   12.0
+  ],
+  "idle": [
+   0.0,
+   48.0
+  ],
+  "jump_air": [
+   0.0,
+   12.0
+  ],
+  "jump_fall": [
+   0.0,
+   12.0
+  ],
+  "jump_land": [
+   0.0,
+   4.8
+  ],
+  "jump_start": [
+   0.0,
+   2.8
+  ],
+  "knockdown": [
+   0.0,
+   19.2
+  ],
+  "knockout": [
+   0.0,
+   28.8
+  ],
+  "light_air": [
+   0.0,
+   9.6
+  ],
+  "light_l": [
+   0.0,
+   11.6
+  ],
+  "light_r": [
+   0.0,
+   11.6
+  ],
+  "light_s": [
+   0.0,
+   11.6
+  ],
+  "respawn": [
+   0.0,
+   19.2
+  ],
+  "run_b": [
+   0.0,
+   15.2
+  ],
+  "run_f": [
+   0.0,
+   15.2
+  ],
+  "run_l": [
+   0.0,
+   15.2
+  ],
+  "run_r": [
+   0.0,
+   15.2
+  ],
+  "skill_e": [
+   0.0,
+   17.2
+  ],
+  "skill_q_stance": [
+   0.0,
+   6.4
+  ],
+  "skill_q_success": [
+   0.0,
+   8.4
+  ],
+  "skill_q_whiff": [
+   0.0,
+   10.8
+  ],
+  "skill_r_grapple": [
+   0.0,
+   10.8
+  ],
+  "skill_r_reach": [
+   0.0,
+   5.6
+  ],
+  "skill_r_release": [
+   0.0,
+   7.2
+  ],
+  "skill_r_whiff": [
+   0.0,
+   12.0
+  ],
+  "stagger": [
+   0.0,
+   14.4
+  ],
+  "turn_l": [
+   0.0,
+   12.0
+  ],
+  "turn_r": [
+   0.0,
+   12.0
+  ],
+  "victory": [
+   0.0,
+   60.0
+  ],
+  "walk_b": [
+   0.0,
+   24.0
+  ],
+  "walk_f": [
+   0.0,
+   24.0
+  ],
+  "walk_l": [
+   0.0,
+   24.0
+  ],
+  "walk_r": [
+   0.0,
+   24.0
+  ]
+ },
+ "images": [
+  "scrap_cloth_basecolor",
+  "scrap_cloth_normal",
+  "scrap_detail",
+  "scrap_eye",
+  "scrap_fur_albedo",
+  "scrap_fur_normal"
+ ]
+}

@@ -3485,3 +3485,384 @@ vex tris 37836 mats 4 bones 49 clips 49 max_align 0.0618 godot 49
 hops tris 37791 mats 4 bones 47 clips 48 max_align 0.0508 godot 48
 ---- [report] exit=0 (0s)
 ==== build_characters.sh OK 2026-09-29T07:20:43Z
+==== build_characters.sh 2026-09-29T08:51:37Z fighters: scrap
+blender: /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/blender
+godot: /home/user/Wildrush/.toolchain/godot/Godot_v4.7.2-stable_linux.x86_64
+python: /home/user/Wildrush/.venv/bin/python
+work: /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work res=0.0024 cloth_res=0.0035
+---- [scrap mesh] /home/user/Wildrush/.venv/bin/python /home/user/Wildrush/blender/characters/wr_mesh.py scrap /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work --res 0.0024 --cloth-res 0.0035
+[wr_mesh] built SDF for scrap in 0.0s
+  mesh_sdf: grid [529, 428, 710] blocks [22, 18, 30] active 1853/11880
+[wr_mesh] body mesh: 544543 verts 1089090 faces (70.2s)
+[wr_mesh] body visible after cover cull: 338296 verts 673290 faces
+[wr_mesh]   garment vest: 70792 verts 141000 faces (12.7s)
+[wr_mesh]   garment vest_hem: 6438 verts 12812 faces (4.9s)
+[wr_mesh]   garment vest_zip: 1207 verts 2318 faces (4.1s)
+[wr_mesh]   garment hood: 11060 verts 22116 faces (1.5s)
+[wr_mesh]   garment trousers: 196998 verts 394028 faces (20.2s)
+[wr_mesh]   garment belt: 10020 verts 19956 faces (5.7s)
+[wr_mesh]   garment buckle: EMPTY
+[wr_mesh]   garment Left_wrap: 7498 verts 14996 faces (0.6s)
+[wr_mesh]   garment Left_kneepad: 4386 verts 8768 faces (0.7s)
+[wr_mesh]   garment Left_elbowpad: 5104 verts 10204 faces (0.7s)
+[wr_mesh]   garment Left_pocket: 5250 verts 10496 faces (0.2s)
+[wr_mesh]   garment Right_wrap: 7508 verts 15016 faces (0.6s)
+[wr_mesh]   garment Right_kneepad: 4400 verts 8796 faces (0.7s)
+[wr_mesh]   garment Right_elbowpad: 5046 verts 10088 faces (0.7s)
+[wr_mesh]   garment Right_pocket: 5250 verts 10496 faces (0.3s)
+[wr_mesh] cloth total: 340957 verts 681090 faces, outer frac 0.53
+[wr_mesh] done in 138.0s
+---- [scrap mesh] exit=0 (138s)
+---- [scrap assemble] /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/blender -b --factory-startup -t 2 --python-exit-code 1 --python /home/user/Wildrush/blender/characters/bl_build.py -- /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work/scrap
+[bl] weight source decimated to 34000 tris (31.5s)
+[bl] bone heat: empty bones [], unweighted verts 0 (32.7s)
+[bl] body 673290 -> 19500 tris (50.1s)
+[bl] body UV done (52.9s)
+[bl] cloth 681090 -> 16499 tris (70.9s)
+[bl] cloth UV done (73.8s)
+[bl] weights transferred (74.9s)
+Info: Saved as "stage1.blend"
+[bl] stage1 done: {'fighter': 'scrap', 'heat_empty_bones': [], 'heat_unweighted_verts': 0, 'tris': 37839, 'verts': 19741, 'max_influences': 4, 'zero_weight_verts': 0, 'materials': ['scrap_fur', 'scrap_cloth', 'scrap_eye', 'scrap_detail'], 'bones': 49} (75.5s)
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
+Blender quit
+---- [scrap assemble] exit=0 (78s)
+---- [scrap textures] /home/user/Wildrush/.venv/bin/python /home/user/Wildrush/blender/characters/wr_texture.py scrap /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work /home/user/Wildrush/blender/characters/scrap/textures
+[wr_texture]   rasterised bake_fur.npz: 1411707 texels, coverage 0.30 (3.4s)
+[wr_texture]   AO + part memberships (20.3s)
+[wr_texture]   fur colour (26.7s)
+[wr_texture]   fur normal (11.2s)
+[wr_texture]   rasterised bake_cloth.npz: 2555463 texels, coverage 0.55 (5.2s)
+[wr_texture]   cloth textures (80.4s)
+[wr_texture] done in 136.3s
+---- [scrap textures] exit=0 (136s)
+---- [scrap animate+export] /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/blender -b --factory-startup -t 2 --python-exit-code 1 --python /home/user/Wildrush/blender/characters/bl_anim.py -- /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work/scrap /home/user/Wildrush/blender/characters/scrap/textures /home/user/Wildrush/blender/characters/scrap/scrap.blend /home/user/Wildrush/game/assets/characters/scrap/scrap.glb /home/user/Wildrush/game/assets/characters/scrap/scrap_anim.json
+[bl] pole calibration: {'LeftLowerArm': (5e-05, -79.0), 'LeftLowerLeg': (1e-05, 90.0), 'RightLowerArm': (5e-05, -101.0), 'RightLowerLeg': (1e-05, 90.0)}
+[bl] clip idle               2.000s 120f loop=True (0.6s)
+[bl] clip walk_f             1.000s  60f loop=True (0.2s)
+[bl] clip walk_b             1.000s  60f loop=True (0.2s)
+[bl] clip walk_l             1.000s  60f loop=True (0.3s)
+[bl] clip walk_r             1.000s  60f loop=True (0.2s)
+[bl] clip run_f              0.633s  38f loop=True (0.1s)
+[bl] clip run_b              0.633s  38f loop=True (0.1s)
+[bl] clip run_l              0.633s  38f loop=True (0.2s)
+[bl] clip run_r              0.633s  38f loop=True (0.2s)
+[bl] clip turn_l             0.500s  30f loop=False (0.1s)
+[bl] clip turn_r             0.500s  30f loop=False (0.1s)
+[bl] clip jump_start         0.120s   7f loop=False (0.0s)
+[bl] clip jump_air           0.500s  30f loop=True (0.2s)
+[bl] clip jump_fall          0.500s  30f loop=True (0.1s)
+[bl] clip jump_land          0.200s  12f loop=False (0.1s)
+[bl] clip dodge_f            0.367s  22f loop=False (0.1s)
+[bl] clip dodge_b            0.367s  22f loop=False (0.1s)
+[bl] clip dodge_l            0.367s  22f loop=False (0.1s)
+[bl] clip dodge_r            0.367s  22f loop=False (0.1s)
+[bl] clip guard_enter        0.100s   6f loop=False (0.0s)
+[bl] clip guard_hold         1.000s  60f loop=True (0.2s)
+[bl] clip guard_exit         0.120s   7f loop=False (0.1s)
+[bl] clip guard_block        0.200s  12f loop=False (0.1s)
+[bl] clip guard_break        0.900s  54f loop=False (0.3s)
+[bl] clip hit_front          0.300s  18f loop=False (0.1s)
+[bl] clip hit_back           0.300s  18f loop=False (0.1s)
+[bl] clip hit_heavy          0.500s  30f loop=False (0.2s)
+[bl] clip stagger            0.600s  36f loop=False (0.2s)
+[bl] clip knockdown          0.800s  48f loop=False (0.3s)
+[bl] clip getup              0.450s  27f loop=False (0.1s)
+[bl] clip grabbed            0.450s  27f loop=False (0.1s)
+[bl] clip knockout           1.200s  72f loop=False (0.4s)
+[bl] clip respawn            0.800s  48f loop=False (0.2s)
+[bl] clip victory            2.500s 150f loop=True (0.7s)
+[bl] clip defeat             2.000s 120f loop=False (0.6s)
+[bl] clip light_s            0.483s  29f loop=False (0.1s)
+[bl] clip light_l            0.483s  29f loop=False (0.1s)
+[bl] clip light_r            0.483s  29f loop=False (0.1s)
+[bl] clip light_air          0.400s  24f loop=False (0.1s)
+[bl] clip heavy              1.017s  61f loop=False (0.3s)
+[bl] clip skill_q_stance     0.267s  16f loop=False (0.1s)
+[bl] clip skill_q_success    0.350s  21f loop=False (0.1s)
+[bl] clip skill_q_whiff      0.450s  27f loop=False (0.2s)
+[bl] clip skill_e            0.720s  43f loop=False (0.2s)
+[bl] clip skill_r_reach      0.240s  14f loop=False (0.1s)
+[bl] clip skill_r_grapple    0.450s  27f loop=False (0.2s)
+[bl] clip skill_r_release    0.300s  18f loop=False (0.1s)
+[bl] clip skill_r_whiff      0.500s  30f loop=False (0.1s)
+[bl] alignment: {'scrap_light_s#0': 0.0028, 'scrap_light_l#0': 0.0282, 'scrap_light_r#0': 0.025, 'scrap_light_air#0': 0.0801, 'scrap_heavy#0': 0.0066, 'scrap_leg_sweep#0': 0.0749, 'scrap_turnabout#0': 0.021}
+[bl] contacts: {'idle': 0.0001, 'walk_f': 0.0, 'walk_b': 0.0, 'walk_l': 0.0, 'walk_r': 0.0, 'run_f': 0.0, 'run_b': 0.0, 'run_l': 0.0, 'run_r': 0.0}
+Info: Saved as "scrap.blend"
+Info: Total files 8 | Changed 8 | Failed 0
+Info: Saved "scrap.blend"
+[bl] saved /home/user/Wildrush/blender/characters/scrap/scrap.blend
+INFO Draco mesh compression is available, use library at /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/4.5/scripts/addons_core/io_scene_gltf2/libextern_draco.so
+08:57:41 | INFO: Starting glTF 2.0 export
+08:57:41 | WARNING: Mesh scrap_mesh is not valid, and may be exported wrongly
+08:57:41 | INFO: Extracting primitive: scrap_mesh
+08:57:42 | INFO: Primitives created: 4
+08:58:03 | INFO: Finished glTF 2.0 export in 21.45140552520752 s
+
+[bl] exported /home/user/Wildrush/game/assets/characters/scrap/scrap.glb (11.6 MB)
+[bl] done in 33.3s
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+Read blend: "/tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work/scrap/stage1.blend"
+
+Blender quit
+---- [scrap animate+export] exit=0 (34s)
+---- [scrap palette textures] cp /home/user/Wildrush/blender/characters/scrap/textures/scrap_cloth_mask.png /home/user/Wildrush/blender/characters/scrap/textures/scrap_cloth_detail.png /home/user/Wildrush/blender/characters/scrap/textures/scrap_cloth_normal.png /home/user/Wildrush/game/assets/characters/scrap/
+---- [scrap palette textures] exit=0 (0s)
+---- [scrap import sidecar] /home/user/Wildrush/.venv/bin/python /home/user/Wildrush/blender/characters/write_import_sidecar.py /home/user/Wildrush/game/assets/characters/scrap/scrap_anim.json /home/user/Wildrush/game/assets/characters/scrap/scrap.glb.import
+sidecar /home/user/Wildrush/game/assets/characters/scrap/scrap.glb.import loops: guard_hold,idle,jump_air,jump_fall,run_b,run_f,run_l,run_r,victory,walk_b,walk_f,walk_l,walk_r
+---- [scrap import sidecar] exit=0 (0s)
+---- [scrap checks copy] cp /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work/scrap/checks.json /home/user/Wildrush/evidence/characters/scrap_checks.json
+---- [scrap checks copy] exit=0 (0s)
+---- [scrap blender reimport] /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/blender -b --factory-startup -t 2 --python-exit-code 1 --python /home/user/Wildrush/blender/characters/bl_verify_glb.py -- /home/user/Wildrush/game/assets/characters/scrap/scrap.glb /home/user/Wildrush/evidence/characters/scrap_glbcheck.json
+08:58:04 | INFO: Data are loaded, start creating Blender stuff
+08:58:04 | INFO: Blender create Mesh node scrap_mesh
+08:58:06 | INFO: glTF import finished in 1.37s
+GLB_CHECK {"file": "/home/user/Wildrush/game/assets/characters/scrap/scrap.glb", "ok": true, "operator": ["FINISHED"], "armatures": 1, "bones": 49, "meshes": 2, "triangles": 37918, "materials": ["scrap_cloth", "scrap_detail", "scrap_eye", "scrap_fur"]}
+GLB_CHECK_ANIMS 48
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+
+Blender quit
+---- [scrap blender reimport] exit=0 (3s)
+---- [scrap renders] /home/user/Wildrush/.toolchain/blender-4.5.9-linux-x64/blender -b /home/user/Wildrush/blender/characters/scrap/scrap.blend -t 2 --gpu-backend vulkan --python-exit-code 1 --python /home/user/Wildrush/blender/characters/bl_render.py -- scrap /home/user/Wildrush/evidence/characters /home/user/Wildrush/game/assets/ui/portraits
+Blender 4.5.9 LTS (hash 8bf95cbd38d1 built 2026-04-21 01:31:15)
+Read blend: "/home/user/Wildrush/blender/characters/scrap/scrap.blend"
+Fra:0 Mem:212.98M (Peak 226.13M) | Time:00:04.74 | Rendering 1 / 48 samples
+Fra:0 Mem:212.97M (Peak 226.13M) | Time:00:14.31 | Rendering 25 / 48 samples
+Fra:0 Mem:212.97M (Peak 226.13M) | Time:00:22.00 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/turn_front.png'
+Time: 00:22.50 (Saving: 00:00.15)
+
+Fra:0 Mem:213.01M (Peak 216.33M) | Time:00:01.18 | Rendering 1 / 48 samples
+Fra:0 Mem:212.98M (Peak 216.33M) | Time:00:13.87 | Rendering 25 / 48 samples
+Fra:0 Mem:212.98M (Peak 216.33M) | Time:00:25.70 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/turn_back.png'
+Time: 00:26.19 (Saving: 00:00.13)
+
+Fra:0 Mem:213.02M (Peak 216.37M) | Time:00:01.15 | Rendering 1 / 48 samples
+Fra:0 Mem:213.01M (Peak 216.37M) | Time:00:13.80 | Rendering 25 / 48 samples
+Fra:0 Mem:213.01M (Peak 216.37M) | Time:00:23.80 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/turn_left.png'
+Time: 00:24.18 (Saving: 00:00.12)
+
+Fra:0 Mem:213.02M (Peak 216.38M) | Time:00:00.89 | Rendering 1 / 48 samples
+Fra:0 Mem:213.01M (Peak 216.38M) | Time:00:11.18 | Rendering 25 / 48 samples
+Fra:0 Mem:213.01M (Peak 216.38M) | Time:00:20.94 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/turn_right.png'
+Time: 00:21.30 (Saving: 00:00.12)
+
+[bl] turnaround done
+Fra:9 Mem:215.46M (Peak 218.81M) | Time:00:00.85 | Rendering 1 / 48 samples
+Fra:9 Mem:215.45M (Peak 218.81M) | Time:00:10.77 | Rendering 25 / 48 samples
+Fra:9 Mem:215.45M (Peak 218.81M) | Time:00:20.15 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/skill_skill_q_stance.png'
+Time: 00:20.59 (Saving: 00:00.13)
+
+Fra:16 Mem:216.79M (Peak 220.08M) | Time:00:00.92 | Rendering 1 / 48 samples
+Fra:16 Mem:216.79M (Peak 220.08M) | Time:00:11.25 | Rendering 25 / 48 samples
+Fra:16 Mem:216.73M (Peak 220.08M) | Time:00:20.74 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/skill_skill_e.png'
+Time: 00:21.01 (Saving: 00:00.07)
+
+Fra:12 Mem:216.04M (Peak 219.34M) | Time:00:00.87 | Rendering 1 / 48 samples
+Fra:12 Mem:216.04M (Peak 219.34M) | Time:00:11.63 | Rendering 25 / 48 samples
+Fra:12 Mem:215.98M (Peak 219.34M) | Time:00:21.33 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/skill_skill_r_grapple.png'
+Time: 00:21.67 (Saving: 00:00.12)
+
+Fra:30 Mem:217.64M (Peak 220.94M) | Time:00:00.82 | Rendering 1 / 48 samples
+Fra:30 Mem:217.64M (Peak 220.94M) | Time:00:11.25 | Rendering 25 / 48 samples
+Fra:30 Mem:217.58M (Peak 220.94M) | Time:00:20.94 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/skill_heavy.png'
+Time: 00:21.26 (Saving: 00:00.10)
+
+Fra:0 Mem:217.59M (Peak 220.90M) | Time:00:00.80 | Rendering 1 / 48 samples
+Fra:0 Mem:217.59M (Peak 220.90M) | Time:00:10.90 | Rendering 25 / 48 samples
+Fra:0 Mem:217.53M (Peak 220.90M) | Time:00:20.36 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/_tmp_scrap/skill_guard_hold.png'
+Time: 00:20.75 (Saving: 00:00.12)
+
+[bl] skills done
+Fra:0 Mem:240.58M (Peak 243.88M) | Time:00:01.02 | Rendering 1 / 48 samples
+Fra:0 Mem:240.58M (Peak 243.88M) | Time:00:19.79 | Rendering 25 / 48 samples
+Fra:0 Mem:240.52M (Peak 243.88M) | Time:00:36.83 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/evidence/characters/scrap_blender.png'
+Time: 00:37.88 (Saving: 00:00.26)
+
+Fra:0 Mem:226.19M (Peak 229.48M) | Time:00:00.84 | Rendering 1 / 48 samples
+Fra:0 Mem:226.19M (Peak 229.48M) | Time:00:07.79 | Rendering 25 / 48 samples
+Fra:0 Mem:226.11M (Peak 229.48M) | Time:00:14.12 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/game/assets/ui/portraits/scrap.png'
+Time: 00:14.31 (Saving: 00:00.08)
+
+Fra:0 Mem:234.20M (Peak 237.05M) | Time:00:00.90 | Rendering 1 / 48 samples
+Fra:0 Mem:234.20M (Peak 237.05M) | Time:00:08.57 | Rendering 25 / 48 samples
+Fra:0 Mem:234.12M (Peak 237.05M) | Time:00:17.55 | Rendering 48 / 48 samples
+Saved: '/home/user/Wildrush/game/assets/ui/portraits/scrap_full.png'
+Time: 00:18.02 (Saving: 00:00.18)
+
+[bl] portraits done
+
+Blender quit
+---- [scrap renders] exit=0 (275s)
+---- [godot import] /home/user/Wildrush/.toolchain/godot/Godot_v4.7.2-stable_linux.x86_64 --headless --path /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/charcheck_scrap --import
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started Project initialization (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Scanning file structure...[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | Loading global class names...[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | Verifying GDExtensions...[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | Creating autoload scripts...[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | Initializing plugins...[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | Starting file scan...[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started Scanning actions... (20 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | bruno.glb[39m[0m
+[   4% ] [90m[1m_update_scan_actions[22m | bruno_cloth_detail.png[39m[0m
+[   9% ] [90m[1m_update_scan_actions[22m | bruno_cloth_mask.png[39m[0m
+[  14% ] [90m[1m_update_scan_actions[22m | bruno_cloth_normal.png[39m[0m
+[  19% ] [90m[1m_update_scan_actions[22m | hops.glb[39m[0m
+[  23% ] [90m[1m_update_scan_actions[22m | hops_cloth_detail.png[39m[0m
+[  28% ] [90m[1m_update_scan_actions[22m | hops_cloth_mask.png[39m[0m
+[  33% ] [90m[1m_update_scan_actions[22m | hops_cloth_normal.png[39m[0m
+[  38% ] [90m[1m_update_scan_actions[22m | nyx.glb[39m[0m
+[  42% ] [90m[1m_update_scan_actions[22m | nyx_cloth_detail.png[39m[0m
+[  47% ] [90m[1m_update_scan_actions[22m | nyx_cloth_mask.png[39m[0m
+[  52% ] [90m[1m_update_scan_actions[22m | nyx_cloth_normal.png[39m[0m
+[  57% ] [90m[1m_update_scan_actions[22m | scrap.glb[39m[0m
+[  61% ] [90m[1m_update_scan_actions[22m | scrap_cloth_detail.png[39m[0m
+[  66% ] [90m[1m_update_scan_actions[22m | scrap_cloth_mask.png[39m[0m
+[  71% ] [90m[1m_update_scan_actions[22m | scrap_cloth_normal.png[39m[0m
+[  76% ] [90m[1m_update_scan_actions[22m | vex.glb[39m[0m
+[  80% ] [90m[1m_update_scan_actions[22m | vex_cloth_detail.png[39m[0m
+[  85% ] [90m[1m_update_scan_actions[22m | vex_cloth_mask.png[39m[0m
+[  90% ] [90m[1m_update_scan_actions[22m | vex_cloth_normal.png[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (20 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   4% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   9% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  14% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  19% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  23% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  28% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  33% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  38% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  42% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  47% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  52% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  57% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  61% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  66% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  71% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  76% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  80% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  85% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[  90% ] [90m[1mreimport[22m | Preparing files to reimport...[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing pre-reimport operations...[39m[0m
+[   0% ] [90m[1mpreload_reimporting_scene[22m | Started Preparing scenes for reload (1 steps)[39m[0m
+[   0% ] [90m[1mpreload_reimporting_scene[22m | Analyzing scene [empty][39m[0m
+[  50% ] [90m[1mpreload_reimporting_scene[22m | Preparation done.[39m[0m
+[92m[ DONE ][39m [1mpreload_reimporting_scene[22m
+[0m
+[   0% ] [90m[1mreimport[22m | scrap.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+[   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+[  99% ] [90m[1mimport[22m | Saving...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[   4% ] [90m[1mreimport[22m | scrap.glb[39m[0m
+[   9% ] [90m[1mreimport[22m | vex_cloth_normal.png[39m[0m
+[  14% ] [90m[1mreimport[22m | vex_cloth_mask.png[39m[0m
+[  19% ] [90m[1mreimport[22m | vex_cloth_detail.png[39m[0m
+[  23% ] [90m[1mreimport[22m | scrap_cloth_normal.png[39m[0m
+[  28% ] [90m[1mreimport[22m | scrap_cloth_mask.png[39m[0m
+[  33% ] [90m[1mreimport[22m | scrap_cloth_detail.png[39m[0m
+[  38% ] [90m[1mreimport[22m | nyx_cloth_normal.png[39m[0m
+[  42% ] [90m[1mreimport[22m | nyx_cloth_mask.png[39m[0m
+[  47% ] [90m[1mreimport[22m | nyx_cloth_detail.png[39m[0m
+[  52% ] [90m[1mreimport[22m | hops_cloth_normal.png[39m[0m
+[  57% ] [90m[1mreimport[22m | hops_cloth_mask.png[39m[0m
+[  61% ] [90m[1mreimport[22m | hops_cloth_detail.png[39m[0m
+[  66% ] [90m[1mreimport[22m | bruno_cloth_normal.png[39m[0m
+[  71% ] [90m[1mreimport[22m | bruno_cloth_mask.png[39m[0m
+[  76% ] [90m[1mreimport[22m | nyx.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+[   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+[  99% ] [90m[1mimport[22m | Saving...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  80% ] [90m[1mreimport[22m | hops.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+[   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+[  99% ] [90m[1mimport[22m | Saving...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  85% ] [90m[1mreimport[22m | vex.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+[   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+[  99% ] [90m[1mimport[22m | Saving...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  90% ] [90m[1mreimport[22m | bruno.glb[39m[0m
+[   0% ] [90m[1mimport[22m | Started Import Scene (104 steps)[39m[0m
+[   0% ] [90m[1mimport[22m | Importing Scene...[39m[0m
+[   1% ] [90m[1mimport[22m | Running Custom Script...[39m[0m
+[  99% ] [90m[1mimport[22m | Saving...[39m[0m
+[92m[ DONE ][39m [1mimport[22m
+[0m
+[  95% ] [90m[1mreimport[22m | Finalizing Asset Import...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started (Re)Importing Assets (20 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | Executing post-reimport operations...[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started Loading editor (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Loading editor layout...[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | Loading docks...[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m
+[godot import] exit=0
+---- [godot check] timeout 900 xvfb-run -a -s -screen 0 1600x900x24 /home/user/Wildrush/.toolchain/godot/Godot_v4.7.2-stable_linux.x86_64 --path /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/charcheck_scrap --resolution 1600x900 --script res://check_chars.gd -- nyx,bruno,vex,hops,scrap /home/user/Wildrush/evidence/characters/godot_check.png /home/user/Wildrush/evidence/characters/godot_check.json
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+Vulkan 1.4.318 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 20.1.2, 256 bits)
+libpulse.so.0: cannot open shared object file: No such file or directory
+libpulse.so.0: cannot open shared object file: No such file or directory
+ALSA lib confmisc.c:855:(parse_card) cannot find card '0'
+ALSA lib conf.c:5204:(_snd_config_evaluate) function snd_func_card_inum returned error: No such file or directory
+ALSA lib confmisc.c:422:(snd_func_concat) error evaluating strings
+ALSA lib conf.c:5204:(_snd_config_evaluate) function snd_func_concat returned error: No such file or directory
+ALSA lib confmisc.c:1342:(snd_func_refer) error evaluating name
+ALSA lib conf.c:5204:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5727:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2721:(snd_pcm_open_noupdate) Unknown PCM default
+ERROR: Condition "status < 0" is true. Returning: ERR_CANT_OPEN
+   at: init_output_device (drivers/alsa/audio_driver_alsa.cpp:97)
+WARNING: All audio drivers failed, falling back to the dummy driver.
+     at: initialize (servers/audio/audio_server.cpp:258)
+
+ERROR: Node not inside tree. Use look_at_from_position() instead.
+   at: look_at (scene/3d/node_3d.cpp:1253)
+   GDScript backtrace (most recent call first):
+       [0] _initialize (res://check_chars.gd:41)
+CHARCHECK nyx bones=49 tris=37838 clips=49 missing=[] len_mismatch=[] loop_mismatch=[] mats=["nyx_fur", "nyx_cloth", "nyx_eye", "nyx_detail"]
+CHARCHECK bruno bones=46 tris=37838 clips=50 missing=[] len_mismatch=[] loop_mismatch=[] mats=["bruno_fur", "bruno_cloth", "bruno_eye", "bruno_detail"]
+CHARCHECK vex bones=49 tris=37833 clips=49 missing=[] len_mismatch=[] loop_mismatch=[] mats=["vex_fur", "vex_cloth", "vex_eye", "vex_detail"]
+CHARCHECK hops bones=47 tris=37791 clips=48 missing=[] len_mismatch=[] loop_mismatch=[] mats=["hops_fur", "hops_cloth", "hops_eye", "hops_detail"]
+CHARCHECK scrap bones=49 tris=37838 clips=48 missing=[] len_mismatch=[] loop_mismatch=[] mats=["scrap_fur", "scrap_cloth", "scrap_eye", "scrap_detail"]
+---- [godot check] exit=0 (7s)
+---- [report] /home/user/Wildrush/.venv/bin/python /home/user/Wildrush/blender/characters/report.py /tmp/claude-0/-home-user-Wildrush/c9dc8d3a-b8f0-5cee-bba5-df3048efc47a/scratchpad/work /home/user/Wildrush/evidence/characters /home/user/Wildrush/game/assets/characters nyx bruno vex hops scrap
+report written /home/user/Wildrush/evidence/characters/report.json
+nyx tris 37838 mats 4 bones 49 clips 49 max_align 0.0782 godot 49
+bruno tris 37839 mats 4 bones 46 clips 50 max_align 0.0496 godot 50
+vex tris 37836 mats 4 bones 49 clips 49 max_align 0.0618 godot 49
+hops tris 37791 mats 4 bones 47 clips 48 max_align 0.0508 godot 48
+scrap tris 37839 mats 4 bones 49 clips 48 max_align 0.0801 godot 48
+---- [report] exit=0 (0s)
+==== build_characters.sh OK 2026-09-29T09:03:18Z
