@@ -1,59 +1,43 @@
 # PROJECT_STATE
 
 Last updated: 2026-09-29 (session 2). Branch `claude/blissful-hypatia-rujnlz` (pushed).
+Gate-by-gate evidence: `docs/ACCEPTANCE_MATRIX.md`. Decisions: `docs/DECISIONS.md` (D-001…D-022).
 
 ## Environment (this container)
 Ubuntu 24.04, 4 threads, 15 GB RAM, no GPU (lavapipe/llvmpipe + Xvfb), PostgreSQL 16
 native, Docker CLI without daemon. Toolchain under `.toolchain/` via `tools/setup_env.sh`
 (Godot 4.7.2-stable + export templates, Blender 4.5.9 LTS, Python venv `.venv`).
-After adding new `class_name` scripts or assets run `$GODOT_BIN --headless --path game --import`
-(refreshes the global class cache; a stale cache shows up as "Could not find type X").
+After adding `class_name` scripts or assets: `$GODOT_BIN --headless --path game --import`.
 
-## Done (with executed evidence)
-- Core sim (60 Hz authoritative MatchSim, Turf Shift rules, combat, 15 skills + 5 passives):
-  unit suite `res://tests/test_runner.tscn` → 73 passed, 0 failed (2026-09-29).
-- Arena: layout JSON + collision + navmesh + analysis (`evidence/arena/`); Blender art chunks
-  `game/assets/arena/briarport_*.glb` + `arena_art.json` (326k tris, 36 materials) loaded by
-  `ArenaView`; Blender verify vs layout PASS (agent report, `blender/arena/PIPELINE_STATE.md`).
-- Characters: Nyx and Bruno complete (GLB + anim json + cloth masks, alignment ≤ 0.078 m,
-  Godot scratch import clean; `evidence/characters/`). Vex/Hops/Scrap building (character agent).
-- Networking: 10-client test previously passed; latency/loss matrix 0/50/100/150 ms with
-  0–3 % loss: all 4 conditions PASS (`evidence/net/netsim_summary/result.json`, 2026-09-28).
-  Admission gating (no inputs before server welcome), ENet peer timeouts 12 s/30 s,
-  public scoreboard broadcast every 2 s.
-- Presentation: `scenes/match.tscn` (offline/training/online/replay) with FighterView (GLB or
-  procedural stand-in), CameraRig, PlayerInput, ArenaView, VfxDirector, AudioDirector, MatchHud,
-  PauseMenu. Evidence: `evidence/match/*.png` (offline, training with Nyx GLB, replay).
-  Headless full offline match: 82–70, awards + replay written (2 min wall time).
-- UI screens (UI agent): splash, main menu + sub-screens, settings overlay, results, online
-  lobby, Online autoload; `game/tools/ui_screenshots.tscn` → `evidence/ui/` (96 shots; lobby
-  overflow fixed and re-shot 0 failures).
-- Services (FastAPI/PostgreSQL) complete per `services/README.md`, pytest evidence in
-  `evidence/services/`.
+## Status: all release gates executed
+| Gate | Result | Evidence |
+|---|---|---|
+| G1 import/parse/export | PASS | 79/79 unit tests (4294 checks), 3 exports, 0 engine errors in flows |
+| G2 five rigged fighters | PASS | `evidence/characters/` (all five, in-engine lineup) |
+| G3 per-skill behaviour | PASS | `game/tests/unit/test_skills_*.gd` |
+| G4 match rules | PASS | `test_match_rules.gd` + complete matches |
+| G5 navigation/fairness | PASS | `evidence/arena/travel_times.json` |
+| G6 ten client processes | PASS | `evidence/net/ten_clients/result.json` |
+| G7 latency/loss matrix | PASS | `evidence/net/netsim_summary/result.json` (localhost proxy) |
+| G8 security negatives | PASS | `evidence/security/game_server/result.json`, service pytest (156) |
+| G9 E2E ranked, 10 identities | PASS | `evidence/e2e/ranked/result.json`, `evidence/online/online_client_check.json` |
+| G10 offline match + 21-min soak | PASS | `evidence/flow/offline_flow.json`, `evidence/soak/server_clients/result.json` |
+| G11 UI screenshots/interaction | PASS | `evidence/ui/report.json` (96 shots), `evidence/match/` |
+| G12 fresh exported builds | PASS; Windows run BLOCKED | `evidence/export/verify_export.json` |
 
-## In progress
-- `game/tools/flow_test.tscn` end-to-end: boot → menu → offline start → match → results → menu.
-- Export presets written (`game/export_presets.cfg`: Windows client, Linux server, Linux client
-  for local verification) — exports not yet built.
+Performance (software renderer only): `evidence/perf/summary.json`.
 
-## Next exact actions
-1. Finish flow test; build exports; run exported Linux server + client from another dir (G12).
-2. Re-run ten-client test; write security integration test (G8) and E2E ranked test with 10
-   identities through services + allocator (G9); 20-min soak (G10); perf capture (F-PERF).
-3. Integrate Vex/Hops/Scrap GLBs as they land (`--import`, capture in training).
-4. `tools/verify.sh`, README/controls/troubleshooting/license manifest, acceptance matrix.
+## Known limitations / follow-ups
+- Windows client exported (`builds/windows_client/WILDRUSH.exe`, PE-checked) but not run: no Windows machine.
+- Docker Compose deployment written and statically validated, not executed: no Docker daemon.
+- Performance numbers are llvmpipe CPU-rendering numbers; GPU performance unmeasured.
+- Character look nits reported by the pipeline (no failing check): Scrap's grey fur renders pale,
+  Bruno's idle guard hides his face in the front view, dark fur-clump streaks on limbs,
+  slightly knock-kneed crouch from the front.
+- First entry into an unseen district stalls on shader compilation under llvmpipe; on GPUs
+  Godot's ubershader path should hide most of this, but it has not been measured here.
+- No public deployment has been performed; services bind to loopback by default.
 
-## Workstreams / owners
-| Stream | Owner | Interface doc |
-|--------|-------|---------------|
-| Game code (sim, net, presentation, integration) | lead | DECISIONS.md |
-| UI screens + Online autoload | UI agent (stopped; lead maintains) | docs/UI_CONTRACT.md |
-| Characters | character agent | docs/CHARACTER_CONTRACT.md, blender/characters/PIPELINE_STATE.md |
-| Arena art | environment agent (done) | docs/ENVIRONMENT_CONTRACT.md, blender/arena/PIPELINE_STATE.md |
-| Control service | services agent (done) | docs/API_CONTRACT.md, services/CONTRACT_NOTES.md |
-
-## Known blockers / deviations
-- No Windows machine: Windows client is exported but cannot be run-tested here.
-- No Docker daemon: `docker compose` deployment is written but not executed here.
-- No GPU: performance numbers are software-rendering (llvmpipe) numbers.
-- Session usage limits interrupted helper agents repeatedly; state files let them resume.
+## How to resume
+`tools/verify.sh` (core gates, ~45 min) or `tools/verify.sh --full` (adds the soak). Asset
+pipelines: `tools/build_characters.sh <id>`, `tools/build_arena_art.sh`, `tools/audio/`.
