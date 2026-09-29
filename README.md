@@ -15,6 +15,22 @@ ratings, history, cosmetics).
 * Design decisions: [`docs/DECISIONS.md`](docs/DECISIONS.md) · full brief: [`docs/MASTER_SPEC.md`](docs/MASTER_SPEC.md)
 
 ## Play
+### On Windows, from a downloaded copy of this repository
+The repository holds the game's source, not the built `.exe` (`builds/` is not committed).
+1. Download **Godot 4.7.2 stable, Windows 64-bit, standard edition (not .NET)** from
+   godotengine.org and unzip it — it is a single program, no installer.
+2. Start it; in the Project Manager choose **Import**, select `game\project.godot` from this
+   folder and confirm **Import & Edit**. The first import converts all models, textures and
+   sounds and takes a few minutes.
+3. Press **F5** (or ▶ in the top-right corner) to play. Offline (5v5 vs bots) and Training need
+   no internet or server.
+
+To get a standalone `WILDRUSH.exe` instead: in the editor, *Editor → Manage Export Templates →
+Download and Install*, then *Project → Export… → Windows Client → Export Project*.
+Needs a Vulkan-capable GPU with current drivers. (So far the game has only been run on Linux;
+if something fails on Windows, the editor's Output panel shows the error.)
+
+### Exported builds
 Exported builds (`tools/verify_export.sh` or the commands below) land in `builds/`:
 * **Windows client** `builds/windows_client/WILDRUSH.exe` — Play Offline (5v5 vs bots, three
   difficulties), Training, Play Online, Collection, History & Replays, Settings.
