@@ -3,70 +3,39 @@
   "ok": true,
   "reasons": [],
   "note": "loopback dev stack; not WAN",
-  "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
+  "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
   "clients_launched": 10,
   "match": {
     "mode": "ranked",
     "state": "finished",
-    "started_at": "2026-09-29T07:44:52Z",
-    "ended_at": "2026-09-29T07:53:00Z"
+    "started_at": "2026-09-29T09:47:43Z",
+    "ended_at": "2026-09-29T09:55:51Z"
   },
   "stored_result": {
-    "winner_team": 0,
+    "winner_team": 1,
     "score": [
-      45,
-      26
+      47,
+      48
     ],
     "duration_s": 480.0,
     "ended_reason": "time"
   },
   "accounts": [
     {
-      "user": "e2e1243p0",
+      "user": "e2e6f4ep0",
       "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
         "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
+        "ended_at": "2026-09-29T09:55:51Z",
         "team": 0,
         "fighter": "nyx",
-        "won": true,
-        "score": [
-          45,
-          26
-        ],
-        "rating_delta": 162.31,
-        "xp_gained": 320
-      },
-      "rating_before": {
-        "rating": 1500.0,
-        "deviation": 350.0,
-        "games": 0,
-        "wins": 0,
-        "losses": 0
-      },
-      "rating_after": {
-        "rating": 1662.31,
-        "deviation": 290.32,
-        "games": 1,
-        "wins": 1,
-        "losses": 0
-      }
-    },
-    {
-      "user": "e2e1243p1",
-      "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
-        "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 1,
-        "fighter": "bruno",
         "won": false,
         "score": [
-          45,
-          26
+          47,
+          48
         ],
         "rating_delta": -162.31,
-        "xp_gained": 200
+        "xp_gained": 278
       },
       "rating_before": {
         "rating": 1500.0,
@@ -84,144 +53,20 @@
       }
     },
     {
-      "user": "e2e1243p2",
+      "user": "e2e6f4ep1",
       "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
         "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 0,
-        "fighter": "vex",
-        "won": true,
-        "score": [
-          45,
-          26
-        ],
-        "rating_delta": 162.31,
-        "xp_gained": 326
-      },
-      "rating_before": {
-        "rating": 1500.0,
-        "deviation": 350.0,
-        "games": 0,
-        "wins": 0,
-        "losses": 0
-      },
-      "rating_after": {
-        "rating": 1662.31,
-        "deviation": 290.32,
-        "games": 1,
-        "wins": 1,
-        "losses": 0
-      }
-    },
-    {
-      "user": "e2e1243p3",
-      "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
-        "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
+        "ended_at": "2026-09-29T09:55:51Z",
         "team": 1,
-        "fighter": "hops",
-        "won": false,
-        "score": [
-          45,
-          26
-        ],
-        "rating_delta": -162.31,
-        "xp_gained": 258
-      },
-      "rating_before": {
-        "rating": 1500.0,
-        "deviation": 350.0,
-        "games": 0,
-        "wins": 0,
-        "losses": 0
-      },
-      "rating_after": {
-        "rating": 1337.69,
-        "deviation": 290.32,
-        "games": 1,
-        "wins": 0,
-        "losses": 1
-      }
-    },
-    {
-      "user": "e2e1243p4",
-      "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
-        "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 0,
-        "fighter": "scrap",
-        "won": true,
-        "score": [
-          45,
-          26
-        ],
-        "rating_delta": 162.31,
-        "xp_gained": 326
-      },
-      "rating_before": {
-        "rating": 1500.0,
-        "deviation": 350.0,
-        "games": 0,
-        "wins": 0,
-        "losses": 0
-      },
-      "rating_after": {
-        "rating": 1662.31,
-        "deviation": 290.32,
-        "games": 1,
-        "wins": 1,
-        "losses": 0
-      }
-    },
-    {
-      "user": "e2e1243p5",
-      "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
-        "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 1,
-        "fighter": "nyx",
-        "won": false,
-        "score": [
-          45,
-          26
-        ],
-        "rating_delta": -162.31,
-        "xp_gained": 196
-      },
-      "rating_before": {
-        "rating": 1500.0,
-        "deviation": 350.0,
-        "games": 0,
-        "wins": 0,
-        "losses": 0
-      },
-      "rating_after": {
-        "rating": 1337.69,
-        "deviation": 290.32,
-        "games": 1,
-        "wins": 0,
-        "losses": 1
-      }
-    },
-    {
-      "user": "e2e1243p6",
-      "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
-        "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 0,
         "fighter": "bruno",
         "won": true,
         "score": [
-          45,
-          26
+          47,
+          48
         ],
         "rating_delta": 162.31,
-        "xp_gained": 316
+        "xp_gained": 276
       },
       "rating_before": {
         "rating": 1500.0,
@@ -239,20 +84,20 @@
       }
     },
     {
-      "user": "e2e1243p7",
+      "user": "e2e6f4ep2",
       "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
         "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 1,
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 0,
         "fighter": "vex",
         "won": false,
         "score": [
-          45,
-          26
+          47,
+          48
         ],
         "rating_delta": -162.31,
-        "xp_gained": 224
+        "xp_gained": 270
       },
       "rating_before": {
         "rating": 1500.0,
@@ -270,20 +115,20 @@
       }
     },
     {
-      "user": "e2e1243p8",
+      "user": "e2e6f4ep3",
       "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
         "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 0,
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 1,
         "fighter": "hops",
         "won": true,
         "score": [
-          45,
-          26
+          47,
+          48
         ],
         "rating_delta": 162.31,
-        "xp_gained": 326
+        "xp_gained": 328
       },
       "rating_before": {
         "rating": 1500.0,
@@ -301,20 +146,20 @@
       }
     },
     {
-      "user": "e2e1243p9",
+      "user": "e2e6f4ep4",
       "history": {
-        "match_id": "d5c50863-af9d-453d-b8af-292758f8711a",
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
         "mode": "ranked",
-        "ended_at": "2026-09-29T07:53:00Z",
-        "team": 1,
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 0,
         "fighter": "scrap",
         "won": false,
         "score": [
-          45,
-          26
+          47,
+          48
         ],
         "rating_delta": -162.31,
-        "xp_gained": 256
+        "xp_gained": 276
       },
       "rating_before": {
         "rating": 1500.0,
@@ -329,8 +174,163 @@
         "games": 1,
         "wins": 0,
         "losses": 1
+      }
+    },
+    {
+      "user": "e2e6f4ep5",
+      "history": {
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
+        "mode": "ranked",
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 1,
+        "fighter": "nyx",
+        "won": true,
+        "score": [
+          47,
+          48
+        ],
+        "rating_delta": 162.31,
+        "xp_gained": 330
+      },
+      "rating_before": {
+        "rating": 1500.0,
+        "deviation": 350.0,
+        "games": 0,
+        "wins": 0,
+        "losses": 0
+      },
+      "rating_after": {
+        "rating": 1662.31,
+        "deviation": 290.32,
+        "games": 1,
+        "wins": 1,
+        "losses": 0
+      }
+    },
+    {
+      "user": "e2e6f4ep6",
+      "history": {
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
+        "mode": "ranked",
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 0,
+        "fighter": "bruno",
+        "won": false,
+        "score": [
+          47,
+          48
+        ],
+        "rating_delta": -162.31,
+        "xp_gained": 290
+      },
+      "rating_before": {
+        "rating": 1500.0,
+        "deviation": 350.0,
+        "games": 0,
+        "wins": 0,
+        "losses": 0
+      },
+      "rating_after": {
+        "rating": 1337.69,
+        "deviation": 290.32,
+        "games": 1,
+        "wins": 0,
+        "losses": 1
+      }
+    },
+    {
+      "user": "e2e6f4ep7",
+      "history": {
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
+        "mode": "ranked",
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 1,
+        "fighter": "vex",
+        "won": true,
+        "score": [
+          47,
+          48
+        ],
+        "rating_delta": 162.31,
+        "xp_gained": 312
+      },
+      "rating_before": {
+        "rating": 1500.0,
+        "deviation": 350.0,
+        "games": 0,
+        "wins": 0,
+        "losses": 0
+      },
+      "rating_after": {
+        "rating": 1662.31,
+        "deviation": 290.32,
+        "games": 1,
+        "wins": 1,
+        "losses": 0
+      }
+    },
+    {
+      "user": "e2e6f4ep8",
+      "history": {
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
+        "mode": "ranked",
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 0,
+        "fighter": "hops",
+        "won": false,
+        "score": [
+          47,
+          48
+        ],
+        "rating_delta": -162.31,
+        "xp_gained": 296
+      },
+      "rating_before": {
+        "rating": 1500.0,
+        "deviation": 350.0,
+        "games": 0,
+        "wins": 0,
+        "losses": 0
+      },
+      "rating_after": {
+        "rating": 1337.69,
+        "deviation": 290.32,
+        "games": 1,
+        "wins": 0,
+        "losses": 1
+      }
+    },
+    {
+      "user": "e2e6f4ep9",
+      "history": {
+        "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3",
+        "mode": "ranked",
+        "ended_at": "2026-09-29T09:55:51Z",
+        "team": 1,
+        "fighter": "scrap",
+        "won": true,
+        "score": [
+          47,
+          48
+        ],
+        "rating_delta": 162.31,
+        "xp_gained": 322
+      },
+      "rating_before": {
+        "rating": 1500.0,
+        "deviation": 350.0,
+        "games": 0,
+        "wins": 0,
+        "losses": 0
+      },
+      "rating_after": {
+        "rating": 1662.31,
+        "deviation": 290.32,
+        "games": 1,
+        "wins": 1,
+        "losses": 0
       }
     }
   ],
-  "wall_s": 562.8
+  "wall_s": 563.0
 }

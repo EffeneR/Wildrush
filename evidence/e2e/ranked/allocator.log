@@ -18,3 +18,8 @@
 2026-09-29 07:43:19,204 INFO wildrush.allocator: shutting down: terminating 0 game server(s)
 2026-09-29 07:43:48,401 INFO wildrush.allocator: allocator dev-local (local) -> http://127.0.0.1:8080, ports 24610-24699, max 4 matches, timeout 1500s
 2026-09-29 07:44:51,600 INFO wildrush.allocator: started match d5c50863-af9d-453d-b8af-292758f8711a (ranked) pid 11568 on port 24610, log /home/user/Wildrush/.run/allocator/match-logs/d5c50863-af9d-453d-b8af-292758f8711a.log
+2026-09-29 07:53:03,687 INFO wildrush.allocator: stop requested (signal 15)
+2026-09-29 07:53:03,709 INFO wildrush.allocator: shutting down: terminating 1 game server(s)
+2026-09-29 07:53:03,769 INFO wildrush.allocator: match d5c50863-af9d-453d-b8af-292758f8711a pid 11568 exited with -15 (allocator_shutdown)
+2026-09-29 09:46:38,888 INFO wildrush.allocator: allocator dev-local (local) -> http://127.0.0.1:8080, ports 24610-24699, max 4 matches, timeout 1500s
+2026-09-29 09:47:42,985 INFO wildrush.allocator: started match 152d36de-15a0-42f5-bd2c-193a9cfb5cf3 (ranked) pid 1246 on port 24610, log /home/user/Wildrush/.run/allocator/match-logs/152d36de-15a0-42f5-bd2c-193a9cfb5cf3.log

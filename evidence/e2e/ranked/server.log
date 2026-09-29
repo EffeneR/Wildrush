@@ -1,0 +1,26 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[server] {"bots_allowed":false,"build":"wildrush-1.0.0","ev":"server_started","match_id":"152d36de-15a0-42f5-bd2c-193a9cfb5cf3","mode":"ranked","port":24610,"protocol":3,"t":0}
+[server] {"ev":"joined","observer":false,"peer":532166997,"pid":2,"t":27}
+[server] {"ev":"joined","observer":false,"peer":616625355,"pid":3,"t":46}
+[server] {"ev":"joined","observer":false,"peer":2016627889,"pid":4,"t":47}
+[server] {"ev":"joined","observer":false,"peer":1297301864,"pid":5,"t":49}
+[server] {"ev":"joined","observer":false,"peer":1683999131,"pid":6,"t":50}
+[server] {"ev":"joined","observer":false,"peer":377741904,"pid":7,"t":51}
+[server] {"ev":"joined","observer":false,"peer":30137139,"pid":8,"t":52}
+[server] {"ev":"joined","observer":false,"peer":294504677,"pid":9,"t":53}
+[server] {"ev":"joined","observer":false,"peer":558894971,"pid":10,"t":55}
+[server] {"ev":"joined","observer":false,"peer":2098332180,"pid":11,"t":56}
+[server] {"ev":"select","players":10,"t":57}
+[server] {"bots":0,"ev":"match_start","fighters":10,"t":180}
+[server] {"ev":"match_end","reason":"time","replay":"user://replays/152d36de-15a0-42f5-bd2c-193a9cfb5cf3.wrr","score":[47,48],"t":29279,"winner":1}
+[server] {"ev":"left","peer":377741904,"pid":7,"t":29347}
+[server] {"ev":"left","peer":1683999131,"pid":6,"t":29347}
+[server] {"ev":"left","peer":2098332180,"pid":11,"t":29348}
+[server] {"ev":"left","peer":616625355,"pid":3,"t":29348}
+[server] {"ev":"left","peer":30137139,"pid":8,"t":29348}
+[server] {"ev":"left","peer":1297301864,"pid":5,"t":29348}
+[server] {"ev":"left","peer":2016627889,"pid":4,"t":29348}
+[server] {"ev":"left","peer":294504677,"pid":9,"t":29348}
+[server] {"ev":"left","peer":558894971,"pid":10,"t":29348}
+[server] {"ev":"left","peer":532166997,"pid":2,"t":29348}

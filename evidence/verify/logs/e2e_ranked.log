@@ -1,0 +1,16 @@
+[dev] starting PostgreSQL on 127.0.0.1:55432
+[dev] applying migrations (alembic upgrade head)
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+[dev] starting control service on http://127.0.0.1:8080
+[dev] healthy: {"ok":true,"db":"ok"}
+[dev] service  : http://127.0.0.1:8080   (log /home/user/Wildrush/.run/service.log)
+[dev] database : 127.0.0.1:55432/wildrush   (credentials in /home/user/Wildrush/.run/dev.env)
+[dev] admin CLI: set -a; source /home/user/Wildrush/.run/dev.env; set +a; cd services && /home/user/Wildrush/.venv/bin/python -m wildrush_svc.admin list-servers
+[dev] starting allocator dev-local (region local) -> http://127.0.0.1:8080
+[dev] allocator running (pid 32645); it is listed in http://127.0.0.1:8080/v1/servers; log /home/user/Wildrush/.run/allocator/allocator.log
+[dev] allocator stopped
+[dev] allocator not running
+[dev] stopping control service (pid 32613)
+[dev] stopping PostgreSQL
+{"ok": true, "reasons": [], "match_id": "152d36de-15a0-42f5-bd2c-193a9cfb5cf3", "wall_s": 563.0}
