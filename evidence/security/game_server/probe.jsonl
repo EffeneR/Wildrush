@@ -1,8 +1,8 @@
-{"detail":"127.0.0.1:24700","ev":"status","ms":1,"status":"connecting"}
+{"detail":"127.0.0.1:24700","ev":"status","ms":0,"status":"connecting"}
 {"detail":"","ev":"status","ms":15,"status":"connected"}
 {"ev":"welcome","ms":22,"observer":false,"pid":3}
-{"ev":"pick","f":"hops","ms":50}
-{"ev":"lock","f":"hops","ms":1064}
-{"ev":"probe_start","ms":1961}
-{"ev":"probe_sent","ms":1962}
-{"detail":"","ev":"status","ms":1975,"status":"disconnected"}
+{"ev":"pick","f":"nyx","ms":56}
+{"ev":"lock","f":"nyx","ms":940}
+{"ev":"probe_start","ms":1974}
+{"ev":"probe_sent","ms":1976}
+{"detail":"","ev":"status","ms":1988,"status":"disconnected"}

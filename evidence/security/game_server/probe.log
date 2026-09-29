@@ -1,10 +1,10 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-[client] {"detail":"127.0.0.1:24700","ev":"status","ms":1,"status":"connecting"}
+[client] {"detail":"127.0.0.1:24700","ev":"status","ms":0,"status":"connecting"}
 [client] {"detail":"","ev":"status","ms":15,"status":"connected"}
 [client] {"ev":"welcome","ms":22,"observer":false,"pid":3}
-[client] {"ev":"pick","f":"hops","ms":50}
-[client] {"ev":"lock","f":"hops","ms":1064}
-[client] {"ev":"probe_start","ms":1961}
-[client] {"ev":"probe_sent","ms":1962}
-[client] {"detail":"","ev":"status","ms":1975,"status":"disconnected"}
+[client] {"ev":"pick","f":"nyx","ms":56}
+[client] {"ev":"lock","f":"nyx","ms":940}
+[client] {"ev":"probe_start","ms":1974}
+[client] {"ev":"probe_sent","ms":1976}
+[client] {"detail":"","ev":"status","ms":1988,"status":"disconnected"}

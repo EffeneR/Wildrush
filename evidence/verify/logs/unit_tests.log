@@ -1,0 +1,87 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS test_00_scripts.gd:test_all_scripts_parse
+PASS test_00_scripts.gd:test_no_guaranteed_light_chains
+PASS test_00_scripts.gd:test_spec_vitals
+PASS test_00_scripts.gd:test_tuning_loaded_for_all_fighters
+PASS test_combat.gd:test_control_resistance_prevents_repeated_lockdown
+PASS test_combat.gd:test_dodge_evades_and_is_limited
+PASS test_combat.gd:test_enemy_cannot_enter_protected_spawn
+PASS test_combat.gd:test_guard_blocks_front_not_back
+PASS test_combat.gd:test_guard_break_is_punishable
+PASS test_combat.gd:test_health_regen_after_six_seconds
+PASS test_combat.gd:test_hits_do_not_pass_through_walls
+PASS test_combat.gd:test_knockout_respawn_and_protection
+PASS test_combat.gd:test_light_hit_damage_and_single_hit_per_strike
+PASS test_combat.gd:test_move_speed_strafe_and_vex_light_steps
+PASS test_combat.gd:test_no_friendly_fire
+PASS test_combat.gd:test_perch_is_nyx_only_and_validated
+PASS test_combat.gd:test_spawn_protection_ends_on_offense
+PASS test_combat.gd:test_spawn_protection_ends_when_leaving_volume
+PASS test_combat.gd:test_stale_buffered_input_does_not_fire
+PASS test_combat.gd:test_stamina_costs_and_regen_rules
+PASS test_combat.gd:test_teammates_cannot_trap_each_other
+PASS test_match_rules.gd:test_contested_pauses_and_neutral_resets
+PASS test_match_rules.gd:test_eliminations_do_not_score
+PASS test_match_rules.gd:test_final_period_has_no_misleading_reveal
+PASS test_match_rules.gd:test_first_to_250_wins_immediately_once
+PASS test_match_rules.gd:test_initial_state_and_config
+PASS test_match_rules.gd:test_more_teammates_do_not_multiply
+PASS test_match_rules.gd:test_occupancy_hysteresis_and_band
+PASS test_match_rules.gd:test_point_at_exact_regulation_end_counts_before_time_check
+PASS test_match_rules.gd:test_regulation_end_higher_score_wins
+PASS test_match_rules.gd:test_reveal_15s_before_and_countdown_visible
+PASS test_match_rules.gd:test_rotation_order_and_timing
+PASS test_match_rules.gd:test_rotation_resets_control_timer
+PASS test_match_rules.gd:test_score_warnings_emitted_once
+PASS test_match_rules.gd:test_scoring_one_point_per_second_sole_control
+PASS test_match_rules.gd:test_tie_goes_to_sudden_death_with_frozen_rotation
+PASS test_protocol.gd:test_client_message_validation_rejects_forgeries
+PASS test_protocol.gd:test_feint_is_disguised_in_snapshots
+PASS test_protocol.gd:test_input_codec_roundtrip_and_limits
+PASS test_protocol.gd:test_input_sanitize_nan_and_ranges
+PASS test_protocol.gd:test_rpc_surface_matches_on_both_roles
+snapshot bytes: 266 (2 fighters + own state 142)
+PASS test_protocol.gd:test_snapshot_roundtrip
+PASS test_protocol.gd:test_untrusted_bytes_prevalidated_without_engine_errors
+PASS test_roster_security.gd:test_auto_assign_never_duplicates_within_a_team
+PASS test_roster_security.gd:test_locked_players_cannot_change_or_be_swapped
+PASS test_roster_security.gd:test_simultaneous_same_species_picks_resolve_to_one_owner
+PASS test_roster_security.gd:test_swaps_need_the_named_target_and_same_team
+PASS test_roster_security.gd:test_unknown_players_and_species_rejected
+PASS test_skills_nyx_bruno.gd:test_bruno_bark_interrupts_exposed_no_damage_respects_walls
+PASS test_skills_nyx_bruno.gd:test_bruno_bark_respects_control_resistance
+PASS test_skills_nyx_bruno.gd:test_bruno_grounded_halves_light_push
+PASS test_skills_nyx_bruno.gd:test_bruno_rush_hit_knockback_and_steer_limit
+PASS test_skills_nyx_bruno.gd:test_bruno_rush_wall_bump_and_miss_recovery
+PASS test_skills_nyx_bruno.gd:test_bruno_stand_firm_front_back_no_attacks_cooldown_on_exit
+PASS test_skills_nyx_bruno.gd:test_nyx_crosscut_second_not_guaranteed_vs_defense
+PASS test_skills_nyx_bruno.gd:test_nyx_crosscut_two_separate_strikes
+PASS test_skills_nyx_bruno.gd:test_nyx_pounce_hits_with_startup_cost_cooldown
+PASS test_skills_nyx_bruno.gd:test_nyx_pounce_interrupted_during_aim
+PASS test_skills_nyx_bruno.gd:test_nyx_pounce_no_homing_and_miss_recovery
+PASS test_skills_nyx_bruno.gd:test_nyx_pounce_stopped_by_wall
+PASS test_skills_nyx_bruno.gd:test_nyx_slip_counter_only_in_window
+PASS test_skills_nyx_bruno.gd:test_nyx_slip_evades_and_counter_window
+PASS test_skills_vex_hops_scrap.gd:test_hops_bound_air_control_is_bounded
+PASS test_skills_vex_hops_scrap.gd:test_hops_bound_grounded_only_distance_no_damage
+PASS test_skills_vex_hops_scrap.gd:test_hops_double_kick_two_contacts
+PASS test_skills_vex_hops_scrap.gd:test_hops_dropkick_hit_and_miss_crash
+PASS test_skills_vex_hops_scrap.gd:test_hops_lightfoot_keeps_landing_momentum
+PASS test_skills_vex_hops_scrap.gd:test_scrap_leg_sweep_blocked_by_front_guard
+PASS test_skills_vex_hops_scrap.gd:test_scrap_parry_success_redirects_attacker
+PASS test_skills_vex_hops_scrap.gd:test_scrap_parry_whiff_is_exposed_and_low_not_parryable
+PASS test_skills_vex_hops_scrap.gd:test_scrap_quick_recovery_shorter_stun
+PASS test_skills_vex_hops_scrap.gd:test_scrap_turnabout_broken_by_hit_and_resisted_by_cr
+PASS test_skills_vex_hops_scrap.gd:test_scrap_turnabout_never_through_wall
+PASS test_skills_vex_hops_scrap.gd:test_scrap_turnabout_repositions_releases_and_ignores_guard
+PASS test_skills_vex_hops_scrap.gd:test_vex_false_start_no_damage_sidestep_disguised
+PASS test_skills_vex_hops_scrap.gd:test_vex_sidewinder_curves_strikes_and_stops_at_contact
+PASS test_skills_vex_hops_scrap.gd:test_vex_sidewinder_stops_at_wall
+PASS test_skills_vex_hops_scrap.gd:test_vex_tail_sweep_low_guard_and_radius
+bot match: ticks=28800 wall_ms=53804 score=[102, 50] winner=0 reason=time
+event counts: { "land": 147, "action": 2844, "skill_fx": 479, "zone_state": 95, "interrupted": 671, "cr": 82, "hit": 931, "wall_bump": 10, "guard_up": 1246, "bark": 33, "block": 181, "guard_down": 1162, "grab": 8, "afterimage": 23, "ko": 9, "evaded": 6, "resisted": 14, "score": 152, "respawn": 8, "protect_end": 8, "jump": 12, "grab_resisted": 4, "zone_revealed": 7, "getup": 12, "zone_rotated": 7, "parry": 3, "guard_break": 5, "grab_broken": 2, "match_end": 1 }
+zones controlled: ["B", "A", "C"] skills used: { "hops_bound": 18, "hops_dropkick": 59, "nyx_pounce": 51, "bruno_rush": 56, "vex_sidewinder": 60, "bruno_bark": 42, "nyx_crosscut": 58, "scrap_turnabout": 28, "hops_double_kick": 50, "scrap_leg_sweep": 42, "vex_tail_sweep": 33, "vex_false_start": 26, "nyx_slip": 18, "scrap_catch_turn": 36, "bruno_stand_firm": 25 }
+max stuck ticks outside zone: { 1: 150, 8: 120, 2: 240, 9: 210, 4: 180, 6: 210, 3: 90, 7: 570, 5: 180, 0: 390 }
+PASS test_zz_bot_match.gd:test_full_bot_match_all_zones
+TESTS: 79 passed, 0 failed, 4294 checks, 57372 ms
