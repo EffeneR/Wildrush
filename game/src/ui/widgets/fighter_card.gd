@@ -178,8 +178,14 @@ func set_level(lv: int) -> void:
 		l.add_theme_color_override("font_color", UiKit.GOLD.lerp(UiKit.TEXT, 0.35))
 		h.add_child(l)
 		_level_chip.add_child(h)
-		_level_chip.visible = lv > 0
+		_update_chip_visibility()
 		_place_chip.call_deferred()
+
+
+func _update_chip_visibility() -> void:
+	## Narrow cards can't show both the state line and the level chip without overlap.
+	if _level_chip != null:
+		_level_chip.visible = level > 0 and (state == "" or size.x >= 150.0)
 
 
 func set_state(p_state: String, p_text: String = "") -> void:
@@ -245,4 +251,5 @@ func _refresh() -> void:
 		_state_box.offset_left = 34
 	else:
 		_state_box.offset_left = 8
+	_update_chip_visibility()
 	_name.add_theme_color_override("font_color", UiKit.TEXT_FAINT if taken else (Color.WHITE if button_pressed else UiKit.TEXT))

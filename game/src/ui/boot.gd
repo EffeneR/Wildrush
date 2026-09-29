@@ -6,6 +6,9 @@ func _ready() -> void:
 	await get_tree().process_frame
 	if Config.is_server:
 		get_tree().change_scene_to_file("res://scenes/server.tscn")
+	elif Config.has("flow-test") and ResourceLoader.exists("res://tools/flow_test.tscn"):
+		# verification builds only (tools/ is excluded from the player-facing Windows export)
+		get_tree().change_scene_to_file("res://tools/flow_test.tscn")
 	elif Config.autopilot != "":
 		get_tree().change_scene_to_file("res://scenes/test_client.tscn")
 	elif ResourceLoader.exists(Game.SCENE_MENU):

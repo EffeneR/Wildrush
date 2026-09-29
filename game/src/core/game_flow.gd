@@ -24,6 +24,52 @@ var pending: Dictionary = {}
 var last_result: Dictionary = {}
 ## Live online session (persists across lobby -> match -> results scenes).
 var session: ClientSession = null
+var _preload_pending: Array[String] = []
+var _preloaded: Array[Resource] = []   # keeps background-loaded match assets cached
+
+
+func _ready() -> void:
+	if not Config.is_server and Config.autopilot == "":
+		preload_match_assets()
+
+
+func preload_match_assets() -> void:
+	## Loads the heavy match assets (fighter models, arena art chunks) on worker threads while
+	## the player is in menus, so starting a match never blocks the main thread for seconds
+	## (which would stall rendering and, online, the network connection).
+	if not _preload_pending.is_empty() or not _preloaded.is_empty():
+		return
+	var paths: Array[String] = []
+	for fid in WR.FIGHTER_IDS:
+		var gp: String = "res://assets/characters/%s/%s.glb" % [fid, fid]
+		if AssetUtil.imported(gp):
+			paths.append(gp)
+	var art: String = "res://assets/arena/arena_art.json"
+	if FileAccess.file_exists(art):
+		var d: Variant = JSON.parse_string(FileAccess.get_file_as_string(art))
+		if typeof(d) == TYPE_DICTIONARY:
+			for ch in (d as Dictionary).get("chunks", []):
+				var cp: String = String(ch.get("path", ""))
+				if cp.begins_with("res://") and AssetUtil.imported(cp):
+					paths.append(cp)
+	for p in paths:
+		if ResourceLoader.load_threaded_request(p, "", true) == OK:
+			_preload_pending.append(p)
+
+
+func _process(_dt: float) -> void:
+	if _preload_pending.is_empty():
+		return
+	for p in _preload_pending.duplicate():
+		var st: int = ResourceLoader.load_threaded_get_status(p)
+		if st == ResourceLoader.THREAD_LOAD_LOADED:
+			var r: Resource = ResourceLoader.load_threaded_get(p)
+			if r != null:
+				_preloaded.append(r)
+			_preload_pending.erase(p)
+		elif st == ResourceLoader.THREAD_LOAD_FAILED or st == ResourceLoader.THREAD_LOAD_INVALID_RESOURCE:
+			push_warning("preload failed: " + p)
+			_preload_pending.erase(p)
 
 
 func goto(path: String, params: Dictionary = {}) -> void:

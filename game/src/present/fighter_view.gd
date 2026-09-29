@@ -70,7 +70,7 @@ func setup(p_def: FighterDef, p_palette: String, p_relation: String, p_show_mark
 	name = "View_%s" % fid
 	_collect_durations()
 	var glb_path: String = CHAR_DIR + fid + "/" + fid + ".glb"
-	if ResourceLoader.exists(glb_path) and FileAccess.file_exists(glb_path + ".import"):
+	if AssetUtil.imported(glb_path):
 		_setup_glb(glb_path)
 	if model == null:
 		rig = ProcRig.new()

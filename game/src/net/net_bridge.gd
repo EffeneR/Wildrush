@@ -13,6 +13,11 @@ signal peer_left(id: int)
 const USER_CHANNELS: int = 4
 const MAX_INPUT_PPS: int = 120        # input packets per second per peer
 const MAX_MSG_PPS: int = 25           # reliable messages per second per peer
+# ENet drops a peer whose reliable traffic goes unacknowledged. The engine default (5 s) is
+# shorter than a loading hitch on slow machines; 12 s tolerates stalls, 30 s is the hard cap.
+const PEER_TIMEOUT_LIMIT: int = 32
+const PEER_TIMEOUT_MIN_MS: int = 12000
+const PEER_TIMEOUT_MAX_MS: int = 30000
 
 var smp: SceneMultiplayer = null
 var peer: ENetMultiplayerPeer = null
@@ -107,7 +112,16 @@ func rtt_ms(id: int) -> float:
 # ------------------------------------------------------------------------------------------
 # authentication
 # ------------------------------------------------------------------------------------------
+func _apply_timeouts(id: int) -> void:
+	if peer == null:
+		return
+	var pp: ENetPacketPeer = peer.get_peer(id)
+	if pp != null:
+		pp.set_timeout(PEER_TIMEOUT_LIMIT, PEER_TIMEOUT_MIN_MS, PEER_TIMEOUT_MAX_MS)
+
+
 func _on_peer_authenticating(id: int) -> void:
+	_apply_timeouts(id)
 	if role == "client" and id == 1:
 		smp.send_auth(1, var_to_bytes(auth_payload))
 

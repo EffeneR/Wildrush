@@ -4,7 +4,7 @@ Owner: technical artist/animator workstream. Paths owned: `blender/characters/`,
 `game/assets/characters/<id>/`, `game/assets/ui/portraits/`, `evidence/characters/`,
 `tools/build_characters.sh`. Contract: `docs/CHARACTER_CONTRACT.md`.
 
-Last update: 2026-09-29 (session 3)
+Last update: 2026-09-29 (session 4)
 
 ## One command
 ```
@@ -43,19 +43,21 @@ Session runs used `WILDRUSH_CHAR_WORK=<scratchpad>/work WILDRUSH_CHARCHECK_DIR=<
 ## Status per fighter
 | Fighter | Mesh/clothing | Rig | Textures | Clips | GLB | Godot (scratch) | Renders |
 |---------|---------------|-----|----------|-------|-----|-----------------|---------|
-| nyx   | done | done (49 deform bones) | done | 49/49, all hits <= 0.078 m | done | clean | done |
-| bruno | head+body+outfit designed, preview OK | NOT DONE | NOT DONE | builders written | NOT DONE | NOT DONE | NOT DONE |
+| nyx   | done (37,838 tris, 4 mats) | done (49 deform bones) | done | 49/49, all hits <= 0.078 m | done | clean | done (rebuilt 01:29Z) |
+| bruno | done (37,839 tris, 4 mats) | done (46 deform bones) | done | 50/50, all hits <= 0.050 m | done | clean | done |
 | vex   | head+outfit designed | NOT DONE | NOT DONE | builders written | NOT DONE | NOT DONE | NOT DONE |
 | hops  | head+outfit designed | NOT DONE | NOT DONE | builders written | NOT DONE | NOT DONE | NOT DONE |
 | scrap | head+outfit designed | NOT DONE | NOT DONE | builders written | NOT DONE | NOT DONE | NOT DONE |
 
 ## Known issues / todo (visual)
-* Nyx rebuild in progress with: per-leg trouser tubes (no web between thighs), wider stance, outward
-  knee poles, firmer jaw close, shorter canines, tighter render framing.
-* Final consistency: rebuild all five with one `tools/build_characters.sh` run at the end.
+* Nyx rebuilt (2026-09-29T01:29Z) with per-leg trouser tubes, wider stance, outward knee poles, firmer
+  jaw close, shorter canines, tighter render framing. Nyx + Bruno committed by the lead.
+* No final all-five consistency rebuild planned (lead: only if needed to fix a real defect).
 
 ## Next exact action
-Finish Nyx rebuild -> run `tools/build_characters.sh bruno` -> inspect renders -> vex -> hops -> scrap.
+Build vex -> hops -> scrap with `tools/build_characters.sh <id>`; append check line after each.
 
 ## Check log (appended per fighter export)
 * nyx 2026-09-28T20:19Z: `CHARCHECK nyx bones=49 tris=37838 clips=49 missing=[] len_mismatch=[] loop_mismatch=[] mats=["nyx_fur", "nyx_cloth", "nyx_eye", "nyx_detail"]`; Blender re-import ok (49 bones, 49 anims, 6 images); godot_import.log: no ERROR lines.
+* nyx 2026-09-29T01:29Z (rebuild): `CHARCHECK nyx bones=49 tris=37838 clips=49 missing=[] len_mismatch=[] loop_mismatch=[] mats=["nyx_fur", "nyx_cloth", "nyx_eye", "nyx_detail"]`; Blender re-import ok; godot_import.log: 0 ERROR lines; build exit 0.
+* bruno 2026-09-29T01:36Z: `CHARCHECK bruno bones=46 tris=37838 clips=50 missing=[] len_mismatch=[] loop_mismatch=[] mats=["bruno_fur", "bruno_cloth", "bruno_eye", "bruno_detail"]`; Blender re-import ok (46 bones, 37,918 tris as counted by the re-import); max strike alignment 0.050 m; godot_import.log: 0 ERROR lines; build exit 0.

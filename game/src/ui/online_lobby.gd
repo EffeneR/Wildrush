@@ -695,9 +695,15 @@ func _build_select() -> void:
 	for c3 in _cards:
 		c3.focus_neighbor_bottom = c3.get_path_to(_lock_btn)
 	_lock_btn.focus_neighbor_top = _lock_btn.get_path_to(_cards[2])
+	# the right column scrolls so the enemy roster + kit text never push the page off-screen
+	var rscroll := ScrollContainer.new()
+	rscroll.custom_minimum_size = Vector2(400, 0)
+	rscroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	rscroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	root.add_child(rscroll)
 	_right_col = UiKit.vbox(10)
-	_right_col.custom_minimum_size = Vector2(400, 0)
-	root.add_child(_right_col)
+	_right_col.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	rscroll.add_child(_right_col)
 	_right_dyn = UiKit.vbox(10)
 	_right_col.add_child(_right_dyn)
 	var kp := UiKit.panel(&"PanelGlass")
@@ -725,8 +731,12 @@ func _select_rows(team: int, box: VBoxContainer) -> void:
 		var pid: int = int(d.get("pid", -1))
 		var fid: String = String(d.get("fighter", ""))
 		var row := UiKit.panel(&"Card")
+		var rv := UiKit.vbox(6)
+		row.add_child(rv)
 		var h := UiKit.hbox(10)
-		row.add_child(h)
+		rv.add_child(h)
+		var acts := UiKit.hbox(8)          # swap actions sit on their own line (keeps rows narrow)
+		acts.alignment = BoxContainer.ALIGNMENT_END
 		var e := FighterEmblem.new()
 		e.fighter_id = fid
 		e.custom_minimum_size = Vector2(40, 40)
@@ -762,16 +772,20 @@ func _select_rows(team: int, box: VBoxContainer) -> void:
 				UiToasts.notify(self, "Swap request sent.", "info"))
 			sb.name = "Swap_%d" % pid
 			sb.disabled = asked
-			h.add_child(sb)
+			acts.add_child(sb)
 		for s2 in swaps:
 			if int(s2[1]) == me_pid and int(s2[0]) == pid:
 				var from_pid: int = pid
 				var ab := UiKit.button("Accept swap", &"PrimaryButton", func() -> void: _request({"t": "swap_answer", "from": from_pid, "accept": true}))
 				ab.name = "AcceptSwap_%d" % pid
-				h.add_child(ab)
+				acts.add_child(ab)
 				var db := UiKit.button("Decline", &"SmallButton", func() -> void: _request({"t": "swap_answer", "from": from_pid, "accept": false}))
 				db.name = "DeclineSwap_%d" % pid
-				h.add_child(db)
+				acts.add_child(db)
+		if acts.get_child_count() > 0:
+			rv.add_child(acts)
+		else:
+			acts.free()
 		box.add_child(row)
 
 

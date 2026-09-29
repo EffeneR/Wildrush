@@ -52,7 +52,7 @@ func parse(user_args: PackedStringArray) -> void:
 				i += 1
 			args[key] = val
 		i += 1
-	is_server = args.has("server")
+	is_server = args.has("server") or OS.has_feature("dedicated_server")   # exported server build runs as server
 	port = clampi(int(args.get("port", "24610")), 1024, 65535)
 	bind_address = String(args.get("bind", "*"))
 	match_id = String(args.get("match-id", ""))

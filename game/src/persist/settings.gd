@@ -65,6 +65,8 @@ func set_value(section: String, key: String, v: Variant, save_now: bool = true) 
 func load_settings() -> void:
 	var err: int = _cfg.load(PATH)
 	if err != OK:
+		if not Config.is_server and Config.autopilot == "" and not FileAccess.file_exists(PATH):
+			save_settings.call_deferred()   # first launch: write defaults so the file exists
 		return
 	var d: Dictionary = _defaults()
 	for section in d.keys():

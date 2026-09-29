@@ -1,0 +1,183 @@
+{
+  "awards": {
+    "fighter": "nyx",
+    "level_after": 1,
+    "level_before": 1,
+    "unlocks": [
+      {
+        "id": "pack_debut",
+        "kind": "badge"
+      }
+    ],
+    "xp_gained": 202
+  },
+  "errors": [],
+  "frames": 29692,
+  "message": "",
+  "ok": true,
+  "replay_path": "user://replays/offline-1790666768.wrr",
+  "result": {
+    "bots": [
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 6,
+        "damage_dealt": 1510,
+        "entity": 1,
+        "fighter": "bruno",
+        "knocked_out": 1,
+        "kos": 0,
+        "name": "Birch (Bot)",
+        "team": 0
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 43,
+        "damage_dealt": 1734,
+        "entity": 2,
+        "fighter": "vex",
+        "knocked_out": 0,
+        "kos": 1,
+        "name": "Hazel (Bot)",
+        "team": 0
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 23,
+        "damage_dealt": 2251,
+        "entity": 3,
+        "fighter": "hops",
+        "knocked_out": 0,
+        "kos": 3,
+        "name": "Ivy (Bot)",
+        "team": 0
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 18,
+        "damage_dealt": 1532,
+        "entity": 4,
+        "fighter": "scrap",
+        "knocked_out": 1,
+        "kos": 0,
+        "name": "Kestrel (Bot)",
+        "team": 0
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 5,
+        "damage_dealt": 2510,
+        "entity": 5,
+        "fighter": "nyx",
+        "knocked_out": 1,
+        "kos": 0,
+        "name": "Cobble (Bot)",
+        "team": 1
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 17,
+        "damage_dealt": 1553,
+        "entity": 6,
+        "fighter": "bruno",
+        "knocked_out": 0,
+        "kos": 1,
+        "name": "Loam (Bot)",
+        "team": 1
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 4,
+        "damage_dealt": 1723,
+        "entity": 7,
+        "fighter": "vex",
+        "knocked_out": 1,
+        "kos": 2,
+        "name": "Dune (Bot)",
+        "team": 1
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 7,
+        "damage_dealt": 3007,
+        "entity": 8,
+        "fighter": "hops",
+        "knocked_out": 1,
+        "kos": 1,
+        "name": "Ember (Bot)",
+        "team": 1
+      },
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": true,
+        "control_seconds": 2,
+        "damage_dealt": 1450,
+        "entity": 9,
+        "fighter": "scrap",
+        "knocked_out": 1,
+        "kos": 0,
+        "name": "Ash (Bot)",
+        "team": 1
+      }
+    ],
+    "build": "wildrush-1.0.0",
+    "duration_s": 480.0,
+    "ended_reason": "time",
+    "match_id": "offline-1790666768",
+    "mode": "offline",
+    "players": [
+      {
+        "abandoned": false,
+        "account_id": "",
+        "afk": false,
+        "bot": false,
+        "control_seconds": 26,
+        "damage_dealt": 2058,
+        "entity": 0,
+        "fighter": "nyx",
+        "knocked_out": 2,
+        "kos": 0,
+        "name": "Player",
+        "team": 0
+      }
+    ],
+    "score": [
+      61,
+      24
+    ],
+    "seed": 178707,
+    "sudden_death": false,
+    "winner_team": 0
+  },
+  "steps": [
+    "boot",
+    "menu",
+    "match",
+    "results"
+  ]
+}

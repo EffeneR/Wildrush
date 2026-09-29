@@ -749,6 +749,765 @@
     "evidence/characters/bruno_skills.png",
     "evidence/characters/bruno_blender.png"
    ]
+  },
+  "vex": {
+   "triangles": 37836,
+   "materials": [
+    "vex_fur",
+    "vex_cloth",
+    "vex_eye",
+    "vex_detail"
+   ],
+   "material_count": 4,
+   "deform_bones": 49,
+   "skeleton": {
+    "deform_bones": 49,
+    "zero_length": [],
+    "overlapping": [],
+    "tail_connected_to_hips": true
+   },
+   "weights": {
+    "verts": 19353,
+    "unnormalized": 0,
+    "empty": 0,
+    "max_influences": 4,
+    "over_4": 0
+   },
+   "clips": {
+    "idle": {
+     "duration": 2.0,
+     "frames": 120
+    },
+    "walk_f": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "walk_b": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "walk_l": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "walk_r": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "run_f": {
+     "duration": 0.6833,
+     "frames": 41
+    },
+    "run_b": {
+     "duration": 0.6833,
+     "frames": 41
+    },
+    "run_l": {
+     "duration": 0.6833,
+     "frames": 41
+    },
+    "run_r": {
+     "duration": 0.6833,
+     "frames": 41
+    },
+    "turn_l": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "turn_r": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "jump_start": {
+     "duration": 0.12,
+     "frames": 7
+    },
+    "jump_air": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "jump_fall": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "jump_land": {
+     "duration": 0.2,
+     "frames": 12
+    },
+    "dodge_f": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "dodge_b": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "dodge_l": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "dodge_r": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "guard_enter": {
+     "duration": 0.1,
+     "frames": 6
+    },
+    "guard_hold": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "guard_exit": {
+     "duration": 0.12,
+     "frames": 7
+    },
+    "guard_block": {
+     "duration": 0.2,
+     "frames": 12
+    },
+    "guard_break": {
+     "duration": 0.9,
+     "frames": 54
+    },
+    "hit_front": {
+     "duration": 0.3,
+     "frames": 18
+    },
+    "hit_back": {
+     "duration": 0.3,
+     "frames": 18
+    },
+    "hit_heavy": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "stagger": {
+     "duration": 0.6,
+     "frames": 36
+    },
+    "knockdown": {
+     "duration": 0.8,
+     "frames": 48
+    },
+    "getup": {
+     "duration": 0.45,
+     "frames": 27
+    },
+    "grabbed": {
+     "duration": 0.45,
+     "frames": 27
+    },
+    "knockout": {
+     "duration": 1.2,
+     "frames": 72
+    },
+    "respawn": {
+     "duration": 0.8,
+     "frames": 48
+    },
+    "victory": {
+     "duration": 2.5,
+     "frames": 150
+    },
+    "defeat": {
+     "duration": 2.0,
+     "frames": 120
+    },
+    "light_s": {
+     "duration": 0.467,
+     "frames": 28
+    },
+    "light_l": {
+     "duration": 0.467,
+     "frames": 28
+    },
+    "light_r": {
+     "duration": 0.467,
+     "frames": 28
+    },
+    "light_air": {
+     "duration": 0.4,
+     "frames": 24
+    },
+    "heavy": {
+     "duration": 1.017,
+     "frames": 61
+    },
+    "skill_q_step_l": {
+     "duration": 0.35,
+     "frames": 21
+    },
+    "skill_q_step_r": {
+     "duration": 0.35,
+     "frames": 21
+    },
+    "skill_q_step_b": {
+     "duration": 0.35,
+     "frames": 21
+    },
+    "skill_e_windup": {
+     "duration": 0.1,
+     "frames": 6
+    },
+    "skill_e_dash_l": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "skill_e_dash_r": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "skill_e_strike": {
+     "duration": 0.18,
+     "frames": 11
+    },
+    "skill_e_recover": {
+     "duration": 0.35,
+     "frames": 21
+    },
+    "skill_r": {
+     "duration": 0.95,
+     "frames": 57
+    }
+   },
+   "clip_count": 49,
+   "required_missing": [],
+   "alignment": {
+    "vex_light_s#0": {
+     "max_error_m": 0.0025,
+     "clip": "light_s",
+     "limb": "hand_r",
+     "ok": true
+    },
+    "vex_light_l#0": {
+     "max_error_m": 0.0147,
+     "clip": "light_l",
+     "limb": "hand_l",
+     "ok": true
+    },
+    "vex_light_r#0": {
+     "max_error_m": 0.0139,
+     "clip": "light_r",
+     "limb": "hand_r",
+     "ok": true
+    },
+    "vex_light_air#0": {
+     "max_error_m": 0.0618,
+     "clip": "light_air",
+     "limb": "hand_r",
+     "ok": true
+    },
+    "vex_heavy#0": {
+     "max_error_m": 0.0069,
+     "clip": "heavy",
+     "limb": "hand_r",
+     "ok": true
+    },
+    "vex_tail_sweep#0": {
+     "max_error_m": 0.0,
+     "clip": "skill_r",
+     "limb": "tail_tip",
+     "ok": true
+    },
+    "vex_sidewinder#0": {
+     "max_error_m": 0.0,
+     "clip": "skill_e_strike",
+     "limb": "hand_r",
+     "ok": true
+    }
+   },
+   "max_alignment_error_m": 0.0618,
+   "alignment_all_ok": true,
+   "foot_contact": {
+    "idle": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.002
+    },
+    "walk_f": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_b": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_l": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_r": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "run_f": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "run_b": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "run_l": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "run_r": {
+     "max_foot_height_m": 0.0,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    }
+   },
+   "rest_drift_idle0": {
+    "hips_drift_m": 0.0747,
+    "max_bone_length_change_m": 1.6e-05,
+    "feet_height_m": 0.0,
+    "hand_move_from_Apose_m": 0.824,
+    "ok": true
+   },
+   "extra_checks": {},
+   "cloth_region_sides": {
+    "primary": {
+     "texels": 651594,
+     "frac_left_x_pos": 0.5429,
+     "frac_right_x_neg": 0.4107
+    },
+    "secondary": {
+     "texels": 90002,
+     "frac_left_x_pos": 0.0,
+     "frac_right_x_neg": 1.0
+    },
+    "accent": {
+     "texels": 3039,
+     "frac_left_x_pos": 0.1369,
+     "frac_right_x_neg": 0.1349
+    }
+   },
+   "vex_copper_panel_right_shoulder_only": true,
+   "blender_reimport": {
+    "ok": true,
+    "bones": 49,
+    "triangles": 37913,
+    "animations": 49,
+    "materials": [
+     "vex_cloth",
+     "vex_detail",
+     "vex_eye",
+     "vex_fur"
+    ]
+   },
+   "godot_import": {
+    "bones": 49,
+    "triangles": 37833,
+    "clips": 49,
+    "missing_clips": [],
+    "length_mismatch": [],
+    "loop_mismatch": [],
+    "materials": [
+     "vex_fur",
+     "vex_cloth",
+     "vex_eye",
+     "vex_detail"
+    ],
+    "import_errors": []
+   },
+   "glb": {
+    "path": "game/assets/characters/vex/vex.glb",
+    "bytes": 11210612
+   },
+   "evidence": [
+    "evidence/characters/vex_turnaround.png",
+    "evidence/characters/vex_skills.png",
+    "evidence/characters/vex_blender.png"
+   ]
+  },
+  "hops": {
+   "triangles": 37791,
+   "materials": [
+    "hops_fur",
+    "hops_cloth",
+    "hops_eye",
+    "hops_detail"
+   ],
+   "material_count": 4,
+   "deform_bones": 47,
+   "skeleton": {
+    "deform_bones": 47,
+    "zero_length": [],
+    "overlapping": [],
+    "tail_connected_to_hips": true
+   },
+   "weights": {
+    "verts": 19777,
+    "unnormalized": 0,
+    "empty": 0,
+    "max_influences": 4,
+    "over_4": 0
+   },
+   "clips": {
+    "idle": {
+     "duration": 2.0,
+     "frames": 120
+    },
+    "walk_f": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "walk_b": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "walk_l": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "walk_r": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "run_f": {
+     "duration": 0.7,
+     "frames": 42
+    },
+    "run_b": {
+     "duration": 0.7,
+     "frames": 42
+    },
+    "run_l": {
+     "duration": 0.7,
+     "frames": 42
+    },
+    "run_r": {
+     "duration": 0.7,
+     "frames": 42
+    },
+    "turn_l": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "turn_r": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "jump_start": {
+     "duration": 0.12,
+     "frames": 7
+    },
+    "jump_air": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "jump_fall": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "jump_land": {
+     "duration": 0.2,
+     "frames": 12
+    },
+    "dodge_f": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "dodge_b": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "dodge_l": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "dodge_r": {
+     "duration": 0.367,
+     "frames": 22
+    },
+    "guard_enter": {
+     "duration": 0.1,
+     "frames": 6
+    },
+    "guard_hold": {
+     "duration": 1.0,
+     "frames": 60
+    },
+    "guard_exit": {
+     "duration": 0.12,
+     "frames": 7
+    },
+    "guard_block": {
+     "duration": 0.2,
+     "frames": 12
+    },
+    "guard_break": {
+     "duration": 0.9,
+     "frames": 54
+    },
+    "hit_front": {
+     "duration": 0.3,
+     "frames": 18
+    },
+    "hit_back": {
+     "duration": 0.3,
+     "frames": 18
+    },
+    "hit_heavy": {
+     "duration": 0.5,
+     "frames": 30
+    },
+    "stagger": {
+     "duration": 0.6,
+     "frames": 36
+    },
+    "knockdown": {
+     "duration": 0.8,
+     "frames": 48
+    },
+    "getup": {
+     "duration": 0.45,
+     "frames": 27
+    },
+    "grabbed": {
+     "duration": 0.45,
+     "frames": 27
+    },
+    "knockout": {
+     "duration": 1.2,
+     "frames": 72
+    },
+    "respawn": {
+     "duration": 0.8,
+     "frames": 48
+    },
+    "victory": {
+     "duration": 2.5,
+     "frames": 150
+    },
+    "defeat": {
+     "duration": 2.0,
+     "frames": 120
+    },
+    "light_s": {
+     "duration": 0.483,
+     "frames": 29
+    },
+    "light_l": {
+     "duration": 0.483,
+     "frames": 29
+    },
+    "light_r": {
+     "duration": 0.483,
+     "frames": 29
+    },
+    "light_air": {
+     "duration": 0.4,
+     "frames": 24
+    },
+    "heavy": {
+     "duration": 1.017,
+     "frames": 61
+    },
+    "skill_q_crouch": {
+     "duration": 0.15,
+     "frames": 9
+    },
+    "skill_q_air": {
+     "duration": 0.55,
+     "frames": 33
+    },
+    "skill_q_land": {
+     "duration": 0.25,
+     "frames": 15
+    },
+    "skill_e": {
+     "duration": 0.833,
+     "frames": 50
+    },
+    "skill_r_hop": {
+     "duration": 0.22,
+     "frames": 13
+    },
+    "skill_r_flight": {
+     "duration": 0.4,
+     "frames": 24
+    },
+    "skill_r_land": {
+     "duration": 0.35,
+     "frames": 21
+    },
+    "skill_r_crash": {
+     "duration": 0.85,
+     "frames": 51
+    }
+   },
+   "clip_count": 48,
+   "required_missing": [],
+   "alignment": {
+    "hops_light_s#0": {
+     "max_error_m": 0.0035,
+     "clip": "light_s",
+     "limb": "foot_r",
+     "ok": true
+    },
+    "hops_light_l#0": {
+     "max_error_m": 0.0077,
+     "clip": "light_l",
+     "limb": "foot_l",
+     "ok": true
+    },
+    "hops_light_r#0": {
+     "max_error_m": 0.0078,
+     "clip": "light_r",
+     "limb": "foot_r",
+     "ok": true
+    },
+    "hops_light_air#0": {
+     "max_error_m": 0.0001,
+     "clip": "light_air",
+     "limb": "foot_r",
+     "ok": true
+    },
+    "hops_heavy#0": {
+     "max_error_m": 0.0059,
+     "clip": "heavy",
+     "limb": "foot_r",
+     "ok": true
+    },
+    "hops_double_kick#0": {
+     "max_error_m": 0.0508,
+     "clip": "skill_e",
+     "limb": "foot_r",
+     "ok": true
+    },
+    "hops_double_kick#1": {
+     "max_error_m": 0.032,
+     "clip": "skill_e",
+     "limb": "foot_l",
+     "ok": true
+    },
+    "hops_dropkick#0": {
+     "max_error_m": 0.0001,
+     "clip": "skill_r_hop+skill_r_flight",
+     "limb": "foot_r",
+     "ok": true
+    }
+   },
+   "max_alignment_error_m": 0.0508,
+   "alignment_all_ok": true,
+   "foot_contact": {
+    "idle": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_f": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_b": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_l": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "walk_r": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    },
+    "run_f": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.001
+    },
+    "run_b": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.001
+    },
+    "run_l": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.001
+    },
+    "run_r": {
+     "max_foot_height_m": 0.0001,
+     "ok": true,
+     "planted_speed_dev_mps": 0.0
+    }
+   },
+   "rest_drift_idle0": {
+    "hips_drift_m": 0.0796,
+    "max_bone_length_change_m": 7.3e-05,
+    "feet_height_m": 0.0001,
+    "hand_move_from_Apose_m": 0.746,
+    "ok": true
+   },
+   "extra_checks": {},
+   "cloth_region_sides": {
+    "primary": {
+     "texels": 737010,
+     "frac_left_x_pos": 0.4709,
+     "frac_right_x_neg": 0.4738
+    },
+    "secondary": {
+     "texels": 1196267,
+     "frac_left_x_pos": 0.4349,
+     "frac_right_x_neg": 0.4358
+    },
+    "accent": {
+     "texels": 166267,
+     "frac_left_x_pos": 0.4707,
+     "frac_right_x_neg": 0.4702
+    }
+   },
+   "blender_reimport": {
+    "ok": true,
+    "bones": 47,
+    "triangles": 37871,
+    "animations": 48,
+    "materials": [
+     "hops_cloth",
+     "hops_detail",
+     "hops_eye",
+     "hops_fur"
+    ]
+   },
+   "godot_import": {
+    "bones": 47,
+    "triangles": 37791,
+    "clips": 48,
+    "missing_clips": [],
+    "length_mismatch": [],
+    "loop_mismatch": [],
+    "materials": [
+     "hops_fur",
+     "hops_cloth",
+     "hops_eye",
+     "hops_detail"
+    ],
+    "import_errors": []
+   },
+   "glb": {
+    "path": "game/assets/characters/hops/hops.glb",
+    "bytes": 12112732
+   },
+   "evidence": [
+    "evidence/characters/hops_turnaround.png",
+    "evidence/characters/hops_skills.png",
+    "evidence/characters/hops_blender.png"
+   ]
   }
  },
  "godot_import_errors_total": 0

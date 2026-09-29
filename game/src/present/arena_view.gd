@@ -109,7 +109,7 @@ func _load_art_chunks() -> bool:
 			continue
 		if not path.begins_with("res://"):
 			path = "res://assets/arena/" + path.get_file()
-		if not ResourceLoader.exists(path):
+		if not AssetUtil.imported(path):
 			continue
 		var ps: PackedScene = load(path) as PackedScene
 		if ps == null:

@@ -41,7 +41,7 @@ static func get_portrait(fid: String, pal: String = "default") -> Texture2D:
 	if _cache.has(k):
 		return _cache[k]
 	var file: String = DIR + fid + ".png"
-	if pal == "default" and ResourceLoader.exists(file):
+	if pal == "default" and AssetUtil.imported(file):
 		var t: Texture2D = load(file) as Texture2D
 		_cache[k] = t
 		return t
