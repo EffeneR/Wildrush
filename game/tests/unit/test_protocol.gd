@@ -116,3 +116,28 @@ func test_feint_is_disguised_in_snapshots() -> void:
 	await run(sim, 1, func(_i: int) -> Dictionary: return {v.entity_id: frame(PI, WR.BTN_Q), p[1].entity_id: frame(0.0)})
 	var vs: Dictionary = Protocol.fighter_view_state(v, 1, false, sim.tick)
 	assert_eq(Protocol.clip_name(int(vs["clip"])), "heavy", "opponents see the heavy wind-up during a feint")
+
+
+func test_untrusted_bytes_prevalidated_without_engine_errors() -> void:
+	## Everything a client can legitimately send passes; malformed input is rejected silently.
+	for m in [{"t": "pick", "f": "nyx"}, {"t": "chat", "text": "héllo · ok", "team": true},
+			{"t": "ping", "pos": Vector3(1.5, 0, -3.25), "kind": "enemy"}, {"t": "admin", "cmd": "bots", "args": {"enabled": true, "difficulty": "hard"}},
+			{"t": "swap_answer", "from": 3, "accept": false}, {"t": "ready", "v": true}]:
+		var b: PackedByteArray = Protocol.pack(m)
+		assert_true(Protocol.valid_variant_bytes(b), "valid: %s" % str(m))
+		assert_eq(Protocol.unpack(b), m, "round trip: %s" % str(m))
+	var good: PackedByteArray = Protocol.pack({"t": "chat", "text": "abc", "team": false})
+	assert_false(Protocol.valid_variant_bytes(good.slice(0, good.size() - 3)), "truncated")
+	assert_false(Protocol.valid_variant_bytes(PackedByteArray([1, 2, 3, 4, 5, 6, 7])), "garbage")
+	assert_false(Protocol.valid_variant_bytes(var_to_bytes(Color(1, 0, 0))), "unsupported type")
+	assert_false(Protocol.valid_variant_bytes(var_to_bytes({"t": PackedByteArray([1, 2])})), "unsupported nested type")
+	var bad_utf8 := PackedByteArray([27, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 116, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0, 0xC3, 0x28, 0, 0])
+	assert_false(Protocol.valid_variant_bytes(bad_utf8), "invalid UTF-8 in a string")
+	var deep: Variant = {"t": "x"}
+	for i in range(8):
+		deep = {"t": "x", "n": deep}
+	assert_false(Protocol.valid_variant_bytes(var_to_bytes(deep)), "nesting depth limited")
+	var many: Dictionary = {"t": "x"}
+	for i in range(100):
+		many["k%d" % i] = i
+	assert_false(Protocol.valid_variant_bytes(var_to_bytes(many)), "entry count limited")

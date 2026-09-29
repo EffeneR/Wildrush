@@ -1,32 +1,25 @@
 Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
 
-[server] {"bots_allowed":false,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790520926","mode":"private","port":24610,"protocol":3,"t":0}
-[server] {"ev":"joined","observer":false,"peer":415303923,"pid":2,"t":140}
-[server] {"ev":"joined","observer":false,"peer":2008074804,"pid":3,"t":194}
-[server] {"ev":"joined","observer":false,"peer":1162386826,"pid":4,"t":261}
-[server] {"ev":"joined","observer":false,"peer":1032197583,"pid":5,"t":326}
-[server] {"ev":"joined","observer":false,"peer":744696368,"pid":6,"t":329}
-[server] {"ev":"joined","observer":false,"peer":1548033237,"pid":7,"t":368}
-[server] {"ev":"joined","observer":false,"peer":1419262240,"pid":8,"t":377}
-[server] {"ev":"joined","observer":false,"peer":248537798,"pid":9,"t":377}
-[server] {"ev":"joined","observer":false,"peer":1703204042,"pid":10,"t":387}
-[server] {"ev":"select","players":10,"t":391}
-[server] {"ev":"joined","observer":false,"peer":1647466993,"pid":11,"t":391}
-[server] {"bots":0,"ev":"match_start","fighters":10,"t":511}
-[server] {"ev":"left","peer":415303923,"pid":2,"t":8861}
-[server] {"ev":"left","peer":2008074804,"pid":3,"t":8913}
-[server] {"ev":"left","peer":1162386826,"pid":4,"t":8977}
-[server] {"ev":"left","peer":1032197583,"pid":5,"t":9043}
-[server] {"ev":"left","peer":744696368,"pid":6,"t":9045}
-[server] {"ev":"left","peer":1548033237,"pid":7,"t":9087}
-[server] {"ev":"left","peer":1419262240,"pid":8,"t":9094}
-ERROR: Unable to send packet on channel 0, max channels: 0
-   at: send (modules/enet/enet_packet_peer.cpp:64)
-   GDScript backtrace (most recent call first):
-       [0] send_to (res://src/net/net_bridge.gd:288)
-       [1] _broadcast_lobby (res://src/net/server_main.gd:791)
-       [2] on_peer_disconnected (res://src/net/server_main.gd:258)
-       [3] _on_peer_disconnected (res://src/net/net_bridge.gd:175)
-[server] {"ev":"left","peer":248537798,"pid":9,"t":9094}
-[server] {"ev":"left","peer":1703204042,"pid":10,"t":9104}
-[server] {"ev":"left","peer":1647466993,"pid":11,"t":9108}
+[server] {"bots_allowed":false,"build":"wildrush-1.0.0","ev":"server_started","match_id":"local-1790666920","mode":"private","port":24610,"protocol":3,"t":0}
+[server] {"ev":"joined","observer":false,"peer":1198921376,"pid":2,"t":120}
+[server] {"ev":"joined","observer":false,"peer":48387184,"pid":3,"t":136}
+[server] {"ev":"joined","observer":false,"peer":2115011886,"pid":4,"t":160}
+[server] {"ev":"joined","observer":false,"peer":1316651110,"pid":5,"t":170}
+[server] {"ev":"joined","observer":false,"peer":106583327,"pid":6,"t":194}
+[server] {"ev":"joined","observer":false,"peer":244956466,"pid":7,"t":213}
+[server] {"ev":"joined","observer":false,"peer":540583016,"pid":8,"t":227}
+[server] {"ev":"joined","observer":false,"peer":206738482,"pid":9,"t":244}
+[server] {"ev":"joined","observer":false,"peer":1637577576,"pid":10,"t":260}
+[server] {"ev":"joined","observer":false,"peer":1585631421,"pid":11,"t":278}
+[server] {"ev":"select","players":10,"t":279}
+[server] {"bots":0,"ev":"match_start","fighters":10,"t":391}
+[server] {"ev":"left","peer":1198921376,"pid":2,"t":9120}
+[server] {"ev":"left","peer":48387184,"pid":3,"t":9136}
+[server] {"ev":"left","peer":2115011886,"pid":4,"t":9160}
+[server] {"ev":"left","peer":1316651110,"pid":5,"t":9170}
+[server] {"ev":"left","peer":106583327,"pid":6,"t":9193}
+[server] {"ev":"left","peer":244956466,"pid":7,"t":9213}
+[server] {"ev":"left","peer":540583016,"pid":8,"t":9227}
+[server] {"ev":"left","peer":206738482,"pid":9,"t":9243}
+[server] {"ev":"left","peer":1637577576,"pid":10,"t":9259}
+[server] {"ev":"left","peer":1585631421,"pid":11,"t":9278}

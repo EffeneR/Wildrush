@@ -265,9 +265,11 @@ func on_violation(peer_id: int, kind: String) -> void:
 	c["violations"] = int(c["violations"]) + 1
 	if int(c["violations"]) % 10 == 1:
 		_log("violation", {"peer": peer_id, "kind": kind, "count": c["violations"]})
-	if int(c["violations"]) > MAX_VIOLATIONS:
+	if int(c["violations"]) > MAX_VIOLATIONS and not bool(c.get("kicked", false)):
+		c["kicked"] = true
 		_log("kick_abuse", {"peer": peer_id})
-		Net.disconnect_peer(peer_id)
+		# end of frame: the engine may still hold this frame's queued packets from the peer
+		Net.disconnect_peer.call_deferred(peer_id)
 
 
 func _entity_of(pid: int) -> int:
@@ -282,7 +284,7 @@ func _entity_of(pid: int) -> int:
 # ------------------------------------------------------------------------------------------
 func on_input(peer_id: int, data: PackedByteArray) -> void:
 	var c: Dictionary = conns.get(peer_id, {})
-	if c.is_empty() or bool(c["observer"]) or stage != Stage.MATCH:
+	if c.is_empty() or bool(c["observer"]) or stage != Stage.MATCH or bool(c.get("kicked", false)):
 		return
 	var frames: Array = Protocol.decode_inputs(data)
 	if frames.is_empty():
@@ -301,7 +303,7 @@ func on_input(peer_id: int, data: PackedByteArray) -> void:
 
 func on_msg(peer_id: int, d: Dictionary) -> void:
 	var c: Dictionary = conns.get(peer_id, {})
-	if c.is_empty():
+	if c.is_empty() or bool(c.get("kicked", false)):
 		return
 	var pid: int = int(c["pid"])
 	var t: String = String(d["t"])

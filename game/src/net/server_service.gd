@@ -27,6 +27,15 @@ static func b64url_decode(s: String) -> PackedByteArray:
 	return Marshalls.base64_to_raw(t)
 
 
+static func _is_b64url(s: String) -> bool:
+	for i in range(s.length()):
+		var c: int = s.unicode_at(i)
+		var ok: bool = (c >= 65 and c <= 90) or (c >= 97 and c <= 122) or (c >= 48 and c <= 57) or c == 45 or c == 95
+		if not ok:
+			return false
+	return s.length() % 4 != 1   # a single trailing sextet can never be valid base64
+
+
 static func b64url_encode(b: PackedByteArray) -> String:
 	return Marshalls.raw_to_base64(b).replace("+", "-").replace("/", "_").replace("=", "")
 
@@ -44,7 +53,12 @@ func verify_ticket(ticket: String, match_id: String) -> Dictionary:
 	## Local verification: signature, server binding, match binding, expiry, single use.
 	if ticket.length() > 2048 or ticket.count(".") != 1:
 		return {"ok": false, "reason": "malformed_ticket"}
+	if _secret.is_empty():
+		return {"ok": false, "reason": "tickets_not_accepted"}   # direct-connect server: no service secret
 	var parts: PackedStringArray = ticket.split(".")
+	for part in parts:
+		if part == "" or not _is_b64url(part):
+			return {"ok": false, "reason": "malformed_ticket"}
 	var payload_b64: String = parts[0]
 	var sig: PackedByteArray = b64url_decode(parts[1])
 	var crypto := Crypto.new()

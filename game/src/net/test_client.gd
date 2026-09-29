@@ -213,7 +213,11 @@ func _security_probe() -> void:
 	nan.put_u8(0xFF)
 	Net.send_raw_input(nan.data_array)
 	for i in range(200):
-		Net.send_raw_input(PackedByteArray([1]))                                          # rate-limit flood
+		Net.send_raw_input(PackedByteArray([1]))                                          # input flood (ENet may throttle)
+	for i in range(100):
+		Net.send_raw_msg(Protocol.pack({"t": "ready", "v": i % 2 == 0}))                 # reliable flood > 25 msg/s
+	var bad_utf8 := PackedByteArray([27, 0, 0, 0, 1, 0, 0, 0, 4, 0, 0, 0, 1, 0, 0, 0, 116, 0, 0, 0, 4, 0, 0, 0, 2, 0, 0, 0, 0xC3, 0x28, 0, 0])
+	Net.send_raw_msg(bad_utf8)                                                          # invalid UTF-8 string
 	_log({"ev": "probe_sent"})
 
 

@@ -1,0 +1,106 @@
+{
+  "test": "security_game_server",
+  "ok": true,
+  "reasons": [],
+  "checks": {
+    "wrong_password_rejected": {
+      "pass": true,
+      "detail": [
+        "observer",
+        "password",
+        "tickets_not_accepted"
+      ]
+    },
+    "unauthorized_observer_rejected": {
+      "pass": true,
+      "detail": [
+        "observer",
+        "password",
+        "tickets_not_accepted"
+      ]
+    },
+    "forged_ticket_rejected": {
+      "pass": true,
+      "detail": [
+        "observer",
+        "password",
+        "tickets_not_accepted"
+      ]
+    },
+    "legit_players_joined": {
+      "pass": true,
+      "detail": 4
+    },
+    "authorized_observer_joined": {
+      "pass": true,
+      "detail": null
+    },
+    "forged_messages_flagged": {
+      "pass": true,
+      "detail": [
+        "bad_msg",
+        "rate_msg"
+      ]
+    },
+    "flood_rate_limited": {
+      "pass": true,
+      "detail": [
+        "bad_msg",
+        "rate_msg"
+      ]
+    },
+    "abuser_kicked": {
+      "pass": true,
+      "detail": null
+    },
+    "match_started": {
+      "pass": true,
+      "detail": null
+    },
+    "forged_score_had_no_effect": {
+      "pass": true,
+      "detail": []
+    },
+    "honest_client_kept_playing": {
+      "pass": true,
+      "detail": 1340
+    },
+    "badpw_saw_rejection": {
+      "pass": true,
+      "detail": [
+        {
+          "detail": "bad_password",
+          "ev": "status",
+          "ms": 15,
+          "status": "failed"
+        }
+      ]
+    },
+    "obs_bad_saw_rejection": {
+      "pass": true,
+      "detail": [
+        {
+          "detail": "observer_not_authorized",
+          "ev": "status",
+          "ms": 15,
+          "status": "failed"
+        }
+      ]
+    },
+    "ticket_saw_rejection": {
+      "pass": true,
+      "detail": [
+        {
+          "detail": "tickets_not_accepted",
+          "ev": "status",
+          "ms": 18,
+          "status": "failed"
+        }
+      ]
+    },
+    "no_server_script_errors": {
+      "pass": true,
+      "detail": []
+    }
+  }
+}

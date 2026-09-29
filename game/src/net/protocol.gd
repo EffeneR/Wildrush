@@ -106,7 +106,9 @@ static func pack(d: Dictionary) -> PackedByteArray:
 
 static func unpack(data: PackedByteArray) -> Dictionary:
 	## Safe decode: size-limited, no object decoding, must be a Dictionary with a String "t".
-	if data.size() < 4 or data.size() > MAX_MSG_BYTES:
+	## Untrusted bytes are structurally validated first so malformed input is dropped silently
+	## instead of reaching the engine decoder.
+	if data.size() < 4 or data.size() > MAX_MSG_BYTES or not valid_variant_bytes(data):
 		return {}
 	var v: Variant = bytes_to_var(data)
 	if typeof(v) != TYPE_DICTIONARY:
@@ -115,6 +117,111 @@ static func unpack(data: PackedByteArray) -> Dictionary:
 	if typeof(d.get("t")) != TYPE_STRING:
 		return {}
 	return d
+
+
+# Godot binary Variant encoding (core/io/marshalls.cpp) — only the subset client messages use.
+const _VT_NIL: int = 0
+const _VT_BOOL: int = 1
+const _VT_INT: int = 2
+const _VT_FLOAT: int = 3
+const _VT_STRING: int = 4
+const _VT_VECTOR3: int = 9
+const _VT_DICTIONARY: int = 27
+const _VT_ARRAY: int = 28
+const _FLAG_64: int = 1 << 16
+
+
+static func valid_variant_bytes(b: PackedByteArray) -> bool:
+	## True when `b` is exactly one well-formed encoded Variant made of nil/bool/int/float/
+	## String/Vector3/Array/Dictionary (depth <= 4, <= 64 entries per container, valid UTF-8).
+	return _vv(b, 0, 0) == b.size()
+
+
+static func _vv(b: PackedByteArray, pos: int, depth: int) -> int:
+	if depth > 4 or pos + 4 > b.size():
+		return -1
+	var header: int = b.decode_u32(pos)
+	var t: int = header & 0xFF
+	var flags: int = header & ~0xFF
+	pos += 4
+	match t:
+		_VT_NIL:
+			return pos if flags == 0 else -1
+		_VT_BOOL:
+			return pos + 4 if flags == 0 and pos + 4 <= b.size() else -1
+		_VT_INT, _VT_FLOAT:
+			if flags != 0 and flags != _FLAG_64:
+				return -1
+			var n: int = 8 if flags == _FLAG_64 else 4
+			return pos + n if pos + n <= b.size() else -1
+		_VT_VECTOR3:
+			if flags != 0 and flags != _FLAG_64:
+				return -1
+			var n3: int = 24 if flags == _FLAG_64 else 12
+			return pos + n3 if pos + n3 <= b.size() else -1
+		_VT_STRING:
+			if flags != 0 or pos + 4 > b.size():
+				return -1
+			var ln: int = b.decode_u32(pos)
+			pos += 4
+			if ln < 0 or ln > MAX_MSG_BYTES or pos + ln > b.size() or not _utf8_ok(b, pos, ln):
+				return -1
+			var padded: int = ln + ((4 - ln % 4) % 4)
+			return pos + padded if pos + padded <= b.size() else -1
+		_VT_ARRAY, _VT_DICTIONARY:
+			if flags != 0 or pos + 4 > b.size():
+				return -1
+			var count: int = b.decode_u32(pos) & 0x7FFFFFFF
+			pos += 4
+			if count > 64:
+				return -1
+			for i in range(count * (2 if t == _VT_DICTIONARY else 1)):
+				pos = _vv(b, pos, depth + 1)
+				if pos < 0:
+					return -1
+			return pos
+	return -1
+
+
+static func _utf8_ok(b: PackedByteArray, start: int, ln: int) -> bool:
+	## Strict UTF-8 (no NUL, no overlongs, no surrogates, <= U+10FFFF).
+	var i: int = start
+	var end: int = start + ln
+	while i < end:
+		var c: int = b[i]
+		var extra: int = 0
+		var lo: int = 0x80
+		var hi: int = 0xBF
+		if c == 0:
+			return false
+		elif c < 0x80:
+			extra = 0
+		elif c >= 0xC2 and c <= 0xDF:
+			extra = 1
+		elif c >= 0xE0 and c <= 0xEF:
+			extra = 2
+			if c == 0xE0:
+				lo = 0xA0
+			elif c == 0xED:
+				hi = 0x9F
+		elif c >= 0xF0 and c <= 0xF4:
+			extra = 3
+			if c == 0xF0:
+				lo = 0x90
+			elif c == 0xF4:
+				hi = 0x8F
+		else:
+			return false
+		if i + extra >= end and extra > 0:
+			return false
+		for k in range(1, extra + 1):
+			var cc: int = b[i + k]
+			if k == 1 and (cc < lo or cc > hi):
+				return false
+			if (cc & 0xC0) != 0x80:
+				return false
+		i += extra + 1
+	return true
 
 
 static func validate_client_msg(d: Dictionary) -> bool:

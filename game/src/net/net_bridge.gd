@@ -28,6 +28,7 @@ var auth_payload: Dictionary = {}
 var admitted: bool = false            # client: the server admitted us (authentication done on both sides)
 var stats: Dictionary = {"in_bytes": 0, "out_bytes": 0, "in_packets": 0, "out_packets": 0, "dropped": 0}
 var _rate: Dictionary = {}            # peer -> {"sec": int, "inp": int, "msg": int}
+var _raw_peers: Dictionary = {}       # ENet-level connections that currently exist (server)
 
 
 func start_server(port: int, max_clients: int, bind_addr: String = "*") -> int:
@@ -41,6 +42,9 @@ func start_server(port: int, max_clients: int, bind_addr: String = "*") -> int:
 		return err
 	_setup_smp(true)
 	role = "server"
+	# track raw connections so we never address a peer ENet has already dropped
+	peer.peer_connected.connect(func(pid: int) -> void: _raw_peers[pid] = true)
+	peer.peer_disconnected.connect(func(pid: int) -> void: _raw_peers.erase(pid))
 	return OK
 
 
@@ -88,6 +92,7 @@ func close() -> void:
 	role = ""
 	admitted = false
 	_rate.clear()
+	_raw_peers.clear()
 
 
 func is_active() -> bool:
@@ -95,13 +100,13 @@ func is_active() -> bool:
 
 
 func disconnect_peer(id: int) -> void:
-	if smp != null and role == "server":
+	if smp != null and role == "server" and _raw_peers.has(id):
 		smp.disconnect_peer(id)
 
 
 func rtt_ms(id: int) -> float:
 	## Server-measured round trip time (ENet), used for bounded lag compensation (D-012).
-	if peer == null:
+	if peer == null or (role == "server" and not _raw_peers.has(id)):
 		return 0.0
 	var p: ENetPacketPeer = peer.get_peer(id)
 	if p == null:
@@ -113,7 +118,7 @@ func rtt_ms(id: int) -> float:
 # authentication
 # ------------------------------------------------------------------------------------------
 func _apply_timeouts(id: int) -> void:
-	if peer == null:
+	if peer == null or (role == "server" and not _raw_peers.has(id)):
 		return
 	var pp: ENetPacketPeer = peer.get_peer(id)
 	if pp != null:
@@ -127,12 +132,12 @@ func _on_peer_authenticating(id: int) -> void:
 
 
 func _on_auth_server(id: int, data: PackedByteArray) -> void:
-	if data.size() > Protocol.MAX_MSG_BYTES:
-		smp.disconnect_peer(id)
+	if data.size() > Protocol.MAX_MSG_BYTES or not Protocol.valid_variant_bytes(data):
+		disconnect_peer(id)
 		return
 	var v: Variant = bytes_to_var(data)
 	if typeof(v) != TYPE_DICTIONARY or server_handler == null:
-		smp.disconnect_peer(id)
+		disconnect_peer(id)
 		return
 	server_handler.authenticate(id, v)
 
@@ -149,9 +154,7 @@ func reject_auth(id: int, reason: String) -> void:
 		return
 	smp.send_auth(id, var_to_bytes({"ok": false, "reason": reason}))
 	# give the reply a moment to flush, then drop the peer
-	get_tree().create_timer(0.2).timeout.connect(func() -> void:
-		if smp != null:
-			smp.disconnect_peer(id))
+	get_tree().create_timer(0.2).timeout.connect(func() -> void: disconnect_peer(id))
 
 
 func _on_auth_client(id: int, data: PackedByteArray) -> void:
@@ -293,7 +296,7 @@ func send_raw_input(data: PackedByteArray) -> void:
 
 func _peer_ok(id: int) -> bool:
 	## True only while the ENet peer is fully connected (disconnect signals can lag behind).
-	if peer == null:
+	if peer == null or (role == "server" and not _raw_peers.has(id)):
 		return false
 	var pp: ENetPacketPeer = peer.get_peer(id)
 	return pp != null and pp.get_state() == ENetPacketPeer.STATE_CONNECTED
