@@ -9,6 +9,17 @@ native, Docker CLI without daemon. Toolchain under `.toolchain/` via `tools/setu
 (Godot 4.7.2-stable + export templates, Blender 4.5.9 LTS, Python venv `.venv`).
 After adding `class_name` scripts or assets: `$GODOT_BIN --headless --path game --import`.
 
+## Agent tooling: HyperFrames (HTML → MP4 video)
+Claude Code plugin `hyperframes@hyperframes` (HeyGen, Apache-2.0; 21 skills, no hooks/MCP)
+is declared in `.claude/settings.json` (marketplace `heygen-com/hyperframes`, project scope);
+entry skill `/hyperframes:hyperframes`. CLI via `npx hyperframes` (needs Node 22+, FFmpeg).
+`HYPERFRAMES_SKIP_SKILLS=1` stops `hyperframes init` from adding duplicate standalone skills
+to `~/.claude/skills`. In cloud sessions `.claude/hooks/hyperframes-env.sh` points
+`HYPERFRAMES_BROWSER_PATH` at the preinstalled chrome-headless-shell; elsewhere run
+`npx hyperframes browser ensure`. Smoke test 2026-10-10 (CLI 0.8.145): `init --example blank`
+→ `lint` 0 errors → `render` 1920x1080 H.264, 60 frames/2.0 s in 9.7 s (beginframe capture).
+Rendered videos are marketing material, not game captures (MASTER_SPEC evidence rules).
+
 ## Status: all release gates executed in one recorded run
 `tools/verify.sh --full` at commit `6354d25` (clean tree) → `evidence/verify/latest.json`:
 15 steps — 13 PASS, 2 BLOCKED (Windows client run: no Windows machine; Docker Compose up:

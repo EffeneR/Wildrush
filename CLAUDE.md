@@ -6,6 +6,7 @@
 * Acceptance status per requirement/gate: `docs/ACCEPTANCE_MATRIX.md`
 * References: `docs/REFERENCE_MANIFEST.md`, `docs/REFERENCE_AUDIT.md` (images in `references/`, git-ignored)
 * Toolchain: `toolchain.lock.json`; bootstrap with `tools/setup_env.sh`; resolved binaries in `.toolchain/paths.env`
+* Video (HTML → MP4): HyperFrames Claude Code plugin, `/hyperframes:hyperframes`; setup notes in `PROJECT_STATE.md`
 
 Rules: never claim success without executed evidence; failing/unrunnable checks are
 FAIL/BLOCKED, not PASS. Update `PROJECT_STATE.md` after each major step. Godot project
